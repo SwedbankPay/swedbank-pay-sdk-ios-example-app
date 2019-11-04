@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4DA400076EA406172A87B2F /* Pods_Swedbank_Pay_SDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ED83178ED7D47FCDC3D729 /* Pods_Swedbank_Pay_SDK_Example.framework */; };
+		C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556523701F9D00E3B301 /* UIFont+Extension.swift */; };
+		C54D559423701F9D00E3B301 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556623701F9D00E3B301 /* UIColor+Extension.swift */; };
+		C54D559523701F9D00E3B301 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556723701F9D00E3B301 /* UIView+Extension.swift */; };
+		C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556823701F9D00E3B301 /* UINavigationController+Extension.swift */; };
+		C54D559823701F9D00E3B301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556A23701F9D00E3B301 /* AppDelegate.swift */; };
+		C54D559923701F9D00E3B301 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556C23701F9D00E3B301 /* UserViewModel.swift */; };
+		C54D559A23701F9D00E3B301 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556D23701F9D00E3B301 /* PaymentViewModel.swift */; };
+		C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D556E23701F9D00E3B301 /* StoreViewModel.swift */; };
+		C54D559D23701F9D00E3B301 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D557123701F9D00E3B301 /* LaunchScreen.xib */; };
+		C54D559E23701F9D00E3B301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C54D557323701F9D00E3B301 /* Main.storyboard */; };
+		C54D55A023701F9D00E3B301 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557723701F9D00E3B301 /* Common.swift */; };
+		C54D55A123701F9D00E3B301 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557923701F9D00E3B301 /* CheckoutViewController.swift */; };
+		C54D55A223701F9D00E3B301 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557A23701F9D00E3B301 /* ResultViewController.swift */; };
+		C54D55A323701F9D00E3B301 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */; };
+		C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557C23701F9D00E3B301 /* PaymentViewController.swift */; };
+		C54D55A523701F9D00E3B301 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */; };
+		C54D55A623701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557E23701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift */; };
+		C54D55A723701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54D557F23701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift */; };
+		C54D55A823701F9D00E3B301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C54D558023701F9D00E3B301 /* Images.xcassets */; };
+		C54D55A923701F9D00E3B301 /* IBMPlexMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558323701F9D00E3B301 /* IBMPlexMono-Thin.ttf */; };
+		C54D55AA23701F9D00E3B301 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558423701F9D00E3B301 /* IBMPlexMono-Bold.ttf */; };
+		C54D55AB23701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558523701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf */; };
+		C54D55AC23701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558623701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf */; };
+		C54D55AD23701F9D00E3B301 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558723701F9D00E3B301 /* IBMPlexMono-Medium.ttf */; };
+		C54D55AE23701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558823701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf */; };
+		C54D55AF23701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558923701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf */; };
+		C54D55B023701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558A23701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf */; };
+		C54D55B123701F9D00E3B301 /* IBMPlexMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558B23701F9D00E3B301 /* IBMPlexMono-Regular.ttf */; };
+		C54D55B223701F9D00E3B301 /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558C23701F9D00E3B301 /* IBMPlexMono-Light.ttf */; };
+		C54D55B323701F9D00E3B301 /* IBMPlexMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558D23701F9D00E3B301 /* IBMPlexMono-Italic.ttf */; };
+		C54D55B423701F9D00E3B301 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = C54D558E23701F9D00E3B301 /* OFL.txt */; };
+		C54D55B523701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D558F23701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf */; };
+		C54D55B623701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */; };
+		C54D55B723701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */; };
+		C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55B92370204000E3B301 /* ProductTableViewCell.xib */; };
+		C54D55C02370204000E3B301 /* ShoppingCartSummaryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */; };
+		C54D55C12370204000E3B301 /* ShoppingCartProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D84232203EB2DBBC25D63AB /* Pods-Swedbank Pay SDK Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.debug.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
+		83ED83178ED7D47FCDC3D729 /* Pods_Swedbank_Pay_SDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swedbank_Pay_SDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swedbank Pay SDK Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C54D556523701F9D00E3B301 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		C54D556623701F9D00E3B301 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C54D556723701F9D00E3B301 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C54D556823701F9D00E3B301 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		C54D556923701F9D00E3B301 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C54D556A23701F9D00E3B301 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C54D556C23701F9D00E3B301 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		C54D556D23701F9D00E3B301 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		C54D556E23701F9D00E3B301 /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		C54D557223701F9D00E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		C54D557423701F9D00E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Main.storyboard; sourceTree = "<group>"; };
+		C54D557723701F9D00E3B301 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		C54D557923701F9D00E3B301 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		C54D557A23701F9D00E3B301 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		C54D557C23701F9D00E3B301 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		C54D557E23701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartSummaryFooterView.swift; sourceTree = "<group>"; };
+		C54D557F23701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartProductTableViewCell.swift; sourceTree = "<group>"; };
+		C54D558023701F9D00E3B301 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C54D558323701F9D00E3B301 /* IBMPlexMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Thin.ttf"; sourceTree = "<group>"; };
+		C54D558423701F9D00E3B301 /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
+		C54D558523701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C54D558623701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C54D558723701F9D00E3B301 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
+		C54D558823701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C54D558923701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C54D558A23701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C54D558B23701F9D00E3B301 /* IBMPlexMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Regular.ttf"; sourceTree = "<group>"; };
+		C54D558C23701F9D00E3B301 /* IBMPlexMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Light.ttf"; sourceTree = "<group>"; };
+		C54D558D23701F9D00E3B301 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
+		C54D558E23701F9D00E3B301 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		C54D558F23701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
+		C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
+		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		C54D55BC2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartSummaryFooterView.xib; sourceTree = "<group>"; };
+		C54D55BE2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartProductTableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C54D554923701E6B00E3B301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4DA400076EA406172A87B2F /* Pods_Swedbank_Pay_SDK_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4460D1A01CC72A240AE3887F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83ED83178ED7D47FCDC3D729 /* Pods_Swedbank_Pay_SDK_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C54D554323701E6B00E3B301 = {
+			isa = PBXGroup;
+			children = (
+				C54D554E23701E6B00E3B301 /* Swedbank Pay SDK Example */,
+				C54D554D23701E6B00E3B301 /* Products */,
+				C55196799B0F96CD1937A9DE /* Pods */,
+				4460D1A01CC72A240AE3887F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C54D554D23701E6B00E3B301 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C54D554E23701E6B00E3B301 /* Swedbank Pay SDK Example */ = {
+			isa = PBXGroup;
+			children = (
+				C54D556923701F9D00E3B301 /* Info.plist */,
+				C54D556A23701F9D00E3B301 /* AppDelegate.swift */,
+				C54D557023701F9D00E3B301 /* en.lproj */,
+				C54D556423701F9D00E3B301 /* Extensions */,
+				C54D557623701F9D00E3B301 /* Models */,
+				C54D558123701F9D00E3B301 /* Resources */,
+				C54D557823701F9D00E3B301 /* ViewControllers */,
+				C54D556B23701F9D00E3B301 /* ViewModels */,
+				C54D558023701F9D00E3B301 /* Images.xcassets */,
+			);
+			path = "Swedbank Pay SDK Example";
+			sourceTree = "<group>";
+		};
+		C54D556423701F9D00E3B301 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C54D556523701F9D00E3B301 /* UIFont+Extension.swift */,
+				C54D556623701F9D00E3B301 /* UIColor+Extension.swift */,
+				C54D556723701F9D00E3B301 /* UIView+Extension.swift */,
+				C54D556823701F9D00E3B301 /* UINavigationController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C54D556B23701F9D00E3B301 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C54D556C23701F9D00E3B301 /* UserViewModel.swift */,
+				C54D556D23701F9D00E3B301 /* PaymentViewModel.swift */,
+				C54D556E23701F9D00E3B301 /* StoreViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C54D557023701F9D00E3B301 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				C54D557123701F9D00E3B301 /* LaunchScreen.xib */,
+				C54D557323701F9D00E3B301 /* Main.storyboard */,
+				C54D55B92370204000E3B301 /* ProductTableViewCell.xib */,
+				C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */,
+				C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		C54D557623701F9D00E3B301 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C54D557723701F9D00E3B301 /* Common.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C54D557823701F9D00E3B301 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C54D557923701F9D00E3B301 /* CheckoutViewController.swift */,
+				C54D557A23701F9D00E3B301 /* ResultViewController.swift */,
+				C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */,
+				C54D557C23701F9D00E3B301 /* PaymentViewController.swift */,
+				C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */,
+				C54D557E23701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift */,
+				C54D557F23701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C54D558123701F9D00E3B301 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C54D558223701F9D00E3B301 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C54D558223701F9D00E3B301 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C54D558323701F9D00E3B301 /* IBMPlexMono-Thin.ttf */,
+				C54D558423701F9D00E3B301 /* IBMPlexMono-Bold.ttf */,
+				C54D558523701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf */,
+				C54D558623701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf */,
+				C54D558723701F9D00E3B301 /* IBMPlexMono-Medium.ttf */,
+				C54D558823701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf */,
+				C54D558923701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf */,
+				C54D558A23701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf */,
+				C54D558B23701F9D00E3B301 /* IBMPlexMono-Regular.ttf */,
+				C54D558C23701F9D00E3B301 /* IBMPlexMono-Light.ttf */,
+				C54D558D23701F9D00E3B301 /* IBMPlexMono-Italic.ttf */,
+				C54D558E23701F9D00E3B301 /* OFL.txt */,
+				C54D558F23701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf */,
+				C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */,
+				C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C55196799B0F96CD1937A9DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D84232203EB2DBBC25D63AB /* Pods-Swedbank Pay SDK Example.debug.xcconfig */,
+				4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C54D554B23701E6B00E3B301 /* Swedbank Pay SDK Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Swedbank Pay SDK Example" */;
+			buildPhases = (
+				E5D27D93F294FD9CCF2FA9EA /* [CP] Check Pods Manifest.lock */,
+				C54D554823701E6B00E3B301 /* Sources */,
+				C54D554923701E6B00E3B301 /* Frameworks */,
+				C54D554A23701E6B00E3B301 /* Resources */,
+				C8DFC56278A3C946610278D6 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swedbank Pay SDK Example";
+			productName = "Swedbank Pay SDK Example";
+			productReference = C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C54D554423701E6B00E3B301 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = Swedbank;
+				TargetAttributes = {
+					C54D554B23701E6B00E3B301 = {
+						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
+					};
+				};
+			};
+			buildConfigurationList = C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Swedbank Pay SDK Example" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C54D554323701E6B00E3B301;
+			productRefGroup = C54D554D23701E6B00E3B301 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C54D554B23701E6B00E3B301 /* Swedbank Pay SDK Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C54D554A23701E6B00E3B301 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C54D55B223701F9D00E3B301 /* IBMPlexMono-Light.ttf in Resources */,
+				C54D55AC23701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf in Resources */,
+				C54D55AA23701F9D00E3B301 /* IBMPlexMono-Bold.ttf in Resources */,
+				C54D55B023701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf in Resources */,
+				C54D55AD23701F9D00E3B301 /* IBMPlexMono-Medium.ttf in Resources */,
+				C54D55C12370204000E3B301 /* ShoppingCartProductTableViewCell.xib in Resources */,
+				C54D55B623701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
+				C54D55AF23701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
+				C54D559D23701F9D00E3B301 /* LaunchScreen.xib in Resources */,
+				C54D55B123701F9D00E3B301 /* IBMPlexMono-Regular.ttf in Resources */,
+				C54D55AB23701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf in Resources */,
+				C54D55B723701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf in Resources */,
+				C54D55A823701F9D00E3B301 /* Images.xcassets in Resources */,
+				C54D55B523701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf in Resources */,
+				C54D55B423701F9D00E3B301 /* OFL.txt in Resources */,
+				C54D55C02370204000E3B301 /* ShoppingCartSummaryFooterView.xib in Resources */,
+				C54D55AE23701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf in Resources */,
+				C54D55A923701F9D00E3B301 /* IBMPlexMono-Thin.ttf in Resources */,
+				C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */,
+				C54D559E23701F9D00E3B301 /* Main.storyboard in Resources */,
+				C54D55B323701F9D00E3B301 /* IBMPlexMono-Italic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C8DFC56278A3C946610278D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D27D93F294FD9CCF2FA9EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swedbank Pay SDK Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C54D554823701E6B00E3B301 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */,
+				C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */,
+				C54D559523701F9D00E3B301 /* UIView+Extension.swift in Sources */,
+				C54D559923701F9D00E3B301 /* UserViewModel.swift in Sources */,
+				C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */,
+				C54D55A023701F9D00E3B301 /* Common.swift in Sources */,
+				C54D559423701F9D00E3B301 /* UIColor+Extension.swift in Sources */,
+				C54D55A723701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift in Sources */,
+				C54D55A623701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift in Sources */,
+				C54D559823701F9D00E3B301 /* AppDelegate.swift in Sources */,
+				C54D559A23701F9D00E3B301 /* PaymentViewModel.swift in Sources */,
+				C54D55A523701F9D00E3B301 /* ProductTableViewCell.swift in Sources */,
+				C54D55A323701F9D00E3B301 /* ShoppingCartViewController.swift in Sources */,
+				C54D55A123701F9D00E3B301 /* CheckoutViewController.swift in Sources */,
+				C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */,
+				C54D55A223701F9D00E3B301 /* ResultViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C54D557123701F9D00E3B301 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C54D557223701F9D00E3B301 /* en */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		C54D557323701F9D00E3B301 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C54D557423701F9D00E3B301 /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C54D55B92370204000E3B301 /* ProductTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C54D55BA2370204000E3B301 /* en */,
+			);
+			name = ProductTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C54D55BC2370204000E3B301 /* en */,
+			);
+			name = ShoppingCartSummaryFooterView.xib;
+			sourceTree = "<group>";
+		};
+		C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C54D55BE2370204000E3B301 /* en */,
+			);
+			name = ShoppingCartProductTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C54D555E23701E6C00E3B301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C54D555F23701E6C00E3B301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C54D556123701E6C00E3B301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D84232203EB2DBBC25D63AB /* Pods-Swedbank Pay SDK Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E799KWE993;
+				INFOPLIST_FILE = "Swedbank Pay SDK Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.Swedbank-Pay-SDK-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C54D556223701E6C00E3B301 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E799KWE993;
+				INFOPLIST_FILE = "Swedbank Pay SDK Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.Swedbank-Pay-SDK-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Swedbank Pay SDK Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C54D555E23701E6C00E3B301 /* Debug */,
+				C54D555F23701E6C00E3B301 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Swedbank Pay SDK Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C54D556123701E6C00E3B301 /* Debug */,
+				C54D556223701E6C00E3B301 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C54D554423701E6B00E3B301 /* Project object */;
+}
