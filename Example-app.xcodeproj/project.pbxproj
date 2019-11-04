@@ -45,13 +45,14 @@
 		C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55B92370204000E3B301 /* ProductTableViewCell.xib */; };
 		C54D55C02370204000E3B301 /* ShoppingCartSummaryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */; };
 		C54D55C12370204000E3B301 /* ShoppingCartProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */; };
+		C5CF1E802370499D008DFCCC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D84232203EB2DBBC25D63AB /* Pods-Swedbank Pay SDK Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.debug.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
 		83ED83178ED7D47FCDC3D729 /* Pods_Swedbank_Pay_SDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swedbank_Pay_SDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swedbank Pay SDK Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C54D554C23701E6B00E3B301 /* Example-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54D556523701F9D00E3B301 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		C54D556623701F9D00E3B301 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C54D556723701F9D00E3B301 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		C54D55BC2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartSummaryFooterView.xib; sourceTree = "<group>"; };
 		C54D55BE2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartProductTableViewCell.xib; sourceTree = "<group>"; };
+		C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,8 @@
 		C54D554323701E6B00E3B301 = {
 			isa = PBXGroup;
 			children = (
-				C54D554E23701E6B00E3B301 /* Swedbank Pay SDK Example */,
+				C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */,
+				C54D554E23701E6B00E3B301 /* Example-app */,
 				C54D554D23701E6B00E3B301 /* Products */,
 				C55196799B0F96CD1937A9DE /* Pods */,
 				4460D1A01CC72A240AE3887F /* Frameworks */,
@@ -125,12 +128,12 @@
 		C54D554D23701E6B00E3B301 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */,
+				C54D554C23701E6B00E3B301 /* Example-app.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C54D554E23701E6B00E3B301 /* Swedbank Pay SDK Example */ = {
+		C54D554E23701E6B00E3B301 /* Example-app */ = {
 			isa = PBXGroup;
 			children = (
 				C54D556923701F9D00E3B301 /* Info.plist */,
@@ -143,7 +146,7 @@
 				C54D556B23701F9D00E3B301 /* ViewModels */,
 				C54D558023701F9D00E3B301 /* Images.xcassets */,
 			);
-			path = "Swedbank Pay SDK Example";
+			path = "Example-app";
 			sourceTree = "<group>";
 		};
 		C54D556423701F9D00E3B301 /* Extensions */ = {
@@ -243,9 +246,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C54D554B23701E6B00E3B301 /* Swedbank Pay SDK Example */ = {
+		C54D554B23701E6B00E3B301 /* Example-app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Swedbank Pay SDK Example" */;
+			buildConfigurationList = C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Example-app" */;
 			buildPhases = (
 				E5D27D93F294FD9CCF2FA9EA /* [CP] Check Pods Manifest.lock */,
 				C54D554823701E6B00E3B301 /* Sources */,
@@ -257,9 +260,9 @@
 			);
 			dependencies = (
 			);
-			name = "Swedbank Pay SDK Example";
+			name = "Example-app";
 			productName = "Swedbank Pay SDK Example";
-			productReference = C54D554C23701E6B00E3B301 /* Swedbank Pay SDK Example.app */;
+			productReference = C54D554C23701E6B00E3B301 /* Example-app.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -278,7 +281,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Swedbank Pay SDK Example" */;
+			buildConfigurationList = C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Example-app" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -290,7 +293,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C54D554B23701E6B00E3B301 /* Swedbank Pay SDK Example */,
+				C54D554B23701E6B00E3B301 /* Example-app */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C54D55B223701F9D00E3B301 /* IBMPlexMono-Light.ttf in Resources */,
+				C5CF1E802370499D008DFCCC /* Default-568h@2x.png in Resources */,
 				C54D55AC23701F9D00E3B301 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				C54D55AA23701F9D00E3B301 /* IBMPlexMono-Bold.ttf in Resources */,
 				C54D55B023701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf in Resources */,
@@ -560,13 +564,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E799KWE993;
-				INFOPLIST_FILE = "Swedbank Pay SDK Example/Info.plist";
+				INFOPLIST_FILE = "Example-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.Swedbank-Pay-SDK-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Example-app";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -581,13 +585,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E799KWE993;
-				INFOPLIST_FILE = "Swedbank Pay SDK Example/Info.plist";
+				INFOPLIST_FILE = "Example-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.Swedbank-Pay-SDK-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Example-app";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -596,7 +600,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Swedbank Pay SDK Example" */ = {
+		C54D554723701E6B00E3B301 /* Build configuration list for PBXProject "Example-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C54D555E23701E6C00E3B301 /* Debug */,
@@ -605,7 +609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Swedbank Pay SDK Example" */ = {
+		C54D556023701E6C00E3B301 /* Build configuration list for PBXNativeTarget "Example-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C54D556123701E6C00E3B301 /* Debug */,

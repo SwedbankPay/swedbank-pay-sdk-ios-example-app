@@ -18,4 +18,4 @@ source 'https://github.com/SwedbankPay/swedbank-pay-sdk-ios-podspecs.git'
 pod 'SwedbankPaySDK'
 ```
 4. Run `pod install`
-5. Run `open Swedbank Pay SDK Example.xcworkspace` to open Xcode, build and run the app.
+5. Run `open Example-app.xcworkspace` to open Xcode, build and run the app.
