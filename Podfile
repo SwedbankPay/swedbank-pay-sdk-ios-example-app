@@ -9,5 +9,7 @@ target 'Swedbank Pay SDK Example' do
   use_frameworks!
 
   # Pods for Swedbank Pay SDK Example
+  source 'https://github.com/CocoaPods/Specs.git'
+  source 'https://github.com/SwedbankPay/swedbank-pay-sdk-ios-podspecs.git'
   pod 'SwedbankPaySDK'
 end
