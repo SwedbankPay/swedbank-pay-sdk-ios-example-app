@@ -10,12 +10,5 @@ This example app demonstrates how to use the [Swedbank Pay iOS SDK](https://gith
 ### Installation
 
 1. Clone the repository
-2. On your repository directory, run `pod init`
-3. Edit the created `Podfile` by adding these lines:
-```
-source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/SwedbankPay/swedbank-pay-sdk-ios-podspecs.git'
-pod 'SwedbankPaySDK'
-```
-4. Run `pod install`
-5. Run `open Example-app.xcworkspace` to open Xcode, build and run the app.
+2. Run `pod install`
+3. Run `open Example-app.xcworkspace` to open Xcode, build and run the app.
