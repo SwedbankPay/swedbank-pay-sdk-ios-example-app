@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/markku/Desktop/dev/payex/ios/swedbank-pay-sdk-ios-example-app/Example-app.xcodeproj">
+      location = "group:Example-app.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Example-app.xcodeproj">
    </FileRef>
 </Workspace>

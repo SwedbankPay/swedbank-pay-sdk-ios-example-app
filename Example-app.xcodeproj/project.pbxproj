@@ -48,6 +48,44 @@
 		C5CF1E802370499D008DFCCC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C5980FE823716B52007ED8A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5D797E9A5C5782CE845840781FA1CC81;
+			remoteInfo = Alamofire;
+		};
+		C5980FEA23716B52007ED8A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86822384CD379FCE373C2F755839B8DE;
+			remoteInfo = AlamofireObjectMapper;
+		};
+		C5980FEC23716B52007ED8A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B9084FE779702931E8DF1D00A2D725FB;
+			remoteInfo = ObjectMapper;
+		};
+		C5980FEE23716B52007ED8A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9453D44BF6BF35270FFAC344EC48DF3D;
+			remoteInfo = "Pods-Example-app";
+		};
+		C5980FF023716B52007ED8A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53B13115FA8F7BE87F22DC169E0D6DB0;
+			remoteInfo = SwedbankPaySDK;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3D84232203EB2DBBC25D63AB /* Pods-Swedbank Pay SDK Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.debug.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +130,7 @@
 		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		C54D55BC2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartSummaryFooterView.xib; sourceTree = "<group>"; };
 		C54D55BE2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartProductTableViewCell.xib; sourceTree = "<group>"; };
+		C5980FE023716B52007ED8A2 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F034B12146115FFD71430255 /* Pods-Example-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-app.release.xcconfig"; path = "Target Support Files/Pods-Example-app/Pods-Example-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +158,7 @@
 		C54D554323701E6B00E3B301 = {
 			isa = PBXGroup;
 			children = (
+				C5980FE023716B52007ED8A2 /* Pods.xcodeproj */,
 				C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */,
 				C54D554E23701E6B00E3B301 /* Example-app */,
 				C54D554D23701E6B00E3B301 /* Products */,
@@ -247,6 +287,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C5980FE123716B52007ED8A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5980FE923716B52007ED8A2 /* Alamofire.framework */,
+				C5980FEB23716B52007ED8A2 /* AlamofireObjectMapper.framework */,
+				C5980FED23716B52007ED8A2 /* ObjectMapper.framework */,
+				C5980FEF23716B52007ED8A2 /* Pods_Example_app.framework */,
+				C5980FF123716B52007ED8A2 /* SwedbankPaySDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,7 +310,7 @@
 				C54D554823701E6B00E3B301 /* Sources */,
 				C54D554923701E6B00E3B301 /* Frameworks */,
 				C54D554A23701E6B00E3B301 /* Resources */,
-				C8DFC56278A3C946610278D6 /* [CP] Embed Pods Frameworks */,
+				6F3547884CE54DCB337A346F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,12 +347,56 @@
 			mainGroup = C54D554323701E6B00E3B301;
 			productRefGroup = C54D554D23701E6B00E3B301 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C5980FE123716B52007ED8A2 /* Products */;
+					ProjectRef = C5980FE023716B52007ED8A2 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C54D554B23701E6B00E3B301 /* Example-app */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C5980FE923716B52007ED8A2 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = C5980FE823716B52007ED8A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C5980FEB23716B52007ED8A2 /* AlamofireObjectMapper.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AlamofireObjectMapper.framework;
+			remoteRef = C5980FEA23716B52007ED8A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C5980FED23716B52007ED8A2 /* ObjectMapper.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectMapper.framework;
+			remoteRef = C5980FEC23716B52007ED8A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C5980FEF23716B52007ED8A2 /* Pods_Example_app.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_Example_app.framework;
+			remoteRef = C5980FEE23716B52007ED8A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C5980FF123716B52007ED8A2 /* SwedbankPaySDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwedbankPaySDK.framework;
+			remoteRef = C5980FF023716B52007ED8A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C54D554A23701E6B00E3B301 /* Resources */ = {
@@ -335,7 +431,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C8DFC56278A3C946610278D6 /* [CP] Embed Pods Frameworks */ = {
+		6F3547884CE54DCB337A346F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
