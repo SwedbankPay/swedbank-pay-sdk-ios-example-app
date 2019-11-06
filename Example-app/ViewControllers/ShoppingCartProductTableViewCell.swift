@@ -11,6 +11,12 @@ class ShoppingCartProductTableViewCell: UITableViewCell {
     
     var basketChangedCallback: (()->())?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        contentView.isUserInteractionEnabled = false
+    }
+    
     /// Removes the `Product` from shopping basket
     @IBAction func removeFromBasketButtonClick(_ sender: Any) {
         if let product = product {
@@ -33,7 +39,7 @@ class ShoppingCartProductTableViewCell: UITableViewCell {
                 productNameLabel.text = name
             }
             
-            let currency = UserViewModel.shared.getCurrency()
+            let currency = ConsumerViewModel.shared.getCurrency()
             let price = String((product.price[currency] ?? 0) / 100)
             
             productPriceLabel.text = "\(price) \(currency.rawValue)"

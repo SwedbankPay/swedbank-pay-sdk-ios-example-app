@@ -40,7 +40,7 @@ class PaymentViewModel {
     /// If consumerData is nil, payment is anonymous
     var consumerData: SwedbankPaySDK.Consumer? {
         get {
-            UserViewModel.shared.getConsumer()
+            ConsumerViewModel.shared.getConsumer()
         }
     }
     
@@ -49,8 +49,8 @@ class PaymentViewModel {
         get {
             PurchaseData.init(
                 basketId: NSUUID().uuidString.lowercased(),
-                currency: UserViewModel.shared.getCurrency().rawValue,
-                languageCode: UserViewModel.shared.getLanguageCode(),
+                currency: ConsumerViewModel.shared.getCurrency().rawValue,
+                languageCode: ConsumerViewModel.shared.getLanguageCode(),
                 items: StoreViewModel.shared.getPurchaseItems()
             )
         }

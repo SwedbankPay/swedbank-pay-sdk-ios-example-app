@@ -14,9 +14,9 @@ class ShoppingCartSummaryFooterView: UITableViewHeaderFooterView {
     
     /// Sets the summary values in place
     public func setPrices() {
-        let currency = UserViewModel.shared.getCurrency()
+        let currency = ConsumerViewModel.shared.getCurrency()
         shippingPriceLabel.text = "\(StoreViewModel.shared.getShippingCost() / 100) \(currency.rawValue)"
         
-        totalPriceLabel.text = "\(StoreViewModel.shared.getBasketTotalPrice() / 100) \(UserViewModel.shared.getCurrency().rawValue)"
+        totalPriceLabel.text = "\(StoreViewModel.shared.getBasketTotalPrice() / 100) \(ConsumerViewModel.shared.getCurrency().rawValue)"
     }
 }

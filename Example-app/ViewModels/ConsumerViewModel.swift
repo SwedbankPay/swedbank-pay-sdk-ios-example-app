@@ -1,31 +1,31 @@
 import UIKit
 import SwedbankPaySDK
 
-/// Singleton ViewModel for user data
-class UserViewModel {
+/// Singleton ViewModel for consumer data
+class ConsumerViewModel {
     
-    static let shared = UserViewModel()
+    static let shared = ConsumerViewModel()
     
     private init() {}
     
-    /// In this example the default user is unidentified Norwegian
-    private var userType: UserType = .Anonymous
+    /// In this example the default `Consumer` is unidentified Norwegian
+    private var consumerType: ConsumerType = .Anonymous
     private var country: Country = .Norway
     private var currency: Currency = .NOK
     
-    /// Returns the country currently in use
+    /// Returns `Country` currently in use
     public func getCountry() -> Country {
         return country
     }
     
-    /// Returns the currency currently in use
+    /// Returns `Currency` currently in use
     public func getCurrency() -> Currency {
         return currency
     }
     
-    /// Returns the user type, anonymous or identified
-    public func getUserType() -> UserType {
-        return userType
+    /// Returns `ConsumerType`, anonymous or identified
+    public func getConsumerType() -> ConsumerType {
+        return consumerType
     }
     
     /// Returns the language code for merchantData
@@ -38,7 +38,7 @@ class UserViewModel {
         }
     }
     
-    /// Sets the country for user
+    /// Sets `Country` for `Consumer`
     public func setCountry(_ country: Country) {
         self.country = country
         switch country {
@@ -49,14 +49,16 @@ class UserViewModel {
         }
     }
     
-    /// Sets the user type, anonymous or identified
-    public func setUserType(_ type: UserType) {
-        self.userType = type
+    /// Sets `ConsumerType`, anonymous or identified
+    public func setConsumerType(_ type: ConsumerType) {
+        self.consumerType = type
     }
     
-    /// Returns the Consumer required, nil for anonymous payment
+    /// Returns `Consumer`, nil for anonymous payment
+    ///
+    /// Test consumers are from [https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/]
     public func getConsumer() -> SwedbankPaySDK.Consumer? {
-        switch userType {
+        switch consumerType {
         case .Anonymous:
             return nil
         case .Identified:

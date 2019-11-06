@@ -47,9 +47,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             blurEffectView.isHidden = false
         }
         
-        setCountry(UserViewModel.shared.getCountry())
+        setCountry(ConsumerViewModel.shared.getCountry())
         
-        setUser(UserViewModel.shared.getUserType())
+        setConsumer(ConsumerViewModel.shared.getConsumerType())
         
         view.bringSubviewToFront(shoppingCartView)
     }
@@ -59,7 +59,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let range = NSMakeRange(0, self.tableView.numberOfSections)
         let sections = NSIndexSet(indexesIn: range)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)
-        if let parent = self.parent as? CheckoutViewController {
+        if let parent = self.parent as? StoreViewController {
             parent.updateData()
         }
     }
@@ -79,11 +79,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func setAnonymousButtonClick(_ sender: Any) {
-        setUser(.Anonymous)
+        setConsumer(.Anonymous)
     }
     
     @IBAction func setIdentifiedButtonClick(_ sender: Any) {
-        setUser(.Identified)
+        setConsumer(.Identified)
     }
     
     @IBAction func setCountryNorwayButtonClick(_ sender: Any) {
@@ -94,17 +94,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         setCountry(.Sweden)
     }
     
+    // MARK: Shopping Cart
+    
     /// Hides the shopping cart and shows the payment view
     private func checkout() {
         if StoreViewModel.shared.getBasketCount() > 0 {
-            if let parent = self.parent as? CheckoutViewController {
+            if let parent = self.parent as? StoreViewController {
                 hideShoppingCart()
                 parent.startPayment()
             }
         }
     }
-    
-    // MARK: Shopping Cart
     
     /// Shows the shopping cart view
     public func showShoppingCart() {
@@ -116,7 +116,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private func hideShoppingCart() {
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        if let parent = self.parent as? CheckoutViewController {
+        if let parent = self.parent as? StoreViewController {
             parent.hideShoppingCart()
         }
     }
@@ -148,9 +148,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         settingsContainerBottomConstraint.constant = self.settingsContainerBottomConstant
     }
     
-    /// Sets the user either anonymous or identified in settings view
-    private func setUser(_ type: UserType) {
-        UserViewModel.shared.setUserType(type)
+    /// Sets the `Consumer` either anonymous or identified in settings view
+    private func setConsumer(_ type: ConsumerType) {
+        ConsumerViewModel.shared.setConsumerType(type)
         switch type {
         case .Anonymous:
             anonymousUnderlineView.isHidden = false
@@ -167,7 +167,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     /// Sets the country in settings view
     private func setCountry(_ country: Country) {
-        UserViewModel.shared.setCountry(country)
+        ConsumerViewModel.shared.setCountry(country)
         switch country {
         case .Norway:
             norwayUnderlineView.isHidden = false

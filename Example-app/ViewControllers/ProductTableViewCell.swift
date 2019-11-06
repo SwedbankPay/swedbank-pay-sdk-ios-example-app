@@ -17,6 +17,7 @@ class ProductTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        contentView.isUserInteractionEnabled = false
         addedToBasketView.alpha = 0
     }
     
@@ -75,7 +76,7 @@ class ProductTableViewCell: UITableViewCell {
                 productNameLabel.text = name
             }
             
-            let currency = UserViewModel.shared.getCurrency()
+            let currency = ConsumerViewModel.shared.getCurrency()
             let price = String((product.price[currency] ?? 0) / 100)
             
             productPriceLabel.text = "\(price) \(currency.rawValue)"

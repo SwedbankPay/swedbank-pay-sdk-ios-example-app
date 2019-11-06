@@ -21,7 +21,7 @@ enum PaymentResult {
     case success
 }
 
-enum UserType {
+enum ConsumerType {
     case Anonymous
     case Identified
 }

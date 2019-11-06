@@ -32,7 +32,7 @@ class ResultViewController: UIViewController {
     @IBAction func doneButtonClicked(_ sender: Any) {
         let viewControllers = self.navigationController!.viewControllers as [UIViewController];
         for viewController: UIViewController in viewControllers {
-            if viewController.isKind(of: CheckoutViewController.self) {
+            if viewController.isKind(of: StoreViewController.self) {
                 _ = self.navigationController?.popToViewController(viewController, animated: true)
             }
         }

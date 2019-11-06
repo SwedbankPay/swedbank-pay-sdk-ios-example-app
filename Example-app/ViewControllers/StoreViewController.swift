@@ -1,6 +1,6 @@
 import UIKit
 
-class CheckoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var basketCounterView: UIView!

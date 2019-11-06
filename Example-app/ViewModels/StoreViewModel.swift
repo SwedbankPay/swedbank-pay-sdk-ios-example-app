@@ -80,16 +80,16 @@ class StoreViewModel {
     
     // MARK: Shopping Basket
     
-    /// Returns the number of items in the shopping basket
+    /// Returns number of items in the shopping basket
     public func getBasketCount() -> Int {
         return basket.count
     }
     
-    /// Returns the total value of shopping cart items plus shipping cost
+    /// Returns total value of shopping cart items plus shipping cost
     public func getBasketTotalPrice() -> Int {
         var totalPrice = 0
         if basket.count > 0 {
-            let currency = UserViewModel.shared.getCurrency()
+            let currency = ConsumerViewModel.shared.getCurrency()
             for product in basket {
                 if let price = product.price[currency] {
                     totalPrice = totalPrice + price
@@ -105,22 +105,22 @@ class StoreViewModel {
         return basket[index]
     }
     
-    /// Returns shipping cost for specific currency
+    /// Returns shipping cost for specific `Currency`
     public func getShippingCost() -> Int {
-        return shippingCost[UserViewModel.shared.getCurrency()] ?? 0
+        return shippingCost[ConsumerViewModel.shared.getCurrency()] ?? 0
     }
     
-    /// Returns true if shopping basket contains specific product
+    /// Returns true if shopping basket contains specific `Product`
     public func checkIfBasketContains(_ product: Product) -> Bool {
         return basket.contains(where: { $0.id == product.id })
     }
     
-    /// Adds the Product into shopping basket
+    /// Adds the `Product` into shopping basket
     public func addToBasket(_ product: Product) {
         basket.append(product)
     }
     
-    /// Removes the specific Product from shopping basket
+    /// Removes the specific `Product` from shopping basket
     public func removeFromBasket(_ product: Product) {
         basket.removeAll(where: { $0.id == product.id })
     }
@@ -130,13 +130,13 @@ class StoreViewModel {
         basket = []
     }
     
-    /// Returns an array of PurchaseItems to be sent to the backend in merchantData
+    /// Returns `PurchaseItem` array to be sent to the backend in merchantData
     public func getPurchaseItems() -> [PurchaseItem] {
         var items: [PurchaseItem] = []
         if basket.count > 0 {
             for product in basket {
                 if !items.contains(where: { $0.itemId == product.id } ) {
-                    if let id = product.id, let price = product.price[UserViewModel.shared.getCurrency()] {
+                    if let id = product.id, let price = product.price[ConsumerViewModel.shared.getCurrency()] {
                         let item = PurchaseItem.init(itemId: id, quantity: 1, price: price, vat: product.vat)
                         items.append(item)
                     }

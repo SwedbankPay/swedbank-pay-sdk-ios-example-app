@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="-626" y="133"/>
         </scene>
-        <!--Checkout View Controller-->
+        <!--Store View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="CheckoutViewController" customModule="Swedbank_Pay_SDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="StoreViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -68,16 +69,18 @@
                                             <constraint firstAttribute="height" constant="41" id="h0R-Ac-fuM"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon-Basket" translatesAutoresizingMaskIntoConstraints="NO" id="T77-jR-R26">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Basket" translatesAutoresizingMaskIntoConstraints="NO" id="T77-jR-R26">
                                         <rect key="frame" x="308" y="0.0" width="46" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="Buw-JF-0ew"/>
+                                            <constraint firstAttribute="height" constant="46" id="fNl-FS-VaS"/>
+                                        </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" id="QeO-Wx-7Xq">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYx-CN-ZDK">
                                         <rect key="frame" x="332" y="24" width="16" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ks-0j-u21">
-                                                <rect key="frame" x="0.0" y="1.5" width="16" height="13"/>
+                                                <rect key="frame" x="0.0" y="1" width="16" height="14"/>
                                                 <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="10"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -85,10 +88,12 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.22745098039215686" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="6Ks-0j-u21" firstAttribute="centerX" secondItem="QeO-Wx-7Xq" secondAttribute="centerX" id="66l-6k-IW7"/>
-                                            <constraint firstItem="6Ks-0j-u21" firstAttribute="centerY" secondItem="QeO-Wx-7Xq" secondAttribute="centerY" id="9yF-Og-RvC"/>
-                                            <constraint firstAttribute="trailing" secondItem="6Ks-0j-u21" secondAttribute="trailing" id="NUq-8m-kCx"/>
-                                            <constraint firstItem="6Ks-0j-u21" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QeO-Wx-7Xq" secondAttribute="leading" id="v6T-75-861"/>
+                                            <constraint firstAttribute="width" constant="16" id="34f-13-fv4"/>
+                                            <constraint firstAttribute="height" constant="16" id="Il8-aC-F01"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Ks-0j-u21" secondAttribute="bottom" constant="1" id="S37-FX-U0S"/>
+                                            <constraint firstItem="6Ks-0j-u21" firstAttribute="leading" secondItem="YYx-CN-ZDK" secondAttribute="leading" id="Tlc-N3-I7t"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Ks-0j-u21" secondAttribute="trailing" id="uIl-Af-tDx"/>
+                                            <constraint firstItem="6Ks-0j-u21" firstAttribute="top" secondItem="YYx-CN-ZDK" secondAttribute="top" constant="1" id="uW0-wP-sGu"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -109,13 +114,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="YYx-CN-ZDK" secondAttribute="bottom" constant="6" id="0Cu-Ju-2Cj"/>
                                     <constraint firstAttribute="trailing" secondItem="uFg-41-1hl" secondAttribute="trailing" id="4Up-oL-MiN"/>
-                                    <constraint firstItem="QeO-Wx-7Xq" firstAttribute="leading" secondItem="uFg-41-1hl" secondAttribute="trailing" constant="-43" id="9Kd-dH-EhM"/>
                                     <constraint firstItem="EhN-sZ-bJf" firstAttribute="leading" secondItem="426-vA-C72" secondAttribute="leading" constant="29" id="Ezz-a8-2g9"/>
-                                    <constraint firstItem="QeO-Wx-7Xq" firstAttribute="top" secondItem="uFg-41-1hl" secondAttribute="bottom" constant="-22" id="FLw-Yw-Bb3"/>
+                                    <constraint firstItem="T77-jR-R26" firstAttribute="top" secondItem="426-vA-C72" secondAttribute="top" id="LX7-uL-Ipy"/>
+                                    <constraint firstAttribute="bottom" secondItem="T77-jR-R26" secondAttribute="bottom" id="YTE-w9-i0d"/>
                                     <constraint firstItem="uFg-41-1hl" firstAttribute="top" secondItem="426-vA-C72" secondAttribute="top" id="cza-h6-Iu7"/>
                                     <constraint firstItem="EhN-sZ-bJf" firstAttribute="top" secondItem="426-vA-C72" secondAttribute="top" constant="1" id="dFS-40-h93"/>
+                                    <constraint firstAttribute="trailing" secondItem="T77-jR-R26" secondAttribute="trailing" constant="21" id="fs3-Ub-Ipk"/>
                                     <constraint firstAttribute="height" constant="46" id="gzO-Je-AMI"/>
+                                    <constraint firstAttribute="trailing" secondItem="YYx-CN-ZDK" secondAttribute="trailing" constant="27" id="iFD-aI-1al"/>
                                     <constraint firstAttribute="bottom" secondItem="uFg-41-1hl" secondAttribute="bottom" id="tzp-M2-baQ"/>
                                 </constraints>
                             </view>
@@ -147,7 +155,7 @@
                     <navigationItem key="navigationItem" id="rYS-wL-wxh"/>
                     <connections>
                         <outlet property="basketCounterLabel" destination="6Ks-0j-u21" id="G9C-Fa-9sj"/>
-                        <outlet property="basketCounterView" destination="QeO-Wx-7Xq" id="wse-pU-oYz"/>
+                        <outlet property="basketCounterView" destination="YYx-CN-ZDK" id="YPJ-nB-fjz"/>
                         <outlet property="shoppingCartView" destination="Rwm-6e-WoD" id="Nh7-8C-Ek9"/>
                         <outlet property="tableView" destination="SWi-if-zgF" id="rDc-Ut-SwT"/>
                         <segue destination="y42-jc-xax" kind="show" identifier="showPayment" id="rRm-pK-HcK"/>
@@ -160,7 +168,7 @@
         <!--Shopping Cart View Controller-->
         <scene sceneID="gP3-WA-Icm">
             <objects>
-                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="Swedbank_Pay_SDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K0e-xH-72i"/>
                         <viewControllerLayoutGuide type="bottom" id="GYs-te-ezo"/>
@@ -522,7 +530,6 @@
                         <outlet property="swedenLabel" destination="af1-Qr-a3V" id="12b-nr-y7N"/>
                         <outlet property="swedenUnderlineView" destination="s57-DD-JmJ" id="oEv-O0-PdQ"/>
                         <outlet property="tableView" destination="ifH-yR-vFt" id="Zwn-3t-is5"/>
-                        <segue destination="y42-jc-xax" kind="show" identifier="showPayment" id="SRU-dr-zdh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA7-fe-FxG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -532,17 +539,17 @@
         <!--Payment View Controller-->
         <scene sceneID="ib5-hj-f9S">
             <objects>
-                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="Swedbank_Pay_SDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qge-en-rY8"/>
                         <viewControllerLayoutGuide type="bottom" id="mpA-MH-17Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BuV-cO-J6h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7q7-he-hlz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -567,17 +574,17 @@
         <!--Result View Controller-->
         <scene sceneID="Kd8-1k-XRS">
             <objects>
-                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="Swedbank_Pay_SDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TRa-cX-TWS"/>
                         <viewControllerLayoutGuide type="bottom" id="jEf-Lh-ga3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7d8-Mv-Obk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt2-Yc-Lal">
-                                <rect key="frame" x="25" y="273.5" width="325" height="100"/>
+                                <rect key="frame" x="25" y="283.5" width="325" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="o2z-If-VJz"/>
                                 </constraints>
@@ -586,7 +593,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2K-ZP-bIH">
-                                <rect key="frame" x="87.5" y="398" width="200" height="48"/>
+                                <rect key="frame" x="87.5" y="408" width="200" height="48"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="HDh-eP-u4p"/>
@@ -604,11 +611,10 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="doneButtonClicked:" destination="wp2-if-CCM" eventType="touchUpInside" id="73M-jK-fLX"/>
-                                    <action selector="startRegisteredPayment:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="f9D-2a-4CA"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shop-logo" translatesAutoresizingMaskIntoConstraints="NO" id="UzN-8d-6Ee">
-                                <rect key="frame" x="100" y="160" width="175" height="93"/>
+                                <rect key="frame" x="100" y="170" width="175" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="Eax-47-IL4"/>
                                     <constraint firstAttribute="width" constant="175" id="aK6-Nr-wrz"/>
@@ -642,7 +648,4 @@
         <image name="Icon-X" width="18" height="18"/>
         <image name="Shop-logo" width="131" height="41"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="SRU-dr-zdh"/>
-    </inferredMetricsTieBreakers>
 </document>

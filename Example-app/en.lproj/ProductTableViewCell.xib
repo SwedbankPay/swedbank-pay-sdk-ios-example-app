@@ -20,7 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProductTableViewCell" customModule="SwedbankPaySDK_Example" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProductTableViewCell" customModule="Example_app" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="395"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -66,23 +66,6 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chB-1S-fQW">
-                    <rect key="frame" x="183" y="321" width="48" height="48"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="fh4-wQ-wQ3"/>
-                        <constraint firstAttribute="width" constant="48" id="vmV-RJ-K2D"/>
-                    </constraints>
-                    <state key="normal" image="Icon-Basket-Add"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="24"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="addToBasketButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="UiW-ve-bid"/>
-                    </connections>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUa-LB-k94">
                     <rect key="frame" x="212" y="73" width="149" height="48"/>
                     <subviews>
@@ -124,6 +107,23 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="removeFromBasketButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mdN-dQ-Z4h"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chB-1S-fQW">
+                    <rect key="frame" x="183" y="321" width="48" height="48"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="fh4-wQ-wQ3"/>
+                        <constraint firstAttribute="width" constant="48" id="vmV-RJ-K2D"/>
+                    </constraints>
+                    <state key="normal" image="Icon-Basket-Add"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addToBasketButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="gOm-y6-hiL"/>
                     </connections>
                 </button>
             </subviews>
