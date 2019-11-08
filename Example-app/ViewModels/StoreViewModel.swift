@@ -9,7 +9,7 @@ class StoreViewModel {
     
     private var basket: [Product] = []
     
-    /// Example static store data
+    /// Example static store data, normally this data would be provided by your backend
     let products: [Product] = [
         Product.init(
             id: NSUUID().uuidString.lowercased(),

@@ -116,6 +116,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C50CF6822374638E003F79DF /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Certificates;
+			sourceTree = "<group>";
+		};
 		C54D554323701E6B00E3B301 = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +216,7 @@
 		C54D558123701F9D00E3B301 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C50CF6822374638E003F79DF /* Certificates */,
 				C54D558223701F9D00E3B301 /* Fonts */,
 			);
 			path = Resources;
