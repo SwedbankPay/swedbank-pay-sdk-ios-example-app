@@ -38,49 +38,135 @@ class ResultViewController: UIViewController {
         }
     }
     
-    /// Prints out all possible reveived errors, as an example
+    // MARK: - Problem handling
+    
+    /// Prints out all possible reveived `Problem`s
     private func handleProblem(_ problem: SwedbankPaySDK.Problem) {
-        debugPrint("There was an error while handling the payment")
-        
         switch problem {
         
         /// Client errors (HTTP Status code in range of 400..499)
         case .Client(.MobileSDK(.InvalidRequest(let message, let raw))):
-            debugPrint("InvalidRequest: \(String(describing: message)), \(String(describing: raw))")
+            printMobileSDKProblem("Client/MobileSDK/InvalidRequest", message: message, raw: raw)
         case .Client(.MobileSDK(.Unauthorized(let message, let raw))):
-            debugPrint("Unauthorized: \(String(describing: message)), \(String(describing: raw))")
+            printMobileSDKProblem("Client/MobileSDK/Unauthorized", message: message, raw: raw)
         case .Client(.SwedbankPay(let type, let title, let detail, let instance, let action, let problems, let raw)):
             switch type {
             case .Forbidden:
-                debugPrint("Forbidden: \(String(describing: title)), \(String(describing: detail)), \(String(describing: instance)),\(String(describing: action)),\(String(describing: problems)),\(String(describing: raw))")
+                printSwedbankPayProblem("Client/SwedbankPay/Forbidden", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             case .InputError:
-                debugPrint("InputError: \(String(describing: title)), \(String(describing: detail)), \(String(describing: instance)),\(String(describing: action)),\(String(describing: problems)),\(String(describing: raw))")
+                printSwedbankPayProblem("Client/SwedbankPay/InputError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             case .NotFound:
-                debugPrint("NotFound: \(String(describing: title)), \(String(describing: detail)), \(String(describing: instance)),\(String(describing: action)),\(String(describing: problems)),\(String(describing: raw))")
+                printSwedbankPayProblem("Client/SwedbankPay/NotFound", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             }
         case .Client(.UnexpectedContent(let status, let contentType, let body)):
-            debugPrint("UnexpectedContent: \(status), \(String(describing: contentType)), \(String(describing: body))")
+            printUnexpectedContentProblem("Client/UnexpectedContent", status: status, contentType: contentType, body: body)
         case .Client(.Unknown(let type, let title, let status, let detail, let instance, let raw)):
-            debugPrint("Unknown: \(String(describing: type)), \(String(describing: title)), \(String(describing: status)), \(String(describing: detail)), \(String(describing: instance)), \(String(describing: raw))")
+            printUnknownProblem("Client/Unknown", type: type, title: title, status: status, detail: detail, instance: instance, raw: raw)
         
         /// Server errors (HTTP Status code in range of 500...599)
         case .Server(.MobileSDK(.BackendConnectionFailure(let message, let raw))):
-            debugPrint("BackendConnectionFailure: \(String(describing: message)), \(String(describing: raw))")
+            printMobileSDKProblem("Server/MobileSDK/BackendConnectionFailure", message: message, raw: raw)
         case .Server(.MobileSDK(.BackendConnectionTimeout(let message, let raw))):
-            debugPrint("BackendConnectionTimeout: \(String(describing: message)), \(String(describing: raw))")
+            printMobileSDKProblem("Server/MobileSDK/BackendConnectionTimeout", message: message, raw: raw)
         case .Server(.MobileSDK(.InvalidBackendResponse(let body, let raw))):
-            debugPrint("InvalidBackendResponse: \(String(describing: body)), \(String(describing: raw))")
+            printMobileSDKProblem("Server/MobileSDK/InvalidBackendResponse", message: body, raw: raw)
         case .Server(.SwedbankPay(let type, let title, let detail, let instance, let action, let problems, let raw)):
             switch type {
             case .ConfigurationError:
-                debugPrint("ConfigurationError: \(String(describing: title)), \(String(describing: detail)), \(String(describing: instance)), \(String(describing: action)), \(String(describing: problems)), \(String(describing: raw))")
+                printSwedbankPayProblem("Server/SwedbankPay/ConfigurationError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             case .SystemError:
-                debugPrint("SystemError: \(String(describing: title)), \(String(describing: detail)), \(String(describing: instance)), \(String(describing: action)), \(String(describing: problems)), \(String(describing: raw))")
+                printSwedbankPayProblem("Server/SwedbankPay/SystemError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             }
         case .Server(.UnexpectedContent(let status, let contentType, let body)):
-            debugPrint("UnexpectedContent: \(status), \(String(describing: contentType)), \(String(describing: body))")
+            printUnexpectedContentProblem("Server/UnexpectedContent", status: status, contentType: contentType, body: body)
         case .Server(.Unknown(let type, let title, let status, let detail, let instance, let raw)):
-            debugPrint("Unknown: \(String(describing: type)), \(String(describing: title)), \(status), \(String(describing: detail)), \(String(describing: instance)), \(String(describing: raw))")
+            printUnknownProblem("Server/Unknown", type: type, title: title, status: status, detail: detail, instance: instance, raw: raw)
         }
+    }
+    
+    /// Prints out Client or Server MobileSDK `Problem` in a readable format
+    private func printMobileSDKProblem(_ errorType: String,
+                                       message: String?,
+                                       raw: String?)
+    {
+        print("""
+            PROBLEM: \(errorType):
+                message: \(message ?? "")
+                raw:     \(raw ?? "")
+            """)
+    }
+    
+    /// Prints out Client or Server SwedbankPay `Problem` in a readable format
+    private func printSwedbankPayProblem(_ errorType: String,
+                                         title: String?,
+                                         detail: String?,
+                                         instance: String?,
+                                         action: String?,
+                                         problems: [SwedbankPaySDK.SwedbankPaySubProblem]?,
+                                         raw: String?)
+    {
+        print("""
+            PROBLEM: \(errorType):
+                title:    \(title ?? "")
+                detail:   \(detail ?? "")
+                instance: \(instance ?? "")
+                action:   \(action ?? "")
+                problems: {\(getSwedbankPaySubProblemStr(problems))}
+                raw:      \(raw ?? "")
+            """)
+    }
+    
+    /// Prints out Client or Server UnexpectedContent `Problem` in a readable format
+    private func printUnexpectedContentProblem(_ errorType: String,
+                                               status: Int,
+                                               contentType: String?,
+                                               body: String?
+                                               )
+    {
+        print("""
+            PROBLEM: \(errorType):
+                status:      \(status)
+                contentType: \(contentType ?? "")
+                body:        \(body ?? "")
+            """)
+    }
+    
+    /// Prints out Client or Server Unknown `Problem` in a readable format
+    private func printUnknownProblem(_ errorType: String,
+                                     type: String?,
+                                     title: String?,
+                                     status: Int,
+                                     detail: String?,
+                                     instance: String?,
+                                     raw: String?)
+    {
+        print("""
+            PROBLEM: \(errorType):
+                type:     \(type ?? "")
+                title:    \(title ?? "")
+                status:   \(status)
+                detail:   \(detail ?? "")
+                instance: \(instance ?? "")
+                raw:      \(raw ?? "")
+            """)
+    }
+    
+    /// Returns Client or Server `SwedbankPaySubProblem` array in a readable format
+    private func getSwedbankPaySubProblemStr(_ subProblems: [SwedbankPaySDK.SwedbankPaySubProblem]?) -> String {
+        var str = ""
+        if let subProblems = subProblems {
+            for subProblem in subProblems {
+                str.append(contentsOf: """
+                
+                        {
+                            name:        \(subProblem.name ?? "")
+                            description: \(subProblem.description ?? "")
+                        }
+                    
+                """)
+            }
+        }
+        
+        return str
     }
 }
