@@ -20,12 +20,12 @@ class PaymentViewModel {
     ///
     /// By default, the domain of the backend URL is whitelisted, including its subdomains. If you wish to change that default,
     /// you must add all domains, including backend URL; in that situation it is not included by default.
-    private let domainWhitelist: [SwedbankPaySDK.WhitelistedDomain]? = []
+    private let domainWhitelist: [SwedbankPaySDK.WhitelistedDomain]? = nil
     
     /// List of certificates to pin
     ///
     /// If empty, certificate pinning is not implemented
-    private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys] = []
+    private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
     
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.Configuration {
