@@ -15,4 +15,4 @@ This example app demonstrates how to use the [Swedbank Pay iOS SDK](https://gith
 
 ### Test Data
 
-You test the payment using the [test data](https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/) related to the different payment methods.
+You can test the payment using the [test data](https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/) related to the different payment methods.
