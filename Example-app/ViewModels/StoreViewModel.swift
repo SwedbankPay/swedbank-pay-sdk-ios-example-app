@@ -81,12 +81,12 @@ class StoreViewModel {
     // MARK: Shopping Basket
     
     /// Returns number of items in the shopping basket
-    public func getBasketCount() -> Int {
+    func getBasketCount() -> Int {
         return basket.count
     }
     
     /// Returns total value of shopping cart items plus shipping cost
-    public func getBasketTotalPrice() -> Int {
+    func getBasketTotalPrice() -> Int {
         var totalPrice = 0
         if basket.count > 0 {
             let currency = ConsumerViewModel.shared.getCurrency()
@@ -101,37 +101,37 @@ class StoreViewModel {
     }
     
     /// Returns the specific Product at certain index position (tableView index)
-    public func getBasketProduct(_ index: Int) -> Product {
+    func getBasketProduct(_ index: Int) -> Product {
         return basket[index]
     }
     
     /// Returns shipping cost for specific `Currency`
-    public func getShippingCost() -> Int {
+    func getShippingCost() -> Int {
         return shippingCost[ConsumerViewModel.shared.getCurrency()] ?? 0
     }
     
     /// Returns true if shopping basket contains specific `Product`
-    public func checkIfBasketContains(_ product: Product) -> Bool {
+    func checkIfBasketContains(_ product: Product) -> Bool {
         return basket.contains(where: { $0.id == product.id })
     }
     
     /// Adds the `Product` into shopping basket
-    public func addToBasket(_ product: Product) {
+    func addToBasket(_ product: Product) {
         basket.append(product)
     }
     
     /// Removes the specific `Product` from shopping basket
-    public func removeFromBasket(_ product: Product) {
+    func removeFromBasket(_ product: Product) {
         basket.removeAll(where: { $0.id == product.id })
     }
     
     /// Removes all items from shopping basket
-    public func clearBasket() {
+    func clearBasket() {
         basket = []
     }
     
     /// Returns `PurchaseItem` array to be sent to the backend in merchantData
-    public func getPurchaseItems() -> [PurchaseItem] {
+    func getPurchaseItems() -> [PurchaseItem] {
         var items: [PurchaseItem] = []
         if basket.count > 0 {
             for product in basket {

@@ -26,7 +26,7 @@ class ShoppingCartProductTableViewCell: UITableViewCell {
     }
     
     /// Sets the `Product` information in place
-    public func setProductDetails(_ product: Product?) {
+    func setProductDetails(_ product: Product?) {
         if let product = product {
             
             self.product = product

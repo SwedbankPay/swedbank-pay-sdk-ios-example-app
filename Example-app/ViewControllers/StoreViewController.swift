@@ -76,7 +76,7 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     /// Shows the payment view
-    public func startPayment() {
+    func startPayment() {
         self.title = "Cancel"
         performSegue(withIdentifier: "showPayment", sender: self)
     }
@@ -118,7 +118,7 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     /// Hides the shopping cart with animation, updates the shopping cart counter
-    public func hideShoppingCart() {
+    func hideShoppingCart() {
         
         updateBasketCounter()
 

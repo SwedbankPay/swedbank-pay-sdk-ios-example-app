@@ -11,53 +11,41 @@ class ConsumerViewModel {
     /// In this example the default `Consumer` is unidentified Norwegian
     private var consumerType: ConsumerType = .Anonymous
     private var country: Country = .Norway
-    private var currency: Currency = .NOK
     
     /// Returns `Country` currently in use
-    public func getCountry() -> Country {
+    func getCountry() -> Country {
         return country
     }
     
     /// Returns `Currency` currently in use
-    public func getCurrency() -> Currency {
-        return currency
+    func getCurrency() -> Currency {
+        return country.currency
     }
     
     /// Returns `ConsumerType`, anonymous or identified
-    public func getConsumerType() -> ConsumerType {
+    func getConsumerType() -> ConsumerType {
         return consumerType
     }
     
     /// Returns the language code for merchantData
-    public func getLanguageCode() -> String {
-        switch country {
-        case .Norway:
-            return "no-NO"
-        case .Sweden:
-            return "sv-SE"
-        }
+    func getLanguageCode() -> String {
+        return country.languageCode
     }
     
     /// Sets `Country` for `Consumer`
-    public func setCountry(_ country: Country) {
+    func setCountry(_ country: Country) {
         self.country = country
-        switch country {
-        case .Norway:
-            self.currency = .NOK
-        case .Sweden:
-            self.currency = .SEK
-        }
     }
     
     /// Sets `ConsumerType`, anonymous or identified
-    public func setConsumerType(_ type: ConsumerType) {
+    func setConsumerType(_ type: ConsumerType) {
         self.consumerType = type
     }
     
     /// Returns `Consumer`, nil for anonymous payment
     ///
     /// Test consumers are from [https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/]
-    public func getConsumer() -> SwedbankPaySDK.Consumer? {
+    func getConsumer() -> SwedbankPaySDK.Consumer? {
         switch consumerType {
         case .Anonymous:
             return nil
@@ -65,22 +53,22 @@ class ConsumerViewModel {
             switch country {
             case .Norway:
                 return SwedbankPaySDK.Consumer.init(
-                    consumerCountryCode: "NO",
+                    consumerCountryCode: country.countryCode,
                     msisdn: "+4798765432",
                     email: "olivia.nyhuus@payex.com",
                     nationalIdentifier: SwedbankPaySDK.NationalIdentifier.init(
                         socialSecurityNumber: "26026708248",
-                        countryCode: "NO"
+                        countryCode: country.countryCode
                     )
                 )
             case .Sweden:
                 return SwedbankPaySDK.Consumer.init(
-                    consumerCountryCode: "SE",
+                    consumerCountryCode: country.countryCode,
                     msisdn: "+46739000001",
                     email: "leia.ahlstrom@payex.com",
                     nationalIdentifier: SwedbankPaySDK.NationalIdentifier.init(
                         socialSecurityNumber: "971020-2392",
-                        countryCode: "SE"
+                        countryCode: country.countryCode
                     )
                 )
             }
