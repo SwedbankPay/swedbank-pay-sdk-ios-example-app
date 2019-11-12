@@ -4,7 +4,7 @@ PODS:
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
   - ObjectMapper (3.5.1)
-  - SwedbankPaySDK (0.1.6):
+  - SwedbankPaySDK (0.1.7):
     - Alamofire (~> 4.9.0)
     - AlamofireObjectMapper (~> 5.0)
 
@@ -23,7 +23,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  SwedbankPaySDK: 0631711747250f23f6b77f19a01c594272eb2c49
+  SwedbankPaySDK: 006366e64459e7605eaa56a9ed7ab64343500e20
 
 PODFILE CHECKSUM: de0383ed9371e1baad27860efba05ef2e0e065b7
 
