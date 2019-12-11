@@ -8,7 +8,7 @@ class PaymentViewModel {
     private init() {}
     
     /// URL for the Swedbank Pay SDK to connect to
-    private let backendUrl: String = "https://payex-merchant-samples.appspot.com"
+    private let backendUrl = URL(string: "https://payex-merchant-samples.appspot.com")!
     
     /// Creates api request header names and values dictionary; define these in the backend receiving the requests from the app
     private let headers: Dictionary<String, String> = [

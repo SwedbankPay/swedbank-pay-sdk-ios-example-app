@@ -1,4 +1,5 @@
 import UIKit
+import SwedbankPaySDK
 
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,6 +11,10 @@ import UIKit
         setupAppearance()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return SwedbankPaySDK.continue(userActivity: userActivity)
     }
 
     private func setupAppearance() {
