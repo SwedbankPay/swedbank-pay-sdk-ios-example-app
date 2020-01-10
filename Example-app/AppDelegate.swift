@@ -16,6 +16,10 @@ import SwedbankPaySDK
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         return SwedbankPaySDK.continue(userActivity: userActivity)
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return SwedbankPaySDK.open(url: url)
+    }
 
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = UIColor.red

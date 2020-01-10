@@ -18,10 +18,30 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.swedbank.swedbank-pay-example.paymentcallback</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>swedbankexample</string>
+			</array>
+			<key>com.swedbank.SwedbankPaySDK.callback</key>
+			<true/>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>IBMPlexMono-Medium.ttf</string>
+		<string>IBMPlexMono-Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -32,11 +52,6 @@
 	</array>
 	<key>UIRequiresFullScreen</key>
 	<true/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>IBMPlexMono-Medium.ttf</string>
-		<string>IBMPlexMono-Bold.ttf</string>
-	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
