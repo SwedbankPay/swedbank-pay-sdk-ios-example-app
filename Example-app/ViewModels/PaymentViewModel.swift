@@ -46,14 +46,22 @@ class PaymentViewModel {
         }
     }
     
-    /// Sample Merchant data
-    var merchantData: PurchaseData {
+    /// Sample Payment Order
+    var paymentOrder: SwedbankPaySDK.PaymentOrder {
         get {
-            PurchaseData.init(
-                basketId: NSUUID().uuidString.lowercased(),
+            var amount: Int64 = 0
+            var vatAmout: Int64 = 0
+            for item in StoreViewModel.shared.getPurchaseItems() {
+                amount += Int64(item.price)
+                vatAmout += Int64(item.price * item.vat / 100)
+            }
+            
+            return SwedbankPaySDK.PaymentOrder.init(
                 currency: ConsumerViewModel.shared.getCurrency().rawValue,
-                languageCode: ConsumerViewModel.shared.getLanguageCode(),
-                items: StoreViewModel.shared.getPurchaseItems()
+                amount: amount,
+                vatAmount: vatAmout,
+                description: "Purchase",
+                urls: .init(configuration: configuration)
             )
         }
     }

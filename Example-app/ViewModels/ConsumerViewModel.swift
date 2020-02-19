@@ -53,23 +53,13 @@ class ConsumerViewModel {
             switch country {
             case .Norway:
                 return SwedbankPaySDK.Consumer.init(
-                    consumerCountryCode: country.countryCode,
-                    msisdn: "+4798765432",
-                    email: "olivia.nyhuus@payex.com",
-                    nationalIdentifier: SwedbankPaySDK.NationalIdentifier.init(
-                        socialSecurityNumber: "26026708248",
-                        countryCode: country.countryCode
-                    )
+                    language: .Norwegian,
+                    shippingAddressRestrictedToCountryCodes: ["NO"]
                 )
             case .Sweden:
                 return SwedbankPaySDK.Consumer.init(
-                    consumerCountryCode: country.countryCode,
-                    msisdn: "+46739000001",
-                    email: "leia.ahlstrom@payex.com",
-                    nationalIdentifier: SwedbankPaySDK.NationalIdentifier.init(
-                        socialSecurityNumber: "971020-2392",
-                        countryCode: country.countryCode
-                    )
+                    language: .Swedish,
+                    shippingAddressRestrictedToCountryCodes: ["SE"]
                 )
             }
         }

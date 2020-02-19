@@ -20,8 +20,8 @@ class PaymentViewController: UIViewController {
         let vm = PaymentViewModel.shared
         let swedbankPaySDKController = SwedbankPaySDKController.init(
             configuration: vm.configuration,
-            merchantData: vm.merchantData,
-            consumerData: vm.consumerData
+            consumer: vm.consumerData,
+            paymentOrder: vm.paymentOrder
         )
         swedbankPaySDKController.delegate = self
         addChild(swedbankPaySDKController)
