@@ -2,6 +2,13 @@
 
 ![Swedbank Pay SDK for iOS Example App][opengraph-image]
 
+## About
+
+**IMPORTANT**: This example app is at an early stage and not yet used in production.
+We do not offer support for this version, but will release supported versions
+in the future. Feel free to play around, but for full functionality and support,
+please wait for the supported, stable release.
+
 This example app demonstrates how to use the [Swedbank Pay SDK for iOS][sdk].
 An example [merchant backend][backend] has been implemented for this app.
 
