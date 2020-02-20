@@ -20,10 +20,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet private weak var norwayLabel: UILabel!
     @IBOutlet private weak var swedenLabel: UILabel!
     
+    @IBOutlet private weak var useSafariSwitch: UISwitch!
+    
     private var blurEffectView: UIVisualEffectView?
     
     private let settingsContainerTrailingConstant: CGFloat = 93
-    private let settingsContainerBottomConstant: CGFloat = 89
+    private let settingsContainerBottomConstant: CGFloat = 119
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         tableView.register(UINib(nibName: "ShoppingCartProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingCartProductCell")
         tableView.register(UINib(nibName: "ShoppingCartSummaryFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: "ShoppingCartSummary")
+        
+        useSafariSwitch.isOn = PaymentViewModel.shared.useSafari
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +96,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func setCountrySwedenButtonClick(_ sender: Any) {
         setCountry(.Sweden)
+    }
+    
+    @IBAction func onSafariButtonValueChanged(_ sender: Any) {
+        PaymentViewModel.shared.useSafari = useSafariSwitch.isOn
     }
     
     // MARK: Shopping Cart

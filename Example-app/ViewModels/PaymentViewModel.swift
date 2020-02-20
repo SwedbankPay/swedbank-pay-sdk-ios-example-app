@@ -27,6 +27,8 @@ class PaymentViewModel {
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
     
+    var useSafari = false
+    
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.Configuration {
         get {

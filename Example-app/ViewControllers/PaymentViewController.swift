@@ -23,6 +23,7 @@ class PaymentViewController: UIViewController {
             consumer: vm.consumerData,
             paymentOrder: vm.paymentOrder
         )
+        swedbankPaySDKController.openRedirectsInBrowser = vm.useSafari
         swedbankPaySDKController.delegate = self
         addChild(swedbankPaySDKController)
         webViewContainer.addSubview(swedbankPaySDKController.view)

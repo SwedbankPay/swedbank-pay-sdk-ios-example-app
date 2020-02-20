@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -50,7 +50,7 @@
         <!--Store View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="StoreViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="StoreViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -168,7 +168,7 @@
         <!--Shopping Cart View Controller-->
         <scene sceneID="gP3-WA-Icm">
             <objects>
-                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K0e-xH-72i"/>
                         <viewControllerLayoutGuide type="bottom" id="GYs-te-ezo"/>
@@ -181,7 +181,7 @@
                                 <rect key="frame" x="15" y="0.0" width="345" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-0v-RWq">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="497"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="467"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -218,7 +218,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ifH-yR-vFt">
-                                        <rect key="frame" x="5" y="49" width="335" height="448"/>
+                                        <rect key="frame" x="5" y="49" width="335" height="418"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -227,10 +227,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUQ-3f-AJW" userLabel="Settings Background">
-                                        <rect key="frame" x="15" y="510" width="315" height="137"/>
+                                        <rect key="frame" x="15" y="480" width="315" height="167"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3w-f5-Zd6">
-                                                <rect key="frame" x="0.0" y="0.0" width="315" height="137"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="167"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-X" translatesAutoresizingMaskIntoConstraints="NO" id="awP-Fs-C8H">
                                                         <rect key="frame" x="267" y="0.0" width="48" height="48"/>
@@ -367,6 +367,21 @@
                                                             <action selector="setCountrySwedenButtonClick:" destination="T5S-aR-iCO" eventType="touchUpInside" id="dsq-hQ-Xav"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Safari" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJM-QU-nMh">
+                                                        <rect key="frame" x="115.5" y="130" width="84.5" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="h0g-If-9MI"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="evf-z5-q05">
+                                                        <rect key="frame" x="208" y="126.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="onSafariButtonValueChanged:" destination="T5S-aR-iCO" eventType="valueChanged" id="yzm-QN-LJv"/>
+                                                        </connections>
+                                                    </switch>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -376,6 +391,7 @@
                                                     <constraint firstItem="aAk-Ud-kjr" firstAttribute="width" secondItem="ae7-we-OEx" secondAttribute="width" id="ATC-uZ-8Vj"/>
                                                     <constraint firstItem="3ab-qc-hEh" firstAttribute="top" secondItem="plK-Eb-oTB" secondAttribute="bottom" constant="2" id="Dtj-lD-jIL"/>
                                                     <constraint firstItem="awP-Fs-C8H" firstAttribute="top" secondItem="a3w-f5-Zd6" secondAttribute="top" id="FeW-oA-UKx"/>
+                                                    <constraint firstItem="awP-Fs-C8H" firstAttribute="centerY" secondItem="1Y3-OA-eAz" secondAttribute="centerY" id="FuN-iY-dJ9"/>
                                                     <constraint firstItem="aAk-Ud-kjr" firstAttribute="centerY" secondItem="ae7-we-OEx" secondAttribute="centerY" id="G7k-ny-Gzg"/>
                                                     <constraint firstItem="KUQ-aC-xpc" firstAttribute="centerX" secondItem="PTZ-eU-iW6" secondAttribute="centerX" id="HaI-lr-1Mv"/>
                                                     <constraint firstItem="I5V-ov-OUA" firstAttribute="top" secondItem="1Y3-OA-eAz" secondAttribute="bottom" id="Had-p4-igY"/>
@@ -383,9 +399,11 @@
                                                     <constraint firstItem="PTZ-eU-iW6" firstAttribute="width" secondItem="bjc-8t-fis" secondAttribute="width" id="Nlq-vz-tEo"/>
                                                     <constraint firstItem="RWW-j8-3aJ" firstAttribute="width" secondItem="aAk-Ud-kjr" secondAttribute="width" id="Ocn-7f-te3"/>
                                                     <constraint firstItem="4T3-vo-Pr2" firstAttribute="top" secondItem="1Y3-OA-eAz" secondAttribute="bottom" constant="35" id="QIU-4q-T8P"/>
+                                                    <constraint firstItem="evf-z5-q05" firstAttribute="centerY" secondItem="SJM-QU-nMh" secondAttribute="centerY" id="Qdp-Fx-Vm3"/>
                                                     <constraint firstItem="9bR-WF-kuN" firstAttribute="leading" secondItem="a3w-f5-Zd6" secondAttribute="centerX" constant="30" id="R6r-Uu-dKQ"/>
                                                     <constraint firstItem="ENr-Uh-2yr" firstAttribute="top" secondItem="a3w-f5-Zd6" secondAttribute="top" id="Ric-Rm-8N1"/>
                                                     <constraint firstItem="s57-DD-JmJ" firstAttribute="top" secondItem="af1-Qr-a3V" secondAttribute="bottom" constant="2" id="SKm-Rb-QG0"/>
+                                                    <constraint firstItem="evf-z5-q05" firstAttribute="leading" secondItem="SJM-QU-nMh" secondAttribute="trailing" constant="8" id="Uzn-GP-IbQ"/>
                                                     <constraint firstItem="PTZ-eU-iW6" firstAttribute="centerY" secondItem="bjc-8t-fis" secondAttribute="centerY" id="Vdn-05-Fel"/>
                                                     <constraint firstItem="s57-DD-JmJ" firstAttribute="centerX" secondItem="af1-Qr-a3V" secondAttribute="centerX" id="VjW-NL-Pj2"/>
                                                     <constraint firstItem="KUQ-aC-xpc" firstAttribute="width" secondItem="PTZ-eU-iW6" secondAttribute="width" id="W98-hZ-NxA"/>
@@ -397,14 +415,15 @@
                                                     <constraint firstItem="RWW-j8-3aJ" firstAttribute="top" secondItem="aAk-Ud-kjr" secondAttribute="bottom" constant="2" id="cG8-RC-7Mt"/>
                                                     <constraint firstItem="af1-Qr-a3V" firstAttribute="width" secondItem="9bR-WF-kuN" secondAttribute="width" id="dqN-m7-l9X"/>
                                                     <constraint firstAttribute="centerX" secondItem="bjc-8t-fis" secondAttribute="trailing" constant="20" id="eT1-7v-KFd"/>
-                                                    <constraint firstItem="1Y3-OA-eAz" firstAttribute="centerY" secondItem="awP-Fs-C8H" secondAttribute="centerY" id="edE-R1-51O"/>
                                                     <constraint firstItem="4T3-vo-Pr2" firstAttribute="bottom" secondItem="9bR-WF-kuN" secondAttribute="top" constant="10" id="fFc-um-WGk"/>
                                                     <constraint firstItem="af1-Qr-a3V" firstAttribute="centerY" secondItem="9bR-WF-kuN" secondAttribute="centerY" id="fjW-Sn-enR"/>
                                                     <constraint firstItem="aAk-Ud-kjr" firstAttribute="centerX" secondItem="ae7-we-OEx" secondAttribute="centerX" id="gOf-PY-5IM"/>
                                                     <constraint firstItem="3ab-qc-hEh" firstAttribute="width" secondItem="plK-Eb-oTB" secondAttribute="width" id="h5b-tX-PMN"/>
                                                     <constraint firstItem="I5V-ov-OUA" firstAttribute="leading" secondItem="a3w-f5-Zd6" secondAttribute="centerX" constant="20" id="ibe-Gd-KBB"/>
                                                     <constraint firstAttribute="centerX" secondItem="ae7-we-OEx" secondAttribute="trailing" constant="30" id="jm9-it-hml"/>
+                                                    <constraint firstItem="SJM-QU-nMh" firstAttribute="centerX" secondItem="a3w-f5-Zd6" secondAttribute="centerX" id="k5L-08-8bf"/>
                                                     <constraint firstItem="PTZ-eU-iW6" firstAttribute="centerX" secondItem="bjc-8t-fis" secondAttribute="centerX" id="kpY-Zs-zxo"/>
+                                                    <constraint firstItem="SJM-QU-nMh" firstAttribute="top" secondItem="4T3-vo-Pr2" secondAttribute="bottom" constant="35" id="lFx-y9-5W5"/>
                                                     <constraint firstItem="RWW-j8-3aJ" firstAttribute="centerX" secondItem="aAk-Ud-kjr" secondAttribute="centerX" id="luE-Vj-mOP"/>
                                                     <constraint firstItem="4T3-vo-Pr2" firstAttribute="centerX" secondItem="a3w-f5-Zd6" secondAttribute="centerX" id="qo6-qK-ZQN"/>
                                                     <constraint firstItem="4T3-vo-Pr2" firstAttribute="bottom" secondItem="ae7-we-OEx" secondAttribute="top" constant="10" id="rBM-HN-fq9"/>
@@ -427,10 +446,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0N-qs-ex1">
-                                        <rect key="frame" x="15" y="49" width="315" height="448"/>
+                                        <rect key="frame" x="15" y="49" width="315" height="418"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ka-ZO-5Qs" userLabel="Ball View">
-                                                <rect key="frame" x="109.5" y="176" width="96" height="96"/>
+                                                <rect key="frame" x="109.5" y="161" width="96" height="96"/>
                                                 <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="96" id="Aup-wN-Toh"/>
@@ -443,7 +462,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EY-qe-Tar">
-                                                <rect key="frame" x="0.0" y="212.5" width="315" height="23.5"/>
+                                                <rect key="frame" x="0.0" y="197.5" width="315" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="IBMPlexMono" family="IBM Plex Mono" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -459,7 +478,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-aP-CEG">
-                                        <rect key="frame" x="15" y="510" width="48" height="48"/>
+                                        <rect key="frame" x="15" y="480" width="48" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="agD-SG-k9N"/>
@@ -492,14 +511,14 @@
                                     <constraint firstAttribute="trailing" secondItem="WUQ-3f-AJW" secondAttribute="trailing" constant="15" id="aV2-Rw-U27"/>
                                     <constraint firstItem="WUQ-3f-AJW" firstAttribute="top" secondItem="Kbl-0v-RWq" secondAttribute="bottom" constant="13" id="aWK-Ee-SxD"/>
                                     <constraint firstItem="G0N-qs-ex1" firstAttribute="top" secondItem="NiM-Wo-ETF" secondAttribute="top" constant="49" id="ak0-Z7-Efh"/>
-                                    <constraint firstAttribute="bottom" secondItem="G0N-qs-ex1" secondAttribute="bottom" constant="150" id="bg7-v1-aup"/>
+                                    <constraint firstAttribute="bottom" secondItem="G0N-qs-ex1" secondAttribute="bottom" constant="180" id="bg7-v1-aup"/>
                                     <constraint firstAttribute="trailing" secondItem="G0N-qs-ex1" secondAttribute="trailing" constant="15" id="dj9-ai-gJd"/>
                                     <constraint firstItem="ifH-yR-vFt" firstAttribute="top" secondItem="NiM-Wo-ETF" secondAttribute="top" constant="49" id="gta-Nf-sn0"/>
                                     <constraint firstItem="Kbl-0v-RWq" firstAttribute="top" secondItem="NiM-Wo-ETF" secondAttribute="top" id="jzP-Rf-XeN"/>
                                     <constraint firstItem="G0N-qs-ex1" firstAttribute="leading" secondItem="NiM-Wo-ETF" secondAttribute="leading" constant="15" id="kd6-7K-Ypv"/>
                                     <constraint firstItem="ifH-yR-vFt" firstAttribute="bottom" secondItem="Kbl-0v-RWq" secondAttribute="bottom" id="lhl-GI-lH4"/>
                                     <constraint firstItem="ifH-yR-vFt" firstAttribute="leading" secondItem="NiM-Wo-ETF" secondAttribute="leading" constant="5" id="qnl-56-UKB"/>
-                                    <constraint firstAttribute="bottom" secondItem="Kbl-0v-RWq" secondAttribute="bottom" constant="150" id="vtm-1U-V67"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kbl-0v-RWq" secondAttribute="bottom" constant="180" id="vtm-1U-V67"/>
                                     <constraint firstItem="8uo-Sc-Na1" firstAttribute="top" secondItem="NiM-Wo-ETF" secondAttribute="top" id="yqc-YC-jcd"/>
                                     <constraint firstItem="WUQ-3f-AJW" firstAttribute="leading" secondItem="NiM-Wo-ETF" secondAttribute="leading" constant="15" id="zPE-zZ-SSw"/>
                                     <constraint firstItem="7PZ-xg-4di" firstAttribute="leading" secondItem="TOI-sX-376" secondAttribute="trailing" id="zwm-dy-xYJ"/>
@@ -530,6 +549,7 @@
                         <outlet property="swedenLabel" destination="af1-Qr-a3V" id="12b-nr-y7N"/>
                         <outlet property="swedenUnderlineView" destination="s57-DD-JmJ" id="oEv-O0-PdQ"/>
                         <outlet property="tableView" destination="ifH-yR-vFt" id="Zwn-3t-is5"/>
+                        <outlet property="useSafariSwitch" destination="evf-z5-q05" id="gtc-qm-6tC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA7-fe-FxG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -539,7 +559,7 @@
         <!--Payment View Controller-->
         <scene sceneID="ib5-hj-f9S">
             <objects>
-                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qge-en-rY8"/>
                         <viewControllerLayoutGuide type="bottom" id="mpA-MH-17Z"/>
@@ -574,7 +594,7 @@
         <!--Result View Controller-->
         <scene sceneID="Kd8-1k-XRS">
             <objects>
-                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TRa-cX-TWS"/>
                         <viewControllerLayoutGuide type="bottom" id="jEf-Lh-ga3"/>
