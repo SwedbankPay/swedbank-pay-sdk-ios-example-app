@@ -1,11 +1,14 @@
-# Swedbank Pay iOS SDK Example app written in Swift
+# Swedbank Pay SDK for iOS Example App
 
-This example app demonstrates how to use the [Swedbank Pay iOS SDK](https://github.com/SwedbankPay/swedbank-pay-sdk-ios). An example [merchant backend](https://github.com/SwedbankPay/swedbank-pay-sdk-mobile-example-merchant) has been implemented for this app.
+![Swedbank Pay SDK for iOS Example App][opengraph-image]
+
+This example app demonstrates how to use the [Swedbank Pay SDK for iOS][sdk].
+An example [merchant backend][backend] has been implemented for this app.
 
 ## Requirements
 
 - Xcode 11
-- [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
+- [Cocoapods][cocoapods]
 
 ## Installation
 
@@ -15,4 +18,11 @@ This example app demonstrates how to use the [Swedbank Pay iOS SDK](https://gith
 
 ## Test Data
 
-You can test the payment using the [test data](https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/) related to the different payment methods.
+You can test the payment using the [test data][test-data] related to the
+different payment methods.
+
+[opengraph-image]: https://repository-images.githubusercontent.com/209761415/fc62af80-53ea-11ea-8b50-60f173ec09f3
+[sdk]: https://github.com/SwedbankPay/swedbank-pay-sdk-ios
+[backend]: https://github.com/SwedbankPay/swedbank-pay-sdk-mobile-example-merchant
+[cocoapods]: https://guides.cocoapods.org/using/getting-started.html
+[test-data]: https://developer.swedbankpay.com/resources/test-data
