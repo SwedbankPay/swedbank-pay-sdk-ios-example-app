@@ -108,7 +108,6 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             ])
             
             vc.didMove(toParent: self)
-            vc.showShoppingCart()
         }
         view.bringSubviewToFront(shoppingCartView)
 

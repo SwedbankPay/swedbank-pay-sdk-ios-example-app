@@ -1,6 +1,15 @@
 import UIKit
 import SwedbankPaySDK
 
+protocol ConsumerViewModelListener {
+    func onCountryChanged()
+}
+
+extension Notification.Name {
+    /// Notification that is sent when ConsumerViewModel.setCountry is called
+    static let ConsumerViewModelCountryChanged = Notification.Name("com.swedbank.ConsumerViewModelCountryChanged")
+}
+
 /// Singleton ViewModel for consumer data
 class ConsumerViewModel {
     
@@ -35,6 +44,7 @@ class ConsumerViewModel {
     /// Sets `Country` for `Consumer`
     func setCountry(_ country: Country) {
         self.country = country
+        NotificationCenter.default.post(name: .ConsumerViewModelCountryChanged, object: self)
     }
     
     /// Sets `ConsumerType`, anonymous or identified
@@ -50,18 +60,10 @@ class ConsumerViewModel {
         case .Anonymous:
             return nil
         case .Identified:
-            switch country {
-            case .Norway:
-                return SwedbankPaySDK.Consumer.init(
-                    language: .Norwegian,
-                    shippingAddressRestrictedToCountryCodes: ["NO"]
-                )
-            case .Sweden:
-                return SwedbankPaySDK.Consumer.init(
-                    language: .Swedish,
-                    shippingAddressRestrictedToCountryCodes: ["SE"]
-                )
-            }
+            return SwedbankPaySDK.Consumer(
+                language: country.language,
+                shippingAddressRestrictedToCountryCodes: [country.countryCode]
+            )
         }
     }
 }

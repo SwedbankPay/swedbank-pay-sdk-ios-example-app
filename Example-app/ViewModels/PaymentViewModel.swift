@@ -27,7 +27,13 @@ class PaymentViewModel {
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
     
+    var settingsOpen = false
+    
+    var disablePaymentMenu = false
     var useSafari = false
+    var testWrongHostUrl = false
+    
+    var restrictedToInstruments: [String]?
     
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.Configuration {
@@ -58,13 +64,27 @@ class PaymentViewModel {
                 vatAmout += Int64(item.price * item.vat / 100)
             }
             
+            let country = ConsumerViewModel.shared.getCountry()
+                        
             return SwedbankPaySDK.PaymentOrder.init(
-                currency: ConsumerViewModel.shared.getCurrency().rawValue,
+                currency: country.currency.rawValue,
                 amount: amount,
                 vatAmount: vatAmout,
                 description: "Purchase",
-                urls: .init(configuration: configuration)
+                language: country.language,
+                restrictedToInstruments: restrictedToInstruments,
+                urls: buildUrls(),
+                disablePaymentMenu: disablePaymentMenu
             )
+        }
+    }
+    
+    private func buildUrls() -> SwedbankPaySDK.PaymentOrderUrls {
+        if testWrongHostUrl {
+            let hostUrl = URL(string: "https://bogus-hosturl-for-testing.swedbankpay.com/")!
+            return .init(configuration: configuration, hostUrl: hostUrl)
+        } else {
+            return .init(configuration: configuration)
         }
     }
     

@@ -1,6 +1,6 @@
 import UIKit
 
-class ShoppingCartSummaryFooterView: UITableViewHeaderFooterView {
+class ShoppingCartSummaryFooterCell: UITableViewCell {
     
     @IBOutlet private weak var shippingPriceLabel: UILabel!
     @IBOutlet private weak var totalPriceLabel: UILabel!

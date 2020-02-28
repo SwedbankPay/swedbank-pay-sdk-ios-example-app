@@ -11,12 +11,6 @@ class ShoppingCartProductTableViewCell: UITableViewCell {
     
     var basketChangedCallback: (()->())?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        contentView.isUserInteractionEnabled = false
-    }
-    
     /// Removes the `Product` from shopping basket
     @IBAction func removeFromBasketButtonClick(_ sender: Any) {
         if let product = product {

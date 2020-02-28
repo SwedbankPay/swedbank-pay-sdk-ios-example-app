@@ -4,58 +4,32 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var shoppingCartView: UIView!
-    @IBOutlet private weak var shoppingCartEmptyView: UIView!
-    
-    @IBOutlet private weak var settingsContainerView: UIView!
-    @IBOutlet private weak var settingsContainerTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var settingsContainerBottomConstraint: NSLayoutConstraint!
-    
-    @IBOutlet private weak var anonymousUnderlineView: UIView!
-    @IBOutlet private weak var identifiedUnderlineView: UIView!
-    @IBOutlet private weak var norwayUnderlineView: UIView!
-    @IBOutlet private weak var swedenUnderlineView: UIView!
-    
-    @IBOutlet private weak var anonymousLabel: UILabel!
-    @IBOutlet private weak var identifiedLabel: UILabel!
-    @IBOutlet private weak var norwayLabel: UILabel!
-    @IBOutlet private weak var swedenLabel: UILabel!
-    
-    @IBOutlet private weak var useSafariSwitch: UISwitch!
-    
-    private var blurEffectView: UIVisualEffectView?
     
     private let settingsContainerTrailingConstant: CGFloat = 93
     private let settingsContainerBottomConstant: CGFloat = 119
     
+    private var countryObserver: NSObjectProtocol?
+    
+    deinit {
+        countryObserver.map(NotificationCenter.default.removeObserver)
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, belowSubview: shoppingCartView)
+        blurEffectView.isHidden = false
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: "ShoppingCartProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingCartProductCell")
-        tableView.register(UINib(nibName: "ShoppingCartSummaryFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: "ShoppingCartSummary")
-        
-        useSafariSwitch.isOn = PaymentViewModel.shared.useSafari
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        if let blurEffectView = blurEffectView {
-            blurEffectView.frame = view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            view.addSubview(blurEffectView)
-            blurEffectView.isHidden = false
+        countryObserver = NotificationCenter.default.addObserver(forName: .ConsumerViewModelCountryChanged, object: nil, queue: .main) { [weak self] _ in
+            self?.updateTableView()
         }
-        
-        setCountry(ConsumerViewModel.shared.getCountry())
-        
-        setConsumer(ConsumerViewModel.shared.getConsumerType())
-        
-        view.bringSubviewToFront(shoppingCartView)
     }
     
     /// Animates the updates in tableView content
@@ -66,40 +40,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         if let parent = self.parent as? StoreViewController {
             parent.updateData()
         }
-    }
-    
-    // MARK: IBActions
-    
-    @IBAction func closeShoppingCartButtonClick(_ sender: Any) {
-        hideShoppingCart()
-    }
-    
-    @IBAction func openSettingsButtonClick(_ sender: Any) {
-        openSettings()
-    }
-    
-    @IBAction func closeSettingsButtonClick(_ sender: Any) {
-        closeSettings()
-    }
-    
-    @IBAction func setAnonymousButtonClick(_ sender: Any) {
-        setConsumer(.Anonymous)
-    }
-    
-    @IBAction func setIdentifiedButtonClick(_ sender: Any) {
-        setConsumer(.Identified)
-    }
-    
-    @IBAction func setCountryNorwayButtonClick(_ sender: Any) {
-        setCountry(.Norway)
-    }
-    
-    @IBAction func setCountrySwedenButtonClick(_ sender: Any) {
-        setCountry(.Sweden)
-    }
-    
-    @IBAction func onSafariButtonValueChanged(_ sender: Any) {
-        PaymentViewModel.shared.useSafari = useSafariSwitch.isOn
     }
     
     // MARK: Shopping Cart
@@ -114,12 +54,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    /// Shows the shopping cart view
-    public func showShoppingCart() {
-        setSettingsClosed()
-        shoppingCartEmptyView.isHidden = (StoreViewModel.shared.getBasketCount() > 0)
-    }
-    
     /// Hides the shopping cart view
     private func hideShoppingCart() {
         view.setNeedsLayout()
@@ -129,79 +63,23 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    // MARK: Settings
     
-    /// Opens the settings view
-    private func openSettings() {
-        settingsContainerTrailingConstraint.constant = 15
-        settingsContainerBottomConstraint.constant = 0
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        }, completion: { [weak self] _ in
-            self?.settingsContainerView.isHidden = false
-        })
-    }
-    
-    /// Closes the settings view
-    private func closeSettings() {
-        setSettingsClosed()
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
-    private func setSettingsClosed() {
-        settingsContainerView.isHidden = true
-        settingsContainerTrailingConstraint.constant = UIScreen.main.bounds.width - self.settingsContainerTrailingConstant
-        settingsContainerBottomConstraint.constant = self.settingsContainerBottomConstant
-    }
-    
-    /// Sets the `Consumer` either anonymous or identified in settings view
-    private func setConsumer(_ type: ConsumerType) {
-        ConsumerViewModel.shared.setConsumerType(type)
-        switch type {
-        case .Anonymous:
-            anonymousUnderlineView.isHidden = false
-            identifiedUnderlineView.isHidden = true
-            anonymousLabel.font = UIFont.bold12()
-            identifiedLabel.font = UIFont.medium12()
-        case .Identified:
-            anonymousUnderlineView.isHidden = true
-            identifiedUnderlineView.isHidden = false
-            anonymousLabel.font = UIFont.medium12()
-            identifiedLabel.font = UIFont.bold12()
-        }
-    }
-    
-    /// Sets the country in settings view
-    private func setCountry(_ country: Country) {
-        ConsumerViewModel.shared.setCountry(country)
-        switch country {
-        case .Norway:
-            norwayUnderlineView.isHidden = false
-            swedenUnderlineView.isHidden = true
-            norwayLabel.font = UIFont.bold12()
-            swedenLabel.font = UIFont.medium12()
-        case .Sweden:
-            norwayUnderlineView.isHidden = true
-            swedenUnderlineView.isHidden = false
-            norwayLabel.font = UIFont.medium12()
-            swedenLabel.font = UIFont.bold12()
-        }
-        updateTableView()
-    }
     
     // MARK: TableView delegate methods
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StoreViewModel.shared.getBasketCount()
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Section.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Section.allCases[section].numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return Section.allCases[indexPath.section].getCell(viewController: self, tableView: tableView, indexPath: indexPath)
+    }
+    
+    private func tableView(_ tableView: UITableView, productCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartProductCell", for: indexPath) as! ShoppingCartProductTableViewCell
         
         let product = StoreViewModel.shared.getBasketProduct(indexPath.row)
@@ -214,22 +92,88 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 230
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if StoreViewModel.shared.getBasketCount() > 0 {
-            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ShoppingCartSummary") as! ShoppingCartSummaryFooterView
+    private enum Section : CaseIterable {
+        case Header
+        case Products
+        case Footer
+        case Settings
+        
+        var numberOfRows: Int {
+            switch self {
+            case .Header: return 1
+            case .Products: return max(StoreViewModel.shared.getBasketCount(), 1)
+            case .Footer: return StoreViewModel.shared.getBasketCount() > 0 ? 1 : 0
+            case .Settings: return 1
+            }
+        }
+        
+        func getCell(viewController: ShoppingCartViewController, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+            switch self {
+            case .Header: return headerCell(viewController, tableView, indexPath)
+            case .Products: return productsCell(viewController, tableView, indexPath)
+            case .Footer: return footerCell(viewController, tableView, indexPath)
+            case .Settings: return settingsCell(viewController, tableView, indexPath)
+            }
+        }
+        
+        private func headerCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartHeaderCell", for: indexPath) as! ShoppingCartHeaderCell
+            cell.onClosePressed = { [weak viewController] in
+                viewController?.hideShoppingCart()
+            }
+            return cell
+        }
+        
+        private func productsCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let vm = StoreViewModel.shared
+            if vm.getBasketCount() == 0 {
+                return tableView.dequeueReusableCell(withIdentifier: "ShoppingCartEmptyCell", for: indexPath)
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartProductTableViewCell", for: indexPath) as! ShoppingCartProductTableViewCell
+                
+                let product = vm.getBasketProduct(indexPath.row)
+                cell.setProductDetails(product)
+                
+                cell.basketChangedCallback = { [weak viewController] in
+                    viewController?.updateTableView()
+                }
+                
+                return cell
+            }
+        }
+        
+        private func footerCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartSummaryFooterCell", for: indexPath) as! ShoppingCartSummaryFooterCell
             cell.setPrices()
             
-            cell.checkoutCallback = {
-                self.checkout()
+            cell.checkoutCallback = { [weak viewController] in
+                viewController?.checkout()
             }
             
             return cell
-        } else {
-            return UIView()
+        }
+        
+        private func settingsCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
+            
+            cell.refresh()
+            
+            cell.onOpenPressed = { [weak viewController] in
+                if let viewController = viewController {
+                    viewController.tableView.beginUpdates()
+                    cell.setSettingsOpen(true, animated: true)
+                    viewController.tableView.endUpdates()
+                }
+                
+            }
+            cell.onClosePressed = { [weak viewController] in
+                if let viewController = viewController {
+                    viewController.tableView.beginUpdates()
+                    cell.setSettingsOpen(false, animated: true)
+                    viewController.tableView.endUpdates()
+                }
+            }
+            return cell
         }
     }
 }

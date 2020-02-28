@@ -1,4 +1,6 @@
 
+import SwedbankPaySDK
+
 enum Country {
     case Norway
     case Sweden
@@ -9,6 +11,13 @@ enum Country {
             return "NO"
         case .Sweden:
             return "SE"
+        }
+    }
+    
+    var language: SwedbankPaySDK.Language {
+        switch self {
+        case .Norway: return .Norwegian
+        case .Sweden: return .Swedish
         }
     }
     

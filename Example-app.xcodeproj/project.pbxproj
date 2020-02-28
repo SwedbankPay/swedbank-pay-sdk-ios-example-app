@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A58DAF0224041E0A004F9AF2 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */; };
+		A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */; };
 		C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AA237AB10A003F79DF /* PurchaseData.swift */; };
 		C50CF6AD237AB119003F79DF /* PurchaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AC237AB119003F79DF /* PurchaseItem.swift */; };
 		C50CF6AF237AB126003F79DF /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AE237AB126003F79DF /* PaymentResult.swift */; };
@@ -48,8 +50,6 @@
 		C54D55B623701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */; };
 		C54D55B723701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */; };
 		C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55B92370204000E3B301 /* ProductTableViewCell.xib */; };
-		C54D55C02370204000E3B301 /* ShoppingCartSummaryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */; };
-		C54D55C12370204000E3B301 /* ShoppingCartProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */; };
 		C5CF1E802370499D008DFCCC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */; };
 		E2F2CE135D663B6C37D4FED9 /* Pods_Example_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B441CFF27D6CF23581A8979 /* Pods_Example_app.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +59,8 @@
 		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
 		8B441CFF27D6CF23581A8979 /* Pods_Example_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C596A50E029369F439510C2 /* Pods-Example-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-app.debug.xcconfig"; path = "Target Support Files/Pods-Example-app/Pods-Example-app.debug.xcconfig"; sourceTree = "<group>"; };
+		A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartHeaderCell.swift; sourceTree = "<group>"; };
 		A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-app.entitlements"; sourceTree = "<group>"; };
 		C50CF6AA237AB10A003F79DF /* PurchaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseData.swift; sourceTree = "<group>"; };
 		C50CF6AC237AB119003F79DF /* PurchaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseItem.swift; sourceTree = "<group>"; };
@@ -103,8 +105,6 @@
 		C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
 		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
-		C54D55BC2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartSummaryFooterView.xib; sourceTree = "<group>"; };
-		C54D55BE2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ShoppingCartProductTableViewCell.xib; sourceTree = "<group>"; };
 		C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F034B12146115FFD71430255 /* Pods-Example-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-app.release.xcconfig"; path = "Target Support Files/Pods-Example-app/Pods-Example-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,8 +199,6 @@
 				C54D557123701F9D00E3B301 /* LaunchScreen.xib */,
 				C54D557323701F9D00E3B301 /* Main.storyboard */,
 				C54D55B92370204000E3B301 /* ProductTableViewCell.xib */,
-				C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */,
-				C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */,
 			);
 			path = en.lproj;
 			sourceTree = "<group>";
@@ -224,10 +222,12 @@
 			children = (
 				C54D557923701F9D00E3B301 /* StoreViewController.swift */,
 				C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */,
+				A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */,
 				C54D557C23701F9D00E3B301 /* PaymentViewController.swift */,
 				C54D557A23701F9D00E3B301 /* ResultViewController.swift */,
 				C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */,
 				C54D557F23701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift */,
+				A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */,
 				C54D557E23701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift */,
 			);
 			path = ViewControllers;
@@ -341,7 +341,6 @@
 				C54D55AA23701F9D00E3B301 /* IBMPlexMono-Bold.ttf in Resources */,
 				C54D55B023701F9D00E3B301 /* IBMPlexMono-ThinItalic.ttf in Resources */,
 				C54D55AD23701F9D00E3B301 /* IBMPlexMono-Medium.ttf in Resources */,
-				C54D55C12370204000E3B301 /* ShoppingCartProductTableViewCell.xib in Resources */,
 				C54D55B623701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
 				C54D55AF23701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				C54D559D23701F9D00E3B301 /* LaunchScreen.xib in Resources */,
@@ -351,7 +350,6 @@
 				C54D55A823701F9D00E3B301 /* Images.xcassets in Resources */,
 				C54D55B523701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf in Resources */,
 				C54D55B423701F9D00E3B301 /* OFL.txt in Resources */,
-				C54D55C02370204000E3B301 /* ShoppingCartSummaryFooterView.xib in Resources */,
 				C54D55AE23701F9D00E3B301 /* IBMPlexMono-ExtraLight.ttf in Resources */,
 				C54D55A923701F9D00E3B301 /* IBMPlexMono-Thin.ttf in Resources */,
 				C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */,
@@ -409,10 +407,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58DAF0224041E0A004F9AF2 /* SettingsCell.swift in Sources */,
 				C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */,
 				C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */,
 				C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */,
 				C54D559523701F9D00E3B301 /* UIView+Extension.swift in Sources */,
+				A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */,
 				C54D559923701F9D00E3B301 /* ConsumerViewModel.swift in Sources */,
 				C50CF6B1237AB12D003F79DF /* ConsumerType.swift in Sources */,
 				C50CF6D1237AC587003F79DF /* Currency.swift in Sources */,
@@ -459,22 +459,6 @@
 				C54D55BA2370204000E3B301 /* en */,
 			);
 			name = ProductTableViewCell.xib;
-			sourceTree = "<group>";
-		};
-		C54D55BB2370204000E3B301 /* ShoppingCartSummaryFooterView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C54D55BC2370204000E3B301 /* en */,
-			);
-			name = ShoppingCartSummaryFooterView.xib;
-			sourceTree = "<group>";
-		};
-		C54D55BD2370204000E3B301 /* ShoppingCartProductTableViewCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C54D55BE2370204000E3B301 /* en */,
-			);
-			name = ShoppingCartProductTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
