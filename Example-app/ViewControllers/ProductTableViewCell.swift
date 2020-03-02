@@ -68,13 +68,9 @@ class ProductTableViewCell: UITableViewCell {
             
             self.product = product
             
-            if let image = product.image {
-                productImage.image = UIImage.init(imageLiteralResourceName: image)
-            }
+            productImage.image = UIImage.init(imageLiteralResourceName: product.image)
             
-            if let name = product.name {
-                productNameLabel.text = name
-            }
+            productNameLabel.text = product.name
             
             let currency = ConsumerViewModel.shared.getCurrency()
             let price = String((product.price[currency] ?? 0) / 100)

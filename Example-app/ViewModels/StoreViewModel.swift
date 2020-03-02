@@ -9,6 +9,8 @@ class StoreViewModel {
     
     private var basket: [Product] = []
     
+    var overrideTotal: Int?
+    
     /// Example static store data, normally this data would be provided by your backend
     let products: [Product] = [
         Product.init(
@@ -87,6 +89,10 @@ class StoreViewModel {
     
     /// Returns total value of shopping cart items plus shipping cost
     func getBasketTotalPrice() -> Int {
+        if let overrideTotal = overrideTotal {
+            return overrideTotal
+        }
+        
         var totalPrice = 0
         if basket.count > 0 {
             let currency = ConsumerViewModel.shared.getCurrency()
@@ -128,6 +134,7 @@ class StoreViewModel {
     /// Removes all items from shopping basket
     func clearBasket() {
         basket = []
+        overrideTotal = nil
     }
     
     /// Returns `PurchaseItem` array to be sent to the backend in merchantData
@@ -136,13 +143,20 @@ class StoreViewModel {
         if basket.count > 0 {
             for product in basket {
                 if !items.contains(where: { $0.itemId == product.id } ) {
-                    if let id = product.id, let price = product.price[ConsumerViewModel.shared.getCurrency()] {
-                        let item = PurchaseItem.init(itemId: id, quantity: 1, price: price, vat: product.vat)
+                    if let price = product.price[ConsumerViewModel.shared.getCurrency()] {
+                        let item = PurchaseItem.init(itemId: product.id, itemName: product.name, quantity: 1, price: price, vat: product.vat)
                         items.append(item)
                     }
                 }
             }
-            items.append(PurchaseItem.init(itemId: "shipping", quantity: 1, price: getShippingCost(), vat: 25))
+            items.append(PurchaseItem.init(itemId: "shipping", itemName: "shipping", quantity: 1, price: getShippingCost(), vat: 25))
+            
+            if let overrideTotal = overrideTotal {
+                for i in items.indices {
+                    items[i].price = 0
+                }
+                items[0].price = overrideTotal
+            }
         }
         
         return items

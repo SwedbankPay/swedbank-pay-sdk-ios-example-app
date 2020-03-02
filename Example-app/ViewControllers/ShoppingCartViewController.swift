@@ -44,6 +44,26 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: Shopping Cart
     
+    private func changeTotal() {
+        guard presentedViewController == nil else {
+            return
+        }
+        
+        let alert = UIAlertController(title: "Set total", message: nil, preferredStyle: .alert)
+        alert.addTextField {
+            $0.keyboardType = .decimalPad
+        }
+        alert.addAction(.init(title: "OK", style: .default) { [weak self] _ in
+            let text = alert.textFields?.first?.text ?? ""
+            let total = text.isEmpty ? nil : Decimal.init(string: text, locale: .current)
+            StoreViewModel.shared.overrideTotal = total.map {
+                (($0 * Decimal(100)) as NSDecimalNumber).intValue
+            }
+            self?.updateTableView()
+        })
+        present(alert, animated: true, completion: nil)
+    }
+    
     /// Hides the shopping cart and shows the payment view
     private func checkout() {
         if StoreViewModel.shared.getBasketCount() > 0 {
@@ -148,6 +168,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             cell.checkoutCallback = { [weak viewController] in
                 viewController?.checkout()
+            }
+            cell.onChangeTotalPressed = { [weak viewController] in
+                viewController?.changeTotal()
             }
             
             return cell

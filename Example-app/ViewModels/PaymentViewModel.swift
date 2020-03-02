@@ -57,23 +57,35 @@ class PaymentViewModel {
     /// Sample Payment Order
     var paymentOrder: SwedbankPaySDK.PaymentOrder {
         get {
-            var amount: Int64 = 0
-            var vatAmout: Int64 = 0
-            for item in StoreViewModel.shared.getPurchaseItems() {
-                amount += Int64(item.price)
-                vatAmout += Int64(item.price * item.vat / 100)
+            let orderItems: [SwedbankPaySDK.OrderItem] = StoreViewModel.shared.getPurchaseItems().map { item in
+                let isShipping = item.itemId == "shipping"
+                return SwedbankPaySDK.OrderItem(
+                    reference: item.itemId,
+                    name: item.itemName,
+                    type: isShipping ? .ShippingFee : .Product,
+                    class: isShipping ? "Shipping" : "Shoe",
+                    quantity: 1,
+                    quantityUnit: isShipping ? "pc" : "pair",
+                    unitPrice: Int64(item.price),
+                    vatPercent: 2500,
+                    amount: Int64(item.price),
+                    vatAmount: Int64(item.price / 5)
+                )
             }
+            let amount = orderItems.lazy.map { $0.amount }.reduce(0, +)
+            let vatAmount = orderItems.lazy.map { $0.vatAmount }.reduce(0, +)
             
             let country = ConsumerViewModel.shared.getCountry()
                         
             return SwedbankPaySDK.PaymentOrder.init(
                 currency: country.currency.rawValue,
                 amount: amount,
-                vatAmount: vatAmout,
+                vatAmount: vatAmount,
                 description: "Purchase",
                 language: country.language,
                 restrictedToInstruments: restrictedToInstruments,
                 urls: buildUrls(),
+                orderItems: orderItems,
                 disablePaymentMenu: disablePaymentMenu
             )
         }

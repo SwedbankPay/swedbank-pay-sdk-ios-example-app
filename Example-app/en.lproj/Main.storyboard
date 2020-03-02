@@ -54,7 +54,7 @@
         <!--Store View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="StoreViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="StoreViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -172,7 +172,7 @@
         <!--Shopping Cart View Controller-->
         <scene sceneID="gP3-WA-Icm">
             <objects>
-                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingCartVC" id="T5S-aR-iCO" customClass="ShoppingCartViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K0e-xH-72i"/>
                         <viewControllerLayoutGuide type="bottom" id="GYs-te-ezo"/>
@@ -188,7 +188,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="1380"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartHeaderCell" id="Xyk-T7-Aey" customClass="ShoppingCartHeaderCell" customModule="Example_app" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartHeaderCell" id="Xyk-T7-Aey" customClass="ShoppingCartHeaderCell" customModule="PROD_Swedbank_test" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="345" height="50"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xyk-T7-Aey" id="82p-ON-GT4">
@@ -259,7 +259,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartProductTableViewCell" id="gOl-Q3-ELb" customClass="ShoppingCartProductTableViewCell" customModule="Example_app" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartProductTableViewCell" id="gOl-Q3-ELb" customClass="ShoppingCartProductTableViewCell" customModule="PROD_Swedbank_test" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="78" width="345" height="160"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gOl-Q3-ELb" id="Ffy-Bo-mRW">
@@ -411,7 +411,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartSummaryFooterCell" id="80G-68-xHr" customClass="ShoppingCartSummaryFooterCell" customModule="Example_app" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartSummaryFooterCell" id="80G-68-xHr" customClass="ShoppingCartSummaryFooterCell" customModule="PROD_Swedbank_test" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="438" width="345" height="230"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="80G-68-xHr" id="aB3-oe-LSc">
@@ -482,13 +482,25 @@
                                                                         <constraint firstAttribute="height" constant="1" id="W8e-ds-sxu"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOg-by-POy">
-                                                                    <rect key="frame" x="130" y="89" width="54" height="24"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOg-by-POy">
+                                                                    <rect key="frame" x="130" y="89" width="187.5" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="NdE-f7-pdw"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="IBMPlexMono" family="IBM Plex Mono" pointSize="18"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <attributedString key="attributedText">
+                                                                        <fragment content="Total ">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <font key="NSFont" size="18" name="IBMPlexMono"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                        <fragment content="(press to change)">
+                                                                            <attributes>
+                                                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <font key="NSFont" size="12" name="IBMPlexMono"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                    </attributedString>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzo-rn-cCr">
@@ -500,6 +512,12 @@
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="059-sk-GiA">
+                                                                    <rect key="frame" x="130" y="89" width="187.5" height="48"/>
+                                                                    <connections>
+                                                                        <action selector="changeTotalClick:" destination="80G-68-xHr" eventType="touchUpInside" id="hvQ-a3-qgw"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6a-AW-XqT">
                                                                     <rect key="frame" x="50" y="162" width="245" height="48"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -534,13 +552,17 @@
                                                                 <constraint firstItem="WOg-by-POy" firstAttribute="leading" secondItem="Mzo-rn-cCr" secondAttribute="leading" id="9wz-L0-qWt"/>
                                                                 <constraint firstItem="QyA-7A-uYr" firstAttribute="leading" secondItem="mRi-4X-e0K" secondAttribute="leading" priority="250" constant="20" id="Agz-yS-7nm"/>
                                                                 <constraint firstItem="WOg-by-POy" firstAttribute="leading" secondItem="bW2-zo-TIs" secondAttribute="leading" id="C0P-PB-y3q"/>
+                                                                <constraint firstItem="059-sk-GiA" firstAttribute="leading" secondItem="WOg-by-POy" secondAttribute="leading" id="DBk-l4-UD6"/>
                                                                 <constraint firstItem="mRi-4X-e0K" firstAttribute="leading" secondItem="286-aL-bIR" secondAttribute="leading" id="M6V-bP-X4M"/>
+                                                                <constraint firstItem="Mzo-rn-cCr" firstAttribute="bottom" secondItem="059-sk-GiA" secondAttribute="bottom" id="PsU-RZ-BHh"/>
                                                                 <constraint firstItem="buA-bm-RK4" firstAttribute="top" secondItem="286-aL-bIR" secondAttribute="top" constant="12" id="QAD-Qb-SZC"/>
                                                                 <constraint firstItem="mRi-4X-e0K" firstAttribute="trailing" secondItem="QyA-7A-uYr" secondAttribute="trailing" priority="250" constant="20" id="RbC-6Q-OI3"/>
                                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QyA-7A-uYr" secondAttribute="trailing" constant="20" id="Var-A4-Cw5"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WOg-by-POy" secondAttribute="trailing" constant="20" symbolic="YES" id="Xpi-gv-qCU"/>
+                                                                <constraint firstItem="059-sk-GiA" firstAttribute="top" secondItem="WOg-by-POy" secondAttribute="top" id="YLD-8Z-byF"/>
                                                                 <constraint firstItem="QyA-7A-uYr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="286-aL-bIR" secondAttribute="leading" constant="20" id="aMr-6A-PVi"/>
                                                                 <constraint firstItem="se8-iG-UOT" firstAttribute="leading" secondItem="286-aL-bIR" secondAttribute="leading" id="c0D-5Z-jx6"/>
+                                                                <constraint firstItem="059-sk-GiA" firstAttribute="trailing" secondItem="WOg-by-POy" secondAttribute="trailing" id="c88-Kd-VwS"/>
                                                                 <constraint firstItem="ozU-ko-AuT" firstAttribute="top" secondItem="SRP-gJ-75L" secondAttribute="top" id="cql-XQ-t5O"/>
                                                                 <constraint firstItem="Mzo-rn-cCr" firstAttribute="top" secondItem="WOg-by-POy" secondAttribute="bottom" constant="4" id="ctT-ch-csB"/>
                                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="u6a-AW-XqT" secondAttribute="trailing" constant="50" id="diH-48-3fc"/>
@@ -573,7 +595,7 @@
                                                     <outlet property="totalPriceLabel" destination="Mzo-rn-cCr" id="yAi-Xb-dlM"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" id="pOd-YE-O2M" customClass="SettingsCell" customModule="Example_app" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" id="pOd-YE-O2M" customClass="SettingsCell" customModule="PROD_Swedbank_test" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="668" width="345" height="321"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pOd-YE-O2M" id="qwO-HE-VrC">
@@ -940,7 +962,7 @@
         <!--Payment View Controller-->
         <scene sceneID="ib5-hj-f9S">
             <objects>
-                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="y42-jc-xax" customClass="PaymentViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qge-en-rY8"/>
                         <viewControllerLayoutGuide type="bottom" id="mpA-MH-17Z"/>
@@ -975,7 +997,7 @@
         <!--Result View Controller-->
         <scene sceneID="Kd8-1k-XRS">
             <objects>
-                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wp2-if-CCM" customClass="ResultViewController" customModule="PROD_Swedbank_test" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TRa-cX-TWS"/>
                         <viewControllerLayoutGuide type="bottom" id="jEf-Lh-ga3"/>
