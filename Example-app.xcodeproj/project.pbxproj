@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A58DAF0224041E0A004F9AF2 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */; };
+		A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569986424113FF100162D69 /* ConsumerSettingsCell.swift */; };
+		A56998672417C3B000162D69 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56998662417C3B000162D69 /* SettingsCell.swift */; };
+		A58DAF0224041E0A004F9AF2 /* GeneralSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */; };
 		A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */; };
 		C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AA237AB10A003F79DF /* PurchaseData.swift */; };
 		C50CF6AD237AB119003F79DF /* PurchaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AC237AB119003F79DF /* PurchaseItem.swift */; };
@@ -59,7 +61,9 @@
 		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
 		8B441CFF27D6CF23581A8979 /* Pods_Example_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C596A50E029369F439510C2 /* Pods-Example-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-app.debug.xcconfig"; path = "Target Support Files/Pods-Example-app/Pods-Example-app.debug.xcconfig"; sourceTree = "<group>"; };
-		A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		A569986424113FF100162D69 /* ConsumerSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerSettingsCell.swift; sourceTree = "<group>"; };
+		A56998662417C3B000162D69 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsCell.swift; sourceTree = "<group>"; };
 		A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartHeaderCell.swift; sourceTree = "<group>"; };
 		A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-app.entitlements"; sourceTree = "<group>"; };
 		C50CF6AA237AB10A003F79DF /* PurchaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseData.swift; sourceTree = "<group>"; };
@@ -222,7 +226,9 @@
 			children = (
 				C54D557923701F9D00E3B301 /* StoreViewController.swift */,
 				C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */,
-				A58DAF0124041E0A004F9AF2 /* SettingsCell.swift */,
+				A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */,
+				A56998662417C3B000162D69 /* SettingsCell.swift */,
+				A569986424113FF100162D69 /* ConsumerSettingsCell.swift */,
 				C54D557C23701F9D00E3B301 /* PaymentViewController.swift */,
 				C54D557A23701F9D00E3B301 /* ResultViewController.swift */,
 				C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */,
@@ -407,9 +413,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A58DAF0224041E0A004F9AF2 /* SettingsCell.swift in Sources */,
+				A58DAF0224041E0A004F9AF2 /* GeneralSettingsCell.swift in Sources */,
 				C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */,
 				C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */,
+				A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */,
+				A56998672417C3B000162D69 /* SettingsCell.swift in Sources */,
 				C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */,
 				C54D559523701F9D00E3B301 /* UIView+Extension.swift in Sources */,
 				A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */,

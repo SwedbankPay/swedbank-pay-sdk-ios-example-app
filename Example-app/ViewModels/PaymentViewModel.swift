@@ -85,6 +85,7 @@ class PaymentViewModel {
                 language: country.language,
                 restrictedToInstruments: restrictedToInstruments,
                 urls: buildUrls(),
+                payer: ConsumerViewModel.shared.getPaymentOrderPayer(),
                 orderItems: orderItems,
                 disablePaymentMenu: disablePaymentMenu
             )

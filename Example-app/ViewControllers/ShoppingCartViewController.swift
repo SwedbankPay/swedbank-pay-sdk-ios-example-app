@@ -2,16 +2,23 @@ import UIKit
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet private weak var tableView: UITableView!
+    private var tableView: UITableView?
     @IBOutlet private weak var shoppingCartView: UIView!
-    
-    private let settingsContainerTrailingConstant: CGFloat = 93
-    private let settingsContainerBottomConstant: CGFloat = 119
     
     private var countryObserver: NSObjectProtocol?
     
     deinit {
         countryObserver.map(NotificationCenter.default.removeObserver)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EmbedShoppingCartTableView" {
+            let tableViewController = segue.destination as? UITableViewController
+            let tableView = tableViewController?.tableView
+            self.tableView = tableView
+            tableView?.dataSource = self
+            tableView?.contentInset = .init(top: 0, left: 0, bottom: 20, right: 0)
+        }
     }
         
     override func viewDidLoad() {
@@ -24,9 +31,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         view.insertSubview(blurEffectView, belowSubview: shoppingCartView)
         blurEffectView.isHidden = false
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         countryObserver = NotificationCenter.default.addObserver(forName: .ConsumerViewModelCountryChanged, object: nil, queue: .main) { [weak self] _ in
             self?.updateTableView()
         }
@@ -34,11 +38,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     /// Animates the updates in tableView content
     private func updateTableView() {
-        let range = NSMakeRange(0, self.tableView.numberOfSections)
-        let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)
-        if let parent = self.parent as? StoreViewController {
-            parent.updateData()
+        if let tableView = tableView {
+            let range = NSMakeRange(0, tableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            tableView.reloadSections(sections as IndexSet, with: .fade)
+            if let parent = self.parent as? StoreViewController {
+                parent.updateData()
+            }
         }
     }
     
@@ -99,19 +105,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return Section.allCases[indexPath.section].getCell(viewController: self, tableView: tableView, indexPath: indexPath)
     }
     
-    private func tableView(_ tableView: UITableView, productCellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartProductCell", for: indexPath) as! ShoppingCartProductTableViewCell
-        
-        let product = StoreViewModel.shared.getBasketProduct(indexPath.row)
-        cell.setProductDetails(product)
-        
-        cell.basketChangedCallback = {
-            self.updateTableView()
-        }
-        
-        return cell
-    }
-    
     private enum Section : CaseIterable {
         case Header
         case Products
@@ -123,7 +116,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             case .Header: return 1
             case .Products: return max(StoreViewModel.shared.getBasketCount(), 1)
             case .Footer: return StoreViewModel.shared.getBasketCount() > 0 ? 1 : 0
-            case .Settings: return 1
+            case .Settings: return SettingsRow.allCases.count
             }
         }
         
@@ -132,7 +125,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             case .Header: return headerCell(viewController, tableView, indexPath)
             case .Products: return productsCell(viewController, tableView, indexPath)
             case .Footer: return footerCell(viewController, tableView, indexPath)
-            case .Settings: return settingsCell(viewController, tableView, indexPath)
+            case .Settings: return SettingsRow.allCases[indexPath.row].getCell(viewController: viewController, tableView: tableView, indexPath: indexPath)
             }
         }
         
@@ -175,25 +168,37 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             return cell
         }
+    }
+    
+    private enum SettingsRow : CaseIterable {
+        case Consumer
+        case General
         
-        private func settingsCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
-            
-            cell.refresh()
-            
-            cell.onOpenPressed = { [weak viewController] in
-                if let viewController = viewController {
-                    viewController.tableView.beginUpdates()
-                    cell.setSettingsOpen(true, animated: true)
-                    viewController.tableView.endUpdates()
-                }
-                
+        private var cellIdentifier: String {
+            switch self {
+            case .Consumer: return "ConsumerSettingsCell"
+            case .General: return "GeneralSettingsCell"
             }
-            cell.onClosePressed = { [weak viewController] in
-                if let viewController = viewController {
-                    viewController.tableView.beginUpdates()
-                    cell.setSettingsOpen(false, animated: true)
-                    viewController.tableView.endUpdates()
+        }
+        
+        private func setOpen(_ open: Bool) {
+            switch self {
+            case .Consumer:
+                ConsumerViewModel.shared.consumerSettingsOpen = open
+            case .General:
+                PaymentViewModel.shared.settingsOpen = open
+            }
+        }
+        
+        func getCell(viewController: ShoppingCartViewController, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SettingsCell
+            cell.refresh()
+            cell.onOpenOrCloseButtonPressed = { [weak viewController] shouldOpen in
+                if let tableView = viewController?.tableView {
+                    self.setOpen(shouldOpen)
+                    tableView.beginUpdates()
+                    cell.refreshOpenStateAnimated()
+                    tableView.endUpdates()
                 }
             }
             return cell

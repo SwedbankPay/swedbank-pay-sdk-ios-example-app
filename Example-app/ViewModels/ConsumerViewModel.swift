@@ -21,6 +21,12 @@ class ConsumerViewModel {
     private var consumerType: ConsumerType = .Anonymous
     private var country: Country = .Norway
     
+    var consumerSettingsOpen = false
+    
+    var prefillEmail = ""
+    var prefillMsisdn = ""
+    var prefillProfileRef = ""
+    
     /// Returns `Country` currently in use
     func getCountry() -> Country {
         return country
@@ -56,14 +62,31 @@ class ConsumerViewModel {
     ///
     /// Test consumers are from [https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/]
     func getConsumer() -> SwedbankPaySDK.Consumer? {
-        switch consumerType {
-        case .Anonymous:
-            return nil
-        case .Identified:
+        if consumerType == .Checkin {
             return SwedbankPaySDK.Consumer(
                 language: country.language,
                 shippingAddressRestrictedToCountryCodes: [country.countryCode]
             )
+        } else {
+            return nil
         }
+    }
+    
+    func getPaymentOrderPayer() -> SwedbankPaySDK.PaymentOrderPayer? {
+        if consumerType == .Prefill {
+            return SwedbankPaySDK.PaymentOrderPayer(
+                consumerProfileRef: prefillProfileRef.nonEmptyOrNil,
+                email: prefillEmail.nonEmptyOrNil,
+                msisdn: prefillMsisdn.nonEmptyOrNil
+            )
+        } else {
+            return nil
+        }
+    }
+}
+
+private extension String {
+    var nonEmptyOrNil: String? {
+        return isEmpty ? nil : self
     }
 }

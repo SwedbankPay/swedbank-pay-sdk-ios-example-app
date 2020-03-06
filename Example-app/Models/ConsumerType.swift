@@ -1,5 +1,6 @@
 
 enum ConsumerType {
     case Anonymous
-    case Identified
+    case Checkin
+    case Prefill
 }
