@@ -587,14 +587,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Example-app/Example-app.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2RLYKMD3U8;
+				DEVELOPMENT_TEAM = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -612,14 +612,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Example-app/Example-app.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2RLYKMD3U8;
+				DEVELOPMENT_TEAM = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
