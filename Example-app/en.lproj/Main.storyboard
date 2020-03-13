@@ -200,24 +200,24 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4u-o1-4eH">
                                                     <rect key="frame" x="0.0" y="15.5" width="172.5" height="20"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5P-gX-uhQ">
-                                                            <rect key="frame" x="71.5" y="0.0" width="30" height="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Stage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5P-gX-uhQ">
+                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="16"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono-Bold" family="IBM Plex Mono" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGe-y2-9b4">
-                                                            <rect key="frame" x="71.5" y="18" width="30" height="2"/>
+                                                            <rect key="frame" x="68.5" y="18" width="36" height="2"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="2" id="Yut-qe-aDG"/>
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-em-7b7">
-                                                            <rect key="frame" x="71.5" y="0.0" width="30" height="20"/>
+                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="20"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
                                                             <connections>
-                                                                <action selector="onTestPressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="UAo-qT-Xsz"/>
+                                                                <action selector="onStagePressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="jVP-EJ-K8m"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -238,24 +238,24 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5i8-om-xyJ">
                                                     <rect key="frame" x="172.5" y="15.5" width="172.5" height="20"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Stage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzO-D6-4J5">
-                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="16"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Ext. Integration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzO-D6-4J5">
+                                                            <rect key="frame" x="28.5" y="0.0" width="115.5" height="16"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono-Bold" family="IBM Plex Mono" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4E-jf-6ma">
-                                                            <rect key="frame" x="68.5" y="18" width="36" height="2"/>
+                                                            <rect key="frame" x="28.5" y="18" width="115.5" height="2"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="2" id="gfW-7i-X5w"/>
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-At-qCu">
-                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="20"/>
+                                                            <rect key="frame" x="28.5" y="0.0" width="115.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
                                                             <connections>
-                                                                <action selector="onStagePressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="wwl-NC-ihn"/>
+                                                                <action selector="onExternalIntegrationPressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="8VX-Mb-RDt"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -293,10 +293,10 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="stageLabel" destination="kzO-D6-4J5" id="duv-iJ-9Qx"/>
-                                    <outlet property="stageUnderline" destination="E4E-jf-6ma" id="UOM-DE-Lwn"/>
-                                    <outlet property="testLabel" destination="g5P-gX-uhQ" id="x6Y-fO-W6O"/>
-                                    <outlet property="testUnderline" destination="eGe-y2-9b4" id="66B-j5-iLB"/>
+                                    <outlet property="externalIntegrationLabel" destination="kzO-D6-4J5" id="TSI-rg-fZP"/>
+                                    <outlet property="externalIntegrationUnderline" destination="E4E-jf-6ma" id="BUc-gx-HCg"/>
+                                    <outlet property="stageLabel" destination="g5P-gX-uhQ" id="acB-NV-uq9"/>
+                                    <outlet property="stageUnderline" destination="eGe-y2-9b4" id="9Q4-Uh-GAg"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartHeaderCell" id="F4A-Bq-uOf" customClass="ShoppingCartHeaderCell" customModule="Example_app" customModuleProvider="target">

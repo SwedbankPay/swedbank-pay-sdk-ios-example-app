@@ -4,8 +4,8 @@ import SwedbankPaySDK
 class PaymentViewModel {
     
     enum Environment {
-        case Test
         case Stage
+        case ExternalIntegration
     }
     
     static let shared = PaymentViewModel()
@@ -15,10 +15,10 @@ class PaymentViewModel {
     /// URL for the Swedbank Pay SDK to connect to
     private var backendUrl: URL {
         switch environment {
-        case .Test:
-            return URL(string: "https://payex-merchant-samples.appspot.com")!
         case .Stage:
             return URL(string: "https://stage-dot-payex-merchant-samples.appspot.com/")!
+        case .ExternalIntegration:
+            return URL(string: "https://payex-merchant-samples.appspot.com")!
         }
     }
     
@@ -39,7 +39,7 @@ class PaymentViewModel {
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
     
-    var environment = Environment.Test
+    var environment = Environment.Stage
     
     var settingsOpen = false
     

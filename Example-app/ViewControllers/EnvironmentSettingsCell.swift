@@ -1,22 +1,22 @@
 import UIKit
 
 class EnvironmentSettingsCell : UITableViewCell {
-    @IBOutlet private var testLabel: UILabel!
-    @IBOutlet private var testUnderline: UIView!
-    
     @IBOutlet private var stageLabel: UILabel!
     @IBOutlet private var stageUnderline: UIView!
     
+    @IBOutlet private var externalIntegrationLabel: UILabel!
+    @IBOutlet private var externalIntegrationUnderline: UIView!
+    
     private var allLabels: [UILabel] {
-        return [testLabel, stageLabel]
+        return [stageLabel, externalIntegrationLabel]
     }
     private var allUnderlines: [UIView] {
-        return [testUnderline, stageUnderline]
+        return [stageUnderline, externalIntegrationUnderline]
     }
     private var selectedOption: (UILabel, UIView) {
         switch PaymentViewModel.shared.environment {
-        case .Test: return (testLabel, testUnderline)
         case .Stage: return (stageLabel, stageUnderline)
+        case .ExternalIntegration: return (externalIntegrationLabel, externalIntegrationUnderline)
         }
     }
     
@@ -32,13 +32,13 @@ class EnvironmentSettingsCell : UITableViewCell {
         selectedUnderline.isHidden = false
     }
     
-    @IBAction private func onTestPressed() {
-        PaymentViewModel.shared.environment = .Test
+    @IBAction private func onStagePressed() {
+        PaymentViewModel.shared.environment = .Stage
         refresh()
     }
     
-    @IBAction private func onStagePressed() {
-        PaymentViewModel.shared.environment = .Stage
+    @IBAction private func onExternalIntegrationPressed() {
+        PaymentViewModel.shared.environment = .ExternalIntegration
         refresh()
     }
 }
