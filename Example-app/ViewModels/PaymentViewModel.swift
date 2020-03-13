@@ -3,12 +3,24 @@ import SwedbankPaySDK
 /// Singleton ViewModel for payment data
 class PaymentViewModel {
     
+    enum Environment {
+        case Test
+        case Stage
+    }
+    
     static let shared = PaymentViewModel()
     
     private init() {}
     
     /// URL for the Swedbank Pay SDK to connect to
-    private let backendUrl = URL(string: "https://payex-merchant-samples.appspot.com")!
+    private var backendUrl: URL {
+        switch environment {
+        case .Test:
+            return URL(string: "https://payex-merchant-samples.appspot.com")!
+        case .Stage:
+            return URL(string: "https://stage-dot-payex-merchant-samples.appspot.com/")!
+        }
+    }
     
     /// Creates api request header names and values dictionary; define these in the backend receiving the requests from the app
     private let headers: Dictionary<String, String> = [
@@ -26,6 +38,8 @@ class PaymentViewModel {
     ///
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
+    
+    var environment = Environment.Test
     
     var settingsOpen = false
     

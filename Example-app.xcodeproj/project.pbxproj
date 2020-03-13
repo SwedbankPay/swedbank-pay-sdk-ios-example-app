@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A548FFB3241BCC76007C7B17 /* EnvironmentSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */; };
 		A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569986424113FF100162D69 /* ConsumerSettingsCell.swift */; };
 		A56998672417C3B000162D69 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56998662417C3B000162D69 /* SettingsCell.swift */; };
 		A58DAF0224041E0A004F9AF2 /* GeneralSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */; };
@@ -61,6 +62,7 @@
 		4A9F4714150731D6E7950812 /* Pods-Swedbank Pay SDK Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swedbank Pay SDK Example.release.xcconfig"; path = "Target Support Files/Pods-Swedbank Pay SDK Example/Pods-Swedbank Pay SDK Example.release.xcconfig"; sourceTree = "<group>"; };
 		8B441CFF27D6CF23581A8979 /* Pods_Example_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C596A50E029369F439510C2 /* Pods-Example-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-app.debug.xcconfig"; path = "Target Support Files/Pods-Example-app/Pods-Example-app.debug.xcconfig"; sourceTree = "<group>"; };
+		A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSettingsCell.swift; sourceTree = "<group>"; };
 		A569986424113FF100162D69 /* ConsumerSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerSettingsCell.swift; sourceTree = "<group>"; };
 		A56998662417C3B000162D69 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsCell.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				C54D557923701F9D00E3B301 /* StoreViewController.swift */,
 				C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */,
 				A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */,
+				A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */,
 				A56998662417C3B000162D69 /* SettingsCell.swift */,
 				A569986424113FF100162D69 /* ConsumerSettingsCell.swift */,
 				C54D557C23701F9D00E3B301 /* PaymentViewController.swift */,
@@ -423,6 +426,7 @@
 				A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */,
 				C54D559923701F9D00E3B301 /* ConsumerViewModel.swift in Sources */,
 				C50CF6B1237AB12D003F79DF /* ConsumerType.swift in Sources */,
+				A548FFB3241BCC76007C7B17 /* EnvironmentSettingsCell.swift in Sources */,
 				C50CF6D1237AC587003F79DF /* Currency.swift in Sources */,
 				C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */,
 				C50CF6B3237AB149003F79DF /* Country.swift in Sources */,

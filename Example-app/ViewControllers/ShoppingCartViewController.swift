@@ -106,6 +106,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     private enum Section : CaseIterable {
+        case Environment
         case Header
         case Products
         case Footer
@@ -113,6 +114,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         var numberOfRows: Int {
             switch self {
+            case .Environment: return 1
             case .Header: return 1
             case .Products: return max(StoreViewModel.shared.getBasketCount(), 1)
             case .Footer: return StoreViewModel.shared.getBasketCount() > 0 ? 1 : 0
@@ -122,11 +124,18 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         func getCell(viewController: ShoppingCartViewController, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
             switch self {
+            case .Environment: return environmentCell(viewController, tableView, indexPath)
             case .Header: return headerCell(viewController, tableView, indexPath)
             case .Products: return productsCell(viewController, tableView, indexPath)
             case .Footer: return footerCell(viewController, tableView, indexPath)
             case .Settings: return SettingsRow.allCases[indexPath.row].getCell(viewController: viewController, tableView: tableView, indexPath: indexPath)
             }
+        }
+        
+        private func environmentCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EnvironmentSettingsCell", for: indexPath) as! EnvironmentSettingsCell
+            cell.refresh()
+            return cell
         }
         
         private func headerCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
