@@ -117,14 +117,12 @@ class PaymentViewModel {
     
     /// Result handling
     private(set) var result: PaymentResult = .unknown
-    private(set) var problem: SwedbankPaySDK.Problem?
     
     /// Sets the result of the payment, and if the payment was successful, empties the shopping basket
-    func setResult(_ result: PaymentResult, problem: SwedbankPaySDK.Problem? = nil) {
-        if result == .success {
+    func setResult(_ result: PaymentResult) {
+        if case .success = result {
             StoreViewModel.shared.clearBasket()
         }
         self.result = result
-        self.problem = problem
     }
 }

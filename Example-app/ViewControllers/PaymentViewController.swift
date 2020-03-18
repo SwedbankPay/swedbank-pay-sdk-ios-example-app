@@ -43,15 +43,18 @@ class PaymentViewController: UIViewController {
 /// Need to conform to SwedbankPaySDKDelegate protocol
 extension PaymentViewController: SwedbankPaySDKDelegate {
     
-    /// Handle payment complete event
     func paymentComplete() {
         PaymentViewModel.shared.setResult(.success)
         performSegue(withIdentifier: "showResult", sender: self)
     }
     
-    /// Handle payment failed event
-    func paymentFailed(_ problem: SwedbankPaySDK.Problem) {
-        PaymentViewModel.shared.setResult(.error, problem: problem)
+    func paymentFailed(failureReason: SwedbankPaySDKController.FailureReason) {
+        PaymentViewModel.shared.setResult(.error(failureReason))
         performSegue(withIdentifier: "showResult", sender: self)
+    }
+    
+    func paymentCanceled() {
+        PaymentViewModel.shared.setResult(.unknown)
+        performSegue(withIdentifier: "backToStore", sender: self)
     }
 }

@@ -1,6 +1,8 @@
 
+import SwedbankPaySDK
+
 enum PaymentResult {
     case unknown
-    case error
+    case error(SwedbankPaySDKController.FailureReason)
     case success
 }

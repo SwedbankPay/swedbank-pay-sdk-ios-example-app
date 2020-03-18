@@ -14,14 +14,14 @@ class ResultViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         
-        switch PaymentViewModel.shared.result {
+        let result = PaymentViewModel.shared.result
+        
+        switch result {
         case .success:
             self.title = "Thank you"
             resultLabel.text = "Payment was successfully completed."
-        case .error:
-            if let problem = PaymentViewModel.shared.problem {
-                handleProblem(problem)
-            }
+        case .error(let reason):
+            handleFailure(failureReason: reason)
             self.title = "Error"
             resultLabel.text = "There was an error in processing the payment."
         case .unknown:
@@ -30,11 +30,31 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
-        let viewControllers = self.navigationController!.viewControllers as [UIViewController];
+        performSegue(withIdentifier: "backToStore", sender: self)
+        /*let viewControllers = self.navigationController!.viewControllers as [UIViewController];
         for viewController: UIViewController in viewControllers {
             if viewController.isKind(of: StoreViewController.self) {
                 _ = self.navigationController?.popToViewController(viewController, animated: true)
             }
+        }*/
+    }
+    
+    private func handleFailure(failureReason: SwedbankPaySDKController.FailureReason) {
+        switch failureReason {
+        case .NetworkError(let error):
+            print("Network error: \(error)")
+        case .Problem(let problem):
+            handleProblem(problem)
+        case .ScriptLoadingFailure(let scriptUrl):
+            print("Could not load script at \(scriptUrl?.absoluteString ?? "")")
+        case .ScriptError(let terminalFailure):
+            print("Fatal error from script: \(terminalFailure.map(String.init(describing:)) ?? "")")
+        case .NonWhitelistedDomain(let failingUrl):
+            print("Attempt to follow link to non-whitelisted domain: \(failingUrl?.absoluteString ?? "")")
+        case .MissingField(let name):
+            print("Protocol error: missing required field \(name)")
+        case .MissingOperation(let name):
+            print("Protocol error: missing required operation \(name)")
         }
     }
     

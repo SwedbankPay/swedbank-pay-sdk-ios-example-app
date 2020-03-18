@@ -1281,9 +1281,11 @@
                     <connections>
                         <outlet property="webViewContainer" destination="7q7-he-hlz" id="UyX-Ij-hqT"/>
                         <segue destination="wp2-if-CCM" kind="show" identifier="showResult" id="tKg-vK-f7n"/>
+                        <segue destination="1Zl-GQ-wZ9" kind="unwind" identifier="backToStore" unwindAction="unwindToStore:" id="zFj-a2-9uL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qm4-lT-8gR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1Zl-GQ-wZ9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="893.60000000000002" y="132.68365817091455"/>
         </scene>
@@ -1351,9 +1353,11 @@
                     <navigationItem key="navigationItem" id="cBe-9h-qm3"/>
                     <connections>
                         <outlet property="resultLabel" destination="qt2-Yc-Lal" id="UTA-kx-605"/>
+                        <segue destination="yQM-UM-ica" kind="unwind" identifier="backToStore" unwindAction="unwindToStore:" id="0XO-iy-cQM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeO-qB-Wab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yQM-UM-ica" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1668" y="132.68365817091455"/>
         </scene>

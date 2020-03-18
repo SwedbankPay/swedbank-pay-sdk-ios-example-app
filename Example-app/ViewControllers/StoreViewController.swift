@@ -87,6 +87,8 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         showShoppingCart()
     }
     
+    @IBAction func unwindToStore(_ unwindSegue: UIStoryboardSegue) {}
+    
     // MARK: Shopping Cart
     
     /// Shows the shopping cart with animation (creates the shopping cart view as a child viewcontroller inside shoppingCartView)
