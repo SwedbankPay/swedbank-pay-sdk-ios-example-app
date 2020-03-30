@@ -107,11 +107,12 @@ class PaymentViewModel {
     }
     
     private func buildUrls() -> SwedbankPaySDK.PaymentOrderUrls {
+        let language = ConsumerViewModel.shared.getCountry().language
         if testWrongHostUrl {
             let hostUrl = URL(string: "https://bogus-hosturl-for-testing.swedbankpay.com/")!
-            return .init(configuration: configuration, hostUrl: hostUrl)
+            return .init(configuration: configuration, language: language, hostUrl: hostUrl)
         } else {
-            return .init(configuration: configuration)
+            return .init(configuration: configuration, language: language)
         }
     }
     
