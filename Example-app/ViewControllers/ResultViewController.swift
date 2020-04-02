@@ -3,8 +3,9 @@ import SwedbankPaySDK
 
 class ResultViewController: UIViewController {
     
+    @IBOutlet private var logView: UITextView!
     @IBOutlet private weak var resultLabel: UILabel!
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -27,16 +28,16 @@ class ResultViewController: UIViewController {
         case .unknown:
             resultLabel.text = "Something went wrong."
         }
+        
+        logView.text = PaymentViewModel.shared.lastPaymentNavigationLogString
+    }
+    
+    @IBAction func copyLogButtonPressed(_ sender: Any) {
+        PaymentViewModel.shared.copyPaymentLogToPasteboard()
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
         performSegue(withIdentifier: "backToStore", sender: self)
-        /*let viewControllers = self.navigationController!.viewControllers as [UIViewController];
-        for viewController: UIViewController in viewControllers {
-            if viewController.isKind(of: StoreViewController.self) {
-                _ = self.navigationController?.popToViewController(viewController, animated: true)
-            }
-        }*/
     }
     
     private func handleFailure(failureReason: SwedbankPaySDKController.FailureReason) {

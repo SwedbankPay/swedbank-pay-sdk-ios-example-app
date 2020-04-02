@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1338,13 +1338,33 @@
                                     <constraint firstAttribute="width" constant="175" id="aK6-Nr-wrz"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HoP-yd-evU">
+                                <rect key="frame" x="36" y="64" width="303" height="76"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-hR-GZ4">
+                                <rect key="frame" x="36" y="140" width="66" height="30"/>
+                                <state key="normal" title="Copy Log"/>
+                                <connections>
+                                    <action selector="copyLogButtonPressed:" destination="wp2-if-CCM" eventType="touchUpInside" id="oGZ-oC-TZ3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UzN-8d-6Ee" firstAttribute="centerX" secondItem="7d8-Mv-Obk" secondAttribute="centerX" id="07J-NK-AYw"/>
                             <constraint firstItem="G2K-ZP-bIH" firstAttribute="centerX" secondItem="7d8-Mv-Obk" secondAttribute="centerX" id="HMp-bb-RTJ"/>
+                            <constraint firstItem="UzN-8d-6Ee" firstAttribute="top" secondItem="Rhk-hR-GZ4" secondAttribute="bottom" id="KcO-H2-b6n"/>
                             <constraint firstItem="qt2-Yc-Lal" firstAttribute="leading" secondItem="7d8-Mv-Obk" secondAttribute="leading" constant="25" id="LOw-bt-vRi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HoP-yd-evU" secondAttribute="trailing" constant="20" id="P9X-D1-HnI"/>
+                            <constraint firstItem="Rhk-hR-GZ4" firstAttribute="leading" secondItem="HoP-yd-evU" secondAttribute="leading" id="XLH-lp-SuS"/>
+                            <constraint firstItem="HoP-yd-evU" firstAttribute="top" secondItem="TRa-cX-TWS" secondAttribute="bottom" constant="20" id="ZcV-zl-mxE"/>
+                            <constraint firstItem="HoP-yd-evU" firstAttribute="leading" secondItem="7d8-Mv-Obk" secondAttribute="leadingMargin" constant="20" id="c9g-gG-Rzt"/>
                             <constraint firstItem="G2K-ZP-bIH" firstAttribute="top" secondItem="qt2-Yc-Lal" secondAttribute="bottom" constant="24.5" id="gYG-Zt-I8j"/>
+                            <constraint firstItem="Rhk-hR-GZ4" firstAttribute="top" secondItem="HoP-yd-evU" secondAttribute="bottom" id="ko5-z2-xFg"/>
                             <constraint firstItem="qt2-Yc-Lal" firstAttribute="centerY" secondItem="7d8-Mv-Obk" secondAttribute="centerY" id="pBR-rf-uxT"/>
                             <constraint firstItem="qt2-Yc-Lal" firstAttribute="top" secondItem="UzN-8d-6Ee" secondAttribute="bottom" constant="20.5" id="srY-4e-MFh"/>
                             <constraint firstAttribute="trailing" secondItem="qt2-Yc-Lal" secondAttribute="trailing" constant="25" id="z6W-68-YIH"/>
@@ -1352,6 +1372,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="cBe-9h-qm3"/>
                     <connections>
+                        <outlet property="logView" destination="HoP-yd-evU" id="YKz-yN-KGH"/>
                         <outlet property="resultLabel" destination="qt2-Yc-Lal" id="UTA-kx-605"/>
                         <segue destination="yQM-UM-ica" kind="unwind" identifier="backToStore" unwindAction="unwindToStore:" id="0XO-iy-cQM"/>
                     </connections>

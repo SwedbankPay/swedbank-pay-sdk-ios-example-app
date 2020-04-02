@@ -6,6 +6,8 @@ class PaymentViewController: UIViewController {
     /// UIView to instantiate the SwedbankPaySDKController into; SwedbankPaySDKController will instantiate WKWebView
     @IBOutlet private weak var webViewContainer: UIView!
     
+    private var paymentLog: [URL] = []
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -23,6 +25,10 @@ class PaymentViewController: UIViewController {
             consumer: vm.consumerData,
             paymentOrder: vm.paymentOrder
         )
+        vm.lastPaymentNavigationLog = []
+        swedbankPaySDKController.webNavigationLogger = {
+            PaymentViewModel.shared.lastPaymentNavigationLog?.append($0)
+        }
         swedbankPaySDKController.openRedirectsInBrowser = vm.useSafari
         swedbankPaySDKController.delegate = self
         addChild(swedbankPaySDKController)
