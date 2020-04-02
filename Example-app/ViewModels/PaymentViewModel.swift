@@ -1,3 +1,4 @@
+import CoreServices
 import SwedbankPaySDK
 
 /// Singleton ViewModel for payment data
@@ -38,6 +39,25 @@ class PaymentViewModel {
     ///
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
+    
+    var lastPaymentNavigationLog: [URL]?
+    
+    var lastPaymentNavigationLogString: String? {
+        if let log = lastPaymentNavigationLog, !log.isEmpty {
+            var hosts = Set<String>()
+            var logString = ""
+            for host in log.lazy.compactMap({ $0.host }) {
+                let (inserted, _) = hosts.insert(host)
+                if inserted {
+                    logString += host
+                    logString += "\n"
+                }
+            }
+            return logString
+        } else {
+            return nil
+        }
+    }
     
     var environment = Environment.Stage
     
@@ -125,5 +145,11 @@ class PaymentViewModel {
             StoreViewModel.shared.clearBasket()
         }
         self.result = result
+    }
+    
+    func copyPaymentLogToPasteboard() {
+        if let log = lastPaymentNavigationLogString {
+            UIPasteboard.general.setValue(log, forPasteboardType: kUTTypeUTF8PlainText as String)
+        }
     }
 }
