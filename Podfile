@@ -2,12 +2,11 @@
 # platform :ios, '9.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/SwedbankPay/swedbank-pay-sdk-ios-podspecs.git'
 
 target 'Example-app' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for Example-app
-  pod 'SwedbankPaySDK', '0.1.20'
+  pod 'SwedbankPaySDK', '0.1.23'
 end
