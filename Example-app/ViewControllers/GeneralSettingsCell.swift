@@ -11,6 +11,7 @@ class GeneralSettingsCell : SettingsCell {
     
     @IBOutlet private var disablePaymentMenuSwitch: UISwitch!
     @IBOutlet private var useSafariSwitch: UISwitch!
+    @IBOutlet private var allowAllRedirectsSwitch: UISwitch!
     @IBOutlet private var testWrongHostUrlSwitch: UISwitch!
     
     @IBOutlet private var restrictedToInstrumentsField: UITextField!
@@ -35,6 +36,7 @@ class GeneralSettingsCell : SettingsCell {
         setCountry(ConsumerViewModel.shared.getCountry())
         disablePaymentMenuSwitch.isOn = PaymentViewModel.shared.disablePaymentMenu
         useSafariSwitch.isOn = PaymentViewModel.shared.useSafari
+        allowAllRedirectsSwitch.isOn = PaymentViewModel.shared.ignoreGoodRedirectsList
         testWrongHostUrlSwitch.isOn = PaymentViewModel.shared.testWrongHostUrl
         restrictedToInstrumentsField.text = PaymentViewModel.shared.restrictedToInstruments?.joined(separator: ",")
     }
@@ -80,6 +82,10 @@ class GeneralSettingsCell : SettingsCell {
     
     @IBAction func onSafariButtonSwitchValueChanged(_ sender: Any) {
         PaymentViewModel.shared.useSafari = useSafariSwitch.isOn
+    }
+    
+    @IBAction func onAllowAllRedirectsSwitchValueChanged(_ sender: Any) {
+        PaymentViewModel.shared.ignoreGoodRedirectsList = allowAllRedirectsSwitch.isOn
     }
     
     @IBAction func onTestWrongHostUrlSwitchValueChanged(_ sender: Any) {

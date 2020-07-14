@@ -29,7 +29,13 @@ class PaymentViewController: UIViewController {
         swedbankPaySDKController.webNavigationLogger = {
             PaymentViewModel.shared.lastPaymentNavigationLog?.append($0)
         }
-        swedbankPaySDKController.openRedirectsInBrowser = vm.useSafari
+        if vm.useSafari {
+            swedbankPaySDKController.webRedirectBehavior = .AlwaysUseBrowser
+        } else if vm.ignoreGoodRedirectsList {
+            swedbankPaySDKController.webRedirectBehavior = .AlwaysUseWebView
+        } else {
+            swedbankPaySDKController.webRedirectBehavior = .Default
+        }
         swedbankPaySDKController.delegate = self
         addChild(swedbankPaySDKController)
         webViewContainer.addSubview(swedbankPaySDKController.view)

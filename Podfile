@@ -8,5 +8,5 @@ target 'Example-app' do
   use_frameworks!
 
   # Pods for Example-app
-  pod 'SwedbankPaySDK', '0.1.23'
+  pod 'SwedbankPaySDK', '0.1.24'
 end

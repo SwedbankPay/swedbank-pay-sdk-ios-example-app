@@ -64,6 +64,7 @@ class PaymentViewModel {
     var settingsOpen = false
     
     var disablePaymentMenu = false
+    var ignoreGoodRedirectsList = false
     var useSafari = false
     var testWrongHostUrl = false
     

@@ -4,12 +4,12 @@ PODS:
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
   - ObjectMapper (3.5.3)
-  - SwedbankPaySDK (0.1.23):
+  - SwedbankPaySDK (0.1.24):
     - Alamofire (~> 4.9.0)
     - AlamofireObjectMapper (~> 5.0)
 
 DEPENDENCIES:
-  - SwedbankPaySDK (= 0.1.23)
+  - SwedbankPaySDK (= 0.1.24)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,8 +22,8 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  SwedbankPaySDK: a7c60d16b8d43f30ffe62af43789726b95ea7280
+  SwedbankPaySDK: 56b4a0279e5efe492a1629ae7e387e6e286836cc
 
-PODFILE CHECKSUM: 69f7252a233aeef625bb195e2d2eec84ada3b6f5
+PODFILE CHECKSUM: bf20b3863f444d95102a8b53f0e8e634994236ec
 
 COCOAPODS: 1.9.3
