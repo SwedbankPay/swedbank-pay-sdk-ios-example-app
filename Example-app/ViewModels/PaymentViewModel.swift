@@ -71,9 +71,9 @@ class PaymentViewModel {
     var restrictedToInstruments: [String]?
     
     /// Configuration for SwedbankPaySDK
-    var configuration: SwedbankPaySDK.Configuration {
+    var configuration: SwedbankPaySDK.MerchantBackendConfiguration {
         get {
-            return SwedbankPaySDK.Configuration.init(
+            return SwedbankPaySDK.MerchantBackendConfiguration.init(
                 backendUrl: self.backendUrl,
                 headers: self.headers,
                 domainWhitelist: self.domainWhitelist,

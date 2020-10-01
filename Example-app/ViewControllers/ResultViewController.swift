@@ -21,8 +21,8 @@ class ResultViewController: UIViewController {
         case .success:
             self.title = "Thank you"
             resultLabel.text = "Payment was successfully completed."
-        case .error(let reason):
-            handleFailure(failureReason: reason)
+        case .error(let error):
+            handleFailure(error: error)
             self.title = "Error"
             resultLabel.text = "There was an error in processing the payment."
         case .unknown:
@@ -40,21 +40,39 @@ class ResultViewController: UIViewController {
         performSegue(withIdentifier: "backToStore", sender: self)
     }
     
-    private func handleFailure(failureReason: SwedbankPaySDKController.FailureReason) {
-        switch failureReason {
-        case .NetworkError(let error):
-            print("Network error: \(error)")
-        case .Problem(let problem):
-            handleProblem(problem)
+    private func handleFailure(error: Error) {
+        switch error {
+        case let error as SwedbankPaySDKController.WebContentError:
+            handleWebContentError(error)
+        case let error as SwedbankPaySDK.MerchantBackendError:
+            handleMerchantBackendError(error)
+        default:
+            // This should never happen, as SwedbankPaySDKController
+            // should only report its own WebContentErrors, or errors
+            // from the configuration, which here we know to only
+            // report SwedbankPaySDK.MerchantBackendErrors
+            print("Unexpected error: \(error)")
+        }
+    }
+    
+    private func handleWebContentError(_ error: SwedbankPaySDKController.WebContentError) {
+        switch error {
         case .ScriptLoadingFailure(let scriptUrl):
             print("Could not load script at \(scriptUrl?.absoluteString ?? "")")
         case .ScriptError(let terminalFailure):
             print("Fatal error from script: \(terminalFailure.map(String.init(describing:)) ?? "")")
-        case .NonWhitelistedDomain(let failingUrl):
-            print("Attempt to follow link to non-whitelisted domain: \(failingUrl?.absoluteString ?? "")")
-        case .MissingField(let name):
-            print("Protocol error: missing required field \(name)")
-        case .MissingOperation(let name):
+        }
+    }
+    
+    private func handleMerchantBackendError(_ error: SwedbankPaySDK.MerchantBackendError) {
+        switch error {
+        case .nonWhitelistedDomain(let failingUrl):
+            print("Attempt to follow link to non-whitelisted domain: \(failingUrl.absoluteString)")
+        case .networkError(let error):
+            print("Network error: \(error)")
+        case .problem(let problem):
+            handleProblem(problem)
+        case .missingRequiredOperation(let name):
             print("Protocol error: missing required operation \(name)")
         }
     }
@@ -66,41 +84,41 @@ class ResultViewController: UIViewController {
         switch problem {
         
         /// Client errors (HTTP Status code in range of 400..499)
-        case .Client(.MobileSDK(.InvalidRequest(let message, let raw))):
+        case .client(.mobileSDK(.invalidRequest(let message, let raw))):
             printMobileSDKProblem("Client/MobileSDK/InvalidRequest", message: message, raw: raw)
-        case .Client(.MobileSDK(.Unauthorized(let message, let raw))):
+        case .client(.mobileSDK(.unauthorized(let message, let raw))):
             printMobileSDKProblem("Client/MobileSDK/Unauthorized", message: message, raw: raw)
-        case .Client(.SwedbankPay(let type, let title, let detail, let instance, let action, let problems, let raw)):
+        case .client(.swedbankPay(let type, let title, let status, let detail, let instance, let action, let problems, let raw)):
             switch type {
-            case .Forbidden:
-                printSwedbankPayProblem("Client/SwedbankPay/Forbidden", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
-            case .InputError:
-                printSwedbankPayProblem("Client/SwedbankPay/InputError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
-            case .NotFound:
-                printSwedbankPayProblem("Client/SwedbankPay/NotFound", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
+            case .forbidden:
+                printSwedbankPayProblem("Client/SwedbankPay/Forbidden", title: title, status: status, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
+            case .inputError:
+                printSwedbankPayProblem("Client/SwedbankPay/InputError", title: title, status: status, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
+            case .notFound:
+                printSwedbankPayProblem("Client/SwedbankPay/NotFound", title: title, status: status, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             }
-        case .Client(.UnexpectedContent(let status, let contentType, let body)):
+        case .client(.unexpectedContent(let status, let contentType, let body)):
             printUnexpectedContentProblem("Client/UnexpectedContent", status: status, contentType: contentType, body: body)
-        case .Client(.Unknown(let type, let title, let status, let detail, let instance, let raw)):
+        case .client(.unknown(let type, let title, let status, let detail, let instance, let raw)):
             printUnknownProblem("Client/Unknown", type: type, title: title, status: status, detail: detail, instance: instance, raw: raw)
         
         /// Server errors (HTTP Status code in range of 500...599)
-        case .Server(.MobileSDK(.BackendConnectionFailure(let message, let raw))):
+        case .server(.mobileSDK(.backendConnectionFailure(let message, let raw))):
             printMobileSDKProblem("Server/MobileSDK/BackendConnectionFailure", message: message, raw: raw)
-        case .Server(.MobileSDK(.BackendConnectionTimeout(let message, let raw))):
+        case .server(.mobileSDK(.backendConnectionTimeout(let message, let raw))):
             printMobileSDKProblem("Server/MobileSDK/BackendConnectionTimeout", message: message, raw: raw)
-        case .Server(.MobileSDK(.InvalidBackendResponse(let body, let raw))):
+        case .server(.mobileSDK(.invalidBackendResponse(_, _, let body, let raw))):
             printMobileSDKProblem("Server/MobileSDK/InvalidBackendResponse", message: body, raw: raw)
-        case .Server(.SwedbankPay(let type, let title, let detail, let instance, let action, let problems, let raw)):
+        case .server(.swedbankPay(let type, let title, let status, let detail, let instance, let action, let problems, let raw)):
             switch type {
-            case .ConfigurationError:
-                printSwedbankPayProblem("Server/SwedbankPay/ConfigurationError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
-            case .SystemError:
-                printSwedbankPayProblem("Server/SwedbankPay/SystemError", title: title, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
+            case .configurationError:
+                printSwedbankPayProblem("Server/SwedbankPay/ConfigurationError", title: title, status: status, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
+            case .systemError:
+                printSwedbankPayProblem("Server/SwedbankPay/SystemError", title: title, status: status, detail: detail, instance: instance, action: action, problems: problems, raw: raw)
             }
-        case .Server(.UnexpectedContent(let status, let contentType, let body)):
+        case .server(.unexpectedContent(let status, let contentType, let body)):
             printUnexpectedContentProblem("Server/UnexpectedContent", status: status, contentType: contentType, body: body)
-        case .Server(.Unknown(let type, let title, let status, let detail, let instance, let raw)):
+        case .server(.unknown(let type, let title, let status, let detail, let instance, let raw)):
             printUnknownProblem("Server/Unknown", type: type, title: title, status: status, detail: detail, instance: instance, raw: raw)
         }
     }
@@ -108,23 +126,24 @@ class ResultViewController: UIViewController {
     /// Prints out Client or Server MobileSDK `Problem` in a readable format
     private func printMobileSDKProblem(_ errorType: String,
                                        message: String?,
-                                       raw: String?)
+                                       raw: [String: Any])
     {
         print("""
             PROBLEM: \(errorType):
                 message: \(message ?? "")
-                raw:     \(raw ?? "")
+                raw:     \(raw)
             """)
     }
     
     /// Prints out Client or Server SwedbankPay `Problem` in a readable format
     private func printSwedbankPayProblem(_ errorType: String,
                                          title: String?,
+                                         status: Int,
                                          detail: String?,
                                          instance: String?,
                                          action: String?,
                                          problems: [SwedbankPaySDK.SwedbankPaySubProblem]?,
-                                         raw: String?)
+                                         raw: [String: Any])
     {
         print("""
             PROBLEM: \(errorType):
@@ -133,7 +152,7 @@ class ResultViewController: UIViewController {
                 instance: \(instance ?? "")
                 action:   \(action ?? "")
                 problems: {\(getSwedbankPaySubProblemStr(problems))}
-                raw:      \(raw ?? "")
+                raw:      \(raw)
             """)
     }
     
@@ -141,14 +160,14 @@ class ResultViewController: UIViewController {
     private func printUnexpectedContentProblem(_ errorType: String,
                                                status: Int,
                                                contentType: String?,
-                                               body: String?
+                                               body: Data?
                                                )
     {
         print("""
             PROBLEM: \(errorType):
                 status:      \(status)
                 contentType: \(contentType ?? "")
-                body:        \(body ?? "")
+                body:        \(body.flatMap { String(data: $0, encoding: .utf8) } ?? "")
             """)
     }
     
@@ -159,7 +178,7 @@ class ResultViewController: UIViewController {
                                      status: Int,
                                      detail: String?,
                                      instance: String?,
-                                     raw: String?)
+                                     raw: [String: Any])
     {
         print("""
             PROBLEM: \(errorType):
@@ -168,7 +187,7 @@ class ResultViewController: UIViewController {
                 status:   \(status)
                 detail:   \(detail ?? "")
                 instance: \(instance ?? "")
-                raw:      \(raw ?? "")
+                raw:      \(raw)
             """)
     }
     

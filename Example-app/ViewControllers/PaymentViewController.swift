@@ -60,8 +60,8 @@ extension PaymentViewController: SwedbankPaySDKDelegate {
         performSegue(withIdentifier: "showResult", sender: self)
     }
     
-    func paymentFailed(failureReason: SwedbankPaySDKController.FailureReason) {
-        PaymentViewModel.shared.setResult(.error(failureReason))
+    func paymentFailed(error: Error) {
+        PaymentViewModel.shared.setResult(.error(error))
         performSegue(withIdentifier: "showResult", sender: self)
     }
     
