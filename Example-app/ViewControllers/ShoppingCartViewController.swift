@@ -1,14 +1,21 @@
 import UIKit
+import SwedbankPaySDK
+
+private let animationDuration: TimeInterval = 0.5
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private var tableView: UITableView?
     @IBOutlet private weak var shoppingCartView: UIView!
+    @IBOutlet private var instrumentPicker: UIPickerView!
+    @IBOutlet private var instrumentPickerVisibleConstraint: NSLayoutConstraint!
     
     private var countryObserver: NSObjectProtocol?
+    private var instrumentPickerOpenObserver: NSObjectProtocol?
     
     deinit {
         countryObserver.map(NotificationCenter.default.removeObserver)
+        instrumentPickerOpenObserver.map(NotificationCenter.default.removeObserver)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,6 +41,18 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         countryObserver = NotificationCenter.default.addObserver(forName: .ConsumerViewModelCountryChanged, object: nil, queue: .main) { [weak self] _ in
             self?.updateTableView()
         }
+        
+        instrumentPicker.dataSource = self
+        instrumentPicker.delegate = self
+        initializeInstrumentPickerView(instrumentPicker)
+        instrumentPickerOpenObserver = NotificationCenter.default.addObserver(
+            forName: PaymentViewModel.InstrumentPickerOpenChangedNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.hideOrShowInstrumentPickerIfNeeded()
+        }
+        hideOrShowInstrumentPickerIfNeeded()
     }
     
     /// Animates the updates in tableView content
@@ -212,5 +231,43 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             }
             return cell
         }
+    }
+}
+
+// MARK: Instrument picker
+private let instrumentOptions: [SwedbankPaySDK.Instrument?] = [
+    nil,
+    .creditCard,
+    .swish,
+    .invoice
+]
+extension ShoppingCartViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return instrumentOptions.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return instrumentOptions[row]?.displayName ?? "Disabled"
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        PaymentViewModel.shared.instrument = instrumentOptions[row]
+    }
+    private func initializeInstrumentPickerView(_ pickerView: UIPickerView) {
+        let instrument = PaymentViewModel.shared.instrument
+        let row = instrumentOptions.firstIndex(of: instrument) ?? 0
+        pickerView.selectRow(row, inComponent: 0, animated: false)
+    }
+    private func hideOrShowInstrumentPickerIfNeeded() {
+        let visible = PaymentViewModel.shared.instrumentPickerOpen
+        UIView.animate(withDuration: animationDuration) {
+            self.instrumentPickerVisibleConstraint.isActive = visible
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func onCloseInstrumentPickerPressed() {
+        PaymentViewModel.shared.instrumentPickerOpen = false
     }
 }

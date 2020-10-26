@@ -16,19 +16,36 @@ class GeneralSettingsCell : SettingsCell {
     
     @IBOutlet private var restrictedToInstrumentsField: UITextField!
     
+    @IBOutlet private var instrumentLabel: UILabel!
+    
     @IBOutlet private var settingsOpenConstraints: [NSLayoutConstraint] = []
     
-    private var restrictedToInstrumentsFieldObserver: NSObjectProtocol?
+    private var observers: [NSObjectProtocol] = []
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: restrictedToInstrumentsField, queue: .main) { [weak self] _ in
+        
+        let nc = NotificationCenter.default
+        observers.append(nc.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: restrictedToInstrumentsField, queue: .main
+        ) { [weak self] _ in
             self?.onRestrictedToInstrumentsFieldTextChanged()
-        }
+        })
+        observers.append(nc.addObserver(
+            forName: PaymentViewModel.InstrumentChangedNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.refreshInstrumentModeLabel()
+        })
     }
     
     deinit {
-        restrictedToInstrumentsFieldObserver.map(NotificationCenter.default.removeObserver(_:))
+        let nc = NotificationCenter.default
+        for observer in observers {
+            nc.removeObserver(observer)
+        }
     }
     
     override func refresh() {
@@ -39,6 +56,7 @@ class GeneralSettingsCell : SettingsCell {
         allowAllRedirectsSwitch.isOn = PaymentViewModel.shared.ignoreGoodRedirectsList
         testWrongHostUrlSwitch.isOn = PaymentViewModel.shared.testWrongHostUrl
         restrictedToInstrumentsField.text = PaymentViewModel.shared.restrictedToInstruments?.joined(separator: ",")
+        refreshInstrumentModeLabel()
     }
     
     private func refreshOpenState() {
@@ -92,11 +110,19 @@ class GeneralSettingsCell : SettingsCell {
         PaymentViewModel.shared.testWrongHostUrl = testWrongHostUrlSwitch.isOn
     }
     
+    @IBAction func onSetInstrumentPressed() {
+        PaymentViewModel.shared.instrumentPickerOpen = true
+    }
+    
     private func onRestrictedToInstrumentsFieldTextChanged() {
         let text = self.restrictedToInstrumentsField.text ?? ""
         let instruments = text.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         let instrumentsOrNil = instruments.isEmpty ? nil : instruments
         PaymentViewModel.shared.restrictedToInstruments = instrumentsOrNil
+    }
+    
+    private func refreshInstrumentModeLabel() {
+        instrumentLabel.text = PaymentViewModel.shared.instrument?.displayName ?? "Disabled"
     }
     
     /// Sets the country in settings view

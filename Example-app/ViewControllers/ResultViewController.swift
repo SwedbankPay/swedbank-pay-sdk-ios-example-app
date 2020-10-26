@@ -74,6 +74,8 @@ class ResultViewController: UIViewController {
             handleProblem(problem)
         case .missingRequiredOperation(let name):
             print("Protocol error: missing required operation \(name)")
+        case .paymentNotInInstrumentMode:
+            print("Cannot set instrument of non-instrument mode payment")
         }
     }
     

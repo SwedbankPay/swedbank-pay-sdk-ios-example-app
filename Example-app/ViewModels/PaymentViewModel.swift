@@ -3,6 +3,12 @@ import SwedbankPaySDK
 
 /// Singleton ViewModel for payment data
 class PaymentViewModel {
+    static let InstrumentPickerOpenChangedNotification = Notification.Name(
+        "com.swedbank.InstrumentPickerOpenChanged"
+    )
+    static let InstrumentChangedNotification = Notification.Name(
+        "com.swedbank.InstrumentChanged"
+    )
     
     enum Environment {
         case Stage
@@ -62,6 +68,16 @@ class PaymentViewModel {
     var environment = Environment.Stage
     
     var settingsOpen = false
+    var instrumentPickerOpen = false {
+        didSet {
+            if oldValue != instrumentPickerOpen {
+                NotificationCenter.default.post(
+                    name: PaymentViewModel.InstrumentPickerOpenChangedNotification,
+                    object: self
+                )
+            }
+        }
+    }
     
     var disablePaymentMenu = false
     var ignoreGoodRedirectsList = false
@@ -86,6 +102,12 @@ class PaymentViewModel {
     var consumerData: SwedbankPaySDK.Consumer? {
         get {
             ConsumerViewModel.shared.getConsumer()
+        }
+    }
+    
+    var instrument: SwedbankPaySDK.Instrument? {
+        didSet {
+            NotificationCenter.default.post(name: PaymentViewModel.InstrumentChangedNotification, object: self)
         }
     }
     
@@ -118,6 +140,7 @@ class PaymentViewModel {
                 vatAmount: vatAmount,
                 description: "Purchase",
                 language: country.language,
+                instrument: instrument,
                 restrictedToInstruments: restrictedToInstruments,
                 urls: buildUrls(),
                 payer: ConsumerViewModel.shared.getPaymentOrderPayer(),
