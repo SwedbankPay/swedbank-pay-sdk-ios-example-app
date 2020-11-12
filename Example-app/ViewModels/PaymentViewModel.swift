@@ -25,7 +25,7 @@ class PaymentViewModel {
         case .Stage:
             return URL(string: "https://stage-dot-payex-merchant-samples.appspot.com/")!
         case .ExternalIntegration:
-            return URL(string: "https://payex-merchant-samples.appspot.com")!
+            return URL(string: "https://payex-merchant-samples.ey.r.appspot.com/")!
         }
     }
     
