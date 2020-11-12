@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:payex-merchant-samples.appspot.com</string>
+		<string>applinks:payex-merchant-samples.ey.r.appspot.com</string>
 		<string>applinks:stage-dot-payex-merchant-samples.appspot.com</string>
 	</array>
 </dict>
