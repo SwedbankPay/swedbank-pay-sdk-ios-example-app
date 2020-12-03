@@ -84,7 +84,7 @@ class PaymentViewController: UIViewController {
         if instrument == nil {
             setInstrumentPickerVisible(false, animated: false)
         }
-        if info?.validInstruments?.isEmpty == false {
+        if info?.availableInstruments?.isEmpty == false {
             indexOfInstrumentToSet = 0
             instrumentPicker.selectRow(0, inComponent: 0, animated: false)
         } else {
@@ -119,7 +119,7 @@ class PaymentViewController: UIViewController {
         setInstrumentPickerVisible(false, animated: true)
         if let controller = swedbankPaySDKController,
            let index = indexOfInstrumentToSet,
-           let instruments = controller.currentPaymentOrder?.validInstruments {
+           let instruments = controller.currentPaymentOrder?.availableInstruments {
             let instrument = instruments[index]
             
             controller.updatePaymentOrder(updateInfo: instrument)
@@ -193,11 +193,11 @@ extension PaymentViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let instruments = swedbankPaySDKController?.currentPaymentOrder?.validInstruments
+        let instruments = swedbankPaySDKController?.currentPaymentOrder?.availableInstruments
         return instruments?.count ?? 0
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let instruments = swedbankPaySDKController?.currentPaymentOrder?.validInstruments
+        let instruments = swedbankPaySDKController?.currentPaymentOrder?.availableInstruments
         return instruments?[row].displayName
     }
     
