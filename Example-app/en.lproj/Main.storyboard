@@ -187,117 +187,44 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6X-Gb-AJn">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="187.5" placeholderIntrinsicHeight="20" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="D7g-fd-Gkd">
+                                                    <rect key="frame" x="0.0" y="15" width="187.5" height="20.5"/>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="187.5" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-C7-Tlk">
+                                                    <rect key="frame" x="187.5" y="15" width="187.5" height="0.0"/>
+                                                </stackView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="D7g-fd-Gkd" firstAttribute="leading" secondItem="M6X-Gb-AJn" secondAttribute="leading" id="DPD-AX-Z1R"/>
+                                                <constraint firstAttribute="bottom" secondItem="D7g-fd-Gkd" secondAttribute="bottom" constant="15" id="DxY-qv-5aG"/>
+                                                <constraint firstItem="D7g-fd-Gkd" firstAttribute="top" secondItem="M6X-Gb-AJn" secondAttribute="top" constant="15" id="SgN-Et-2Dg"/>
+                                                <constraint firstItem="7FF-C7-Tlk" firstAttribute="top" secondItem="D7g-fd-Gkd" secondAttribute="top" id="WYi-4j-4mD"/>
+                                                <constraint firstItem="7FF-C7-Tlk" firstAttribute="leading" secondItem="D7g-fd-Gkd" secondAttribute="trailing" id="frS-nj-7ZW"/>
+                                                <constraint firstItem="D7g-fd-Gkd" firstAttribute="width" secondItem="M6X-Gb-AJn" secondAttribute="width" multiplier="0.5" id="iva-cG-WCd"/>
+                                                <constraint firstItem="7FF-C7-Tlk" firstAttribute="width" secondItem="D7g-fd-Gkd" secondAttribute="width" id="rnC-eE-Dp3"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="24"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fzN-DN-TKf">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="50.5"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4u-o1-4eH">
-                                                    <rect key="frame" x="0.0" y="15.5" width="172.5" height="20"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Stage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5P-gX-uhQ">
-                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="16"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono-Bold" family="IBM Plex Mono" pointSize="12"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGe-y2-9b4">
-                                                            <rect key="frame" x="68.5" y="18" width="36" height="2"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="2" id="Yut-qe-aDG"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-em-7b7">
-                                                            <rect key="frame" x="68.5" y="0.0" width="36" height="20"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
-                                                            <connections>
-                                                                <action selector="onStagePressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="jVP-EJ-K8m"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="g5P-gX-uhQ" firstAttribute="top" secondItem="V4u-o1-4eH" secondAttribute="top" id="5Eu-1Z-Hg3"/>
-                                                        <constraint firstItem="eGe-y2-9b4" firstAttribute="leading" secondItem="g5P-gX-uhQ" secondAttribute="leading" id="G3Z-F7-jID"/>
-                                                        <constraint firstAttribute="bottom" secondItem="eGe-y2-9b4" secondAttribute="bottom" id="H2o-Hz-74y"/>
-                                                        <constraint firstItem="eGe-y2-9b4" firstAttribute="top" secondItem="g5P-gX-uhQ" secondAttribute="bottom" constant="2" id="JPc-QC-El7"/>
-                                                        <constraint firstItem="OdY-em-7b7" firstAttribute="trailing" secondItem="g5P-gX-uhQ" secondAttribute="trailing" id="Tz7-jl-yE8"/>
-                                                        <constraint firstItem="eGe-y2-9b4" firstAttribute="bottom" secondItem="OdY-em-7b7" secondAttribute="bottom" id="YHD-NC-zn8"/>
-                                                        <constraint firstItem="eGe-y2-9b4" firstAttribute="trailing" secondItem="g5P-gX-uhQ" secondAttribute="trailing" id="e9S-jp-cuD"/>
-                                                        <constraint firstItem="g5P-gX-uhQ" firstAttribute="centerX" secondItem="V4u-o1-4eH" secondAttribute="centerX" id="kQu-mm-Zp1"/>
-                                                        <constraint firstItem="OdY-em-7b7" firstAttribute="top" secondItem="g5P-gX-uhQ" secondAttribute="top" id="nh8-I1-y5b"/>
-                                                        <constraint firstItem="OdY-em-7b7" firstAttribute="leading" secondItem="g5P-gX-uhQ" secondAttribute="leading" id="pym-9h-Rbk"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5i8-om-xyJ">
-                                                    <rect key="frame" x="172.5" y="15.5" width="172.5" height="20"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Ext. Integration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzO-D6-4J5">
-                                                            <rect key="frame" x="28.5" y="0.0" width="115.5" height="16"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono-Bold" family="IBM Plex Mono" pointSize="12"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4E-jf-6ma">
-                                                            <rect key="frame" x="28.5" y="18" width="115.5" height="2"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="2" id="gfW-7i-X5w"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-At-qCu">
-                                                            <rect key="frame" x="28.5" y="0.0" width="115.5" height="20"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
-                                                            <connections>
-                                                                <action selector="onExternalIntegrationPressed" destination="Eph-at-Fvz" eventType="touchUpInside" id="8VX-Mb-RDt"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="ixi-At-qCu" firstAttribute="trailing" secondItem="kzO-D6-4J5" secondAttribute="trailing" id="2Ph-69-iLf"/>
-                                                        <constraint firstItem="ixi-At-qCu" firstAttribute="top" secondItem="kzO-D6-4J5" secondAttribute="top" id="GmP-qC-kbr"/>
-                                                        <constraint firstAttribute="bottom" secondItem="E4E-jf-6ma" secondAttribute="bottom" id="Imc-Cx-ohT"/>
-                                                        <constraint firstItem="kzO-D6-4J5" firstAttribute="centerX" secondItem="5i8-om-xyJ" secondAttribute="centerX" id="Kvl-9S-5eu"/>
-                                                        <constraint firstItem="ixi-At-qCu" firstAttribute="leading" secondItem="kzO-D6-4J5" secondAttribute="leading" id="MXp-sT-2Gl"/>
-                                                        <constraint firstItem="E4E-jf-6ma" firstAttribute="top" secondItem="kzO-D6-4J5" secondAttribute="bottom" constant="2" id="Pic-uo-RpL"/>
-                                                        <constraint firstItem="E4E-jf-6ma" firstAttribute="bottom" secondItem="ixi-At-qCu" secondAttribute="bottom" id="eBA-2S-TYo"/>
-                                                        <constraint firstItem="E4E-jf-6ma" firstAttribute="trailing" secondItem="kzO-D6-4J5" secondAttribute="trailing" id="j8g-UA-FwY"/>
-                                                        <constraint firstItem="kzO-D6-4J5" firstAttribute="top" secondItem="5i8-om-xyJ" secondAttribute="top" id="vGc-qG-9dp"/>
-                                                        <constraint firstItem="E4E-jf-6ma" firstAttribute="leading" secondItem="kzO-D6-4J5" secondAttribute="leading" id="yAh-xQ-mJL"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="MOn-zC-V8D"/>
-                                            </constraints>
-                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="top" secondItem="fzN-DN-TKf" secondAttribute="top" id="3VT-Aj-AbB"/>
-                                        <constraint firstItem="fzN-DN-TKf" firstAttribute="top" secondItem="cMt-al-GqJ" secondAttribute="top" id="4hJ-E1-zuU"/>
-                                        <constraint firstAttribute="bottom" secondItem="fzN-DN-TKf" secondAttribute="bottom" constant="15" id="HcG-2B-LvZ"/>
-                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="trailing" secondItem="fzN-DN-TKf" secondAttribute="trailing" id="VXX-lW-1v1"/>
-                                        <constraint firstItem="fzN-DN-TKf" firstAttribute="leading" secondItem="cMt-al-GqJ" secondAttribute="leading" constant="15" id="n2P-qk-8F0"/>
-                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="leading" secondItem="fzN-DN-TKf" secondAttribute="leading" id="oQe-AR-fxv"/>
-                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="bottom" secondItem="fzN-DN-TKf" secondAttribute="bottom" id="vkX-Ff-pyd"/>
-                                        <constraint firstAttribute="trailing" secondItem="fzN-DN-TKf" secondAttribute="trailing" constant="15" id="wKd-zi-BTL"/>
+                                        <constraint firstAttribute="bottom" secondItem="M6X-Gb-AJn" secondAttribute="bottom" constant="15" id="FZp-xk-5fD"/>
+                                        <constraint firstAttribute="trailing" secondItem="M6X-Gb-AJn" secondAttribute="trailing" id="VNU-Bf-G3i"/>
+                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="leading" secondItem="cMt-al-GqJ" secondAttribute="leading" id="v3A-Rg-RaC"/>
+                                        <constraint firstItem="M6X-Gb-AJn" firstAttribute="top" secondItem="cMt-al-GqJ" secondAttribute="top" id="vsI-ia-4Tn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="externalIntegrationLabel" destination="kzO-D6-4J5" id="TSI-rg-fZP"/>
-                                    <outlet property="externalIntegrationUnderline" destination="E4E-jf-6ma" id="BUc-gx-HCg"/>
-                                    <outlet property="stageLabel" destination="g5P-gX-uhQ" id="acB-NV-uq9"/>
-                                    <outlet property="stageUnderline" destination="eGe-y2-9b4" id="9Q4-Uh-GAg"/>
+                                    <outlet property="environmentOptionsLeftColumn" destination="D7g-fd-Gkd" id="6uC-ao-lo7"/>
+                                    <outlet property="environmentOptionsRightColumn" destination="7FF-C7-Tlk" id="0cS-YS-b2J"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingCartHeaderCell" id="F4A-Bq-uOf" customClass="ShoppingCartHeaderCell" customModule="Example_app" customModuleProvider="target">

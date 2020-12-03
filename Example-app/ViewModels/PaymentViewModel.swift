@@ -10,7 +10,7 @@ class PaymentViewModel {
         "com.swedbank.InstrumentChanged"
     )
     
-    enum Environment {
+    enum Environment: CaseIterable {
         case Stage
         case ExternalIntegration
     }

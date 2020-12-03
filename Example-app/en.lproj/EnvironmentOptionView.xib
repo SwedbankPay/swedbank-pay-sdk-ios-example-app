@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="IBMPlexMono-Bold.ttf">
+            <string>IBMPlexMono-Bold</string>
+        </array>
+        <array key="IBMPlexMono-Medium.ttf">
+            <string>IBMPlexMono-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="xKv-ng-wfM" customClass="EnvironmentOptionView" customModule="Example_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="172" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="Stage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYI-RD-sA7">
+                    <rect key="frame" x="68" y="0.0" width="36" height="16"/>
+                    <fontDescription key="fontDescription" name="IBMPlexMono-Bold" family="IBM Plex Mono" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2PI-0A-W3y">
+                    <rect key="frame" x="68" y="18" width="36" height="2"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="fq8-UK-til"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1z-Km-Q04">
+                    <rect key="frame" x="68" y="0.0" width="36" height="20"/>
+                    <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
+                    <connections>
+                        <action selector="onButtonPressed" destination="xKv-ng-wfM" eventType="touchUpInside" id="1yk-dz-ctC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="MrN-Xw-MGm"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2PI-0A-W3y" firstAttribute="top" secondItem="iYI-RD-sA7" secondAttribute="bottom" constant="2" id="BXR-ID-yWs"/>
+                <constraint firstAttribute="bottom" secondItem="2PI-0A-W3y" secondAttribute="bottom" id="Dc1-he-C9r"/>
+                <constraint firstItem="2PI-0A-W3y" firstAttribute="trailing" secondItem="iYI-RD-sA7" secondAttribute="trailing" id="Jdu-4H-fqp"/>
+                <constraint firstItem="f1z-Km-Q04" firstAttribute="top" secondItem="iYI-RD-sA7" secondAttribute="top" id="KgG-5Y-jvZ"/>
+                <constraint firstItem="2PI-0A-W3y" firstAttribute="bottom" secondItem="f1z-Km-Q04" secondAttribute="bottom" id="eUo-eb-WKf"/>
+                <constraint firstItem="f1z-Km-Q04" firstAttribute="leading" secondItem="iYI-RD-sA7" secondAttribute="leading" id="gHo-Vd-Pnq"/>
+                <constraint firstItem="iYI-RD-sA7" firstAttribute="centerX" secondItem="xKv-ng-wfM" secondAttribute="centerX" id="jgn-ha-dEq"/>
+                <constraint firstItem="f1z-Km-Q04" firstAttribute="trailing" secondItem="iYI-RD-sA7" secondAttribute="trailing" id="sDe-25-Dxp"/>
+                <constraint firstItem="iYI-RD-sA7" firstAttribute="top" secondItem="xKv-ng-wfM" secondAttribute="top" id="tKe-DD-SWw"/>
+                <constraint firstItem="2PI-0A-W3y" firstAttribute="leading" secondItem="iYI-RD-sA7" secondAttribute="leading" id="uSg-ew-5My"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="label" destination="iYI-RD-sA7" id="avY-Y9-hHQ"/>
+                <outlet property="underline" destination="2PI-0A-W3y" id="pzj-qz-X6z"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="77.678571428571431"/>
+        </view>
+    </objects>
+</document>
