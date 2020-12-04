@@ -13,6 +13,7 @@ class PaymentViewModel {
     enum Environment: CaseIterable {
         case Stage
         case ExternalIntegration
+        case PaymentPagesExternalIntegration
     }
     
     static let shared = PaymentViewModel()
@@ -26,6 +27,8 @@ class PaymentViewModel {
             return URL(string: "https://stage-dot-payex-merchant-samples.ey.r.appspot.com/")!
         case .ExternalIntegration:
             return URL(string: "https://payex-merchant-samples.ey.r.appspot.com/")!
+        case .PaymentPagesExternalIntegration:
+            return URL(string: "https://pp-dot-payex-merchant-samples.ey.r.appspot.com/")!
         }
     }
     

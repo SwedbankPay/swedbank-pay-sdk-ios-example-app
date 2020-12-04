@@ -7,6 +7,8 @@ private extension PaymentViewModel.Environment {
             return "Stage"
         case .ExternalIntegration:
             return "Ext. Integration"
+        case .PaymentPagesExternalIntegration:
+            return "PaymentPages (EI)"
         }
     }
 }
