@@ -18,6 +18,12 @@ class GeneralSettingsCell : SettingsCell {
     
     @IBOutlet private var instrumentLabel: UILabel!
     
+    @IBOutlet private var payerReferenceField: UITextField!
+    
+    @IBOutlet private var paymentTokenField: UITextField!
+    
+    @IBOutlet private var generatePaymentTokenSwitch: UISwitch!
+    
     @IBOutlet private var settingsOpenConstraints: [NSLayoutConstraint] = []
     
     private var observers: [NSObjectProtocol] = []
@@ -39,6 +45,16 @@ class GeneralSettingsCell : SettingsCell {
         ) { [weak self] _ in
             self?.refreshInstrumentModeLabel()
         })
+        observers.append(nc.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: payerReferenceField, queue: .main) { [weak self] _ in
+            self?.onPayerReferenceFieldTextChanged()
+        })
+        observers.append(nc.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: paymentTokenField, queue: .main) { [weak self] _ in
+            self?.onPaymentTokenFieldTextChanged()
+        })
     }
     
     deinit {
@@ -57,6 +73,9 @@ class GeneralSettingsCell : SettingsCell {
         testWrongHostUrlSwitch.isOn = PaymentViewModel.shared.testWrongHostUrl
         restrictedToInstrumentsField.text = PaymentViewModel.shared.restrictedToInstruments?.joined(separator: ",")
         refreshInstrumentModeLabel()
+        refreshPayerReference()
+        refreshPaymentToken()
+        generatePaymentTokenSwitch.isOn = PaymentViewModel.shared.generatePaymentToken
     }
     
     private func refreshOpenState() {
@@ -119,6 +138,44 @@ class GeneralSettingsCell : SettingsCell {
         let instruments = text.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         let instrumentsOrNil = instruments.isEmpty ? nil : instruments
         PaymentViewModel.shared.restrictedToInstruments = instrumentsOrNil
+    }
+    
+    @IBAction func onGeneratePayerReferencePressed() {
+        PaymentViewModel.shared.payerReference = UUID().uuidString
+        refreshPayerReference()
+    }
+    
+    @IBAction func onLastUsedPayerReferencePressed() {
+        PaymentViewModel.shared.setPayerReferenceToLastUsed()
+        refreshPayerReference()
+    }
+    
+    private func refreshPayerReference() {
+        payerReferenceField.text = PaymentViewModel.shared.payerReference
+    }
+    
+    private func onPayerReferenceFieldTextChanged() {
+        if let text = payerReferenceField.text, !text.isEmpty {
+            PaymentViewModel.shared.payerReference = text
+        } else {
+            PaymentViewModel.shared.payerReference = nil
+        }
+    }
+    
+    private func onPaymentTokenFieldTextChanged() {
+        if let text = paymentTokenField.text, !text.isEmpty {
+            PaymentViewModel.shared.paymentToken = text
+        } else {
+            PaymentViewModel.shared.paymentToken = nil
+        }
+    }
+    
+    private func refreshPaymentToken() {
+        paymentTokenField.text = PaymentViewModel.shared.paymentToken
+    }
+    
+    @IBAction func onGeneratePaymentTokenSwitchValueChanged() {
+        PaymentViewModel.shared.generatePaymentToken = generatePaymentTokenSwitch.isOn
     }
     
     private func refreshInstrumentModeLabel() {

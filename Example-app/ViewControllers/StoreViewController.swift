@@ -79,6 +79,9 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func startPayment() {
         self.title = "Cancel"
         performSegue(withIdentifier: "showPayment", sender: self)
+        if let payerReference = PaymentViewModel.shared.payerReference {
+            PaymentViewModel.shared.saveLastUsedPayerReference(payerReference: payerReference)
+        }
     }
     
     // MARK: IBActions

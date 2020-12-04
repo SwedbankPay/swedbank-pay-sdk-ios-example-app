@@ -89,6 +89,10 @@ class PaymentViewModel {
     
     var restrictedToInstruments: [String]?
     
+    var payerReference: String?
+    var paymentToken: String?
+    var generatePaymentToken = false
+    
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.MerchantBackendConfiguration {
         get {
@@ -111,6 +115,16 @@ class PaymentViewModel {
     var instrument: SwedbankPaySDK.Instrument? {
         didSet {
             NotificationCenter.default.post(name: PaymentViewModel.InstrumentChangedNotification, object: self)
+        }
+    }
+    
+    private var payer: SwedbankPaySDK.PaymentOrderPayer? {
+        get {
+            if let payerReference = payerReference {
+                return .init(payerReference: payerReference)
+            } else {
+                return ConsumerViewModel.shared.getPaymentOrderPayer()
+            }
         }
     }
     
@@ -144,11 +158,13 @@ class PaymentViewModel {
                 description: "Purchase",
                 language: country.language,
                 instrument: instrument,
+                generatePaymentToken: generatePaymentToken,
                 restrictedToInstruments: restrictedToInstruments,
                 urls: buildUrls(),
-                payer: ConsumerViewModel.shared.getPaymentOrderPayer(),
+                payer: payer,
                 orderItems: orderItems,
-                disablePaymentMenu: disablePaymentMenu
+                disablePaymentMenu: disablePaymentMenu,
+                paymentToken: paymentToken
             )
         }
     }
@@ -178,5 +194,12 @@ class PaymentViewModel {
         if let log = lastPaymentNavigationLogString {
             UIPasteboard.general.setValue(log, forPasteboardType: kUTTypeUTF8PlainText as String)
         }
+    }
+    
+    func setPayerReferenceToLastUsed() {
+        payerReference = UserDefaults.standard.string(forKey: "LastUsedPayerReference")
+    }
+    func saveLastUsedPayerReference(payerReference: String) {
+        UserDefaults.standard.setValue(payerReference, forKey: "LastUsedPayerReference")
     }
 }
