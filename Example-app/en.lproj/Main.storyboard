@@ -1313,7 +1313,7 @@
         <!--Shopping Cart View Controller-->
         <scene sceneID="9wW-Ec-0ll">
             <objects>
-                <viewController storyboardIdentifier="ShoppingCartVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="S3j-x0-LgE" customClass="ShoppingCartViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingCartVC" id="S3j-x0-LgE" customClass="ShoppingCartViewController" customModule="Example_app" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rf5-an-mj6"/>
                         <viewControllerLayoutGuide type="bottom" id="QN3-Ce-PQ9"/>
