@@ -9,6 +9,9 @@ class PaymentViewModel {
     static let InstrumentChangedNotification = Notification.Name(
         "com.swedbank.InstrumentChanged"
     )
+    static let PaymentTokenChangedNotification = Notification.Name(
+        "com.swedbank.PaymentTokenChanged"
+    )
     
     enum Environment: CaseIterable {
         case Stage
@@ -90,7 +93,11 @@ class PaymentViewModel {
     var restrictedToInstruments: [String]?
     
     var payerReference: String?
-    var paymentToken: String?
+    var paymentToken: String? {
+        didSet {
+            NotificationCenter.default.post(name: PaymentViewModel.PaymentTokenChangedNotification, object: self)
+        }
+    }
     var generatePaymentToken = false
     
     /// Configuration for SwedbankPaySDK
@@ -197,7 +204,10 @@ class PaymentViewModel {
     }
     
     func setPayerReferenceToLastUsed() {
-        payerReference = UserDefaults.standard.string(forKey: "LastUsedPayerReference")
+        payerReference = getLastUsedPayerReference()
+    }
+    func getLastUsedPayerReference() -> String? {
+        return UserDefaults.standard.string(forKey: "LastUsedPayerReference")
     }
     func saveLastUsedPayerReference(payerReference: String) {
         UserDefaults.standard.setValue(payerReference, forKey: "LastUsedPayerReference")

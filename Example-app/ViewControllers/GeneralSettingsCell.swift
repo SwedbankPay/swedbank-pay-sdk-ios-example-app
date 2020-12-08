@@ -27,6 +27,8 @@ class GeneralSettingsCell : SettingsCell {
     @IBOutlet private var settingsOpenConstraints: [NSLayoutConstraint] = []
     
     private var observers: [NSObjectProtocol] = []
+    
+    var onGetPaymentTokenButtonPressed: () -> () = {}
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,6 +56,13 @@ class GeneralSettingsCell : SettingsCell {
             forName: UITextField.textDidChangeNotification,
             object: paymentTokenField, queue: .main) { [weak self] _ in
             self?.onPaymentTokenFieldTextChanged()
+        })
+        observers.append(nc.addObserver(
+            forName: PaymentViewModel.PaymentTokenChangedNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.refreshPaymentToken()
         })
     }
     
@@ -168,6 +177,10 @@ class GeneralSettingsCell : SettingsCell {
         } else {
             PaymentViewModel.shared.paymentToken = nil
         }
+    }
+    
+    @IBAction func getPaymentTokenButtonPressed() {
+        onGetPaymentTokenButtonPressed()
     }
     
     private func refreshPaymentToken() {

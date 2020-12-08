@@ -15,6 +15,8 @@
 		A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */; };
 		A5BE1E6F25791BAB00336A79 /* EnvironmentOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */; };
 		A5BE1E7225791BC400336A79 /* EnvironmentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */; };
+		A5C24B5A257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */; };
+		A5C24B5D257E6A3300D832D9 /* PaymentTokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */; };
 		C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AA237AB10A003F79DF /* PurchaseData.swift */; };
 		C50CF6AD237AB119003F79DF /* PurchaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AC237AB119003F79DF /* PurchaseItem.swift */; };
 		C50CF6AF237AB126003F79DF /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CF6AE237AB126003F79DF /* PaymentResult.swift */; };
@@ -74,6 +76,8 @@
 		A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-app.entitlements"; sourceTree = "<group>"; };
 		A5BE1E6E25791BAB00336A79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = EnvironmentOptionView.xib; sourceTree = "<group>"; };
 		A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentOptionView.swift; sourceTree = "<group>"; };
+		A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerOwnedPaymentTokensViewController.swift; sourceTree = "<group>"; };
+		A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTokenCell.swift; sourceTree = "<group>"; };
 		C50CF6AA237AB10A003F79DF /* PurchaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseData.swift; sourceTree = "<group>"; };
 		C50CF6AC237AB119003F79DF /* PurchaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseItem.swift; sourceTree = "<group>"; };
 		C50CF6AE237AB126003F79DF /* PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */,
 				C54D557E23701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift */,
 				A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */,
+				A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */,
+				A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 			files = (
 				A5BE1E7225791BC400336A79 /* EnvironmentOptionView.swift in Sources */,
 				A58DAF0224041E0A004F9AF2 /* GeneralSettingsCell.swift in Sources */,
+				A5C24B5D257E6A3300D832D9 /* PaymentTokenCell.swift in Sources */,
 				C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */,
 				C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */,
 				A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */,
@@ -437,6 +444,7 @@
 				A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */,
 				C54D559923701F9D00E3B301 /* ConsumerViewModel.swift in Sources */,
 				C50CF6B1237AB12D003F79DF /* ConsumerType.swift in Sources */,
+				A5C24B5A257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift in Sources */,
 				A502C343253F1C40004FBFCB /* InstrumentDisplayName.swift in Sources */,
 				A548FFB3241BCC76007C7B17 /* EnvironmentSettingsCell.swift in Sources */,
 				C50CF6D1237AC587003F79DF /* Currency.swift in Sources */,

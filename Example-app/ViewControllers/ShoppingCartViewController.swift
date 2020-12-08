@@ -108,6 +108,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    private func showGetTokens() {
+        performSegue(withIdentifier: "presentGetTokens", sender: nil)
+    }
     
     
     // MARK: TableView delegate methods
@@ -227,6 +230,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     tableView.beginUpdates()
                     cell.refreshOpenStateAnimated()
                     tableView.endUpdates()
+                }
+            }
+            if self == .General {
+                (cell as! GeneralSettingsCell).onGetPaymentTokenButtonPressed = { [weak viewController] in
+                    viewController?.showGetTokens()
                 }
             }
             return cell
