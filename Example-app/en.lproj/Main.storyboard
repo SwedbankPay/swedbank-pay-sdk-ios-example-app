@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -881,17 +881,17 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GeneralSettingsCell" id="YCh-Zh-mYH" customClass="GeneralSettingsCell" customModule="Example_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1102" width="375" height="605.5"/>
+                                <rect key="frame" x="0.0" y="1102" width="375" height="656.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YCh-Zh-mYH" id="Bc5-Sm-V5a">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="605.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="656.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXl-HQ-6Ap" userLabel="Settings Background">
-                                            <rect key="frame" x="15" y="13" width="345" height="592.5"/>
+                                            <rect key="frame" x="15" y="13" width="345" height="643.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2U8-Fs-TVt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="592.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="643.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-X" translatesAutoresizingMaskIntoConstraints="NO" id="Opl-FU-esv">
                                                             <rect key="frame" x="297" y="0.0" width="48" height="49"/>
@@ -1144,6 +1144,18 @@
                                                                 <outlet property="delegate" destination="YCh-Zh-mYH" id="0oq-yM-yYF"/>
                                                             </connections>
                                                         </textField>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="subsite" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R20-se-6WB">
+                                                            <rect key="frame" x="15" y="592.5" width="315" height="36"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="36" id="K2C-gD-76d"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="YCh-Zh-mYH" id="jiK-x2-Fh2"/>
+                                                            </connections>
+                                                        </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECa-h9-iW7">
                                                             <rect key="frame" x="267.5" y="230.5" width="30" height="30"/>
                                                             <state key="normal" title="Get"/>
@@ -1154,6 +1166,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="R20-se-6WB" firstAttribute="top" secondItem="p9l-1m-cK2" secondAttribute="bottom" constant="15" id="2Wh-Tv-MXB"/>
                                                         <constraint firstItem="00G-Dx-77I" firstAttribute="top" secondItem="lId-7c-Ife" secondAttribute="bottom" constant="15" id="2f0-dM-otW"/>
                                                         <constraint firstItem="LwK-0d-Qcv" firstAttribute="leading" secondItem="2U8-Fs-TVt" secondAttribute="centerX" constant="30" id="3P2-eO-bgT"/>
                                                         <constraint firstItem="EdZ-FU-cWB" firstAttribute="top" secondItem="tRL-Rf-sKT" secondAttribute="bottom" constant="15" id="3UV-T5-n0N"/>
@@ -1185,7 +1198,6 @@
                                                         <constraint firstItem="tRL-Rf-sKT" firstAttribute="top" secondItem="cPK-7k-cNh" secondAttribute="bottom" constant="25" id="Ix7-g1-CKj"/>
                                                         <constraint firstItem="2GT-io-bl1" firstAttribute="leading" secondItem="tRL-Rf-sKT" secondAttribute="trailing" constant="6" id="KK5-Cd-QvD"/>
                                                         <constraint firstItem="RWh-wN-f3q" firstAttribute="centerX" secondItem="2U8-Fs-TVt" secondAttribute="centerX" id="M1Y-Su-572"/>
-                                                        <constraint firstAttribute="bottom" secondItem="p9l-1m-cK2" secondAttribute="bottom" constant="15" id="MIN-Yu-RSO"/>
                                                         <constraint firstAttribute="trailing" secondItem="VFS-pW-rQm" secondAttribute="trailing" constant="15" id="Mkg-Lp-ts9"/>
                                                         <constraint firstItem="LwK-0d-Qcv" firstAttribute="top" secondItem="rao-Q6-N9X" secondAttribute="top" id="Mr6-xe-OTF"/>
                                                         <constraint firstItem="LwK-0d-Qcv" firstAttribute="top" secondItem="rao-Q6-N9X" secondAttribute="top" id="NNr-NB-WIv"/>
@@ -1199,6 +1211,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="Opl-FU-esv" secondAttribute="trailing" id="Syt-ac-kcU"/>
                                                         <constraint firstAttribute="centerX" secondItem="LMm-jo-yO3" secondAttribute="trailing" constant="30" id="TLa-O4-4Ct"/>
                                                         <constraint firstItem="B0b-Nk-rwe" firstAttribute="leading" secondItem="p9l-1m-cK2" secondAttribute="trailing" constant="6" id="XdW-pW-Txu"/>
+                                                        <constraint firstAttribute="trailing" secondItem="R20-se-6WB" secondAttribute="trailing" constant="15" id="Z3U-UK-ZJj"/>
                                                         <constraint firstItem="zHF-db-N5h" firstAttribute="centerX" secondItem="2U8-Fs-TVt" secondAttribute="centerX" id="ZAg-ow-fK6"/>
                                                         <constraint firstItem="Opl-FU-esv" firstAttribute="centerY" secondItem="Tj6-Ar-dxZ" secondAttribute="centerY" id="ZMe-p5-QnI"/>
                                                         <constraint firstItem="R1I-N7-G9g" firstAttribute="top" secondItem="EdZ-FU-cWB" secondAttribute="bottom" constant="15" id="a37-7D-Oc9"/>
@@ -1223,7 +1236,9 @@
                                                         <constraint firstItem="D9I-Rn-hyw" firstAttribute="centerY" secondItem="R1I-N7-G9g" secondAttribute="centerY" id="s7p-tZ-ftx"/>
                                                         <constraint firstItem="gBM-DU-kBq" firstAttribute="leading" secondItem="2U8-Fs-TVt" secondAttribute="centerX" constant="30" id="sob-Gk-6vN"/>
                                                         <constraint firstItem="cPK-7k-cNh" firstAttribute="centerY" secondItem="abK-cw-PqQ" secondAttribute="centerY" id="tkW-k2-mG1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="R20-se-6WB" secondAttribute="bottom" constant="15" id="uLo-UJ-AIX"/>
                                                         <constraint firstItem="sb6-y0-qqZ" firstAttribute="centerY" secondItem="pqI-0p-BTW" secondAttribute="centerY" id="vNb-ox-3B6"/>
+                                                        <constraint firstItem="R20-se-6WB" firstAttribute="leading" secondItem="2U8-Fs-TVt" secondAttribute="leading" constant="15" id="vVd-Km-SnI"/>
                                                         <constraint firstItem="Tj6-Ar-dxZ" firstAttribute="centerX" secondItem="2U8-Fs-TVt" secondAttribute="centerX" id="wmB-zT-hb7"/>
                                                         <constraint firstItem="DbE-oK-sWK" firstAttribute="centerX" secondItem="f3S-Ao-Eu9" secondAttribute="centerX" id="x4w-Yd-318"/>
                                                         <constraint firstItem="DbE-oK-sWK" firstAttribute="top" secondItem="f3S-Ao-Eu9" secondAttribute="bottom" constant="2" id="xKO-qc-oia"/>
@@ -1290,6 +1305,7 @@
                                     <outlet property="paymentTokenField" destination="VFS-pW-rQm" id="uKf-EE-qEu"/>
                                     <outlet property="restrictedToInstrumentsField" destination="EdZ-FU-cWB" id="Wbb-hx-EV1"/>
                                     <outlet property="settingsContainerView" destination="2U8-Fs-TVt" id="nfX-j2-qXP"/>
+                                    <outlet property="subsiteField" destination="R20-se-6WB" id="cv9-Up-gnV"/>
                                     <outlet property="swedenLabel" destination="xEv-hu-YxM" id="LYf-RG-OWb"/>
                                     <outlet property="swedenUnderlineView" destination="xIc-my-9dz" id="aj5-f0-kGy"/>
                                     <outlet property="testWrongHostUrlSwitch" destination="B0b-Nk-rwe" id="QXR-vS-DVN"/>

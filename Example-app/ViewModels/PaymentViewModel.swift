@@ -100,6 +100,8 @@ class PaymentViewModel {
     }
     var generatePaymentToken = false
     
+    var subsite: String?
+    
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.MerchantBackendConfiguration {
         get {
@@ -157,6 +159,10 @@ class PaymentViewModel {
             let vatAmount = orderItems.lazy.map { $0.vatAmount }.reduce(0, +)
             
             let country = ConsumerViewModel.shared.getCountry()
+            
+            let payeeInfo = SwedbankPaySDK.PayeeInfo.init(
+                subsite: subsite
+            )
                         
             return SwedbankPaySDK.PaymentOrder.init(
                 currency: country.currency.rawValue,
@@ -168,6 +174,7 @@ class PaymentViewModel {
                 generatePaymentToken: generatePaymentToken,
                 restrictedToInstruments: restrictedToInstruments,
                 urls: buildUrls(),
+                payeeInfo: payeeInfo,
                 payer: payer,
                 orderItems: orderItems,
                 disablePaymentMenu: disablePaymentMenu,

@@ -24,6 +24,8 @@ class GeneralSettingsCell : SettingsCell {
     
     @IBOutlet private var generatePaymentTokenSwitch: UISwitch!
     
+    @IBOutlet private var subsiteField: UITextField!
+    
     @IBOutlet private var settingsOpenConstraints: [NSLayoutConstraint] = []
     
     private var observers: [NSObjectProtocol] = []
@@ -58,6 +60,11 @@ class GeneralSettingsCell : SettingsCell {
             self?.onPaymentTokenFieldTextChanged()
         })
         observers.append(nc.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: subsiteField, queue: .main) { [weak self] _ in
+            self?.onSubsiteFieldTextChanged()
+        })
+        observers.append(nc.addObserver(
             forName: PaymentViewModel.PaymentTokenChangedNotification,
             object: nil,
             queue: .main
@@ -84,6 +91,7 @@ class GeneralSettingsCell : SettingsCell {
         refreshInstrumentModeLabel()
         refreshPayerReference()
         refreshPaymentToken()
+        refreshSubsite()
         generatePaymentTokenSwitch.isOn = PaymentViewModel.shared.generatePaymentToken
     }
     
@@ -176,6 +184,17 @@ class GeneralSettingsCell : SettingsCell {
             PaymentViewModel.shared.paymentToken = text
         } else {
             PaymentViewModel.shared.paymentToken = nil
+        }
+    }
+    
+    private func refreshSubsite() {
+        subsiteField.text = PaymentViewModel.shared.subsite
+    }
+    private func onSubsiteFieldTextChanged() {
+        if let text = subsiteField.text, !text.isEmpty {
+            PaymentViewModel.shared.subsite = text
+        } else {
+            PaymentViewModel.shared.subsite = nil
         }
     }
     
