@@ -7,8 +7,14 @@ class PaymentTokenCell : UITableViewCell {
     
     var onUsePressed: () -> () = {}
     
+    var onDeletePressed: () -> () = {}
+    
     @IBAction func onUseButtonPressed() {
         onUsePressed()
+    }
+    
+    @IBAction func onDeleteButtonPressed() {
+        onDeletePressed()
     }
     
     func populate(info: SwedbankPaySDK.PaymentTokenInfo) {

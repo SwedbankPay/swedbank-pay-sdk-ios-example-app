@@ -1480,9 +1480,20 @@
                                                         <action selector="onUseButtonPressed" destination="A6V-yk-9nO" eventType="touchUpInside" id="unh-IL-Zvb"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdu-2n-zna">
+                                                    <rect key="frame" x="276" y="19.5" width="45" height="30"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" systemColor="systemRedColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onDeleteButtonPressed" destination="A6V-yk-9nO" eventType="touchUpInside" id="sL8-AQ-18t"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="IGj-2A-f7g" firstAttribute="leading" secondItem="Hdu-2n-zna" secondAttribute="trailing" constant="8" symbolic="YES" id="Hf2-yl-JnZ"/>
                                                 <constraint firstItem="IGj-2A-f7g" firstAttribute="centerY" secondItem="GYj-QV-ddU" secondAttribute="centerY" id="Hzb-E6-gFY"/>
+                                                <constraint firstItem="Hdu-2n-zna" firstAttribute="centerY" secondItem="GYj-QV-ddU" secondAttribute="centerY" id="I9F-jx-wcy"/>
                                                 <constraint firstItem="amm-70-8YL" firstAttribute="leading" secondItem="GYj-QV-ddU" secondAttribute="leading" constant="16" id="Prd-ZY-h4m"/>
                                                 <constraint firstItem="6l2-NI-7eX" firstAttribute="top" secondItem="amm-70-8YL" secondAttribute="bottom" constant="8" symbolic="YES" id="Rb8-e6-PJE"/>
                                                 <constraint firstAttribute="bottom" secondItem="6l2-NI-7eX" secondAttribute="bottom" constant="8" id="TQj-D5-b1u"/>
@@ -1795,6 +1806,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

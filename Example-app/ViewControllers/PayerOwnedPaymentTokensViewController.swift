@@ -50,10 +50,13 @@ class PayerOwnedPaymentTokensViewController : UIViewController {
         }
     }
     
-    private func onGetTokensResult(result: Result<SwedbankPaySDK.PayerOwnedPaymentTokensResponse, Error>) {
+    private func onGetTokensResult(
+        result: Result<SwedbankPaySDK.PayerOwnedPaymentTokensResponse, Error>
+    ) {
         request = nil
         switch result {
         case .success(let response):
+            debugPrint(response)
             paymentTokens = response.payerOwnedPaymentTokens.paymentTokens ?? []
             if paymentTokens.isEmpty {
                 showAlert(title: "Note", body: "No payment tokens found")
@@ -76,6 +79,32 @@ class PayerOwnedPaymentTokensViewController : UIViewController {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    private func deleteToken(index: Int) {
+        let token = paymentTokens[index]
+        
+        request?.cancel()
+        
+        let configuration = PaymentViewModel.shared.configuration
+        request = SwedbankPaySDK.MerchantBackend.deletePayerOwnerPaymentToken(
+            configuration: configuration,
+            paymentToken: token,
+            comment: "User deleted from example app"
+        ) { [weak self] result in
+            self?.onDeleteTokenResult(index: index, result: result)
+        }
+    }
+    
+    private func onDeleteTokenResult(
+        index: Int,
+        result: Result<Void, Error>
+    ) {
+        request = nil
+        
+        if case .success = result {
+            paymentTokens.remove(at: index)
+        }
+    }
+    
     private func refreshLoadingUI() {
         let loading = request != nil
         loadingIndicator.isHidden = !loading
@@ -85,6 +114,7 @@ class PayerOwnedPaymentTokensViewController : UIViewController {
             loadingIndicator.stopAnimating()
         }
         tokensTableView.alpha = loading ? 0.7 : 1
+        tokensTableView.isUserInteractionEnabled = !loading
     }
 }
 
@@ -98,6 +128,9 @@ extension PayerOwnedPaymentTokensViewController : UITableViewDataSource {
         let index = indexPath.row
         cell.onUsePressed = { [weak self] in
             self?.useToken(index: index)
+        }
+        cell.onDeletePressed = { [weak self] in
+            self?.deleteToken(index: index)
         }
         cell.populate(info: paymentTokens[index])
         return cell
