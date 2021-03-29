@@ -61,6 +61,8 @@ class ResultViewController: UIViewController {
             print("Could not load script at \(scriptUrl?.absoluteString ?? "")")
         case .ScriptError(let terminalFailure):
             print("Fatal error from script: \(terminalFailure.map(String.init(describing:)) ?? "")")
+        case .RedirectFailure(let error):
+            print("Payment redirect failed: \(error)")
         }
     }
     

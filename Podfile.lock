@@ -1,10 +1,10 @@
 PODS:
   - Alamofire (5.4.1)
-  - SwedbankPaySDK (1.0.4):
+  - SwedbankPaySDK (1.1.0):
     - Alamofire (~> 5.2)
 
 DEPENDENCIES:
-  - SwedbankPaySDK (= 1.0.4)
+  - SwedbankPaySDK (= 1.1.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -13,8 +13,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  SwedbankPaySDK: 1b3d45cfb50cd560e6c0893aa7eb8ff39be25d42
+  SwedbankPaySDK: 69f8bbbb42cb6fcb0ac868e0868eaaf74099bcb5
 
-PODFILE CHECKSUM: e3ff871412071a0041090ddcc370d2d295c50883
+PODFILE CHECKSUM: c3de9b74f45ee4bca8df7629c921798dab7b248d
 
 COCOAPODS: 1.10.1
