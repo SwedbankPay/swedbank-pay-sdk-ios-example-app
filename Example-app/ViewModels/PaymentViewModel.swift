@@ -52,10 +52,11 @@ class PaymentViewModel {
     /// If empty, certificate pinning is not implemented
     private let pinPublicKeys: [SwedbankPaySDK.PinPublicKeys]? = nil
     
-    var lastPaymentNavigationLog: [URL]?
+    var lastPaymentNavigationLog: [URL] = []
     
     var lastPaymentNavigationLogString: String? {
-        if let log = lastPaymentNavigationLog, !log.isEmpty {
+        let log = lastPaymentNavigationLog
+        if !log.isEmpty {
             var hosts = Set<String>()
             var logString = ""
             for host in log.lazy.compactMap({ $0.host }) {

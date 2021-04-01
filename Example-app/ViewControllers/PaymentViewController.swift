@@ -44,9 +44,8 @@ class PaymentViewController: UIViewController {
             paymentOrder: vm.paymentOrder
         )
         self.swedbankPaySDKController = swedbankPaySDKController
-        vm.lastPaymentNavigationLog = []
         swedbankPaySDKController.webNavigationLogger = {
-            PaymentViewModel.shared.lastPaymentNavigationLog?.append($0)
+            PaymentViewModel.shared.lastPaymentNavigationLog.append($0)
         }
         if vm.useSafari {
             swedbankPaySDKController.webRedirectBehavior = .AlwaysUseBrowser
