@@ -19,6 +19,20 @@ class PaymentViewModel {
         case PaymentPagesExternalIntegration
     }
     
+    enum InstrumentOption {
+        case disabled
+        case instrument(SwedbankPaySDK.Instrument)
+        case custom
+        
+        var name: String {
+            switch self {
+            case .disabled: return "Disabled"
+            case .instrument(let instrument): return instrument.rawValue
+            case .custom: return "Custom"
+            }
+        }
+    }
+    
     static let shared = PaymentViewModel()
     
     private init() {}
@@ -75,6 +89,14 @@ class PaymentViewModel {
     var environment = Environment.Stage
     
     var settingsOpen = false
+    
+    let instrumentOptions: [InstrumentOption] = [
+        .disabled,
+        .instrument(.creditCard),
+        .instrument(.swish),
+        .instrument(.invoice),
+        .custom
+    ]
     var instrumentPickerOpen = false {
         didSet {
             if oldValue != instrumentPickerOpen {
@@ -83,6 +105,19 @@ class PaymentViewModel {
                     object: self
                 )
             }
+        }
+    }
+    var instrumentOptionIndex = 0 {
+        didSet {
+            NotificationCenter.default.post(name: PaymentViewModel.InstrumentChangedNotification, object: self)
+        }
+    }
+    var instrumentOption: InstrumentOption {
+        instrumentOptions[instrumentOptionIndex]
+    }
+    var customInstrument: String? {
+        didSet {
+            NotificationCenter.default.post(name: PaymentViewModel.InstrumentChangedNotification, object: self)
         }
     }
     
@@ -134,8 +169,14 @@ class PaymentViewModel {
     }
     
     var instrument: SwedbankPaySDK.Instrument? {
-        didSet {
-            NotificationCenter.default.post(name: PaymentViewModel.InstrumentChangedNotification, object: self)
+        get {
+            switch instrumentOption {
+            case .disabled: return nil
+            case .instrument(let instrument): return instrument
+            case .custom:
+                let instrument = customInstrument ?? ""
+                return instrument.isEmpty ? nil : .init(rawValue: instrument)
+            }
         }
     }
     

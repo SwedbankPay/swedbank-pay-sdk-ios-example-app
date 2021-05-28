@@ -204,7 +204,7 @@ class GeneralSettingsCell : SettingsCell {
     }
     
     private func refreshInstrumentModeLabel() {
-        instrumentLabel.text = PaymentViewModel.shared.instrument?.displayName ?? "Disabled"
+        instrumentLabel.text = PaymentViewModel.shared.instrument?.rawValue ?? "Disabled"
     }
     
     /// Sets the country in settings view
