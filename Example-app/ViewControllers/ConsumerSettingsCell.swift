@@ -51,20 +51,13 @@ class ConsumerSettingsCell : SettingsCell {
         refreshFields()
     }
     
-    private func refreshOpenState() {
+    override func refreshOpenState() {
         let isOpen = ConsumerViewModel.shared.consumerSettingsOpen
         openStateView.alpha = isOpen ? 1 : 0
         if isOpen {
             NSLayoutConstraint.activate(openStateConstraints)
         } else {
             NSLayoutConstraint.deactivate(openStateConstraints)
-        }
-    }
-    
-    override func refreshOpenStateAnimated() {
-        UIView.animate(withDuration: 0.2) {
-            self.refreshOpenState()
-            self.layoutIfNeeded()
         }
     }
     

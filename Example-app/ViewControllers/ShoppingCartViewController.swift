@@ -204,11 +204,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private enum SettingsRow : CaseIterable {
         case Consumer
         case General
+        case Style
         
         private var cellIdentifier: String {
             switch self {
             case .Consumer: return "ConsumerSettingsCell"
             case .General: return "GeneralSettingsCell"
+            case .Style: return "StyleSettingsCell"
             }
         }
         
@@ -218,6 +220,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 ConsumerViewModel.shared.consumerSettingsOpen = open
             case .General:
                 PaymentViewModel.shared.settingsOpen = open
+            case .Style:
+                PaymentViewModel.shared.styleOpen = open
             }
         }
         
