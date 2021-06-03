@@ -95,20 +95,13 @@ class GeneralSettingsCell : SettingsCell {
         generatePaymentTokenSwitch.isOn = PaymentViewModel.shared.generatePaymentToken
     }
     
-    private func refreshOpenState() {
+    override func refreshOpenState() {
         let isOpen = PaymentViewModel.shared.settingsOpen
         settingsContainerView.alpha = isOpen ? 1 : 0
         if isOpen {
             NSLayoutConstraint.activate(settingsOpenConstraints)
         } else {
             NSLayoutConstraint.deactivate(settingsOpenConstraints)
-        }
-    }
-    
-    override func refreshOpenStateAnimated() {
-        UIView.animate(withDuration: 0.2) {
-            self.refreshOpenState()
-            self.layoutIfNeeded()
         }
     }
     

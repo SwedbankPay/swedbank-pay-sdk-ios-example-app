@@ -13,6 +13,8 @@
 		A56998672417C3B000162D69 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56998662417C3B000162D69 /* SettingsCell.swift */; };
 		A58DAF0224041E0A004F9AF2 /* GeneralSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */; };
 		A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */; };
+		A5AD795B26664B7800DE62B1 /* StyleSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD795A26664B7800DE62B1 /* StyleSettingsCell.swift */; };
+		A5AD795F2666744700DE62B1 /* StyleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD795E2666744700DE62B1 /* StyleParser.swift */; };
 		A5BE1E6F25791BAB00336A79 /* EnvironmentOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */; };
 		A5BE1E7225791BC400336A79 /* EnvironmentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */; };
 		A5C24B5A257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */; };
@@ -74,6 +76,8 @@
 		A58DAF0124041E0A004F9AF2 /* GeneralSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsCell.swift; sourceTree = "<group>"; };
 		A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartHeaderCell.swift; sourceTree = "<group>"; };
 		A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-app.entitlements"; sourceTree = "<group>"; };
+		A5AD795A26664B7800DE62B1 /* StyleSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSettingsCell.swift; sourceTree = "<group>"; };
+		A5AD795E2666744700DE62B1 /* StyleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleParser.swift; sourceTree = "<group>"; };
 		A5BE1E6E25791BAB00336A79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = EnvironmentOptionView.xib; sourceTree = "<group>"; };
 		A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentOptionView.swift; sourceTree = "<group>"; };
 		A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerOwnedPaymentTokensViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A5AD795D2666743400DE62B1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5AD795E2666744700DE62B1 /* StyleParser.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C50CF6822374638E003F79DF /* Certificates */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +195,7 @@
 				C54D558123701F9D00E3B301 /* Resources */,
 				C54D557823701F9D00E3B301 /* ViewControllers */,
 				C54D556B23701F9D00E3B301 /* ViewModels */,
+				A5AD795D2666743400DE62B1 /* Utils */,
 				C54D558023701F9D00E3B301 /* Images.xcassets */,
 			);
 			path = "Example-app";
@@ -244,6 +257,7 @@
 				A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */,
 				A56998662417C3B000162D69 /* SettingsCell.swift */,
 				A569986424113FF100162D69 /* ConsumerSettingsCell.swift */,
+				A5AD795A26664B7800DE62B1 /* StyleSettingsCell.swift */,
 				C54D557C23701F9D00E3B301 /* PaymentViewController.swift */,
 				C54D557A23701F9D00E3B301 /* ResultViewController.swift */,
 				C54D557D23701F9D00E3B301 /* ProductTableViewCell.swift */,
@@ -437,6 +451,7 @@
 				A5C24B5D257E6A3300D832D9 /* PaymentTokenCell.swift in Sources */,
 				C54D559B23701F9D00E3B301 /* StoreViewModel.swift in Sources */,
 				C54D55A423701F9D00E3B301 /* PaymentViewController.swift in Sources */,
+				A5AD795F2666744700DE62B1 /* StyleParser.swift in Sources */,
 				A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */,
 				A56998672417C3B000162D69 /* SettingsCell.swift in Sources */,
 				C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */,
@@ -452,6 +467,7 @@
 				C50CF6B3237AB149003F79DF /* Country.swift in Sources */,
 				C50CF6AF237AB126003F79DF /* PaymentResult.swift in Sources */,
 				C54D559423701F9D00E3B301 /* UIColor+Extension.swift in Sources */,
+				A5AD795B26664B7800DE62B1 /* StyleSettingsCell.swift in Sources */,
 				C50CF6B7237AB15C003F79DF /* Product.swift in Sources */,
 				C54D55A723701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift in Sources */,
 				C54D55A623701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift in Sources */,

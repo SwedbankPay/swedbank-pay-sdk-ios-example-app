@@ -44,6 +44,7 @@ class PaymentViewController: UIViewController {
             paymentOrder: vm.paymentOrder
         )
         self.swedbankPaySDKController = swedbankPaySDKController
+        swedbankPaySDKController.paymentMenuStyle = vm.style
         swedbankPaySDKController.webNavigationLogger = {
             PaymentViewModel.shared.lastPaymentNavigationLog.append($0)
         }

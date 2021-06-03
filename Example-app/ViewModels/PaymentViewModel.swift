@@ -103,6 +103,17 @@ class PaymentViewModel {
     
     var subsite: String?
     
+    var styleOpen = false
+    var styleText = ""
+    var trimmedStyleText: String {
+        styleText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    var style: [String: Any]? {
+        let trimmed = trimmedStyleText
+        let empty = trimmed.isEmpty
+        return empty ? nil : StyleParser.parse(text: trimmed)
+    }
+    
     /// Configuration for SwedbankPaySDK
     var configuration: SwedbankPaySDK.MerchantBackendConfiguration {
         get {
