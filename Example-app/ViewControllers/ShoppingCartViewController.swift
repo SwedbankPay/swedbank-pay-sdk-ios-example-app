@@ -8,14 +8,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private var tableView: UITableView?
     @IBOutlet private weak var shoppingCartView: UIView!
     @IBOutlet private var instrumentPicker: UIPickerView!
-    @IBOutlet private var instrumentPickerVisibleConstraint: NSLayoutConstraint!
+    @IBOutlet private var instrumentPickerHiddenConstraint: NSLayoutConstraint!
+    @IBOutlet private var customInstrumentField: UITextField!
+    @IBOutlet private var customInstrumentFieldBottomConstraint: NSLayoutConstraint!
     
     private var countryObserver: NSObjectProtocol?
     private var instrumentPickerOpenObserver: NSObjectProtocol?
-    
+    private var keyboardWillShowObserver: NSObjectProtocol?
+    private var keyboardWillHideObserver: NSObjectProtocol?
+        
     deinit {
         countryObserver.map(NotificationCenter.default.removeObserver)
         instrumentPickerOpenObserver.map(NotificationCenter.default.removeObserver)
+        keyboardWillShowObserver.map(NotificationCenter.default.removeObserver)
+        keyboardWillHideObserver.map(NotificationCenter.default.removeObserver)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,17 +48,36 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self?.updateTableView()
         }
         
-        instrumentPicker.dataSource = self
-        instrumentPicker.delegate = self
-        initializeInstrumentPickerView(instrumentPicker)
+        hideOrShowInstrumentPickerIfNeeded(animated: false)
+        initializeInstrumentPicker()
         instrumentPickerOpenObserver = NotificationCenter.default.addObserver(
             forName: PaymentViewModel.InstrumentPickerOpenChangedNotification,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.hideOrShowInstrumentPickerIfNeeded()
+            self?.hideOrShowInstrumentPickerIfNeeded(animated: true)
         }
-        hideOrShowInstrumentPickerIfNeeded()
+        
+        keyboardWillShowObserver = NotificationCenter.default.addObserver(
+            forName: Self.keyboardWillShowNotification, object: nil, queue: .main
+        ) { [weak self] note in
+            if let self = self {
+                let frameValue = note.userInfo?[Self.keyboardFrameEndUserInfoKey] as? NSValue
+                let frame = frameValue?.cgRectValue
+                frame.map(self.updateCustomInstrumentFieldBottomConstraint(keyboardFrame:))
+            }
+        }
+        
+        keyboardWillHideObserver = NotificationCenter.default.addObserver(
+            forName: Self.keyboardWillHideNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            self?.updateCustomInstrumentFieldBottomConstraint(keyboardFrame: nil)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideOrShowInstrumentPickerIfNeeded(animated: false)
     }
     
     /// Animates the updates in tableView content
@@ -247,39 +272,91 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 }
 
 // MARK: Instrument picker
-private let instrumentOptions: [SwedbankPaySDK.Instrument?] = [
-    nil,
-    .creditCard,
-    .swish,
-    .invoice
-]
+
 extension ShoppingCartViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    private func initializeInstrumentPicker() {
+        instrumentPicker.dataSource = self
+        instrumentPicker.delegate = self
+        
+        instrumentPicker.selectRow(PaymentViewModel.shared.instrumentOptionIndex, inComponent: 0, animated: false)
+        customInstrumentField.text = PaymentViewModel.shared.customInstrument
+        updateCustomInstrumentFieldVisibility()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onCustomInstrumentFieldTextChanged),
+            name: UITextField.textDidChangeNotification,
+            object: customInstrumentField
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateCustomInstrumentFieldVisibility),
+            name: PaymentViewModel.InstrumentChangedNotification,
+            object: nil
+        )
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return instrumentOptions.count
+        return PaymentViewModel.shared.instrumentOptions.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return instrumentOptions[row]?.displayName ?? "Disabled"
+        return PaymentViewModel.shared.instrumentOptions[row].name
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        PaymentViewModel.shared.instrument = instrumentOptions[row]
+        PaymentViewModel.shared.instrumentOptionIndex = row
     }
-    private func initializeInstrumentPickerView(_ pickerView: UIPickerView) {
-        let instrument = PaymentViewModel.shared.instrument
-        let row = instrumentOptions.firstIndex(of: instrument) ?? 0
-        pickerView.selectRow(row, inComponent: 0, animated: false)
+    @objc private func onCustomInstrumentFieldTextChanged() {
+        if let text = customInstrumentField.text, !text.isEmpty {
+            PaymentViewModel.shared.customInstrument = text
+        } else {
+            PaymentViewModel.shared.customInstrument = nil
+        }
     }
-    private func hideOrShowInstrumentPickerIfNeeded() {
+    
+    @objc private func updateCustomInstrumentFieldVisibility() {
+        switch PaymentViewModel.shared.instrumentOption {
+        case .custom:
+            customInstrumentField.isHidden = false
+        default:
+            customInstrumentField.isHidden = true
+        }
+    }
+    
+    private func updateCustomInstrumentFieldBottomConstraint(keyboardFrame: CGRect?) {
+        if let keyboardFrame = keyboardFrame {
+            let view = self.view!
+            let keyboardFrameInView = view.convert(
+                keyboardFrame,
+                from: UIScreen.main.coordinateSpace
+            )
+            let keyboardTopInView = keyboardFrameInView.minY
+            let viewBottom = view.bounds.maxY
+            let keyboardHeightInView = viewBottom - keyboardTopInView
+            customInstrumentFieldBottomConstraint.constant = keyboardHeightInView
+        }
+        customInstrumentFieldBottomConstraint.isActive = keyboardFrame != nil
+    }
+    
+    private func hideOrShowInstrumentPickerIfNeeded(animated: Bool) {
         let visible = PaymentViewModel.shared.instrumentPickerOpen
-        UIView.animate(withDuration: animationDuration) {
-            self.instrumentPickerVisibleConstraint.isActive = visible
+        UIView.animate(withDuration: animated ? animationDuration : 0) {
+            self.instrumentPickerHiddenConstraint.isActive = !visible
             self.view.layoutIfNeeded()
         }
     }
     
     @IBAction func onCloseInstrumentPickerPressed() {
+        customInstrumentField.resignFirstResponder()
         PaymentViewModel.shared.instrumentPickerOpen = false
+    }
+}
+
+extension ShoppingCartViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

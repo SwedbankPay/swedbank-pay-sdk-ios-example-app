@@ -78,7 +78,7 @@ class PaymentViewController: UIViewController {
         let instrument = info?.instrument
         let hidden = instrument == nil
         instrumentArea.isHidden = hidden
-        instrumentLabel.text = instrument?.displayName
+        instrumentLabel.text = instrument?.rawValue
         instrumentPicker.reloadComponent(0)
         
         if instrument == nil {
@@ -181,7 +181,7 @@ extension PaymentViewController: SwedbankPaySDKDelegate {
     
     private func getSetInstrumentErrorMessage(instrument: SwedbankPaySDK.Instrument, error: Error) -> String {
         if case SwedbankPaySDK.MerchantBackendError.problem(.client) = error {
-            return "\(instrument.displayName) is not valid for this payment"
+            return "\(instrument.rawValue) is not valid for this payment"
         } else {
             return "Unable to change instrument"
         }
@@ -198,7 +198,7 @@ extension PaymentViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let instruments = swedbankPaySDKController?.currentPaymentOrder?.availableInstruments
-        return instruments?[row].displayName
+        return instruments?[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
