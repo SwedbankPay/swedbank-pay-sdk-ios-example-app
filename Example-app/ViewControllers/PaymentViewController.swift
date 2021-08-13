@@ -1,5 +1,6 @@
 import UIKit
 import SwedbankPaySDK
+import SwedbankPaySDKMerchantBackend
 
 private let animationDuration: TimeInterval = 0.5
 
