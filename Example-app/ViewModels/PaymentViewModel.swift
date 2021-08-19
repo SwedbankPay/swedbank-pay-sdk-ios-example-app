@@ -1,5 +1,6 @@
 import CoreServices
 import SwedbankPaySDK
+import SwedbankPaySDKMerchantBackend
 
 /// Singleton ViewModel for payment data
 class PaymentViewModel {

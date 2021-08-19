@@ -1,5 +1,7 @@
 import UIKit
 import SwedbankPaySDK
+import SwedbankPaySDKMerchantBackend
+
 
 class PayerOwnedPaymentTokensViewController : UIViewController {
     private var request: SwedbankPaySDKRequest? {

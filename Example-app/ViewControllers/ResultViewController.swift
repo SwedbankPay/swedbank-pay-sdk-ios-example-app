@@ -1,5 +1,6 @@
 import UIKit
 import SwedbankPaySDK
+import SwedbankPaySDKMerchantBackend
 
 class ResultViewController: UIViewController {
     
