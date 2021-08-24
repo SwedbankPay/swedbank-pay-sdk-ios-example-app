@@ -1,4 +1,5 @@
 import CoreServices
+import UIKit
 import SwedbankPaySDK
 import SwedbankPaySDKMerchantBackend
 
