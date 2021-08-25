@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
+        }
+      },
+      {
+        "package": "SwedbankPaySDK",
+        "repositoryURL": "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "cf8f00363450311f3e6b00476a015cc6e69e0c41",
+          "version": "2.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
