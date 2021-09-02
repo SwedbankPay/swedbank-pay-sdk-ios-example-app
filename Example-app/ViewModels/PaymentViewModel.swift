@@ -96,7 +96,12 @@ class PaymentViewModel {
         .disabled,
         .instrument(.creditCard),
         .instrument(.swish),
-        .instrument(.invoice),
+        .instrument(.vipps),
+        .instrument(.invoiceSE),
+        .instrument(.invoiceNO),
+        .instrument(.monthlyInvoiceSE),
+        .instrument(.carPay),
+        .instrument(.creditAccount),
         .custom
     ]
     var instrumentPickerOpen = false {
