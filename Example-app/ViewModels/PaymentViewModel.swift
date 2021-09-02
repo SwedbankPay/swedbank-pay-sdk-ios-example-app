@@ -101,12 +101,10 @@ class PaymentViewModel {
     ]
     var instrumentPickerOpen = false {
         didSet {
-            if oldValue != instrumentPickerOpen {
-                NotificationCenter.default.post(
-                    name: PaymentViewModel.InstrumentPickerOpenChangedNotification,
-                    object: self
-                )
-            }
+            NotificationCenter.default.post(
+                name: PaymentViewModel.InstrumentPickerOpenChangedNotification,
+                object: self
+            )
         }
     }
     var instrumentOptionIndex = 0 {

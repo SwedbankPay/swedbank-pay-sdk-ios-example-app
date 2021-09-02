@@ -110,6 +110,7 @@ class GeneralSettingsCell : SettingsCell {
     }
     
     @IBAction func closeSettingsButtonClick(_ sender: Any) {
+        PaymentViewModel.shared.instrumentPickerOpen = false
         onOpenOrCloseButtonPressed?(false)
     }
     
