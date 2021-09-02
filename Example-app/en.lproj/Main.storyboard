@@ -1482,8 +1482,15 @@
                                     <segue destination="ciC-0N-va5" kind="embed" identifier="EmbedShoppingCartTableView" id="fLw-xY-8bb"/>
                                 </connections>
                             </containerView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htn-ty-Seu" userLabel="Bottom safe area height">
+                                <rect key="frame" x="0.0" y="618" width="0.0" height="49"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="Pgi-Ss-VFd"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-6b-WUv" userLabel="Instrument picker container">
-                                <rect key="frame" x="0.0" y="401" width="375" height="266"/>
+                                <rect key="frame" x="0.0" y="667" width="375" height="315"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCp-ZU-u8c">
                                         <rect key="frame" x="328" y="10" width="39" height="30"/>
@@ -1503,19 +1510,27 @@
                                             <outlet property="delegate" destination="S3j-x0-LgE" id="yFo-t7-2VZ"/>
                                         </connections>
                                     </textField>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWf-yZ-tMk" userLabel="Bottom safe area spacer">
+                                        <rect key="frame" x="0.0" y="266" width="0.0" height="49"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" id="Kmv-Oh-JWo"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <viewLayoutGuide key="safeArea" id="rp9-SV-gOr"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Gdt-As-0RT" firstAttribute="bottom" secondItem="rp9-SV-gOr" secondAttribute="bottom" priority="740" id="0ZB-hW-2am"/>
                                     <constraint firstItem="BCp-ZU-u8c" firstAttribute="leading" secondItem="Fgf-wx-eva" secondAttribute="trailing" constant="8" symbolic="YES" id="5fe-Dw-zCS"/>
                                     <constraint firstItem="Gdt-As-0RT" firstAttribute="leading" secondItem="mrY-6b-WUv" secondAttribute="leading" id="6gN-cF-jp4"/>
                                     <constraint firstItem="Fgf-wx-eva" firstAttribute="leading" secondItem="mrY-6b-WUv" secondAttribute="leading" constant="20" symbolic="YES" id="JUe-jb-Lbc"/>
                                     <constraint firstItem="Fgf-wx-eva" firstAttribute="top" secondItem="mrY-6b-WUv" secondAttribute="top" constant="8" id="K8i-4d-sNr"/>
                                     <constraint firstItem="BCp-ZU-u8c" firstAttribute="trailing" secondItem="mrY-6b-WUv" secondAttribute="trailingMargin" id="Pl5-Tw-uAL"/>
                                     <constraint firstItem="Gdt-As-0RT" firstAttribute="top" secondItem="Fgf-wx-eva" secondAttribute="bottom" constant="8" symbolic="YES" id="Psy-hK-jUU"/>
+                                    <constraint firstItem="WWf-yZ-tMk" firstAttribute="leading" secondItem="mrY-6b-WUv" secondAttribute="leading" id="a1k-gH-5pF"/>
+                                    <constraint firstItem="WWf-yZ-tMk" firstAttribute="top" secondItem="Gdt-As-0RT" secondAttribute="bottom" id="enU-iF-fgU"/>
                                     <constraint firstItem="BCp-ZU-u8c" firstAttribute="centerY" secondItem="Fgf-wx-eva" secondAttribute="centerY" id="fdz-yT-LAo"/>
                                     <constraint firstAttribute="trailing" secondItem="Gdt-As-0RT" secondAttribute="trailing" id="s5c-uD-JKH"/>
+                                    <constraint firstAttribute="bottom" secondItem="WWf-yZ-tMk" secondAttribute="bottom" id="xUe-fr-JLq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1525,25 +1540,32 @@
                             <constraint firstItem="cih-AD-yNN" firstAttribute="top" secondItem="p83-eL-SHy" secondAttribute="top" id="2U2-2v-y5c"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fgf-wx-eva" secondAttribute="bottom" priority="750" id="6av-wM-AJR"/>
                             <constraint firstItem="tec-rK-ZTH" firstAttribute="trailing" secondItem="cih-AD-yNN" secondAttribute="trailing" constant="15" id="6u4-F6-ygd"/>
+                            <constraint firstItem="htn-ty-Seu" firstAttribute="leading" secondItem="p83-eL-SHy" secondAttribute="leading" id="7BS-fR-Y2k"/>
                             <constraint firstItem="cih-AD-yNN" firstAttribute="leading" secondItem="tec-rK-ZTH" secondAttribute="leading" constant="15" id="BNO-kp-AQ3"/>
+                            <constraint firstItem="mrY-6b-WUv" firstAttribute="bottom" secondItem="p83-eL-SHy" secondAttribute="bottom" id="DRL-BR-NmP"/>
+                            <constraint firstItem="htn-ty-Seu" firstAttribute="top" secondItem="tec-rK-ZTH" secondAttribute="bottom" id="Hrt-2Q-M7f"/>
                             <constraint firstItem="mrY-6b-WUv" firstAttribute="top" secondItem="p83-eL-SHy" secondAttribute="bottom" id="OW8-jR-ynb"/>
                             <constraint firstAttribute="bottom" secondItem="cih-AD-yNN" secondAttribute="bottom" id="P09-tZ-1G0"/>
-                            <constraint firstItem="mrY-6b-WUv" firstAttribute="leading" secondItem="tec-rK-ZTH" secondAttribute="leading" id="cw4-De-8iJ"/>
-                            <constraint firstAttribute="bottom" secondItem="mrY-6b-WUv" secondAttribute="bottom" priority="260" id="pji-ma-THR"/>
-                            <constraint firstItem="tec-rK-ZTH" firstAttribute="trailing" secondItem="mrY-6b-WUv" secondAttribute="trailing" id="qki-lT-35k"/>
+                            <constraint firstAttribute="bottom" secondItem="htn-ty-Seu" secondAttribute="bottom" id="cn1-1w-2N5"/>
+                            <constraint firstItem="mrY-6b-WUv" firstAttribute="leading" secondItem="p83-eL-SHy" secondAttribute="leading" id="cw4-De-8iJ"/>
+                            <constraint firstAttribute="trailing" secondItem="mrY-6b-WUv" secondAttribute="trailing" id="qki-lT-35k"/>
+                            <constraint firstItem="WWf-yZ-tMk" firstAttribute="height" secondItem="htn-ty-Seu" secondAttribute="height" id="rCf-0W-8Ed"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="OW8-jR-ynb"/>
+                                <exclude reference="DRL-BR-NmP"/>
                                 <exclude reference="6av-wM-AJR"/>
                             </mask>
                         </variation>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="customInstrumentField" destination="Fgf-wx-eva" id="m6P-YC-5Lq"/>
                         <outlet property="customInstrumentFieldBottomConstraint" destination="6av-wM-AJR" id="lOX-jB-CbG"/>
                         <outlet property="instrumentPicker" destination="Gdt-As-0RT" id="4IB-d2-a6p"/>
+                        <outlet property="instrumentPickerContainer" destination="mrY-6b-WUv" id="t4c-GF-r0k"/>
                         <outlet property="instrumentPickerHiddenConstraint" destination="OW8-jR-ynb" id="t7G-iV-Wuf"/>
+                        <outlet property="instrumentPickerVisibleConstraint" destination="DRL-BR-NmP" id="xTS-OI-UtO"/>
                         <outlet property="shoppingCartView" destination="cih-AD-yNN" id="1dS-ci-vZw"/>
                         <segue destination="JiU-Cp-3Yw" kind="presentation" identifier="presentGetTokens" id="0Jp-eB-X6r"/>
                     </connections>

@@ -7,7 +7,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     private var tableView: UITableView?
     @IBOutlet private weak var shoppingCartView: UIView!
+    @IBOutlet private var instrumentPickerContainer: UIView!
     @IBOutlet private var instrumentPicker: UIPickerView!
+    @IBOutlet private var instrumentPickerVisibleConstraint: NSLayoutConstraint!
     @IBOutlet private var instrumentPickerHiddenConstraint: NSLayoutConstraint!
     @IBOutlet private var customInstrumentField: UITextField!
     @IBOutlet private var customInstrumentFieldBottomConstraint: NSLayoutConstraint!
@@ -188,6 +190,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         private func headerCell(_ viewController: ShoppingCartViewController, _ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartHeaderCell", for: indexPath) as! ShoppingCartHeaderCell
             cell.onClosePressed = { [weak viewController] in
+                PaymentViewModel.shared.instrumentPickerOpen = false
                 viewController?.hideShoppingCart()
             }
             return cell
@@ -342,8 +345,12 @@ extension ShoppingCartViewController: UIPickerViewDataSource, UIPickerViewDelega
     
     private func hideOrShowInstrumentPickerIfNeeded(animated: Bool) {
         let visible = PaymentViewModel.shared.instrumentPickerOpen
+        instrumentPickerContainer.isUserInteractionEnabled = visible
+        let activeConstraint = visible ? instrumentPickerVisibleConstraint : instrumentPickerHiddenConstraint
+        let inactiveConstraint = visible ? instrumentPickerHiddenConstraint : instrumentPickerVisibleConstraint
         UIView.animate(withDuration: animated ? animationDuration : 0) {
-            self.instrumentPickerHiddenConstraint.isActive = !visible
+            inactiveConstraint?.isActive = false
+            activeConstraint?.isActive = true
             self.view.layoutIfNeeded()
         }
     }
