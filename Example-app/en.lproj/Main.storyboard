@@ -104,6 +104,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFg-41-1hl">
                                         <rect key="frame" x="298" y="0.0" width="77" height="46"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="viewCartButton" label="View cart"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="77" id="R6f-WW-wEp"/>
                                             <constraint firstAttribute="height" constant="46" id="kyI-OW-TKn"/>
@@ -557,6 +558,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rWM-ms-CVN">
                                                     <rect key="frame" x="50" y="162.5" width="275" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="checkoutButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="nlM-iN-yZB"/>
                                                     </constraints>
