@@ -1,0 +1,12 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests
+        run: xcodebuild -scheme Example-app -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=latest' test

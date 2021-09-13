@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -93,6 +93,7 @@
                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykA-eR-ex7">
                     <rect key="frame" x="154.5" y="321" width="105" height="48"/>
                     <color key="backgroundColor" red="0.76862745098039209" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <accessibility key="accessibilityConfiguration" identifier="removeFromCartButton" label="Remove from cart"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Uzw-Zg-Khj"/>
                     </constraints>
@@ -112,6 +113,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chB-1S-fQW">
                     <rect key="frame" x="183" y="321" width="48" height="48"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration" identifier="addToCartButton" label="Add to cart"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="fh4-wQ-wQ3"/>
                         <constraint firstAttribute="width" constant="48" id="vmV-RJ-K2D"/>
@@ -128,6 +130,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <accessibility key="accessibilityConfiguration" identifier="productTableViewCell"/>
             <constraints>
                 <constraint firstItem="g0b-mN-w3R" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2w0-4M-yFS"/>
                 <constraint firstItem="chB-1S-fQW" firstAttribute="top" secondItem="E3Q-Jt-qec" secondAttribute="bottom" constant="15" id="4Qv-XS-pfu"/>
