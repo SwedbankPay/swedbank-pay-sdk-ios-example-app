@@ -76,7 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6332462D26EF820C00FB705A /* run_tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = run_tests.yml; sourceTree = "<group>"; };
+		63B2D4FE26F4AAE4001D02B3 /* run_tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = run_tests.yml; sourceTree = "<group>"; };
+		63B2D4FF26F4AAE4001D02B3 /* dependabot.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = dependabot.yml; sourceTree = "<group>"; };
 		63E65DE226EB562C002D116E /* Example-app-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-app-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E65DE426EB562C002D116E /* Example_app_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_app_UITests.swift; sourceTree = "<group>"; };
 		63E65DE626EB562C002D116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,12 +159,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6332462C26EF820C00FB705A /* .github/workflows */ = {
+		6332462C26EF820C00FB705A /* .github */ = {
 			isa = PBXGroup;
 			children = (
-				6332462D26EF820C00FB705A /* run_tests.yml */,
+				63B2D4FF26F4AAE4001D02B3 /* dependabot.yml */,
+				63B2D4FD26F4AAE4001D02B3 /* workflows */,
 			);
-			path = .github/workflows;
+			path = .github;
+			sourceTree = "<group>";
+		};
+		63B2D4FD26F4AAE4001D02B3 /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				63B2D4FE26F4AAE4001D02B3 /* run_tests.yml */,
+			);
+			path = workflows;
 			sourceTree = "<group>";
 		};
 		63E65DE326EB562C002D116E /* Example-app-UITests */ = {
@@ -193,7 +203,7 @@
 		C54D554323701E6B00E3B301 = {
 			isa = PBXGroup;
 			children = (
-				6332462C26EF820C00FB705A /* .github/workflows */,
+				6332462C26EF820C00FB705A /* .github */,
 				C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */,
 				C54D554E23701E6B00E3B301 /* Example-app */,
 				63E65DE326EB562C002D116E /* Example-app-UITests */,
