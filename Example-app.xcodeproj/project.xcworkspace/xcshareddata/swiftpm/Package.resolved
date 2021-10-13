@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
-          "version": "5.4.3"
+          "revision": "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
+          "version": "5.4.4"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git",
         "state": {
           "branch": null,
-          "revision": "cf8f00363450311f3e6b00476a015cc6e69e0c41",
-          "version": "2.1.0"
+          "revision": "7951b90620d7ed3a6f4895b8a6494c5d88a94763",
+          "version": "2.2.2"
         }
       }
     ]
