@@ -9,6 +9,8 @@ private extension PaymentViewModel.Environment {
             return "Ext. Integration"
         case .PaymentPagesExternalIntegration:
             return "PaymentPages (EI)"
+        case .BadRedirectDemo:
+            return "Bad Redirect"
         }
     }
 }
