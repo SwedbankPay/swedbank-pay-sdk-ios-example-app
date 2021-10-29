@@ -19,6 +19,7 @@ class PaymentViewModel {
         case Stage
         case ExternalIntegration
         case PaymentPagesExternalIntegration
+        case BadRedirectDemo
     }
     
     enum InstrumentOption {
@@ -48,6 +49,8 @@ class PaymentViewModel {
             return URL(string: "https://payex-merchant-samples.ey.r.appspot.com/")!
         case .PaymentPagesExternalIntegration:
             return URL(string: "https://pp-dot-payex-merchant-samples.ey.r.appspot.com/")!
+        case .BadRedirectDemo:
+            return URL(string: "https://us-central1-qvik-swedbankpay-badredirect.cloudfunctions.net/api/")!
         }
     }
     
