@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git",
         "state": {
           "branch": null,
-          "revision": "ac61321e6cb40b90c6bc1b64c36a49722bdcfdad",
-          "version": "2.3.0"
+          "revision": "ba2e9c4c6a3f2780c9b18e60fadb531f8c77d270",
+          "version": "2.4.0"
         }
       }
     ]
