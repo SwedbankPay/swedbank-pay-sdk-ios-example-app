@@ -724,6 +724,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,6 +748,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
