@@ -27,14 +27,14 @@
 			<string>com.swedbank.swedbank-pay-example.paymentcallback</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>swedbankexample</string>
+				<string>$(SWEDBANKPAY_SDK_CALLBACK_SCHEME)</string>
 			</array>
 			<key>com.swedbank.SwedbankPaySDK.callback</key>
 			<true/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>

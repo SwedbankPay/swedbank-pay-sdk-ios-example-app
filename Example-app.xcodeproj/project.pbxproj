@@ -76,6 +76,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6321C1A9274F8279009FC005 /* deploy_new_version.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = deploy_new_version.yml; sourceTree = "<group>"; };
+		639094BB27550F8F00B8A6CB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		639094BE2755189100B8A6CB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		639094BF27552F2E00B8A6CB /* deploy_new_version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deploy_new_version.swift; sourceTree = "<group>"; };
+		639094C027552FB500B8A6CB /* environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = environment.swift; sourceTree = "<group>"; };
+		639094C12755314B00B8A6CB /* temporary_directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temporary_directory.swift; sourceTree = "<group>"; };
+		639094C22755329200B8A6CB /* provisioning_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provisioning_profile.swift; sourceTree = "<group>"; };
+		639094C3275532C600B8A6CB /* security_check_success.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = security_check_success.swift; sourceTree = "<group>"; };
+		639094C42755342300B8A6CB /* export_options_plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = export_options_plist.swift; sourceTree = "<group>"; };
+		639094C5275534CF00B8A6CB /* app_store_connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_store_connect.swift; sourceTree = "<group>"; };
+		639094C62755389500B8A6CB /* signing_keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signing_keychain.swift; sourceTree = "<group>"; };
+		639094C72755403300B8A6CB /* wwdr_certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wwdr_certificate.swift; sourceTree = "<group>"; };
+		639094C82755406000B8A6CB /* url_request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = url_request.swift; sourceTree = "<group>"; };
+		639094C92755423D00B8A6CB /* import_identity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = import_identity.swift; sourceTree = "<group>"; };
+		639094CA2755440700B8A6CB /* run_command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = run_command.swift; sourceTree = "<group>"; };
+		639094CB275606AB00B8A6CB /* build_xcode_project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = build_xcode_project.swift; sourceTree = "<group>"; };
 		63B2D4FE26F4AAE4001D02B3 /* run_tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = run_tests.yml; sourceTree = "<group>"; };
 		63B2D4FF26F4AAE4001D02B3 /* dependabot.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = dependabot.yml; sourceTree = "<group>"; };
 		63E65DE226EB562C002D116E /* Example-app-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-app-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,9 +184,48 @@
 			path = .github;
 			sourceTree = "<group>";
 		};
+		639094BA27550F8F00B8A6CB /* deploy_new_version */ = {
+			isa = PBXGroup;
+			children = (
+				639094BB27550F8F00B8A6CB /* Package.swift */,
+				639094BC27550F8F00B8A6CB /* Sources */,
+			);
+			path = deploy_new_version;
+			sourceTree = "<group>";
+		};
+		639094BC27550F8F00B8A6CB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				639094BD27550F8F00B8A6CB /* deploy */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		639094BD27550F8F00B8A6CB /* deploy */ = {
+			isa = PBXGroup;
+			children = (
+				639094BE2755189100B8A6CB /* main.swift */,
+				639094C027552FB500B8A6CB /* environment.swift */,
+				639094BF27552F2E00B8A6CB /* deploy_new_version.swift */,
+				639094C82755406000B8A6CB /* url_request.swift */,
+				639094C12755314B00B8A6CB /* temporary_directory.swift */,
+				639094C3275532C600B8A6CB /* security_check_success.swift */,
+				639094C22755329200B8A6CB /* provisioning_profile.swift */,
+				639094C42755342300B8A6CB /* export_options_plist.swift */,
+				639094C5275534CF00B8A6CB /* app_store_connect.swift */,
+				639094C62755389500B8A6CB /* signing_keychain.swift */,
+				639094C72755403300B8A6CB /* wwdr_certificate.swift */,
+				639094C92755423D00B8A6CB /* import_identity.swift */,
+				639094CA2755440700B8A6CB /* run_command.swift */,
+				639094CB275606AB00B8A6CB /* build_xcode_project.swift */,
+			);
+			path = deploy;
+			sourceTree = "<group>";
+		};
 		63B2D4FD26F4AAE4001D02B3 /* workflows */ = {
 			isa = PBXGroup;
 			children = (
+				6321C1A9274F8279009FC005 /* deploy_new_version.yml */,
 				63B2D4FE26F4AAE4001D02B3 /* run_tests.yml */,
 			);
 			path = workflows;
@@ -203,6 +258,7 @@
 		C54D554323701E6B00E3B301 = {
 			isa = PBXGroup;
 			children = (
+				639094BA27550F8F00B8A6CB /* deploy_new_version */,
 				6332462C26EF820C00FB705A /* .github */,
 				C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */,
 				C54D554E23701E6B00E3B301 /* Example-app */,
@@ -626,6 +682,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -686,6 +743,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -724,7 +782,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SWEDBANKPAY_SDK_CALLBACK_SCHEME = swedbankexample;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -748,7 +806,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp";
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SWEDBANKPAY_SDK_CALLBACK_SCHEME = swedbankexample;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

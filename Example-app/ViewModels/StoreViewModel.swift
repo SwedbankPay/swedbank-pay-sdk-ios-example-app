@@ -1,5 +1,19 @@
 import UIKit
 
+private func price(sek: Int, nok: Int) -> [Currency: Int] {
+    #if PROD_DEMO
+    return [
+        Currency.SEK: 100,
+        Currency.NOK: 100
+    ]
+    #else
+    return [
+        Currency.SEK: sek,
+        Currency.NOK: nok
+    ]
+    #endif
+}
+
 /// Singleton ViewModel for store data
 class StoreViewModel {
     
@@ -17,10 +31,10 @@ class StoreViewModel {
             id: NSUUID().uuidString.lowercased(),
             name: "Pink Sneakers",
             image: "Product-Pink-Sneakers",
-            price: [
-                Currency.SEK: 159900,
-                Currency.NOK: 148100
-            ],
+            price: price(
+                sek: 159900,
+                nok: 148100
+            ),
             vat: 25,
             highlightHexColor: 0xFFCFCF
         ),
@@ -29,10 +43,10 @@ class StoreViewModel {
             id: NSUUID().uuidString.lowercased(),
             name: "Red Skate Shoes",
             image: "Product-Red-Skate-Shoes",
-            price: [
-                Currency.SEK: 99900,
-                Currency.NOK: 92500
-            ],
+            price: price(
+                sek: 99900,
+                nok: 92500
+            ),
             vat: 25,
             highlightHexColor: 0x9A2D3A
         ),
@@ -41,10 +55,10 @@ class StoreViewModel {
             id: NSUUID().uuidString.lowercased(),
             name: "Red Sneakers",
             image: "Product-Red-Sneakers",
-            price: [
-                Currency.SEK: 189900,
-                Currency.NOK: 176000
-            ],
+            price: price(
+                sek: 189900,
+                nok: 176000
+            ),
             vat: 25,
             highlightHexColor: 0xF0312D
         ),
@@ -53,10 +67,10 @@ class StoreViewModel {
             id: NSUUID().uuidString.lowercased(),
             name: "Yellow Skate Shoes",
             image: "Product-Yellow-Skate-Shoes",
-            price: [
-                Currency.SEK: 89900,
-                Currency.NOK: 83300
-            ],
+            price: price(
+                sek: 89900,
+                nok: 83300
+            ),
             vat: 25,
             highlightHexColor: 0xF4B800
         ),
@@ -65,20 +79,29 @@ class StoreViewModel {
             id: NSUUID().uuidString.lowercased(),
             name: "Grey Sneakers",
             image: "Product-Grey-Sneakers",
-            price: [
-                Currency.SEK: 249900,
-                Currency.NOK: 231600
-            ],
+            price: price(
+                sek: 249900,
+                nok: 231600
+            ),
             vat: 25,
             highlightHexColor: 0xD0D0D0
         )
     ]
     
     /// Example shipping cost values for both countries
-    let shippingCost: Dictionary<Currency, Int> = [
-        Currency.NOK: 12000,
-        Currency.SEK: 12700
-    ]
+    var shippingCost: [Currency: Int] {
+        #if PROD_DEMO
+        return [
+            Currency.NOK: 0,
+            Currency.SEK: 0
+        ]
+        #else
+        return [
+            Currency.NOK: 12000,
+            Currency.SEK: 12700
+        ]
+        #endif
+    }
     
     // MARK: Shopping Basket
     

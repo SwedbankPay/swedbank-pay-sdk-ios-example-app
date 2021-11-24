@@ -17,9 +17,12 @@ class ConsumerViewModel {
     
     private init() {}
     
-    /// In this example the default `Consumer` is unidentified Norwegian
     private var consumerType: ConsumerType = .Anonymous
+    #if PROD_DEMO
+    private var country: Country = .Sweden
+    #else
     private var country: Country = .Norway
+    #endif
     
     var consumerSettingsOpen = false
     
