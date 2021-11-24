@@ -1,0 +1,10 @@
+name: Deploy
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - run: echo Auto-deploy is being developed!
