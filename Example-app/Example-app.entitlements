@@ -7,10 +7,7 @@
 		<string>applinks:payex-merchant-samples.ey.r.appspot.com</string>
 		<string>applinks:stage-dot-payex-merchant-samples.ey.r.appspot.com</string>
 		<string>applinks:pp-dot-payex-merchant-samples.ey.r.appspot.com</string>
+		<string>applinks:payex-merchant-samples-prod.appspot.com</string>
 	</array>
-	<key>com.apple.security.app-sandbox</key>
-	<true/>
-	<key>com.apple.security.network.client</key>
-	<true/>
 </dict>
 </plist>

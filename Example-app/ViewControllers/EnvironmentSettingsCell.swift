@@ -11,6 +11,10 @@ private extension PaymentViewModel.Environment {
             return "PaymentPages (EI)"
         case .BadRedirectDemo:
             return "Bad Redirect"
+        #if PROD_DEMO
+        case .Prod:
+            return "Prod"
+        #endif
         }
     }
 }
