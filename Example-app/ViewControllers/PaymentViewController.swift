@@ -10,6 +10,7 @@ class PaymentViewController: UIViewController {
     
     /// UIView to instantiate the SwedbankPaySDKController into; SwedbankPaySDKController will instantiate WKWebView
     @IBOutlet private weak var webViewContainer: UIView!
+    @IBOutlet private var topStackView: UIStackView!
     @IBOutlet private var instrumentArea: UIView!
     @IBOutlet private var instrumentLabel: UILabel!
     @IBOutlet private var instrumentPicker: UIPickerView!
@@ -39,11 +40,15 @@ class PaymentViewController: UIViewController {
         navigationController?.navigationBar.alpha = 1
 
         let vm = PaymentViewModel.shared
-        let swedbankPaySDKController = SwedbankPaySDKController.init(
-            configuration: vm.configuration,
-            consumer: vm.consumerData,
-            paymentOrder: vm.paymentOrder
-        )
+        SwedbankPaySDKController.defaultConfiguration = vm.configuration
+        let swedbankPaySDKController = SwedbankPaySDKController()
+        if vm.consumerData == nil {
+            //For now anonymous is V3 since identification does not exist in v3 PaymentsOnly
+            swedbankPaySDKController.startPayment(paymentOrder: vm.paymentOrder, userData: nil)
+            
+        } else {
+            swedbankPaySDKController.startPayment(withCheckin: vm.consumerData != nil, consumer: vm.consumerData, paymentOrder: vm.paymentOrder, userData: nil)
+        }
         self.swedbankPaySDKController = swedbankPaySDKController
         swedbankPaySDKController.paymentMenuStyle = vm.style
         swedbankPaySDKController.webNavigationLogger = {
@@ -73,11 +78,28 @@ class PaymentViewController: UIViewController {
         updateInstrumentUI()
     }
     
+    // Note that you can't update instruments in payments only, only restrict when creating.
     private func updateInstrumentUI() {
+        /*
+         
+        if topStackView.arrangedSubviews.first != shippingView {
+            shippingView.translatesAutoresizingMaskIntoConstraints = false
+            shippingView.backgroundColor = .green
+            topStackView.insertArrangedSubview(shippingView, at: 0)
+            
+            NSLayoutConstraint.activate([
+                shippingView.widthAnchor.constraint(equalTo: shippingView.widthAnchor),
+                shippingView.heightAnchor.constraint(equalToConstant: 100),
+            ])
+        }
+        */
         let showingPayment = swedbankPaySDKController?.showingPaymentOrder == true
         let info = showingPayment ? swedbankPaySDKController?.currentPaymentOrder : nil
         let instrument = info?.instrument
         let hidden = instrument == nil
+        if hidden && showingPayment {
+            // Note that you can't update instruments in payments only, only restrict when creating. 
+        }
         instrumentArea.isHidden = hidden
         instrumentLabel.text = instrument?.rawValue
         instrumentPicker.reloadComponent(0)
@@ -128,6 +150,19 @@ class PaymentViewController: UIViewController {
         }
     }
     
+    func confirmShipping() {
+        guard let controller = swedbankPaySDKController else { return }
+        if let index = indexOfInstrumentToSet,
+           let instruments = controller.currentPaymentOrder?.availableInstruments {
+            let instrument = instruments[index]
+            controller.updatePaymentOrder(updateInfo: instrument)
+        } else {
+            // no instrument
+            controller.updatePaymentOrder(updateInfo: "")
+        }
+        updateUpdatingUI()
+    }
+    
     private func setInstrumentPickerVisible(_ visible: Bool, animated: Bool) {
         UIView.animate(withDuration: animated ? animationDuration : 0) {
             self.instrumentPickerVisibleConstraint.isActive = visible
@@ -138,7 +173,12 @@ class PaymentViewController: UIViewController {
 
 /// Need to conform to SwedbankPaySDKDelegate protocol
 extension PaymentViewController: SwedbankPaySDKDelegate {
-    func paymentOrderDidShow(info: SwedbankPaySDK.ViewPaymentOrderInfo) {
+    
+    func shippingAddressIsKnown() {
+        updateInstrumentUI()
+    }
+    
+    func paymentOrderDidShow(info: SwedbankPaySDK.ViewPaymentLinkInfo) {
         updateInstrumentUI()
     }
     

@@ -4,7 +4,7 @@ private let defaultTimeout = 60.0
 private let paymentCreationTimeout = 300.0
 private let completionTimeout = 300.0
 
-private let cardNumber = "4925000000000004"
+private let cardNumber = "4581097032723517" //or 4581099940323133 3d secure: "5226612199533406"
 private let expiryDate = "1230"
 private let cvv = "111"
 
@@ -24,6 +24,20 @@ class Example_app_UITests: XCTestCase {
     
     private var externalIntegrationEnvironmentButton: XCUIElement {
         app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
+    }
+    private var cogButton: XCUIElement {
+        app.buttons.matching(identifier: "CogButton").firstMatch
+    }
+    private var instrumentModeButton: XCUIElement {
+        let button = XCUIApplication().buttons["InstrumentModeButton"]
+        //app.staticTexts.element(matching: .init(format: "label = 'InstrumentModeButton'"))
+        return button
+    }
+    private var consumerButton: XCUIElement {
+        app.staticTexts.element(matching: .init(format: "label = 'Consumer'"))
+    }
+    private var checkinV3Button: XCUIElement {
+        app.staticTexts.element(matching: .init(format: "label = 'Checkin V3'"))
     }
     private var checkoutButton: XCUIElement {
         app.buttons.matching(identifier: "checkoutButton").firstMatch
@@ -82,7 +96,50 @@ class Example_app_UITests: XCTestCase {
         app.terminate()
     }
     
-    func testCardPayment() throws {
+    func testV3Payment() throws {
+        waitAndAssertExists(addToCartButton, "Add to cart button not found")
+        addToCartButton.tap()
+        XCTAssert(openCartButton.exists, "View card button not found")
+        openCartButton.tap()
+        
+        app.swipeUp()
+        waitAndAssertExists(consumerButton, "Consumer button not found")
+        consumerButton.tap()
+        
+        waitAndAssertExists(externalIntegrationEnvironmentButton, "Environment button not found")
+        externalIntegrationEnvironmentButton.tap()
+        /*
+        app.swipeUp()
+        waitAndAssertExists(checkinV3Button, "Checkin V3 button not found")
+        checkinV3Button.tap()
+         */
+        
+        waitAndAssertExists(webView, "Web view not found")
+        
+        try performPayment()
+        
+        //while building..
+        waitAndAssertExists(timeout: 900000000, completeText, "Payment did not complete")
+    }
+    
+    func performPayment() throws {
+        
+        waitAndAssertExists(timeout: paymentCreationTimeout, cardOption, "Card option not found")
+        
+        XCTAssert(tapCardOptionAndWaitForPanInput(), "PAN input not found")
+        input(to: panInput, text: cardNumber)
+        
+        waitAndAssertExists(expiryInput, "Expiry date input not found")
+        input(to: expiryInput, text: expiryDate)
+        
+        waitAndAssertExists(cvvInput, "CVV input not found")
+        input(to: cvvInput, text: cvv)
+        
+        waitAndAssertExists(payButton, "Pay button not found")
+        payButton.tap()
+    }
+    
+    func testV2CardPayment() throws {
         waitAndAssertExists(addToCartButton, "Add to cart button not found")
         addToCartButton.tap()
         waitAndAssertExists(removeFromCartButton, "Remove from cart button not found")

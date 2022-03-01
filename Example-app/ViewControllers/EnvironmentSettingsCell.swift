@@ -31,6 +31,8 @@ class EnvironmentSettingsCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        //Default to Ext. Integration
+        PaymentViewModel.shared.environment = .ExternalIntegration
         addOptionViews()
         refresh()
     }

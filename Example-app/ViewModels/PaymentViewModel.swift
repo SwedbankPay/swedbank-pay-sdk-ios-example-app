@@ -183,6 +183,10 @@ class PaymentViewModel {
         }
     }
     
+    func checkinV3() -> Bool {
+        ConsumerViewModel.shared.checkinV3()
+    }
+    
     var instrument: SwedbankPaySDK.Instrument? {
         get {
             switch instrumentOption {
@@ -198,7 +202,7 @@ class PaymentViewModel {
     private var payer: SwedbankPaySDK.PaymentOrderPayer? {
         get {
             if let payerReference = payerReference {
-                return .init(payerReference: payerReference)
+                return .init(msisdn: nil, payerReference: payerReference)
             } else {
                 return ConsumerViewModel.shared.getPaymentOrderPayer()
             }
@@ -231,7 +235,7 @@ class PaymentViewModel {
             let payeeInfo = SwedbankPaySDK.PayeeInfo.init(
                 subsite: subsite
             )
-                        
+            
             return SwedbankPaySDK.PaymentOrder.init(
                 currency: country.currency.rawValue,
                 amount: amount,
