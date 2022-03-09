@@ -26,12 +26,13 @@ class ConsumerSettingsCell : SettingsCell {
     private var allUnderlines: [UIView] {
         return [anonymousUnderline, checkinUnderline, prefillUnderline, checkinUnderlineV3]
     }
+    
     private var selectedOption: (UILabel, UIView) {
         switch ConsumerViewModel.shared.getConsumerType() {
-        case .Anonymous: return (anonymousLabel, anonymousUnderline)
-        case .Checkin: return (checkinLabel, checkinUnderline)
-        case .CheckinV3: return (checkinLabelV3, checkinUnderlineV3)
-        case .Prefill: return (prefillLabel, prefillUnderline)
+            case .Anonymous: return (anonymousLabel, anonymousUnderline)
+            case .Checkin: return (checkinLabel, checkinUnderline)
+            case .CheckinV3: return (checkinLabelV3, checkinUnderlineV3)
+            case .Prefill: return (prefillLabel, prefillUnderline)
         }
     }
     

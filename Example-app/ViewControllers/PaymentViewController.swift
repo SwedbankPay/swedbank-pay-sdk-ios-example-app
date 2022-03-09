@@ -97,9 +97,7 @@ class PaymentViewController: UIViewController {
         let info = showingPayment ? swedbankPaySDKController?.currentPaymentOrder : nil
         let instrument = info?.instrument
         let hidden = instrument == nil
-        if hidden && showingPayment {
-            // Note that you can't update instruments in payments only, only restrict when creating. 
-        }
+        
         instrumentArea.isHidden = hidden
         instrumentLabel.text = instrument?.rawValue
         instrumentPicker.reloadComponent(0)
