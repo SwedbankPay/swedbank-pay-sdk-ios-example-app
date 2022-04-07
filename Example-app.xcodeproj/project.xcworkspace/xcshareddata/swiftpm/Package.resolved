@@ -1,25 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
-          "version": "5.4.4"
-        }
-      },
-      {
-        "package": "SwedbankPaySDK",
-        "repositoryURL": "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "0c477574d79d26d296aed026429e6849d88fd152",
-          "version": "2.5.0-alpha.1"
-        }
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f82c23a8a7ef8dc1a49a8bfc6a96883e79121864",
+        "version" : "5.5.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swedbank-pay-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git",
+      "state" : {
+        "revision" : "df65f7850504a2eb60d6533e862d5b4bbd466eff",
+        "version" : "3.0.0"
+      }
+    }
+  ],
+  "version" : 2
 }
