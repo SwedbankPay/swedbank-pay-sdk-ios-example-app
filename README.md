@@ -14,10 +14,16 @@ An example [merchant backend][backend] has been implemented for this app.
 
 ## Requirements
 
-- Xcode 11
-- [Cocoapods][cocoapods]
+- Xcode 11 or newer
 
-## Installation
+## Installation SwiftPM
+
+1. Clone the repository
+2. Build and run as any other Xcode project
+
+## Installation CocoaPods
+
+This app can also be built with [Cocoapods][cocoapods]
 
 1. Clone the repository
 2. Run `pod install`

@@ -1,10 +1,11 @@
 import XCTest
 
+private let shortTimeout = 20.0
 private let defaultTimeout = 60.0
-private let paymentCreationTimeout = 300.0
-private let completionTimeout = 300.0
+private let paymentCreationTimeout = 120.0
+private let completionTimeout = 120.0
 
-private let cardNumber = "4925000000000004"
+private let cardNumbers = ["4581097032723517", "3569990010082211", "5226604266737382", "5226603115488031", "5226600156995650"] //or 4581099940323133 3d secure: "5226612199533406"
 private let expiryDate = "1230"
 private let cvv = "111"
 
@@ -25,6 +26,20 @@ class Example_app_UITests: XCTestCase {
     private var externalIntegrationEnvironmentButton: XCUIElement {
         app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
     }
+    private var cogButton: XCUIElement {
+        app.buttons.matching(identifier: "CogButton").firstMatch
+    }
+    private var instrumentModeButton: XCUIElement {
+        let button = XCUIApplication().buttons["InstrumentModeButton"]
+        //app.staticTexts.element(matching: .init(format: "label = 'InstrumentModeButton'"))
+        return button
+    }
+    private var consumerButton: XCUIElement {
+        app.staticTexts.element(matching: .init(format: "label = 'Consumer'"))
+    }
+    private var checkinV3Button: XCUIElement {
+        app.staticTexts.element(matching: .init(format: "label = 'Checkin V3'"))
+    }
     private var checkoutButton: XCUIElement {
         app.buttons.matching(identifier: "checkoutButton").firstMatch
     }
@@ -34,13 +49,26 @@ class Example_app_UITests: XCTestCase {
             matching: .init(format: "label = 'Payment was successfully completed.'")
         )
     }
+    private var completeOrFailureText: XCUIElement {
+        app.staticTexts.element(
+            matching: NSCompoundPredicate(
+                orPredicateWithSubpredicates:
+                    [.init(format: "label CONTAINS 'Noe gikk galt'"), .init(format: "label = 'Payment was successfully completed.'")]
+                )
+        )
+    }
     
     private var webView: XCUIElement {
         app.webViews.firstMatch
     }
+    
     private func webText(label: String) -> XCUIElement {
         let predicate = NSPredicate(format: "label = %@", argumentArray: [label])
         return webView.staticTexts.element(matching: predicate)
+    }
+    private func webTextField(label: String) -> XCUIElement {
+        let predicate = NSPredicate(format: "label = %@", argumentArray: [label])
+        return webView.textFields.element(matching: predicate)
     }
     private func assertZeroOrOne(elements: [XCUIElement]) -> XCUIElement? {
         XCTAssert(elements.count <= 1)
@@ -49,14 +77,32 @@ class Example_app_UITests: XCTestCase {
     private var cardOption: XCUIElement {
         webText(label: "Kort")
     }
+    
     private var panInput: XCUIElement {
-        webText(label: "Kortnummer")
+        let label = "Kortnummer"
+        let input = webText(label: label).exists ? webText(label: label) : webTextField(label: label)
+        return input
     }
+    
     private var expiryInput: XCUIElement {
-        webText(label: "MM/ÅÅ")
+        
+        let label = "MM/ÅÅ"
+        let input = webText(label: label).exists ? webText(label: label) : webTextField(label: "Gyldig til MM/ÅÅ")
+        return input
     }
     private var cvvInput: XCUIElement {
-        webText(label: "CVC")
+        var label = "CVC"
+        var input = webText(label: label)
+        if input.exists { return input }
+        input = webTextField(label: label)
+        if input.exists { return input }
+        
+        label = "CVV"
+        input = webText(label: label)
+        if input.exists { return input }
+        input = webTextField(label: label)
+        
+        return input
     }
     private var payButton: XCUIElement {
         webView.buttons.element(matching: .init(format: "label BEGINSWITH 'Betal '"))
@@ -82,7 +128,25 @@ class Example_app_UITests: XCTestCase {
         app.terminate()
     }
     
+    func performPayment(_ cardNumber: String) throws {
+        
+        waitAndAssertExists(timeout: shortTimeout, cardOption, "Card option not found")
+        
+        XCTAssert(tapCardOptionAndWaitForPanInput(), "PAN input not found")
+        input(to: panInput, text: cardNumber)
+        
+        waitAndAssertExists(expiryInput, "Expiry date input not found")
+        input(to: expiryInput, text: expiryDate)
+        
+        waitAndAssertExists(cvvInput, "CVV input not found")
+        input(to: cvvInput, text: cvv)
+        
+        waitAndAssertExists(payButton, "Pay button not found")
+        payButton.tap()
+    }
+    
     func testCardPayment() throws {
+        
         waitAndAssertExists(addToCartButton, "Add to cart button not found")
         addToCartButton.tap()
         waitAndAssertExists(removeFromCartButton, "Remove from cart button not found")
@@ -98,21 +162,29 @@ class Example_app_UITests: XCTestCase {
         
         waitAndAssertExists(webView, "Web view not found")
         
-        waitAndAssertExists(timeout: paymentCreationTimeout, cardOption, "Card option not found")
-        
-        XCTAssert(tapCardOptionAndWaitForPanInput(), "PAN input not found")
-        input(to: panInput, text: cardNumber)
-        
-        waitAndAssertExists(expiryInput, "Expiry date input not found")
-        input(to: expiryInput, text: expiryDate)
-        
-        waitAndAssertExists(cvvInput, "CVV input not found")
-        input(to: cvvInput, text: cvv)
-        
-        waitAndAssertExists(payButton, "Pay button not found")
-        payButton.tap()
+        for cardNumber in cardNumbers {
+            try performPayment(cardNumber)
+            if completeOrFailureText.waitForExistence(timeout: shortTimeout) {
+                if completeText.exists {
+                    break
+                }
+            }
+            startOver()
+        }
         
         waitAndAssertExists(timeout: completionTimeout, completeText, "Payment did not complete")
+    }
+    
+    private func startOver() {
+        let backButton = app.navigationBars.buttons.element(boundBy: 0)
+        backButton.tap()
+        
+        _ = openCartButton.waitForExistence(timeout: shortTimeout)
+        openCartButton.tap()
+        
+        _ = openCartButton.waitForExistence(timeout: shortTimeout)
+        checkoutButton.tap()
+        waitAndAssertExists(webView, "Web view not found")
     }
     
     private func waitAndAssertExists(

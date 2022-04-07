@@ -5,6 +5,8 @@
 **/*.xcworkspace/xcshareddata/*.xccheckout
 **/*.xcworkspace/xcshareddata/*.xcscmblueprint
 .idea/
+# Github actions does not work when Package.resolved is checked in
+Package.resolved
 
 # Xcode Injection
 IOSInjectionProject/
