@@ -176,7 +176,7 @@ extension PaymentViewController: SwedbankPaySDKDelegate {
         updateInstrumentUI()
     }
     
-    func paymentOrderDidShow(info: SwedbankPaySDK.ViewPaymentLinkInfo) {
+    func paymentOrderDidShow(info: SwedbankPaySDK.ViewPaymentOrderInfo) {
         updateInstrumentUI()
     }
     
