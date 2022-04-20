@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2x9-xD-vln">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -691,46 +691,26 @@
                                                                 <action selector="onAnonymousPressed:" destination="UWo-xw-0nY" eventType="touchUpInside" id="KzR-on-XMg"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YkQ-ft-e8A" userLabel="CheckinV2 Button">
-                                                            <rect key="frame" x="15" y="100" width="72.5" height="20"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
-                                                            <connections>
-                                                                <action selector="onCheckinPressed:" destination="UWo-xw-0nY" eventType="touchUpInside" id="3OG-Au-KjV"/>
-                                                            </connections>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="770" text="Checkin V2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSQ-Bm-moQ" userLabel="CheckinV2 Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="770" text="Checkin V2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSQ-Bm-moQ">
                                                             <rect key="frame" x="15" y="100" width="72.5" height="16"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono" family="IBM Plex Mono" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY0-V2-NN3" userLabel="CheckinV2 Underline">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY0-V2-NN3">
                                                             <rect key="frame" x="15" y="118" width="72.5" height="2"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="2" id="Lya-Od-DK8"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26a-zk-phf" userLabel="CheckinV3 Button">
-                                                            <rect key="frame" x="257" y="100" width="73" height="35"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YkQ-ft-e8A">
+                                                            <rect key="frame" x="15" y="100" width="72.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono-Medium" family="IBM Plex Mono" pointSize="17"/>
                                                             <connections>
-                                                                <action selector="onCheckinPressedV3:" destination="UWo-xw-0nY" eventType="touchUpInside" id="odh-6l-WPZ"/>
+                                                                <action selector="onCheckinPressed:" destination="UWo-xw-0nY" eventType="touchUpInside" id="94g-53-VQL"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="770" text="Checkin V3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSE-p2-gd3" userLabel="CheckinV3 Label">
-                                                            <rect key="frame" x="257" y="100" width="73" height="16"/>
-                                                            <fontDescription key="fontDescription" name="IBMPlexMono" family="IBM Plex Mono" pointSize="12"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbN-fe-FbI" userLabel="CheckinV3 Underline">
-                                                            <rect key="frame" x="257" y="118" width="73" height="2"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="2" id="8Pi-Np-bZc"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="770" text="Prefill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Il-yK-lxo">
                                                             <rect key="frame" x="15" y="150" width="50.5" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="IBMPlexMono" family="IBM Plex Mono" pointSize="12"/>
@@ -796,42 +776,33 @@
                                                         <constraint firstItem="9VS-Vv-rbF" firstAttribute="leading" secondItem="vbf-zp-vp1" secondAttribute="leading" id="0HP-eZ-pjn"/>
                                                         <constraint firstItem="TSQ-Bm-moQ" firstAttribute="leading" secondItem="9VS-Vv-rbF" secondAttribute="leading" id="1ah-C3-7vB"/>
                                                         <constraint firstItem="nDA-NN-IuQ" firstAttribute="leading" secondItem="zkX-N5-gom" secondAttribute="leading" id="3UL-x0-TtD"/>
-                                                        <constraint firstItem="26a-zk-phf" firstAttribute="leading" secondItem="RSE-p2-gd3" secondAttribute="leading" id="4M0-Jz-wWF"/>
                                                         <constraint firstItem="Sam-Sj-LKH" firstAttribute="top" secondItem="8Il-yK-lxo" secondAttribute="bottom" constant="2" id="4Vh-b4-cKw"/>
                                                         <constraint firstItem="6oP-pU-rkO" firstAttribute="leading" secondItem="9VS-Vv-rbF" secondAttribute="leading" id="4dR-zA-DXa"/>
                                                         <constraint firstItem="nDA-NN-IuQ" firstAttribute="top" secondItem="zkX-N5-gom" secondAttribute="bottom" constant="20" id="4k8-lu-iKN"/>
                                                         <constraint firstItem="8Il-yK-lxo" firstAttribute="leading" secondItem="ZZj-1W-5UF" secondAttribute="leading" id="4yw-gs-Aa5"/>
                                                         <constraint firstItem="KY0-V2-NN3" firstAttribute="top" secondItem="TSQ-Bm-moQ" secondAttribute="bottom" constant="2" id="AIB-s9-2Qo"/>
                                                         <constraint firstItem="9VS-Vv-rbF" firstAttribute="top" secondItem="vbf-zp-vp1" secondAttribute="top" id="B0X-YY-v4O"/>
-                                                        <constraint firstItem="RSE-p2-gd3" firstAttribute="width" secondItem="26a-zk-phf" secondAttribute="width" id="C2Y-rF-oxk"/>
                                                         <constraint firstItem="Ne4-Pw-QRJ" firstAttribute="top" secondItem="nDA-NN-IuQ" secondAttribute="bottom" constant="20" id="CBo-u6-390"/>
                                                         <constraint firstItem="7o0-uQ-1fj" firstAttribute="top" secondItem="CDK-tC-2ta" secondAttribute="top" id="GZU-ze-ElF"/>
                                                         <constraint firstItem="zkX-N5-gom" firstAttribute="leading" secondItem="CDK-tC-2ta" secondAttribute="leading" constant="30" id="Jvv-hb-zlm"/>
                                                         <constraint firstItem="8Il-yK-lxo" firstAttribute="trailing" secondItem="ZZj-1W-5UF" secondAttribute="trailing" id="KPW-mq-vRA"/>
                                                         <constraint firstItem="9VS-Vv-rbF" firstAttribute="leading" secondItem="CDK-tC-2ta" secondAttribute="leading" constant="15" id="LNv-Wg-caO"/>
-                                                        <constraint firstItem="hbN-fe-FbI" firstAttribute="leading" secondItem="RSE-p2-gd3" secondAttribute="leading" id="N7s-th-Ry6"/>
                                                         <constraint firstItem="KY0-V2-NN3" firstAttribute="bottom" secondItem="YkQ-ft-e8A" secondAttribute="bottom" id="ODe-xM-h5k"/>
-                                                        <constraint firstItem="RSE-p2-gd3" firstAttribute="top" secondItem="TSQ-Bm-moQ" secondAttribute="top" id="PoZ-ic-XCt"/>
                                                         <constraint firstItem="TSQ-Bm-moQ" firstAttribute="trailing" secondItem="YkQ-ft-e8A" secondAttribute="trailing" id="WXJ-Pb-n4f"/>
                                                         <constraint firstItem="9VS-Vv-rbF" firstAttribute="top" secondItem="CDK-tC-2ta" secondAttribute="top" constant="50" id="WmJ-9x-D5o"/>
                                                         <constraint firstItem="9VS-Vv-rbF" firstAttribute="trailing" secondItem="vbf-zp-vp1" secondAttribute="trailing" id="Zzc-V4-l9q"/>
                                                         <constraint firstItem="TSQ-Bm-moQ" firstAttribute="leading" secondItem="YkQ-ft-e8A" secondAttribute="leading" id="bhf-7Z-QhG"/>
                                                         <constraint firstItem="Sam-Sj-LKH" firstAttribute="bottom" secondItem="ZZj-1W-5UF" secondAttribute="bottom" id="cjJ-rn-ueP"/>
-                                                        <constraint firstItem="26a-zk-phf" firstAttribute="trailing" secondItem="RSE-p2-gd3" secondAttribute="trailing" id="cqO-Ej-jSe"/>
                                                         <constraint firstItem="nDA-NN-IuQ" firstAttribute="trailing" secondItem="zkX-N5-gom" secondAttribute="trailing" id="eEA-ex-Qw6"/>
                                                         <constraint firstItem="8Il-yK-lxo" firstAttribute="leading" secondItem="9VS-Vv-rbF" secondAttribute="leading" id="eh4-gI-OAm"/>
                                                         <constraint firstItem="xfH-0m-R6F" firstAttribute="top" secondItem="CDK-tC-2ta" secondAttribute="top" id="epG-Uw-9fi"/>
                                                         <constraint firstItem="8Il-yK-lxo" firstAttribute="top" secondItem="ZZj-1W-5UF" secondAttribute="top" id="f5p-Dw-yc8"/>
                                                         <constraint firstItem="6oP-pU-rkO" firstAttribute="trailing" secondItem="9VS-Vv-rbF" secondAttribute="trailing" id="hcT-1m-z7Z"/>
                                                         <constraint firstAttribute="trailing" secondItem="xfH-0m-R6F" secondAttribute="trailing" id="hmB-7x-cif"/>
-                                                        <constraint firstItem="hbN-fe-FbI" firstAttribute="trailing" secondItem="RSE-p2-gd3" secondAttribute="trailing" id="iRr-6Q-BiM"/>
                                                         <constraint firstItem="Ne4-Pw-QRJ" firstAttribute="trailing" secondItem="zkX-N5-gom" secondAttribute="trailing" id="iYl-Y2-7Io"/>
                                                         <constraint firstItem="zkX-N5-gom" firstAttribute="top" secondItem="Sam-Sj-LKH" secondAttribute="bottom" constant="20" id="jcL-sw-Qvt"/>
-                                                        <constraint firstItem="hbN-fe-FbI" firstAttribute="bottom" secondItem="KY0-V2-NN3" secondAttribute="bottom" id="k26-Lo-jjc"/>
                                                         <constraint firstItem="6oP-pU-rkO" firstAttribute="bottom" secondItem="vbf-zp-vp1" secondAttribute="bottom" id="kQV-tO-yV4"/>
-                                                        <constraint firstItem="26a-zk-phf" firstAttribute="top" secondItem="RSE-p2-gd3" secondAttribute="top" id="lrE-DO-xBZ"/>
                                                         <constraint firstItem="8Il-yK-lxo" firstAttribute="top" secondItem="KY0-V2-NN3" secondAttribute="bottom" constant="30" id="oNB-rf-4nX"/>
-                                                        <constraint firstAttribute="trailing" secondItem="RSE-p2-gd3" secondAttribute="trailing" constant="15" id="ogP-aM-gKy"/>
                                                         <constraint firstAttribute="bottom" secondItem="Ne4-Pw-QRJ" secondAttribute="bottom" constant="15" id="qg6-F1-lcr"/>
                                                         <constraint firstItem="Ne4-Pw-QRJ" firstAttribute="leading" secondItem="zkX-N5-gom" secondAttribute="leading" id="tq0-l8-YIK"/>
                                                         <constraint firstItem="6oP-pU-rkO" firstAttribute="top" secondItem="9VS-Vv-rbF" secondAttribute="bottom" constant="2" id="ts6-iT-sVq"/>
@@ -897,9 +868,7 @@
                                     <outlet property="anonymousLabel" destination="9VS-Vv-rbF" id="d3e-ze-jxT"/>
                                     <outlet property="anonymousUnderline" destination="6oP-pU-rkO" id="ZpP-9a-c5r"/>
                                     <outlet property="checkinLabel" destination="TSQ-Bm-moQ" id="JxH-3t-WPI"/>
-                                    <outlet property="checkinLabelV3" destination="RSE-p2-gd3" id="9Zp-Wa-JfY"/>
                                     <outlet property="checkinUnderline" destination="KY0-V2-NN3" id="oJg-B3-gZA"/>
-                                    <outlet property="checkinUnderlineV3" destination="hbN-fe-FbI" id="G9M-rh-ecc"/>
                                     <outlet property="openStateView" destination="CDK-tC-2ta" id="LO6-5s-A8E"/>
                                     <outlet property="prefillEmailField" destination="zkX-N5-gom" id="1Sm-5J-PAe"/>
                                     <outlet property="prefillLabel" destination="8Il-yK-lxo" id="z2q-fM-RDy"/>
@@ -1005,9 +974,6 @@
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instrument Mode (tap to change)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWh-wN-f3q">
                                                             <rect key="frame" x="42.5" y="71.5" width="260.5" height="24"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <bool key="isElement" value="NO"/>
-                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="hWW-bq-HhV"/>
                                                             </constraints>
@@ -1017,9 +983,6 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disabled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHF-db-N5h">
                                                             <rect key="frame" x="143.5" y="97.5" width="58" height="16"/>
-                                                            <accessibility key="accessibilityConfiguration">
-                                                                <bool key="isElement" value="NO"/>
-                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="ECx-TF-hzy"/>
                                                             </constraints>
@@ -1027,9 +990,8 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74O-PG-KFp" userLabel="InstrumentModeButton">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74O-PG-KFp">
                                                             <rect key="frame" x="42.5" y="71.5" width="260.5" height="42"/>
-                                                            <accessibility key="accessibilityConfiguration" identifier="InstrumentModeButton" label="InstrumentModeButton"/>
                                                             <connections>
                                                                 <action selector="onSetInstrumentPressed" destination="YCh-Zh-mYH" eventType="touchUpInside" id="WCJ-s6-8Fa"/>
                                                             </connections>
@@ -1287,7 +1249,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-3E-kQO">
                                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <accessibility key="accessibilityConfiguration" label="CogButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="TED-jf-5D6"/>
                                                         <constraint firstAttribute="height" constant="48" id="v37-Lh-nGH"/>
@@ -1899,7 +1860,6 @@
                         <outlet property="instrumentLabel" destination="LRk-rF-sZI" id="JZ7-Gv-pmw"/>
                         <outlet property="instrumentPicker" destination="ilQ-QM-usd" id="ufY-yW-Pdo"/>
                         <outlet property="instrumentPickerVisibleConstraint" destination="BoG-QG-X0q" id="qUj-ea-9RW"/>
-                        <outlet property="topStackView" destination="idT-Qg-cej" id="eyh-Dy-HFK"/>
                         <outlet property="updatingIndicator" destination="hHs-nS-Mua" id="XWa-DG-sId"/>
                         <outlet property="updatingView" destination="xxF-WJ-kkg" id="I44-ca-ACP"/>
                         <outlet property="webViewContainer" destination="7q7-he-hlz" id="UyX-Ij-hqT"/>

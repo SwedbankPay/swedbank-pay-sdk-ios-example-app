@@ -7,9 +7,6 @@ class ConsumerSettingsCell : SettingsCell {
     @IBOutlet private var checkinLabel: UILabel!
     @IBOutlet private var checkinUnderline: UIView!
     
-    @IBOutlet private var checkinLabelV3: UILabel!
-    @IBOutlet private var checkinUnderlineV3: UIView!
-    
     @IBOutlet private var prefillLabel: UILabel!
     @IBOutlet private var prefillUnderline: UIView!
     
@@ -21,17 +18,16 @@ class ConsumerSettingsCell : SettingsCell {
     @IBOutlet private var openStateConstraints: [NSLayoutConstraint] = []
     
     private var allLabels: [UILabel] {
-        return [anonymousLabel, checkinLabel, prefillLabel, checkinLabelV3]
+        return [anonymousLabel, checkinLabel, prefillLabel]//, checkinLabelV3]
     }
     private var allUnderlines: [UIView] {
-        return [anonymousUnderline, checkinUnderline, prefillUnderline, checkinUnderlineV3]
+        return [anonymousUnderline, checkinUnderline, prefillUnderline]//, checkinUnderlineV3]
     }
     
     private var selectedOption: (UILabel, UIView) {
         switch ConsumerViewModel.shared.getConsumerType() {
             case .Anonymous: return (anonymousLabel, anonymousUnderline)
             case .Checkin: return (checkinLabel, checkinUnderline)
-            case .CheckinV3: return (checkinLabelV3, checkinUnderlineV3)
             case .Prefill: return (prefillLabel, prefillUnderline)
         }
     }
@@ -44,9 +40,6 @@ class ConsumerSettingsCell : SettingsCell {
         nc.addObserver(self, selector: #selector(onEmailChanged(_:)), name: name, object: prefillEmailField)
         nc.addObserver(self, selector: #selector(onMsisdnChanged(_:)), name: name, object: prefillMsisdnField)
         nc.addObserver(self, selector: #selector(onProfileRefChanged(_:)), name: name, object: prefillProfileRefField)
-        
-        checkinLabelV3.isHidden = true
-        checkinUnderlineV3.isHidden = true
     }
     
     deinit {
