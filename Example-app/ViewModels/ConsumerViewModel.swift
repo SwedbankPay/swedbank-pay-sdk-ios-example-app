@@ -65,7 +65,7 @@ class ConsumerViewModel {
     ///
     /// Test consumers are from [https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/resources/test-data/]
     func getConsumer() -> SwedbankPaySDK.Consumer? {
-        if consumerType == .Checkin || consumerType == .CheckinV3 {
+        if consumerType == .Checkin {
             return SwedbankPaySDK.Consumer(
                 language: country.language,
                 shippingAddressRestrictedToCountryCodes: [country.countryCode]
@@ -76,7 +76,8 @@ class ConsumerViewModel {
     }
     
     func checkinV3() -> Bool {
-        consumerType == .CheckinV3
+        false
+        //we do PaymentsOnly for now
     }
     
     func getPaymentOrderPayer() -> SwedbankPaySDK.PaymentOrderPayer? {
@@ -86,7 +87,7 @@ class ConsumerViewModel {
                 email: prefillEmail.nonEmptyOrNil,
                 msisdn: prefillMsisdn.nonEmptyOrNil
             )
-        } else if consumerType == .CheckinV3 {
+        } else if checkinV3() {
             return SwedbankPaySDK.PaymentOrderPayer(requireConsumerInfo: true, digitalProducts: false, shippingAddressRestrictedToCountryCodes: [country.countryCode])
         }
         else {
