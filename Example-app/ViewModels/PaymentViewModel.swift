@@ -98,6 +98,9 @@ class PaymentViewModel {
         }
     }
     
+    var errorLog: [String] = []
+    
+    // Default environment
     var environment = Environment.Stage
     
     var settingsOpen = false

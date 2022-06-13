@@ -159,6 +159,8 @@ class ResultViewController: UIViewController {
                 problems: {\(getSwedbankPaySubProblemStr(problems))}
                 raw:      \(raw)
             """)
+        
+        PaymentViewModel.shared.errorLog.append(getSwedbankPaySubProblemStr(problems))
     }
     
     /// Prints out Client or Server UnexpectedContent `Problem` in a readable format
