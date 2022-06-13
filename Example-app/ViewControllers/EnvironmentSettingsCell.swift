@@ -9,6 +9,8 @@ private extension PaymentViewModel.Environment {
             return "Ext. Integration"
         case .PaymentPagesExternalIntegration:
             return "PaymentPages (EI)"
+        case .EnterpriseExternalIntegration:
+            return "Enterprise (EI)"
         case .BadRedirectDemo:
             return "Bad Redirect"
         #if PROD_DEMO
@@ -31,8 +33,7 @@ class EnvironmentSettingsCell : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //Default to Ext. Integration
-        PaymentViewModel.shared.environment = .ExternalIntegration
+        
         addOptionViews()
         refresh()
     }
