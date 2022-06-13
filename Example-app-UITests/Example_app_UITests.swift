@@ -5,7 +5,8 @@ private let defaultTimeout = 60.0
 private let paymentCreationTimeout = 120.0
 private let completionTimeout = 120.0
 
-private let cardNumbers = ["4581097032723517", "3569990010082211", "5226604266737382", "5226603115488031", "5226600156995650"] //or 4581099940323133 3d secure: "5226612199533406"
+private let cardNumbers = ["5226604266737382", "5226603115488031", "5226600156995650", "4581097032723517"] //or 4581099940323133 3d secure: "5226612199533406"
+//not working: "3569990010082211",
 
 private let expiryDate = "1230"
 private let cvv = "111"
@@ -26,6 +27,9 @@ class Example_app_UITests: XCTestCase {
     
     private var externalIntegrationEnvironmentButton: XCUIElement {
         app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
+    }
+    private var enterpriseEnvironmentButton: XCUIElement {
+        app.staticTexts.element(matching: .init(format: "label = 'Enterprise (EI)'"))
     }
     private var cogButton: XCUIElement {
         app.buttons.matching(identifier: "CogButton").firstMatch
@@ -155,8 +159,8 @@ class Example_app_UITests: XCTestCase {
         XCTAssert(openCartButton.exists, "View card button not found")
         openCartButton.tap()
         
-        waitAndAssertExists(externalIntegrationEnvironmentButton, "Environment button not found")
-        externalIntegrationEnvironmentButton.tap()
+        waitAndAssertExists(enterpriseEnvironmentButton, "Environment button not found")
+        enterpriseEnvironmentButton.tap()
         
         XCTAssert(checkoutButton.exists, "Checkout button not found")
         checkoutButton.tap()
@@ -197,9 +201,9 @@ class Example_app_UITests: XCTestCase {
     }
     
     private func tapCardOptionAndWaitForPanInput() -> Bool {
-        for _ in 0..<5 {
+        for _ in 0..<50 {
             cardOption.tap()
-            if panInput.waitForExistence(timeout: defaultTimeout) {
+            if panInput.waitForExistence(timeout: 5) {
                 return true
             }
         }

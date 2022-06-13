@@ -19,6 +19,7 @@ class PaymentViewModel {
         case Stage
         case ExternalIntegration
         case PaymentPagesExternalIntegration
+        case EnterpriseExternalIntegration
         case BadRedirectDemo
         #if PROD_DEMO
         case Prod
@@ -52,6 +53,8 @@ class PaymentViewModel {
             return URL(string: "https://payex-merchant-samples.ey.r.appspot.com/")!
         case .PaymentPagesExternalIntegration:
             return URL(string: "https://pp-dot-payex-merchant-samples.ey.r.appspot.com/")!
+        case .EnterpriseExternalIntegration:
+            return URL(string: "https://enterprise-dev-dot-payex-merchant-samples.ey.r.appspot.com/")!
         case .BadRedirectDemo:
             return URL(string: "https://us-central1-qvik-swedbankpay-badredirect.cloudfunctions.net/api/")!
         #if PROD_DEMO
@@ -98,6 +101,9 @@ class PaymentViewModel {
         }
     }
     
+    var errorLog: [String] = []
+    
+    // Default environment
     var environment = Environment.Stage
     
     var settingsOpen = false
