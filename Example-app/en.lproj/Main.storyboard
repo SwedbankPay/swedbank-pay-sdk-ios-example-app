@@ -1930,10 +1930,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhk-hR-GZ4">
-                                <rect key="frame" x="36" y="140" width="142" height="30"/>
-                                <state key="normal" title="Copy Navigation Log"/>
+                                <rect key="frame" x="36" y="140" width="71" height="30"/>
+                                <state key="normal" title="Show logs"/>
                                 <connections>
-                                    <action selector="copyLogButtonPressed:" destination="wp2-if-CCM" eventType="touchUpInside" id="oGZ-oC-TZ3"/>
+                                    <action selector="showLogButtonPressed:" destination="wp2-if-CCM" eventType="touchUpInside" id="LlS-td-WuA"/>
                                 </connections>
                             </button>
                         </subviews>
