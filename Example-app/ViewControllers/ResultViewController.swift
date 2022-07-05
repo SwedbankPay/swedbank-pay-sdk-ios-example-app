@@ -15,6 +15,9 @@ class ResultViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
+    }
+    
+    override func viewDidLoad() {
         
         let result = PaymentViewModel.shared.result
         
@@ -33,8 +36,11 @@ class ResultViewController: UIViewController {
         logView.text = PaymentViewModel.shared.lastPaymentNavigationLogString
     }
     
-    @IBAction func copyLogButtonPressed(_ sender: Any) {
-        PaymentViewModel.shared.copyPaymentLogToPasteboard()
+    @IBAction func showLogButtonPressed(_ sender: Any) {
+        //PaymentViewModel.shared.copyPaymentLogToPasteboard()
+        
+        let logView = LogView(model: LogViewModel(errorLogText: PaymentViewModel.shared.errorLog.joined(separator: "\n"), navigationLogText: PaymentViewModel.shared.lastPaymentNavigationLogString)).hostingController
+        navigationController?.pushViewController(logView, animated: true)
     }
     
     @IBAction func doneButtonClicked(_ sender: Any) {
@@ -52,33 +58,33 @@ class ResultViewController: UIViewController {
             // should only report its own WebContentErrors, or errors
             // from the configuration, which here we know to only
             // report SwedbankPaySDK.MerchantBackendErrors
-            print("Unexpected error: \(error)")
+            printError("Unexpected error: \(error)")
         }
     }
     
     private func handleWebContentError(_ error: SwedbankPaySDKController.WebContentError) {
         switch error {
         case .ScriptLoadingFailure(let scriptUrl):
-            print("Could not load script at \(scriptUrl?.absoluteString ?? "")")
+            printError("Could not load script at \(scriptUrl?.absoluteString ?? "")")
         case .ScriptError(let terminalFailure):
-            print("Fatal error from script: \(terminalFailure.map(String.init(describing:)) ?? "")")
+            printError("Fatal error from script: \(terminalFailure.map(String.init(describing:)) ?? "")")
         case .RedirectFailure(let error):
-            print("Payment redirect failed: \(error)")
+            printError("Payment redirect failed: \(error)")
         }
     }
     
     private func handleMerchantBackendError(_ error: SwedbankPaySDK.MerchantBackendError) {
         switch error {
         case .nonWhitelistedDomain(let failingUrl):
-            print("Attempt to follow link to non-whitelisted domain: \(failingUrl.absoluteString)")
+            printError("Attempt to follow link to non-whitelisted domain: \(failingUrl.absoluteString)")
         case .networkError(let error):
-            print("Network error: \(error)")
+            printError("Network error: \(error)")
         case .problem(let problem):
             handleProblem(problem)
         case .missingRequiredOperation(let name):
-            print("Protocol error: missing required operation \(name)")
+            printError("Protocol error: missing required operation \(name)")
         case .paymentNotInInstrumentMode:
-            print("Cannot set instrument of non-instrument mode payment")
+            printError("Cannot set instrument of non-instrument mode payment")
         }
     }
     
@@ -128,16 +134,24 @@ class ResultViewController: UIViewController {
         }
     }
     
+    /// Prints out errors to std out and logs the error
+    private func printError(_ message: String) {
+        print(message)
+        PaymentViewModel.shared.errorLog.append(message)
+    }
+    
     /// Prints out Client or Server MobileSDK `Problem` in a readable format
     private func printMobileSDKProblem(_ errorType: String,
                                        message: String?,
                                        raw: [String: Any])
     {
-        print("""
+        let problem = """
             PROBLEM: \(errorType):
                 message: \(message ?? "")
                 raw:     \(raw)
-            """)
+            """
+        print(problem)
+        PaymentViewModel.shared.errorLog.append(problem)
     }
     
     /// Prints out Client or Server SwedbankPay `Problem` in a readable format
@@ -170,12 +184,14 @@ class ResultViewController: UIViewController {
                                                body: Data?
                                                )
     {
-        print("""
+        let problem = """
             PROBLEM: \(errorType):
                 status:      \(status)
                 contentType: \(contentType ?? "")
                 body:        \(body.flatMap { String(data: $0, encoding: .utf8) } ?? "")
-            """)
+            """
+        PaymentViewModel.shared.errorLog.append(problem)
+        print(problem)
     }
     
     /// Prints out Client or Server Unknown `Problem` in a readable format
@@ -187,7 +203,7 @@ class ResultViewController: UIViewController {
                                      instance: String?,
                                      raw: [String: Any])
     {
-        print("""
+        let problem = """
             PROBLEM: \(errorType):
                 type:     \(type ?? "")
                 title:    \(title ?? "")
@@ -195,7 +211,9 @@ class ResultViewController: UIViewController {
                 detail:   \(detail ?? "")
                 instance: \(instance ?? "")
                 raw:      \(raw)
-            """)
+            """
+        PaymentViewModel.shared.errorLog.append(problem)
+        print(problem)
     }
     
     /// Returns Client or Server `SwedbankPaySubProblem` array in a readable format

@@ -63,6 +63,7 @@
 		C54D55B723701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */; };
 		C54D55BF2370204000E3B301 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54D55B92370204000E3B301 /* ProductTableViewCell.xib */; };
 		C5CF1E802370499D008DFCCC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */; };
+		D5D6E2A528742BB7008E75D7 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2A428742BB7008E75D7 /* LogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
 		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D5D6E2A428742BB7008E75D7 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				C54D556423701F9D00E3B301 /* Extensions */,
 				C54D557623701F9D00E3B301 /* Models */,
 				C54D558123701F9D00E3B301 /* Resources */,
+				D5D6E2A328742B14008E75D7 /* Views */,
 				C54D557823701F9D00E3B301 /* ViewControllers */,
 				C54D556B23701F9D00E3B301 /* ViewModels */,
 				A5AD795D2666743400DE62B1 /* Utils */,
@@ -392,6 +395,14 @@
 				C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D5D6E2A328742B14008E75D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5D6E2A428742BB7008E75D7 /* LogView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,6 +570,7 @@
 				C54D55A123701F9D00E3B301 /* StoreViewController.swift in Sources */,
 				C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */,
 				C54D55A223701F9D00E3B301 /* ResultViewController.swift in Sources */,
+				D5D6E2A528742BB7008E75D7 /* LogView.swift in Sources */,
 				C50CF6AD237AB119003F79DF /* PurchaseItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,7 +864,7 @@
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				minimumVersion = 3.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
