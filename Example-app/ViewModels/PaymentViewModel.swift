@@ -26,7 +26,7 @@ class PaymentViewModel {
         #endif
     }
     
-    enum InstrumentOption {
+    enum InstrumentOption: Hashable {
         case disabled
         case instrument(SwedbankPaySDK.Instrument)
         case custom
