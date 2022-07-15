@@ -10,8 +10,17 @@ import SwiftUI
 /// The "main" general settings view, to control payer id, tokens, instruments and other minor settings.
 struct GeneralSettings: View {
     @ObservedObject var model: GeneralSettingsViewModel
+    @Namespace private var generalSettingsNamespace
     
+    @ViewBuilder
     var body: some View {
+        main
+            .opacity(model.showCell ? 1 : 0)
+        hiddenBody
+            .opacity(model.showCell ? 0 : 1)
+    }
+    
+    var main: some View {
         VStack {
             closeButtonCountrySelector
             InstrumentModeSelector()
@@ -30,17 +39,45 @@ struct GeneralSettings: View {
         .preferredColorScheme(.dark)
         .regularFont()
         .environmentObject(model)
-        
+    }
+    
+    @ViewBuilder
+    var showViewButton: some View {
+        if #available(iOS 14.0, *) {
+            showViewButtonInner
+                .matchedGeometryEffect(id: "Cog", in: generalSettingsNamespace)
+        } else {
+            showViewButtonInner
+        }
+    }
+    
+    var showViewButtonInner: some View {
+        Button {
+            withAnimation(.easeOut) {
+                model.showCell = !model.showCell
+            }
+        } label: {
+            Image(systemName: "gear")
+                .buttonImage()
+        }
+        .rotationEffect(.degrees(model.showCell ? 180 : 0))
+    }
+    
+    var hiddenBody: some View {
+        VStack {
+            HStack {
+                showViewButton
+                Spacer()
+            }
+            .padding()
+            Spacer()
+        }
+        .preferredColorScheme(.dark)
     }
     
     var closeButtonCountrySelector: some View {
         HStack {
-            Button {
-                model.showCell = true
-            } label: {
-                Image(systemName: "gear")
-                    .buttonImage()
-            }
+            showViewButton
             Spacer()
             VStack(spacing: 10) {
                 Text("Country")
