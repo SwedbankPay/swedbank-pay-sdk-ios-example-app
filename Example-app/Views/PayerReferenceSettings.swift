@@ -3,12 +3,11 @@
 //  Example-app
 //
 //  Created by Olof Thorén on 2022-07-13.
-//  Copyright © 2022 Swedbank. All rights reserved.
 //
 
 import SwiftUI
 
-
+/// Generate a payer reference to be used in the next purchase
 struct PayerReferenceSettings: View {
     @EnvironmentObject var model: GeneralSettingsViewModel
     var body: some View {
@@ -41,5 +40,13 @@ struct PayerReferenceSettings: View {
             .darkModeTextField()
             
         }.padding()
+    }
+}
+
+struct PayerReferenceSettings_Previews: PreviewProvider {
+    static var previews: some View {
+        PayerReferenceSettings()
+            .environmentObject(GeneralSettingsViewModel())
+            .preferredColorScheme(.dark)
     }
 }

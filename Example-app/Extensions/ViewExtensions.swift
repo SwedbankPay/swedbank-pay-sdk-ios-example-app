@@ -3,7 +3,6 @@
 //  Example-app
 //
 //  Created by Olof Thorén on 2022-07-13.
-//  Copyright © 2022 Swedbank. All rights reserved.
 //
 
 import SwiftUI
@@ -34,8 +33,23 @@ extension View {
         .colorInvert()
     }
     
+    /// The only way to hide the keyboard in SwiftUI pre iOS 15, now we can use @FocusState
     func resignFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                         to: nil, from: nil, for: nil)
+    }
+    
+    /// A version indipendent alert
+    @ViewBuilder
+    func showAlert(_ title: String, _ body: String, isPresented: Binding<Bool>) -> some View {
+        if #available(iOS 15.0, *) {
+            self.alert(title, isPresented: isPresented, actions: {}) {
+                Text(body)
+            }
+        } else {
+            self.alert(isPresented: isPresented) {
+                Alert(title: Text(title), message: Text(body))
+            }
+        }
     }
 }

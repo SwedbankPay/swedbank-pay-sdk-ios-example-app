@@ -70,6 +70,9 @@
 		D5D6E2DC287EFF44008E75D7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2DB287EFF44008E75D7 /* ViewExtensions.swift */; };
 		D5D6E2DE287F4DAA008E75D7 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2DD287F4DAA008E75D7 /* ImageExtensions.swift */; };
 		D5D6E2E0287F4DF0008E75D7 /* PayerReferenceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2DF287F4DF0008E75D7 /* PayerReferenceSettings.swift */; };
+		D5D6E2E2288191DA008E75D7 /* PaymentTokenSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2E1288191DA008E75D7 /* PaymentTokenSettings.swift */; };
+		D5D6E2E42881933C008E75D7 /* GeneralToggleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2E32881933C008E75D7 /* GeneralToggleSettings.swift */; };
+		D5D6E2E6288195F3008E75D7 /* InstrumentModeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2E5288195F3008E75D7 /* InstrumentModeSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +170,9 @@
 		D5D6E2DB287EFF44008E75D7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		D5D6E2DD287F4DAA008E75D7 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		D5D6E2DF287F4DF0008E75D7 /* PayerReferenceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerReferenceSettings.swift; sourceTree = "<group>"; };
+		D5D6E2E1288191DA008E75D7 /* PaymentTokenSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTokenSettings.swift; sourceTree = "<group>"; };
+		D5D6E2E32881933C008E75D7 /* GeneralToggleSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralToggleSettings.swift; sourceTree = "<group>"; };
+		D5D6E2E5288195F3008E75D7 /* InstrumentModeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentModeSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +425,9 @@
 				D5D6E2A428742BB7008E75D7 /* LogView.swift */,
 				D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */,
 				D5D6E2DF287F4DF0008E75D7 /* PayerReferenceSettings.swift */,
+				D5D6E2E1288191DA008E75D7 /* PaymentTokenSettings.swift */,
+				D5D6E2E32881933C008E75D7 /* GeneralToggleSettings.swift */,
+				D5D6E2E5288195F3008E75D7 /* InstrumentModeSelector.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -574,10 +583,12 @@
 				A5C24B5A257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift in Sources */,
 				A548FFB3241BCC76007C7B17 /* EnvironmentSettingsCell.swift in Sources */,
 				C50CF6D1237AC587003F79DF /* Currency.swift in Sources */,
+				D5D6E2E42881933C008E75D7 /* GeneralToggleSettings.swift in Sources */,
 				D5D6E2D8287EC1D8008E75D7 /* GeneralSettingsViewModel.swift in Sources */,
 				C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */,
 				C50CF6B3237AB149003F79DF /* Country.swift in Sources */,
 				C50CF6AF237AB126003F79DF /* PaymentResult.swift in Sources */,
+				D5D6E2E2288191DA008E75D7 /* PaymentTokenSettings.swift in Sources */,
 				C54D559423701F9D00E3B301 /* UIColor+Extension.swift in Sources */,
 				A5AD795B26664B7800DE62B1 /* StyleSettingsCell.swift in Sources */,
 				C50CF6B7237AB15C003F79DF /* Product.swift in Sources */,
@@ -591,6 +602,7 @@
 				D5D6E2DA287EFF23008E75D7 /* TextExtensions.swift in Sources */,
 				D5D6E2D6287EBD52008E75D7 /* GeneralSettings.swift in Sources */,
 				C54D55A323701F9D00E3B301 /* ShoppingCartViewController.swift in Sources */,
+				D5D6E2E6288195F3008E75D7 /* InstrumentModeSelector.swift in Sources */,
 				C54D55A123701F9D00E3B301 /* StoreViewController.swift in Sources */,
 				C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */,
 				C54D55A223701F9D00E3B301 /* ResultViewController.swift in Sources */,
