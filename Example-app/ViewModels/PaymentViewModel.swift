@@ -14,8 +14,11 @@ class PaymentViewModel {
     static let PaymentTokenChangedNotification = Notification.Name(
         "com.swedbank.PaymentTokenChanged"
     )
-    
-    enum Environment: CaseIterable {
+        
+    enum Environment: Int, CaseIterable, Identifiable {
+        var id: Int {
+            rawValue
+        }
         case Stage
         case ExternalIntegration
         case PaymentPagesExternalIntegration

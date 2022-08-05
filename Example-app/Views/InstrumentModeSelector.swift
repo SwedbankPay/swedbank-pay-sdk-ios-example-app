@@ -23,14 +23,14 @@ struct InstrumentModeSelector: View {
                     Text("Instrument mode (tap to change)")
                     Text(model.selectedInstrument.name.capitalized)
                 }
-                .foregroundColor(.primary)
+                .foregroundColor(.primary).colorInvert()
             }
             TextField("Restrict to instruments", text: $model.restrictedToInstrumentsText) {
                 print("On commit - hide keyboard")
                 self.resignFirstResponder()
             }
             .disableAutocorrection(true)
-            .darkModeTextField()
+            .darkTextFieldLightMode()
             .padding(.bottom)
         }
         .padding()
@@ -60,7 +60,7 @@ struct InstrumentModeSelector: View {
                     self.resignFirstResponder()
                 }
                 .disableAutocorrection(true)
-                .darkModeTextField()
+                .darkTextFieldLightMode()
                 .padding()
             }
             
@@ -69,8 +69,7 @@ struct InstrumentModeSelector: View {
                     Text(option.name).tag(option)
                 }
             }.pickerStyle(.wheel)
-                
-        }.preferredColorScheme(.dark)
+        }
             
     }
 }
@@ -97,6 +96,6 @@ struct InstrumentModeSelector_Previews: PreviewProvider {
     static var previews: some View {
         InstrumentModeSelector()
             .environmentObject(GeneralSettingsViewModel())
-            .preferredColorScheme(.dark)
+            .background(Color.black)
     }
 }

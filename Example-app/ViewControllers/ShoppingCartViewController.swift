@@ -1,5 +1,6 @@
 import UIKit
 import SwedbankPaySDK
+import SwiftUI
 
 private let animationDuration: TimeInterval = 0.5
 
@@ -26,10 +27,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         keyboardWillHideObserver.map(NotificationCenter.default.removeObserver)
     }
     
+    var tableViewController: UITableViewController!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EmbedShoppingCartTableView" {
-            let tableViewController = segue.destination as? UITableViewController
-            let tableView = tableViewController?.tableView
+            tableViewController = segue.destination as? UITableViewController
+            let tableView = tableViewController.tableView
             self.tableView = tableView
             tableView?.dataSource = self
             tableView?.contentInset = .init(top: 0, left: 0, bottom: 20, right: 0)
@@ -74,7 +76,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             forName: Self.keyboardWillHideNotification, object: nil, queue: .main
         ) { [weak self] _ in
             self?.updateCustomInstrumentFieldBottomConstraint(keyboardFrame: nil)
-        }
+        }        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,7 +156,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return Section.allCases[indexPath.section].getCell(viewController: self, tableView: tableView, indexPath: indexPath)
     }
     
-    private enum Section : CaseIterable {
+    private enum Section: CaseIterable {
         case Environment
         case Header
         case Products
@@ -163,21 +165,21 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         var numberOfRows: Int {
             switch self {
-            case .Environment: return 1
-            case .Header: return 1
-            case .Products: return max(StoreViewModel.shared.getBasketCount(), 1)
-            case .Footer: return StoreViewModel.shared.getBasketCount() > 0 ? 1 : 0
-            case .Settings: return SettingsRow.allCases.count
+                case .Environment: return 1
+                case .Header: return 1
+                case .Products: return max(StoreViewModel.shared.getBasketCount(), 1)
+                case .Footer: return StoreViewModel.shared.getBasketCount() > 0 ? 1 : 0
+                case .Settings: return SettingsRow.allCases.count
             }
         }
         
         func getCell(viewController: ShoppingCartViewController, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
             switch self {
-            case .Environment: return environmentCell(viewController, tableView, indexPath)
-            case .Header: return headerCell(viewController, tableView, indexPath)
-            case .Products: return productsCell(viewController, tableView, indexPath)
-            case .Footer: return footerCell(viewController, tableView, indexPath)
-            case .Settings: return SettingsRow.allCases[indexPath.row].getCell(viewController: viewController, tableView: tableView, indexPath: indexPath)
+                case .Environment: return environmentCell(viewController, tableView, indexPath)
+                case .Header: return headerCell(viewController, tableView, indexPath)
+                case .Products: return productsCell(viewController, tableView, indexPath)
+                case .Footer: return footerCell(viewController, tableView, indexPath)
+                case .Settings: return SettingsRow.allCases[indexPath.row].getCell(viewController: viewController, tableView: tableView, indexPath: indexPath)
             }
         }
         
@@ -264,8 +266,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     tableView.endUpdates()
                 }
             }
-            if self == .General {
-                (cell as! GeneralSettingsCell).onGetPaymentTokenButtonPressed = { [weak viewController] in
+            if self == .General, let cell = cell as? GeneralSettingsCell {
+                 cell.onGetPaymentTokenButtonPressed = { [weak viewController] in
                     viewController?.showGetTokens()
                 }
             }

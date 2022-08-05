@@ -1,6 +1,6 @@
 import UIKit
 
-private extension PaymentViewModel.Environment {
+extension PaymentViewModel.Environment {
     var displayName: String {
         switch self {
         case .Stage:

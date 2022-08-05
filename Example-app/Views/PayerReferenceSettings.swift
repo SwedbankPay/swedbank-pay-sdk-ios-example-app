@@ -21,6 +21,7 @@ struct PayerReferenceSettings: View {
                     model.refreshPayerReference()
                 } label: {
                     Text("Generate")
+                        .foregroundColor(.accentColor)
                 }
                 Spacer()
                 Button {
@@ -28,6 +29,7 @@ struct PayerReferenceSettings: View {
                     model.refreshPayerReference()
                 } label: {
                     Text("Last used")
+                        .foregroundColor(.accentColor)
                 }
                 Spacer()
             }
@@ -37,9 +39,11 @@ struct PayerReferenceSettings: View {
                 self.resignFirstResponder()
             }
             .disableAutocorrection(true)
-            .darkModeTextField()
+            .darkTextFieldLightMode()
             
-        }.padding()
+        }
+        .padding()
+        .foregroundColor(.white)
     }
 }
 
@@ -47,6 +51,6 @@ struct PayerReferenceSettings_Previews: PreviewProvider {
     static var previews: some View {
         PayerReferenceSettings()
             .environmentObject(GeneralSettingsViewModel())
-            .preferredColorScheme(.dark)
+            .background(Color.black)
     }
 }

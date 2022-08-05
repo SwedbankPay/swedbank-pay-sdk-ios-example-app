@@ -33,6 +33,13 @@ extension View {
         .colorInvert()
     }
     
+    func darkTextFieldLightMode() -> some View {
+        self
+            .foregroundColor(.black)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 15.0).fill(Color.white))
+    }
+    
     /// The only way to hide the keyboard in SwiftUI pre iOS 15, now we can use @FocusState
     func resignFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
@@ -49,6 +56,40 @@ extension View {
         } else {
             self.alert(isPresented: isPresented) {
                 Alert(title: Text(title), message: Text(body))
+            }
+        }
+    }
+}
+
+/**
+ to support iOS 13 we can't use grids, but it's easy to simulate simplyetypes like this one.
+ Usage:
+ Basic2ColumnGrid(count: array.count) { index in
+     Text(array[index].title)
+ }
+*/
+
+struct Basic2ColumnGrid<Content: View>: View {
+    var count: Int
+    var content: (_ index: Int) -> Content
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 30) {
+            ForEach(0..<count - 1, id: \.self) { index in
+                
+                if index % 2 == 0 {
+                    HStack {
+                        content(index)
+                        Spacer()
+                        content(index + 1)
+                    }
+                } else if index == count - 2 {
+                    //if last item is odd we need one extra row
+                    HStack {
+                        content(index + 1)
+                        Spacer()
+                    }
+                }
             }
         }
     }

@@ -106,7 +106,7 @@ struct LogView: View {
         copyButton
     }
     
-    var hostingController: UIHostingController<LogView> {
+    var hostingController: UIHostingController<Self> {
         UIHostingController(rootView: self)
     }
 }

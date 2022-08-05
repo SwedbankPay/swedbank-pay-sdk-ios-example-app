@@ -13,7 +13,6 @@ extension Image {
     
     func buttonImage() -> some View {
         self.resizable()
-        .foregroundColor(.primary)
         .frame(width: Image.touchSize, height: Image.touchSize)
     }
 }

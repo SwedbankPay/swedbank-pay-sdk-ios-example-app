@@ -37,6 +37,11 @@
                BlueprintName = "Example-app-UITests"
                ReferencedContainer = "container:Example-app.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "Example_app_UITests/testCardPayment()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

@@ -180,6 +180,25 @@ class Example_app_UITests: XCTestCase {
         waitAndAssertExists(timeout: completionTimeout, completeText, "Payment did not complete")
     }
     
+    
+    func testSwiftUICell() throws {
+        
+        waitAndAssertExists(addToCartButton, "Add to cart button not found")
+        addToCartButton.tap()
+        waitAndAssertExists(removeFromCartButton, "Remove from cart button not found")
+        
+        XCTAssert(openCartButton.exists, "View card button not found")
+        openCartButton.tap()
+        
+        waitAndAssertExists(enterpriseEnvironmentButton, "Environment button not found")
+        enterpriseEnvironmentButton.tap()
+        
+        
+        
+        let expect = expectation(description: "cell delay")
+        waitForExpectations(timeout: 987500098)
+    }
+    
     private func startOver() {
         let backButton = app.navigationBars.buttons.element(boundBy: 0)
         backButton.tap()

@@ -12,40 +12,53 @@ struct GeneralSettings: View {
     @ObservedObject var model: GeneralSettingsViewModel
     @Namespace private var generalSettingsNamespace
     
-    @ViewBuilder
     var body: some View {
-        main
-            .opacity(model.showCell ? 1 : 0)
-        hiddenBody
-            .opacity(model.showCell ? 0 : 1)
+        ZStack {
+            main
+                .frame(maxHeight: model.showCell ? .infinity : 100, alignment: .topLeading)
+                .opacity(model.showCell ? 1 : 0)
+            
+            HStack {
+                hiddenBody
+                    .background(Color.black)
+                    .cornerRadius(40)
+                    .offset(x: 0, y: 4)
+                    .opacity(model.showCell ? 0 : 1)
+                
+                Spacer()
+            }
+            .frame(maxHeight: model.showCell ? .infinity : 100, alignment: .topLeading)
+        }
+        .cornerRadius(20)
     }
     
     var main: some View {
         VStack {
             closeButtonCountrySelector
             InstrumentModeSelector()
-            Divider().overlay(Color.primary)
+            Divider().overlay(Color.white)
                 .padding(.horizontal)
             PayerReferenceSettings()
-            Divider().overlay(Color.primary)
+            Divider().overlay(Color.white)
                 .padding(.horizontal)
             PaymentTokenSettings()
-            Divider().overlay(Color.primary)
+            Divider().overlay(Color.white)
                 .padding(.horizontal)
             GeneralToggleSettings()
             
             Spacer()
         }
-        .preferredColorScheme(.dark)
         .regularFont()
         .environmentObject(model)
+        .foregroundColor(.white)
+        .background(Color.black)
     }
     
     @ViewBuilder
     var showViewButton: some View {
         if #available(iOS 14.0, *) {
             showViewButtonInner
-                .matchedGeometryEffect(id: "Cog", in: generalSettingsNamespace)
+                .matchedGeometryEffect(id: "Cog", in: generalSettingsNamespace, isSource: false)
         } else {
             showViewButtonInner
         }
@@ -61,18 +74,17 @@ struct GeneralSettings: View {
                 .buttonImage()
         }
         .rotationEffect(.degrees(model.showCell ? 180 : 0))
+        .foregroundColor(.white)
+        .background(Color.black)
     }
     
     var hiddenBody: some View {
         VStack {
             HStack {
                 showViewButton
-                Spacer()
             }
             .padding()
-            Spacer()
         }
-        .preferredColorScheme(.dark)
     }
     
     var closeButtonCountrySelector: some View {
@@ -88,7 +100,7 @@ struct GeneralSettings: View {
                     } label: {
                         Text("Sweden")
                             .selectedText(model.selectedCountry == .Sweden)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.primary).colorInvert()
                     }
                     Spacer()
                     Button {
@@ -96,7 +108,7 @@ struct GeneralSettings: View {
                     } label: {
                         Text("Norway")
                             .selectedText(model.selectedCountry == .Norway)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.primary).colorInvert()
                     }
                     Spacer()
                 }
@@ -105,14 +117,28 @@ struct GeneralSettings: View {
             
             Spacer()
         }.padding()
-        
     }
 }
 
+//TODO: change all primary to white
+//    .foregroundColor(.white)
+
 struct GeneralSettings_Previews: PreviewProvider {
+    
+    static var model = GeneralSettingsViewModel()
+    
     static var previews: some View {
         ScrollView {
-            GeneralSettings(model: GeneralSettingsViewModel())
+            GeneralSettings(model: model)
+                .frame(alignment: .topLeading)
+        }
+        .background(Color.gray)
+        .padding()
+        .padding(.horizontal)
+        .onAppear {
+            withAnimation {
+                model.showCell = true
+            }
         }
     }
 }

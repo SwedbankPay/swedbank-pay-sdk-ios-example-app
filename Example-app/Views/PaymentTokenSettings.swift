@@ -21,6 +21,7 @@ struct PaymentTokenSettings: View {
                         model.showGetTokenScreen = true
                     } label: {
                         Text("Get")
+                            .foregroundColor(.accentColor)
                     }
                 }
                 .padding(.horizontal)
@@ -35,15 +36,17 @@ struct PaymentTokenSettings: View {
                 self.resignFirstResponder()
             }
             .disableAutocorrection(true)
-            .darkModeTextField()
-            
-            Toggle("Generate payment token", isOn: $model.generatePaymentToken)
+            .darkTextFieldLightMode()
+        
+                Toggle("Generate payment token", isOn: $model.generatePaymentToken)
+                .tinted()
+        
             
         }.padding()
             .sheet(isPresented: $model.showGetTokenScreen) {
                 getTokenScreen
-                    .preferredColorScheme(.dark)
             }
+            .foregroundColor(.white)
     }
     
     var getTokenScreen: some View {
@@ -91,8 +94,10 @@ struct PaymentTokenSettings: View {
                     }
                 }
             }
+            
             Spacer()
         }
+        
         .showAlert(model.tokenAlertTitle, model.tokenAlertBody, isPresented: $model.tokenAlertIsPresented)
     }
 }
@@ -101,6 +106,6 @@ struct PaymentTokenSettings_Previews: PreviewProvider {
     static var previews: some View {
         PaymentTokenSettings()
             .environmentObject(GeneralSettingsViewModel())
-            .preferredColorScheme(.dark)
+            .background(Color.black)
     }
 }
