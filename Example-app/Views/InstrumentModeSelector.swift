@@ -25,6 +25,8 @@ struct InstrumentModeSelector: View {
                 }
                 .foregroundColor(.primary).colorInvert()
             }
+            .accessibilityIdentifier("InstrumentModeButton")
+            
             TextField("Restrict to instruments", text: $model.restrictedToInstrumentsText) {
                 print("On commit - hide keyboard")
                 self.resignFirstResponder()
@@ -50,7 +52,9 @@ struct InstrumentModeSelector: View {
                     Image(systemName: "xmark.circle")
                         .buttonImage()
                         .padding()
+                        .foregroundColor(.black)
                 }
+                .accessibilityIdentifier("CloseInstrumentButton")
             }
             Spacer()
             
@@ -68,7 +72,9 @@ struct InstrumentModeSelector: View {
                 ForEach(PaymentViewModel.shared.instrumentOptions, id: \.self.name) { option in
                     Text(option.name).tag(option)
                 }
-            }.pickerStyle(.wheel)
+            }
+            .pickerStyle(.wheel)
+            .accessibilityIdentifier("InstrumentPicker")
         }
             
     }

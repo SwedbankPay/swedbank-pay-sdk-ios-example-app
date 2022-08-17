@@ -9,6 +9,8 @@ import SwiftUI
 
 /// Generate a payer reference to be used in the next purchase
 struct PayerReferenceSettings: View {
+    
+    var blackBackground: Bool
     @EnvironmentObject var model: GeneralSettingsViewModel
     var body: some View {
         VStack {
@@ -23,6 +25,8 @@ struct PayerReferenceSettings: View {
                     Text("Generate")
                         .foregroundColor(.accentColor)
                 }
+                .accessibilityIdentifier("GeneratePayerRef")
+                
                 Spacer()
                 Button {
                     PaymentViewModel.shared.setPayerReferenceToLastUsed()
@@ -39,18 +43,24 @@ struct PayerReferenceSettings: View {
                 self.resignFirstResponder()
             }
             .disableAutocorrection(true)
-            .darkTextFieldLightMode()
-            
+            .lightTextField()
         }
         .padding()
-        .foregroundColor(.white)
+        .if(!blackBackground) {
+            $0.foregroundColor(.black)
+        }
+        .if(blackBackground) {
+            $0.foregroundColor(.white)
+        }
     }
 }
 
 struct PayerReferenceSettings_Previews: PreviewProvider {
+    
+    static var blackBackground = false
     static var previews: some View {
-        PayerReferenceSettings()
+        PayerReferenceSettings(blackBackground: blackBackground)
             .environmentObject(GeneralSettingsViewModel())
-            .background(Color.black)
+            .background(blackBackground ? Color.black : Color.white)
     }
 }

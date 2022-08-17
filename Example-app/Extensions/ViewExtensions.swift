@@ -40,6 +40,14 @@ extension View {
             .background(RoundedRectangle(cornerRadius: 15.0).fill(Color.white))
     }
     
+    func lightTextField() -> some View {
+        self
+            .foregroundColor(.black)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 15.0).fill(Color.white))
+            .background(RoundedRectangle(cornerRadius: 15.0).stroke(Color.black))
+    }
+    
     /// The only way to hide the keyboard in SwiftUI pre iOS 15, now we can use @FocusState
     func resignFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),

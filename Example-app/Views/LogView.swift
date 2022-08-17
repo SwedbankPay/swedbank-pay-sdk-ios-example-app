@@ -26,14 +26,7 @@ struct LogView: View {
     
     var body: some View {
         VStack {
-           
-            
-            if #available(iOS 14.0, *) {
-                scrollingView
-            } else {
-                // Fallback on earlier versions
-                manualScrollingView
-            }
+            scrollingView
         }
     }
     
@@ -85,25 +78,6 @@ struct LogView: View {
     
     var logText: some View {
         selectedIndex == 0 ? Text(model.errorLogText) : Text(model.navigationLogText)
-    }
-        
-        
-    
-    @ViewBuilder
-    var manualScrollingView: some View {
-        Picker("Select log", selection: $selectedIndex) {
-            Text("Error Log").tag(0)
-            Text("Navigation Log").tag(1)
-        }
-        .pickerStyle(SegmentedPickerStyle())
-        .padding()
-        
-        ScrollView {
-            Text( selectedIndex == 0 ? model.errorLogText : model.navigationLogText)
-                .id(itemID)
-        }
-        
-        copyButton
     }
     
     var hostingController: UIHostingController<Self> {

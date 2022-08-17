@@ -211,7 +211,7 @@ class GeneralSettingsViewModel: ObservableObject {
     }
     
     func useToken(_ token: SwedbankPaySDK.PaymentTokenInfo) {
-        PaymentViewModel.shared.paymentToken = token.paymentToken
+        paymentTokenText = token.paymentToken
         showGetTokenScreen = false
     }
     

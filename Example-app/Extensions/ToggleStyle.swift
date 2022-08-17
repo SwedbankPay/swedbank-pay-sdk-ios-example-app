@@ -18,6 +18,7 @@ struct ColoredToggleStyle: ToggleStyle {
     var onColor = Color.accentColor
     var offColor = Color.gray
     var thumbColor = Color.white
+    let accessibilityIdentifier: String
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
@@ -36,12 +37,13 @@ struct ColoredToggleStyle: ToggleStyle {
                             .offset(x: configuration.isOn ? 10 : -10))
                     .animation(Animation.easeInOut(duration: 0.2))
             }
+            .accessibilityIdentifier(accessibilityIdentifier)
         }
     }
 }
 
 extension Toggle {
-    func tinted() -> some View {
-        toggleStyle(ColoredToggleStyle())
+    func tinted(_ accessibilityIdentifier: String = "") -> some View {
+        toggleStyle(ColoredToggleStyle(accessibilityIdentifier: accessibilityIdentifier))
     }
 }

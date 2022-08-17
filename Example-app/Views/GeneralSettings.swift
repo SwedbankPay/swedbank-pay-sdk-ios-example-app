@@ -38,7 +38,7 @@ struct GeneralSettings: View {
             InstrumentModeSelector()
             Divider().overlay(Color.white)
                 .padding(.horizontal)
-            PayerReferenceSettings()
+            PayerReferenceSettings(blackBackground: true)
             Divider().overlay(Color.white)
                 .padding(.horizontal)
             PaymentTokenSettings()
@@ -54,17 +54,7 @@ struct GeneralSettings: View {
         .background(Color.black)
     }
     
-    @ViewBuilder
     var showViewButton: some View {
-        if #available(iOS 14.0, *) {
-            showViewButtonInner
-                .matchedGeometryEffect(id: "Cog", in: generalSettingsNamespace, isSource: false)
-        } else {
-            showViewButtonInner
-        }
-    }
-    
-    var showViewButtonInner: some View {
         Button {
             withAnimation(.easeOut) {
                 model.showCell = !model.showCell
@@ -76,6 +66,8 @@ struct GeneralSettings: View {
         .rotationEffect(.degrees(model.showCell ? 180 : 0))
         .foregroundColor(.white)
         .background(Color.black)
+        .accessibilityIdentifier("CogButton")
+        .matchedGeometryEffect(id: "Cog", in: generalSettingsNamespace, isSource: false)
     }
     
     var hiddenBody: some View {

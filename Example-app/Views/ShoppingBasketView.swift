@@ -63,11 +63,14 @@ struct ShoppingBasketView: View {
                     .smallFont()
                     .frame(maxWidth: .infinity)
                     .frame(height: 48)
+                    .accessibilityIdentifier("checkoutButton")
             }
             .foregroundColor(.white)
             .background(Color.black)
+            .cornerRadius(30)
             .padding(.top, 10)
             .padding(.horizontal, 50)
+            
         }
     }
     

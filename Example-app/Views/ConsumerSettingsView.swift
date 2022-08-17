@@ -48,7 +48,7 @@ struct ConsumerSettingsView: View {
             HStack(alignment: .top) {
                 Button {
                     withAnimation(.easeIn) {
-                        consumerModel.isShown = true
+                        consumerModel.isShown = !consumerModel.isShown
                     }
                 } label: {
                     Text("Consumer")

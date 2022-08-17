@@ -12,6 +12,7 @@ struct ShoppingCartTable: View {
     @ObservedObject var storeViewModel: StoreViewModelObserved
     var settingsViewModel: GeneralSettingsViewModel
     var consumerModel: ConsumerSettingsViewModel
+    var styleModel: StyleSettingsModel
     
     var body: some View {
         ScrollView {
@@ -27,6 +28,8 @@ struct ShoppingCartTable: View {
             GeneralSettings(model: settingsViewModel)
             
             ConsumerSettingsView(consumerModel: consumerModel)
+            
+            StyleSettings(model: styleModel)
         }
     }
     
@@ -45,7 +48,7 @@ struct ShoppingCartTable_Previews: PreviewProvider {
             //storeViewModel.model.addToBasket(storeViewModel.model.products[3])
         }
         
-        return ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumer)
+        return ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumer, styleModel: StyleSettingsModel())
             .padding()
             .background(Color.gray)
             

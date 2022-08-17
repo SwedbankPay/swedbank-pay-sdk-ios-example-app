@@ -73,6 +73,7 @@
 		D50E22D6289AF699007D8E83 /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E22D5289AF699007D8E83 /* ToggleStyle.swift */; };
 		D50E22D8289BB013007D8E83 /* EnvironmentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E22D7289BB013007D8E83 /* EnvironmentSettingsView.swift */; };
 		D50E22DA289BEE38007D8E83 /* ConsumerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E22D9289BEE38007D8E83 /* ConsumerSettingsView.swift */; };
+		D554F1B028AA5E8B007867A4 /* StyleSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F1AF28AA5E8B007867A4 /* StyleSettings.swift */; };
 		D5D6E2A528742BB7008E75D7 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2A428742BB7008E75D7 /* LogView.swift */; };
 		D5D6E2D6287EBD52008E75D7 /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */; };
 		D5D6E2D8287EC1D8008E75D7 /* GeneralSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6E2D7287EC1D8008E75D7 /* GeneralSettingsViewModel.swift */; };
@@ -183,6 +184,7 @@
 		D50E22D5289AF699007D8E83 /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
 		D50E22D7289BB013007D8E83 /* EnvironmentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSettingsView.swift; sourceTree = "<group>"; };
 		D50E22D9289BEE38007D8E83 /* ConsumerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerSettingsView.swift; sourceTree = "<group>"; };
+		D554F1AF28AA5E8B007867A4 /* StyleSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSettings.swift; sourceTree = "<group>"; };
 		D5D6E2A428742BB7008E75D7 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		D5D6E2D7287EC1D8008E75D7 /* GeneralSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewModel.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				D50E22D3289ABA97007D8E83 /* ShoppingCartTable.swift */,
 				D50E22D7289BB013007D8E83 /* EnvironmentSettingsView.swift */,
 				D50E22D9289BEE38007D8E83 /* ConsumerSettingsView.swift */,
+				D554F1AF28AA5E8B007867A4 /* StyleSettings.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				C50CF6D1237AC587003F79DF /* Currency.swift in Sources */,
 				D5D6E2E42881933C008E75D7 /* GeneralToggleSettings.swift in Sources */,
 				D5D6E2D8287EC1D8008E75D7 /* GeneralSettingsViewModel.swift in Sources */,
+				D554F1B028AA5E8B007867A4 /* StyleSettings.swift in Sources */,
 				C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */,
 				C50CF6B3237AB149003F79DF /* Country.swift in Sources */,
 				D50E22D2289AAE58007D8E83 /* ProductListView.swift in Sources */,
@@ -863,7 +867,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -888,7 +892,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

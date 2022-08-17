@@ -23,6 +23,7 @@ struct PaymentTokenSettings: View {
                         Text("Get")
                             .foregroundColor(.accentColor)
                     }
+                    .accessibilityIdentifier("ShowGetTokenScreen")
                 }
                 .padding(.horizontal)
                 
@@ -39,9 +40,9 @@ struct PaymentTokenSettings: View {
             .darkTextFieldLightMode()
         
                 Toggle("Generate payment token", isOn: $model.generatePaymentToken)
-                .tinted()
-        
+                .tinted("GeneratePaymentTokenToggle")
             
+                
         }.padding()
             .sheet(isPresented: $model.showGetTokenScreen) {
                 getTokenScreen
@@ -61,18 +62,22 @@ struct PaymentTokenSettings: View {
                         .buttonImage()
                         .padding()
                 }
+                .accessibilityIdentifier("CloseTokenScreen")
             }
             
-            PayerReferenceSettings()
+            PayerReferenceSettings(blackBackground: false)
             VStack {
                 Button {
                     model.fetchTokensV2()
                 } label: {
                     Text("Get tokens")
                 }
-                if #available(iOS 14.0, *), model.loadingRequest {
+                .accessibilityIdentifier("FetchTokenButton")
+                
+                if model.loadingRequest {
                     ProgressView()
                 }
+                
                 ForEach(model.paymentTokens, id: \.paymentToken) { token in
                     HStack {
                         VStack {
@@ -80,24 +85,29 @@ struct PaymentTokenSettings: View {
                             Text(token.instrumentDisplayName ?? "")
                         }
                         
-                        Button {
-                            model.useToken(token)
-                        } label: {
-                            Text("Use")
+                        VStack {
+                            Button {
+                                model.useToken(token)
+                            } label: {
+                                Text("Use")
+                            }
+                            .accessibilityIdentifier("UseTokenButton")
+                            
+                            Button {
+                                model.deleteToken(token)
+                            } label: {
+                                Text("Delete")
+                            }
+                            
                         }
-                        
-                        Button {
-                            model.deleteToken(token)
-                        } label: {
-                            Text("Delete")
-                        }
+                        .foregroundColor(.accentColor)
                     }
                 }
             }
             
             Spacer()
         }
-        
+        .foregroundColor(.black)
         .showAlert(model.tokenAlertTitle, model.tokenAlertBody, isPresented: $model.tokenAlertIsPresented)
     }
 }

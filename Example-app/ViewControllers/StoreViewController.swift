@@ -104,6 +104,7 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private lazy var storeViewModel = StoreViewModelObserved()
     private lazy var consumerModel = ConsumerSettingsViewModel()
     private lazy var settingsViewModel = GeneralSettingsViewModel()
+    private lazy var styleModel = StyleSettingsModel()
     
     /// Listener for SwiftUI callbacks
     private var listeners = Set<AnyCancellable>()
@@ -159,7 +160,7 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private func showShoppingCartSwiftUI() {
         
         storeViewModel.showBasket = true
-        shoppingCartVC = ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumerModel).hostingController
+        shoppingCartVC = ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumerModel, styleModel: styleModel).hostingController
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurView = blurEffectView
