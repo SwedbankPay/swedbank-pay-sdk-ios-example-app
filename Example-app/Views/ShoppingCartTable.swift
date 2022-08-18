@@ -23,7 +23,6 @@ struct ShoppingCartTable: View {
                 .padding(.vertical)
                 .background(Color.white)
                 .cornerRadius(15)
-                .padding(.top)
             
             GeneralSettings(model: settingsViewModel)
             
@@ -51,7 +50,6 @@ struct ShoppingCartTable_Previews: PreviewProvider {
         return ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumer, styleModel: StyleSettingsModel())
             .padding()
             .background(Color.gray)
-            
-        
+            .ignoresSafeArea(.container, edges: .bottom)
     }
 }

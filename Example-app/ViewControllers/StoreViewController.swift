@@ -97,9 +97,6 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Shopping Cart
     
-    /// Toggle usage of the new SwiftUI based table
-    private let useSwiftUI = true
-    
     /// SwiftUI specialized view models
     private lazy var storeViewModel = StoreViewModelObserved()
     private lazy var consumerModel = ConsumerSettingsViewModel()
@@ -117,36 +114,21 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationController?.navigationBar.alpha = 0.001
         shoppingCartView.isHidden = false
         shoppingCartView.alpha = 0
-        if useSwiftUI {
-            showShoppingCartSwiftUI()
-        }
-        else {
-            shoppingCartVC = storyboard!.instantiateViewController(withIdentifier: "ShoppingCartVC")
-        }
         
+        showShoppingCartSwiftUI()
         if let vc = shoppingCartVC {
             addChild(vc)
             shoppingCartView.addSubview(vc.view)
             vc.view.translatesAutoresizingMaskIntoConstraints = false
             
-            if useSwiftUI {
-                vc.view.backgroundColor = UIColor.clear
-                
-                NSLayoutConstraint.activate([
-                    vc.view.topAnchor.constraint(equalTo: shoppingCartView.topAnchor, constant: 20),
-                    vc.view.leftAnchor.constraint(equalTo: shoppingCartView.leftAnchor, constant: 20),
-                    vc.view.rightAnchor.constraint(equalTo: shoppingCartView.rightAnchor, constant: -20),
-                    vc.view.bottomAnchor.constraint(equalTo: shoppingCartView.bottomAnchor, constant: -20),
-                ])
-            } else {
-                
-                NSLayoutConstraint.activate([
-                    vc.view.topAnchor.constraint(equalTo: shoppingCartView.topAnchor),
-                    vc.view.leftAnchor.constraint(equalTo: shoppingCartView.leftAnchor),
-                    vc.view.rightAnchor.constraint(equalTo: shoppingCartView.rightAnchor),
-                    vc.view.bottomAnchor.constraint(equalTo: shoppingCartView.bottomAnchor),
-                ])
-            }
+            vc.view.backgroundColor = UIColor.clear
+            
+            NSLayoutConstraint.activate([
+                vc.view.topAnchor.constraint(equalTo: shoppingCartView.topAnchor),
+                vc.view.leftAnchor.constraint(equalTo: shoppingCartView.leftAnchor, constant: 20),
+                vc.view.rightAnchor.constraint(equalTo: shoppingCartView.rightAnchor, constant: -20),
+                vc.view.bottomAnchor.constraint(equalTo: shoppingCartView.bottomAnchor),
+            ])
             
             vc.didMove(toParent: self)
         }
@@ -157,6 +139,7 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
+    /// Setting up and handling the SwiftUI hooks
     private func showShoppingCartSwiftUI() {
         
         storeViewModel.showBasket = true
