@@ -112,9 +112,6 @@ struct GeneralSettings: View {
     }
 }
 
-//TODO: change all primary to white
-//    .foregroundColor(.white)
-
 struct GeneralSettings_Previews: PreviewProvider {
     
     static var model = GeneralSettingsViewModel()

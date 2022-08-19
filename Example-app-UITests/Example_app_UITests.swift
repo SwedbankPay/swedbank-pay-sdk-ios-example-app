@@ -161,7 +161,8 @@ class Example_app_UITests: XCTestCase {
         payButton.tap()
     }
     
-    func _testCardPayment() throws {
+    //Testing regular purchase within enteprise
+    func testCardPayment() throws {
         
         try openBasket()
         
@@ -191,7 +192,7 @@ class Example_app_UITests: XCTestCase {
         waitAndAssertExists(timeout: completionTimeout, completeText, "Payment did not complete")
     }
     
-    func _testInstrumentMode() throws {
+    func testInstrumentMode() throws {
         
         try openBasket()
         
@@ -206,10 +207,10 @@ class Example_app_UITests: XCTestCase {
         app.swipeDown()
         try assertAndTap(checkoutButton, "No ckechout button found")
         
-        waitAndAssertExists(panInput, "No pan input found, we are not in instrument mode")
+        _ = waitForPanInput(true)
+        waitAndAssertExists(timeout: 2, panInput, "No pan input found, we are not in instrument mode")
     }
     
-    //TODO: Change this scheme to make use of V3 tokens instead!
     private var ssnTextField: XCUIElement {
         webView.textFields.element(matching: .init(format: "label CONTAINS[cd] 'Fødselsnummer'"))
     }
@@ -301,10 +302,21 @@ class Example_app_UITests: XCTestCase {
     private func tapCardOptionAndWaitForPanInput() -> Bool {
         for _ in 0..<50 {
             cardOption.tap()
-            if panInput.waitForExistence(timeout: 5) {
+            if waitForPanInput() {
                 return true
             }
         }
         return false
+    }
+    
+    private func waitForPanInput(_ loop: Bool = false) -> Bool {
+        if loop {
+            for _ in 0..<50 {
+                if panInput.waitForExistence(timeout: 5) {
+                    return true
+                }
+            }
+        }
+        return panInput.waitForExistence(timeout: 5)
     }
 }
