@@ -16,12 +16,14 @@ class StyleSettingsModel: ObservableObject {
         }
     }
     
+    @Published var errorText: String?
     @Published var hasError: Bool = false
     @Published var isShown = false
     
     func refreshError() {
         let vm = PaymentViewModel.shared
         hasError = !vm.trimmedStyleText.isEmpty && vm.style == nil
+        errorText = StyleParser.lastException
     }
 }
 
@@ -40,8 +42,8 @@ struct StyleSettings: View {
                 } label: {
                     Text("Style")
                         .regularFont()
-                    
                 }
+                .accessibilityIdentifier("Styling")
                 
                 if model.isShown {
                     Spacer()
@@ -70,12 +72,20 @@ struct StyleSettings: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    var errorText: String {
+        if let text = model.errorText, !text.isEmpty {
+            return "Error: \(text)"
+        }
+        return "Error with input"
+    } 
+    
     var main: some View {
         VStack {
             HStack {
-                Text("Error with input")
+                Text(errorText)
                     .foregroundColor(.red)
                     .opacity(model.hasError ? 1 : 0)
+                    .accessibilityIdentifier("ErrorStyleLabel")
                 Spacer()
                 Button {
                     self.resignFirstResponder()
@@ -87,6 +97,7 @@ struct StyleSettings: View {
             TextEditor(text: $model.styleText)
                 .background(Color.white)
                 .frame(minHeight: 400)
+                .accessibilityIdentifier("StyleEditor")
         }
         .padding()
     }

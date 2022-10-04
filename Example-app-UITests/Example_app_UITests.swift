@@ -38,6 +38,13 @@ class Example_app_UITests: XCTestCase {
     private var cogButton: XCUIElement {
         app.buttons.matching(identifier: "CogButton").firstMatch
     }
+    private var stylingButton: XCUIElement {
+        app.buttons.matching(identifier: "Styling").firstMatch
+    }
+    private var stylingEditor: XCUIElement {
+        app.textViews.matching(identifier: "StyleEditor").firstMatch
+    }
+    
     private var instrumentModeButton: XCUIElement {
         let button = app.buttons["InstrumentModeButton"]
         //app.staticTexts.element(matching: .init(format: "label = 'InstrumentModeButton'"))
@@ -54,6 +61,9 @@ class Example_app_UITests: XCTestCase {
     }
     private var checkoutButton: XCUIElement {
         app.buttons.matching(identifier: "checkoutButton").firstMatch
+    }
+    private var errorStyleLabel: XCUIElement {
+        app.buttons.matching(identifier: "ErrorStyleLabel").firstMatch
     }
     
     private var completeText: XCUIElement {
@@ -267,6 +277,21 @@ class Example_app_UITests: XCTestCase {
             payButton.tap()
         }
         waitAndAssertExists(completeText, "Purchase failed")
+    }
+    
+    func testStyling() throws {
+        
+        try openBasket()
+        app.swipeUp()
+        
+        try assertAndTap(stylingButton, "No stylingButton")
+        try assertAndTap(stylingEditor, "No styling editor")
+        stylingEditor.typeText("""
+        { "body": { "background-color" : "red" }}
+        """)
+        if errorStyleLabel.waitForExistence(timeout: 1) {
+            XCTFail("Styling shows error, but has a valid JSON")
+        }
     }
     
     private func openBasket() throws {
