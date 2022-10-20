@@ -26,18 +26,32 @@ class Example_app_UITests: XCTestCase {
     }
     
     private var externalIntegrationEnvironmentButton: XCUIElement {
-        app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
+        //app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
+        app.buttons["Ext. Integration"]
     }
     private var enterpriseEnvironmentButton: XCUIElement {
-        app.staticTexts.element(matching: .init(format: "label = 'Enterprise (EI)'"))
+        //old version needed label matching
+        //app.staticTexts.element(matching: .init(format: "label = 'Enterprise (EI)'"))
+        //new SwiftUI version uses a simpler format.
+        app.buttons["Enterprise (EI)"]
     }
     private var cogButton: XCUIElement {
         app.buttons.matching(identifier: "CogButton").firstMatch
     }
+    private var stylingButton: XCUIElement {
+        app.buttons.matching(identifier: "Styling").firstMatch
+    }
+    private var stylingEditor: XCUIElement {
+        app.textViews.matching(identifier: "StyleEditor").firstMatch
+    }
+    
     private var instrumentModeButton: XCUIElement {
-        let button = XCUIApplication().buttons["InstrumentModeButton"]
+        let button = app.buttons["InstrumentModeButton"]
         //app.staticTexts.element(matching: .init(format: "label = 'InstrumentModeButton'"))
         return button
+    }
+    private var clostInstrumentButton: XCUIElement {
+        app.buttons["CloseInstrumentButton"]
     }
     private var consumerButton: XCUIElement {
         app.staticTexts.element(matching: .init(format: "label = 'Consumer'"))
@@ -47,6 +61,9 @@ class Example_app_UITests: XCTestCase {
     }
     private var checkoutButton: XCUIElement {
         app.buttons.matching(identifier: "checkoutButton").firstMatch
+    }
+    private var errorStyleLabel: XCUIElement {
+        app.buttons.matching(identifier: "ErrorStyleLabel").firstMatch
     }
     
     private var completeText: XCUIElement {
@@ -85,8 +102,7 @@ class Example_app_UITests: XCTestCase {
     
     private var panInput: XCUIElement {
         let label = "Kortnummer"
-        let input = webText(label: label).exists ? webText(label: label) : webTextField(label: label)
-        return input
+        return webText(label: label).exists ? webText(label: label) : webTextField(label: label)
     }
     
     private var expiryInput: XCUIElement {
@@ -123,6 +139,11 @@ class Example_app_UITests: XCTestCase {
         keyboardDoneButton.tap()
     }
     
+    private func assertAndTap(_ button: XCUIElement, _ message: String) throws {
+        waitAndAssertExists(button, message)
+        button.tap()
+    }
+    
     override func setUp() {
         XCUIDevice.shared.orientation = .portrait
         app = XCUIApplication()
@@ -150,17 +171,18 @@ class Example_app_UITests: XCTestCase {
         payButton.tap()
     }
     
+    //Testing regular purchase within enteprise
     func testCardPayment() throws {
         
-        waitAndAssertExists(addToCartButton, "Add to cart button not found")
-        addToCartButton.tap()
-        waitAndAssertExists(removeFromCartButton, "Remove from cart button not found")
-        
-        XCTAssert(openCartButton.exists, "View card button not found")
-        openCartButton.tap()
+        try openBasket()
         
         waitAndAssertExists(enterpriseEnvironmentButton, "Environment button not found")
         enterpriseEnvironmentButton.tap()
+        
+        try makePurchase()
+    }
+    
+    func makePurchase() throws {
         
         XCTAssert(checkoutButton.exists, "Checkout button not found")
         checkoutButton.tap()
@@ -178,6 +200,108 @@ class Example_app_UITests: XCTestCase {
         }
         
         waitAndAssertExists(timeout: completionTimeout, completeText, "Payment did not complete")
+    }
+    
+    func testInstrumentMode() throws {
+        
+        try openBasket()
+        
+        try assertAndTap(cogButton, "No cog button")
+        
+        app.swipeUp()
+        try assertAndTap(instrumentModeButton, "Could not find instrument mode button")
+        let picker = app.pickers["InstrumentPicker"]
+        waitAndAssertExists(picker, "No picker found")
+        app.pickerWheels.element.adjust(toPickerWheelValue: "CreditCard")
+        try assertAndTap(clostInstrumentButton, "No close button found")
+        app.swipeDown()
+        try assertAndTap(checkoutButton, "No ckechout button found")
+        
+        _ = waitForPanInput(true)
+        waitAndAssertExists(timeout: 2, panInput, "No pan input found, we are not in instrument mode")
+    }
+    
+    private var ssnTextField: XCUIElement {
+        webView.textFields.element(matching: .init(format: "label CONTAINS[cd] 'Fødselsnummer'"))
+    }
+    private var prefilledCard: XCUIElement {
+        webView.staticTexts.element(matching: .init(format: "label CONTAINS[cd] '••••'"))
+    }
+    private var agreeButton: XCUIElement {
+        webView.buttons.element(matching: .init(format: "label CONTAINS[cd] 'Lagre'"))
+    }
+    
+    func testPayerReference() throws {
+        
+        try openBasket()
+        
+        try assertAndTap(cogButton, "No cog button")
+        try assertAndTap(externalIntegrationEnvironmentButton, "No ext. Integration")
+        app.swipeUp()
+        
+        //setup a new user
+        let generateToken = app.buttons["GeneratePaymentTokenToggle"]
+        try assertAndTap(generateToken, "No generate token toggle")
+        try assertAndTap(app.buttons["GeneratePayerRef"], "No generate ref button")
+        
+        //make a purchase as this customer
+        app.swipeDown()
+        XCTAssert(checkoutButton.exists, "Checkout button not found")
+        checkoutButton.tap()
+        waitAndAssertExists(webView, "Web view not found")
+        
+        try performPayment(cardNumbers.first!)
+        waitAndAssertExists(completeText, "Purchase failed")
+        try assertAndTap(keyboardDoneButton, "no Done button after purchase")
+        
+        //Go back and make a new purchase with the same payer ref and fetching the token
+        try openBasket()
+        app.swipeUp()
+        try assertAndTap(generateToken, "No generate token toggle")
+        
+        //fetch token
+        try assertAndTap(app.buttons["ShowGetTokenScreen"], "No generate token toggle")
+        try assertAndTap(app.buttons["FetchTokenButton"], "No generate token toggle")
+        try assertAndTap(app.buttons["UseTokenButton"], "No use token button")
+        
+        //close and make a new purchase
+        app.swipeDown()
+        XCTAssert(checkoutButton.exists, "Checkout button not found")
+        checkoutButton.tap()
+        waitAndAssertExists(webView, "Web view not found")
+        
+        //Now there should only be a pay button
+        try assertAndTap(payButton, "Pay button not found")
+        while payButton.waitForExistence(timeout: 5) {
+            //if tapped too early things won't work
+            payButton.tap()
+        }
+        waitAndAssertExists(completeText, "Purchase failed")
+    }
+    
+    func testStyling() throws {
+        
+        try openBasket()
+        app.swipeUp()
+        
+        try assertAndTap(stylingButton, "No stylingButton")
+        try assertAndTap(stylingEditor, "No styling editor")
+        stylingEditor.typeText("""
+        { "body": { "background-color" : "red" }}
+        """)
+        if errorStyleLabel.waitForExistence(timeout: 1) {
+            XCTFail("Styling shows error, but has a valid JSON")
+        }
+    }
+    
+    private func openBasket() throws {
+        
+        waitAndAssertExists(addToCartButton, "Add to cart button not found")
+        addToCartButton.tap()
+        waitAndAssertExists(removeFromCartButton, "Remove from cart button not found")
+        
+        XCTAssert(openCartButton.exists, "View cart button not found")
+        openCartButton.tap()
     }
     
     private func startOver() {
@@ -203,10 +327,21 @@ class Example_app_UITests: XCTestCase {
     private func tapCardOptionAndWaitForPanInput() -> Bool {
         for _ in 0..<50 {
             cardOption.tap()
-            if panInput.waitForExistence(timeout: 5) {
+            if waitForPanInput() {
                 return true
             }
         }
         return false
+    }
+    
+    private func waitForPanInput(_ loop: Bool = false) -> Bool {
+        if loop {
+            for _ in 0..<50 {
+                if panInput.waitForExistence(timeout: 5) {
+                    return true
+                }
+            }
+        }
+        return panInput.waitForExistence(timeout: 5)
     }
 }

@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -96,21 +97,36 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Shopping Cart
     
+    /// SwiftUI specialized view models
+    private lazy var storeViewModel = StoreViewModelObserved()
+    private lazy var consumerModel = ConsumerSettingsViewModel()
+    private lazy var settingsViewModel = GeneralSettingsViewModel()
+    private lazy var styleModel = StyleSettingsModel()
+    
+    /// Listener for SwiftUI callbacks
+    private var listeners = Set<AnyCancellable>()
+    
+    /// SwiftUI background is handled by UIKit
+    private var blurView: UIVisualEffectView?
+    
     /// Shows the shopping cart with animation (creates the shopping cart view as a child viewcontroller inside shoppingCartView)
     private func showShoppingCart() {
         navigationController?.navigationBar.alpha = 0.001
         shoppingCartView.isHidden = false
         shoppingCartView.alpha = 0
-        shoppingCartVC = storyboard!.instantiateViewController(withIdentifier: "ShoppingCartVC")
-        if let vc = shoppingCartVC as? ShoppingCartViewController {
+        
+        showShoppingCartSwiftUI()
+        if let vc = shoppingCartVC {
             addChild(vc)
             shoppingCartView.addSubview(vc.view)
             vc.view.translatesAutoresizingMaskIntoConstraints = false
             
+            vc.view.backgroundColor = UIColor.clear
+            
             NSLayoutConstraint.activate([
                 vc.view.topAnchor.constraint(equalTo: shoppingCartView.topAnchor),
-                vc.view.leftAnchor.constraint(equalTo: shoppingCartView.leftAnchor),
-                vc.view.rightAnchor.constraint(equalTo: shoppingCartView.rightAnchor),
+                vc.view.leftAnchor.constraint(equalTo: shoppingCartView.leftAnchor, constant: 20),
+                vc.view.rightAnchor.constraint(equalTo: shoppingCartView.rightAnchor, constant: -20),
                 vc.view.bottomAnchor.constraint(equalTo: shoppingCartView.bottomAnchor),
             ])
             
@@ -123,6 +139,36 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
+    /// Setting up and handling the SwiftUI hooks
+    private func showShoppingCartSwiftUI() {
+        
+        storeViewModel.showBasket = true
+        shoppingCartVC = ShoppingCartTable(storeViewModel: storeViewModel, settingsViewModel: settingsViewModel, consumerModel: consumerModel, styleModel: styleModel).hostingController
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurView = blurEffectView
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, belowSubview: shoppingCartView)
+        storeViewModel.$showBasket.sink { [self] showBasket in
+            if showBasket == false {
+                hideShoppingCart()
+                listeners.removeAll()
+            }
+        }.store(in: &listeners)
+        
+        storeViewModel.$processPayment.sink { [self] processPayment in
+            if processPayment {
+                DispatchQueue.main.async {
+                    self.storeViewModel.processPayment = false
+                }
+                hideShoppingCart()
+                listeners.removeAll()
+                startPayment()
+            }
+        }.store(in: &listeners)
+    }
+    
     /// Hides the shopping cart with animation, updates the shopping cart counter
     func hideShoppingCart() {
         
@@ -130,15 +176,18 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.shoppingCartView.alpha = 0
+            self?.blurView?.alpha = 0
         }, completion: { [weak self] _ in
             
-            if let vc = self?.shoppingCartVC as? ShoppingCartViewController {
+            if let vc = self?.shoppingCartVC {
                 vc.willMove(toParent: nil)
                 vc.view.removeFromSuperview()
                 vc.removeFromParent()
             }
             self?.shoppingCartVC = nil
             self?.shoppingCartView.isHidden = true
+            self?.blurView?.removeFromSuperview()
+            self?.blurView = nil
             
             self?.view.setNeedsLayout()
             self?.view.layoutIfNeeded()

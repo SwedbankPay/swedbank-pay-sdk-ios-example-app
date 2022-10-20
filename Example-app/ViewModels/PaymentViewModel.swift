@@ -14,8 +14,11 @@ class PaymentViewModel {
     static let PaymentTokenChangedNotification = Notification.Name(
         "com.swedbank.PaymentTokenChanged"
     )
-    
-    enum Environment: CaseIterable {
+        
+    enum Environment: Int, CaseIterable, Identifiable {
+        var id: Int {
+            rawValue
+        }
         case Stage
         case ExternalIntegration
         case PaymentPagesExternalIntegration
@@ -26,7 +29,7 @@ class PaymentViewModel {
         #endif
     }
     
-    enum InstrumentOption {
+    enum InstrumentOption: Hashable {
         case disabled
         case instrument(SwedbankPaySDK.Instrument)
         case custom
@@ -166,8 +169,10 @@ class PaymentViewModel {
     }
     var style: [String: Any]? {
         let trimmed = trimmedStyleText
-        let empty = trimmed.isEmpty
-        return empty ? nil : StyleParser.parse(text: trimmed)
+        if trimmed.isEmpty {
+            return nil
+        }
+        return StyleParser.parse(text: trimmed)
     }
     
     /// Configuration for SwedbankPaySDK
