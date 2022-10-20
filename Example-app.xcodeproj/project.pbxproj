@@ -126,7 +126,6 @@
 		A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example-app.entitlements"; sourceTree = "<group>"; };
 		A5AD795A26664B7800DE62B1 /* StyleSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSettingsCell.swift; sourceTree = "<group>"; };
 		A5AD795E2666744700DE62B1 /* StyleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleParser.swift; sourceTree = "<group>"; };
-		A5BE1E6E25791BAB00336A79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = EnvironmentOptionView.xib; sourceTree = "<group>"; };
 		A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentOptionView.swift; sourceTree = "<group>"; };
 		A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerOwnedPaymentTokensViewController.swift; sourceTree = "<group>"; };
 		A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTokenCell.swift; sourceTree = "<group>"; };
@@ -147,8 +146,6 @@
 		C54D556C23701F9D00E3B301 /* ConsumerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsumerViewModel.swift; sourceTree = "<group>"; };
 		C54D556D23701F9D00E3B301 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		C54D556E23701F9D00E3B301 /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
-		C54D557223701F9D00E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		C54D557423701F9D00E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Main.storyboard; sourceTree = "<group>"; };
 		C54D557923701F9D00E3B301 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		C54D557A23701F9D00E3B301 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		C54D557B23701F9D00E3B301 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +169,6 @@
 		C54D558F23701F9D00E3B301 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		C54D559023701F9D00E3B301 /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		C54D559123701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
-		C54D55BA2370204000E3B301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		C5CF1E7F2370499D008DFCCC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D5083C3C2897FAEE00F4A307 /* ShoppingBasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingBasketView.swift; sourceTree = "<group>"; };
 		D50E22C928995E0F007D8E83 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -185,6 +181,10 @@
 		D50E22D7289BB013007D8E83 /* EnvironmentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSettingsView.swift; sourceTree = "<group>"; };
 		D50E22D9289BEE38007D8E83 /* ConsumerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerSettingsView.swift; sourceTree = "<group>"; };
 		D554F1AF28AA5E8B007867A4 /* StyleSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSettings.swift; sourceTree = "<group>"; };
+		D5AA1BE22901291C00B82C9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D5AA1BE32901291C00B82C9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../Base.lproj/EnvironmentOptionView.xib; sourceTree = "<group>"; };
+		D5AA1BE42901291C00B82C9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D5AA1BE52901291C00B82C9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../Base.lproj/ProductTableViewCell.xib; sourceTree = "<group>"; };
 		D5D6E2A428742BB7008E75D7 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		D5D6E2D7287EC1D8008E75D7 /* GeneralSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewModel.swift; sourceTree = "<group>"; };
@@ -514,7 +514,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = Swedbank;
 				TargetAttributes = {
 					63E65DE126EB562C002D116E = {
@@ -533,6 +533,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = C54D554323701E6B00E3B301;
 			packageReferences = (
@@ -669,7 +670,7 @@
 		A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A5BE1E6E25791BAB00336A79 /* en */,
+				D5AA1BE32901291C00B82C9B /* Base */,
 			);
 			name = EnvironmentOptionView.xib;
 			sourceTree = "<group>";
@@ -677,7 +678,7 @@
 		C54D557123701F9D00E3B301 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C54D557223701F9D00E3B301 /* en */,
+				D5AA1BE22901291C00B82C9B /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -685,7 +686,7 @@
 		C54D557323701F9D00E3B301 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C54D557423701F9D00E3B301 /* en */,
+				D5AA1BE42901291C00B82C9B /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -693,7 +694,7 @@
 		C54D55B92370204000E3B301 /* ProductTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C54D55BA2370204000E3B301 /* en */,
+				D5AA1BE52901291C00B82C9B /* Base */,
 			);
 			name = ProductTableViewCell.xib;
 			sourceTree = "<group>";
@@ -767,6 +768,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -828,6 +830,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -944,7 +947,7 @@
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.1;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
