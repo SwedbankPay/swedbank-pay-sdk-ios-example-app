@@ -75,6 +75,12 @@ class PaymentViewController: UIViewController {
         
         swedbankPaySDKController.didMove(toParent: self)
         
+        let handler: UIActionHandler = { action in
+            let logView = LogView(model: LogViewModel(errorLogText: PaymentViewModel.shared.errorLog.joined(separator: "\n"), navigationLogText: PaymentViewModel.shared.lastPaymentNavigationLogString)).hostingController
+            self.navigationController?.pushViewController(logView, animated: true)
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .organize, primaryAction: .init(handler: handler))
+        
         updateInstrumentUI()
     }
     
