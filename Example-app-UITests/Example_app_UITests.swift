@@ -5,16 +5,23 @@ private let defaultTimeout = 60.0
 private let paymentCreationTimeout = 120.0
 private let completionTimeout = 120.0
 
-private let cardNumbers = ["5226604266737382", "5226603115488031", "5226600156995650", "4581097032723517"] //or 4581099940323133 3d secure: "5226612199533406"
+private let cardNumbers = ["4547781087013329", "4581097032723517", "5226612199533406"] //or 4581099940323133 3d secure: "5226612199533406"
+//"5226600156995650", "5226604266737382", "5226603115488031"
 //not working: "3569990010082211",
-
+//4547 7810 8701 3329
 private let expiryDate = "1230"
 private let cvv = "111"
+private let retryableActionMaxAttempts = 5
 
 class Example_app_UITests: XCTestCase {
     
     private var app: XCUIApplication!
     
+    private struct NoSCAContinueButtonFound: Error {
+        var description: String {
+            "Could not find the continue button nor the textfield"
+        }
+    }
     private var openCartButton: XCUIElement {
         app.buttons.matching(identifier: "viewCartButton").firstMatch
     }
@@ -28,6 +35,9 @@ class Example_app_UITests: XCTestCase {
     private var externalIntegrationEnvironmentButton: XCUIElement {
         //app.staticTexts.element(matching: .init(format: "label = 'Ext. Integration'"))
         app.buttons["Ext. Integration"]
+    }
+    private var swedishLanguageButton: XCUIElement {
+        app.buttons["Sweden"]
     }
     private var enterpriseEnvironmentButton: XCUIElement {
         //old version needed label matching
@@ -58,6 +68,9 @@ class Example_app_UITests: XCTestCase {
     }
     private var checkinV3Button: XCUIElement {
         app.staticTexts.element(matching: .init(format: "label = 'Checkin V3'"))
+    }
+    private var toggleUseV2: XCUIElement {
+        app.switches.matching(identifier: "toggleUseV2").firstMatch
     }
     private var checkoutButton: XCUIElement {
         app.buttons.matching(identifier: "checkoutButton").firstMatch
@@ -128,7 +141,17 @@ class Example_app_UITests: XCTestCase {
     private var payButton: XCUIElement {
         webView.buttons.element(matching: .init(format: "label BEGINSWITH 'Betal '"))
     }
+    private var continueButton: XCUIElement {
+        webView.buttons.element(matching: .init(format: "label = 'Continue'"))
+    }
+    private var confirmButton: XCUIElement {
+        webView.buttons.element(matching: .init(format: "label = 'Confirm'"))
+    }
     
+    //The new 3DS page
+    private var otpTextField: XCUIElement {
+        webView.textFields.firstMatch
+    }
     private var keyboardDoneButton: XCUIElement {
         app.buttons.element(matching: .init(format: "label = 'Done'"))
     }
@@ -169,6 +192,21 @@ class Example_app_UITests: XCTestCase {
         
         waitAndAssertExists(payButton, "Pay button not found")
         payButton.tap()
+        
+        
+    }
+    
+    func scaAproveCard() throws {
+        
+        if continueButton.waitForExistence(timeout: shortTimeout) {
+            continueButton.tap()
+        } else if otpTextField.waitForExistence(timeout: shortTimeout) {
+            //whitelistThisMerchant.tap() it also does not matter!
+            input(to: otpTextField, text: "1234")
+            
+        } else {
+            throw NoSCAContinueButtonFound()
+        }
     }
     
     //Testing regular purchase within enteprise
@@ -191,6 +229,7 @@ class Example_app_UITests: XCTestCase {
         
         for cardNumber in cardNumbers {
             try performPayment(cardNumber)
+            try scaAproveCard()
             if completeOrFailureText.waitForExistence(timeout: shortTimeout) {
                 if completeText.exists {
                     break
@@ -219,6 +258,34 @@ class Example_app_UITests: XCTestCase {
         
         _ = waitForPanInput(true)
         waitAndAssertExists(timeout: 2, panInput, "No pan input found, we are not in instrument mode")
+    }
+    
+    /// MonthlyPayment uses bankID, so a good way to test your app-links. It requires V2, and is active on the Ext. int merchant.
+    func testV2MonthlyPayment() throws {
+        
+        try openBasket()
+        
+        try assertAndTap(cogButton, "No cog button")
+        
+        try assertAndTap(swedishLanguageButton, "language can't be found")
+        try assertAndTap(externalIntegrationEnvironmentButton, "Ext. int button can't be found")
+        
+        app.swipeUp()
+        
+        try assertAndTap(toggleUseV2, "Could not find V2 mode toggle")
+        if (toggleUseV2.value as? String ?? "0") == "0" {
+            toggleUseV2.twoFingerTap()
+        }
+        XCTAssertFalse(toggleUseV2.value as? String ?? "0" == "0", "Could not set V2 toggle")
+        
+        app.swipeDown()
+        try assertAndTap(checkoutButton, "No ckechout button found")
+        
+        XCTAssertTrue(webText(label: "Månadsfaktura").waitForExistence(timeout: defaultTimeout))
+        webText(label: "Månadsfaktura").tap()
+        
+        // uncomment to wait forever here while testing, we can't automate bankID testing yet...
+        //_ = toggleUseV2.waitForExistence(timeout: completionTimeout * 9871)
     }
     
     private var ssnTextField: XCUIElement {

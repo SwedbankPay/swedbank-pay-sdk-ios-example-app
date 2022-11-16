@@ -14,6 +14,10 @@ struct GeneralToggleSettings: View {
     var body: some View {
         VStack {
             
+            Toggle("Use V2 payments", isOn: $model.useV2Payments)
+                .tinted()
+                .accessibilityIdentifier("toggleUseV2")
+            
             Toggle("Disable payment menu", isOn: $model.disablePaymentMenu)
                 .tinted()
             
