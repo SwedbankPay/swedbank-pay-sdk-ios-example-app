@@ -5,8 +5,8 @@ private let defaultTimeout = 60.0
 private let paymentCreationTimeout = 120.0
 private let completionTimeout = 120.0
 
+private let nonSCACardNumbers = ["5226600156995650", "5226604266737382", "5226603115488031"]
 private let cardNumbers = ["4547781087013329", "4581097032723517", "5226612199533406"] //or 4581099940323133 3d secure: "5226612199533406"
-//"5226600156995650", "5226604266737382", "5226603115488031"
 //not working: "3569990010082211",
 //4547 7810 8701 3329
 private let expiryDate = "1230"
@@ -317,7 +317,7 @@ class Example_app_UITests: XCTestCase {
         checkoutButton.tap()
         waitAndAssertExists(webView, "Web view not found")
         
-        try performPayment(cardNumbers.first!)
+        try performPayment(nonSCACardNumbers.first!)
         waitAndAssertExists(completeText, "Purchase failed")
         try assertAndTap(keyboardDoneButton, "no Done button after purchase")
         
