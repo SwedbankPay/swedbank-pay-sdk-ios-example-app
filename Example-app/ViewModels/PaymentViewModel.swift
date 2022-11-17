@@ -145,6 +145,7 @@ class PaymentViewModel {
         }
     }
     
+    var useV2Payments = false
     var disablePaymentMenu = false
     var ignoreGoodRedirectsList = false
     var useSafari = false

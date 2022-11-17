@@ -55,6 +55,13 @@ class GeneralSettingsViewModel: ObservableObject {
             }
         }
     }
+    @Published var useV2Payments: Bool = false {
+        willSet {
+            if newValue != PaymentViewModel.shared.useV2Payments {
+                PaymentViewModel.shared.useV2Payments = newValue
+            }
+        }
+    }
     
     @Published var useSafari: Bool = false {
         willSet {

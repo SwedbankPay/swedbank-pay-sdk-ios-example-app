@@ -42,7 +42,7 @@ class PaymentViewController: UIViewController {
         let vm = PaymentViewModel.shared
         SwedbankPaySDKController.defaultConfiguration = vm.configuration
         let swedbankPaySDKController = SwedbankPaySDKController()
-        if vm.consumerData == nil {
+        if vm.consumerData == nil && vm.useV2Payments == false {
             //For now anonymous is V3 since identification does not exist in v3 PaymentsOnly
             swedbankPaySDKController.startPayment(paymentOrder: vm.paymentOrder, userData: nil)
             
