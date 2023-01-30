@@ -947,8 +947,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				branch = feature/modalBankIdPaymentMenu;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

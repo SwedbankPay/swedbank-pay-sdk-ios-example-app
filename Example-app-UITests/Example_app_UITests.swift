@@ -5,13 +5,35 @@ private let defaultTimeout = 60.0
 private let paymentCreationTimeout = 120.0
 private let completionTimeout = 120.0
 
-private let nonSCACardNumbers = ["5226600156995650", "5226604266737382", "5226603115488031"]
+private let nonSCACardNumbers = ["4581099940323133", "5226603115488031"]
 private let cardNumbers = ["4547781087013329", "4581097032723517", "5226612199533406"] //or 4581099940323133 3d secure: "5226612199533406"
+//nonSca that has become sca: "5226600156995650", "5226604266737382", 
 //not working: "3569990010082211",
 //4547 7810 8701 3329
 private let expiryDate = "1230"
 private let cvv = "111"
 private let retryableActionMaxAttempts = 5
+private let ssn = "1997 10202392"    //Ditt personnummer
+private let email = "leia.ahlstrom@payex.com" //Din e-post
+private let phone = "+46739000001"
+
+/// Note that XCUIElements is never equal to anything, not themselves even
+@discardableResult
+private func waitForOne(_ elements: [XCUIElement], _ timeout: Double = defaultTimeout,
+                        errorMessage: String) throws -> XCUIElement {
+    let start = Date()
+    while start.timeIntervalSinceNow > -timeout {
+        for element in elements where element.waitForExistence(timeout: 1) {
+            return element
+        }
+    }
+    throw errorMessage
+}
+
+//Quick errors by using strings
+extension String: LocalizedError {
+    public var errorDescription: String? { return self }
+}
 
 class Example_app_UITests: XCTestCase {
     
@@ -101,10 +123,22 @@ class Example_app_UITests: XCTestCase {
         let predicate = NSPredicate(format: "label = %@", argumentArray: [label])
         return webView.staticTexts.element(matching: predicate)
     }
-    private func webTextField(label: String) -> XCUIElement {
-        let predicate = NSPredicate(format: "label = %@", argumentArray: [label])
+    
+    private func webTextField(label: String? = nil, contains: String? = nil, identifier: String? = nil) -> XCUIElement {
+        
+        let predicate: NSPredicate
+        if let label {
+            predicate = NSPredicate(format: "label = %@", argumentArray: [label])
+        } else if let contains {
+            predicate = NSPredicate(format: "label CONTAINS[cd] %@", argumentArray: [contains])
+        } else if let identifier {
+            predicate = NSPredicate(format: "identifier = %@", argumentArray: [identifier])
+        } else {
+            fatalError("Missing argument")
+        }
         return webView.textFields.element(matching: predicate)
     }
+    
     private func assertZeroOrOne(elements: [XCUIElement]) -> XCUIElement? {
         XCTAssert(elements.count <= 1)
         return elements.first
@@ -118,26 +152,29 @@ class Example_app_UITests: XCTestCase {
         return webText(label: label).exists ? webText(label: label) : webTextField(label: label)
     }
     
-    private var expiryInput: XCUIElement {
+    private func expiryInput() throws -> XCUIElement {
         
-        let label = "MM/ÅÅ"
-        let input = webText(label: label).exists ? webText(label: label) : webTextField(label: "Gyldig til MM/ÅÅ")
-        return input
+        try waitForOne([webText(label: "MM/YY"),
+                               webTextField(contains: "Gyldig til MM/ÅÅ"),
+                               webText(label: "MM/ÅÅ"),
+                               webTextField(label: "expiryInput"),
+                               webTextField(identifier: "expiryInput"),
+                           webTextField(contains: "Expiry date MM/YY")],
+                              errorMessage: "Could not find expiry input (MM/YY")
     }
-    private var cvvInput: XCUIElement {
-        var label = "CVC"
-        var input = webText(label: label)
-        if input.exists { return input }
-        input = webTextField(label: label)
-        if input.exists { return input }
+    
+    private func cvvInput() throws -> XCUIElement {
         
-        label = "CVV"
-        input = webText(label: label)
-        if input.exists { return input }
-        input = webTextField(label: label)
-        
-        return input
+        try waitForOne([webTextField(label: "cvcInput"), webTextField(label: "cccvc"),
+                               webText(label: "CVV"),
+                               webTextField(label: "CVV"),
+                        webTextField(label: "CVC"),
+                               webTextField(identifier: "cvcInput-1"),
+                               webTextField(contains: "cccvc"),
+                              ],
+                              errorMessage: "CVV input not found!")
     }
+    
     private var payButton: XCUIElement {
         webView.buttons.element(matching: .init(format: "label BEGINSWITH 'Betal '"))
     }
@@ -184,10 +221,10 @@ class Example_app_UITests: XCTestCase {
         XCTAssert(tapCardOptionAndWaitForPanInput(), "PAN input not found")
         input(to: panInput, text: cardNumber)
         
-        waitAndAssertExists(expiryInput, "Expiry date input not found")
+        let expiryInput = try expiryInput()
         input(to: expiryInput, text: expiryDate)
         
-        waitAndAssertExists(cvvInput, "CVV input not found")
+        let cvvInput = try cvvInput()
         input(to: cvvInput, text: cvv)
         
         waitAndAssertExists(payButton, "Pay button not found")
@@ -260,8 +297,8 @@ class Example_app_UITests: XCTestCase {
         waitAndAssertExists(timeout: 2, panInput, "No pan input found, we are not in instrument mode")
     }
     
-    /// MonthlyPayment uses bankID, so a good way to test your app-links. It requires V2, and is active on the Ext. int merchant.
-    func testV2MonthlyPayment() throws {
+    /// MonthlyPayment uses bankID, so a good way to test your app-links. It requires V2, and is active on the Ext. int merchant and
+    func manualOnlytestV2MonthlyPayment() throws {
         
         try openBasket()
         
@@ -285,7 +322,7 @@ class Example_app_UITests: XCTestCase {
         webText(label: "Månadsfaktura").tap()
         
         // uncomment to wait forever here while testing, we can't automate bankID testing yet...
-        //_ = toggleUseV2.waitForExistence(timeout: completionTimeout * 9871)
+        _ = toggleUseV2.waitForExistence(timeout: completionTimeout * 9871)
     }
     
     private var ssnTextField: XCUIElement {
