@@ -19,6 +19,7 @@ func archive(
         "PRODUCT_BUNDLE_IDENTIFIER=\(bundleId)",
         "CODE_SIGN_STYLE=Manual",
         "CODE_SIGN_IDENTITY=\(identityName)",
+        "DEVELOPMENT_TEAM=MUD77FXNE9",
         "PROVISIONING_PROFILE=\(provisioningProfile.uuid)"
     ] + buildSettings)
 }
