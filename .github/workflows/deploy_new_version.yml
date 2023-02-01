@@ -7,9 +7,12 @@ on: [push]
 
 jobs:
   deploy:
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "13.4"
       - run: swift run
         working-directory: ./deploy_new_version
         env:
