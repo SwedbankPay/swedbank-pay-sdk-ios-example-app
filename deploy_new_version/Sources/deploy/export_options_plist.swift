@@ -8,7 +8,7 @@ func createExportOptionsPlist(at url: URL, bundleId: String, profileUUID: String
 
 private struct ExportOptions: Encodable {
     let generateAppStoreInformation = true
-    let manageAppVersionAndBuildNumber = false
+    let manageAppVersionAndBuildNumber = true
     let method = "app-store"
     var provisioningProfiles: [String: String]
 }
