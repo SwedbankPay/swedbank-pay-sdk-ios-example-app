@@ -28,14 +28,16 @@ func archive(
 func archiveUnsigned(
     projectDirectory: URL,
     archiveURL: URL,
-    scheme: String
+    scheme: String,
+    version: Int
 ) throws {
     try run(name: "archiveUnsigned", workingDirectory: projectDirectory, "/usr/bin/xcodebuild", [
         "-scheme", scheme,
         "-archivePath", archiveURL.path,
         "archive",
         "-destination", "generic/platform=iOS",
-        "-verbose", "CODE_SIGNING_REQUIRED=Yes", "CODE_SIGNING_ALLOWED=No"
+        "-verbose", "CODE_SIGNING_REQUIRED=Yes", "CODE_SIGNING_ALLOWED=No",
+        "CURRENT_PROJECT_VERSION=\(version)",
     ])
 }
 

@@ -22,9 +22,9 @@ func deployNewVersion(
         let appStoreConnect = try AppStoreConnect(keyData: appStoreConnectKey, keyId: appStoreConnectKeyId, keyIssuer: appStoreConnectKeyIssuer)
         try appStoreConnect.storeKey(privateKeysParentDirectory: tempDir)
         
-        //version handling can be done automatically by apple
-        //let latestVersion = try appStoreConnect.getLatestVersion(bundleId: bundleId) ?? 0
-        //let nextVersion = latestVersion + 1
+        //version handling can be done automatically by apple, but of some reason does not work
+        let latestVersion = try appStoreConnect.getLatestVersion(bundleId: bundleId) ?? 0
+        let nextVersion = latestVersion + 1
         
         let profile = try ProvisioningProfile(data: profileData)
         
@@ -38,7 +38,7 @@ func deployNewVersion(
                         
             let archiveURL = tempDir.appendingPathComponent("Archive.xcarchive", isDirectory: false)
             
-            try archiveUnsigned(projectDirectory: projectDirectory, archiveURL: archiveURL, scheme: scheme)
+            try archiveUnsigned(projectDirectory: projectDirectory, archiveURL: archiveURL, scheme: scheme, version: nextVersion)
             try codeSignBundle(projectDirectory: projectDirectory, archiveURL: archiveURL, identityName: identityName, appBuildName: "Example-app")
             
             let exportDirectory = tempDir.appendingPathComponent("export", isDirectory: true)
