@@ -39,6 +39,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Appen behöver åtkomst till kameran för att kunna skanna koder.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexMono-Medium.ttf</string>
