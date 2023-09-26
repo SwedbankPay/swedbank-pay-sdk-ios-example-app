@@ -10,6 +10,7 @@ extension StandaloneUrlView {
         @Published var useCheckoutV3: Bool
         
         @Published var displaySwedbankPayController: Bool = false
+        @Published var displayScannerSheet: Bool = false
         
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?

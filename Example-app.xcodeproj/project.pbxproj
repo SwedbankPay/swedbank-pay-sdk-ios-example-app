@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04EE79822AC1B657002ACDAA /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE79812AC1B657002ACDAA /* CodeScanner */; };
+		04EE79842AC1D07E002ACDAA /* ScanUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE79832AC1D07E002ACDAA /* ScanUrl.swift */; };
+		04EE79872AC2A938002ACDAA /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE79862AC2A938002ACDAA /* IconButton.swift */; };
 		63E65DE526EB562C002D116E /* Example_app_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E65DE426EB562C002D116E /* Example_app_UITests.swift */; };
 		890702972A053FDE0027D7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890702952A053FDE0027D7A8 /* Localizable.strings */; };
 		8907029A2A0541E60027D7A8 /* String+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890702992A0541E60027D7A8 /* String+Localize.swift */; };
@@ -103,6 +106,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04EE79832AC1D07E002ACDAA /* ScanUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanUrl.swift; sourceTree = "<group>"; };
+		04EE79862AC2A938002ACDAA /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		6321C1A9274F8279009FC005 /* deploy_new_version.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = deploy_new_version.yml; sourceTree = "<group>"; };
 		639094BB27550F8F00B8A6CB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		639094BE2755189100B8A6CB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -223,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE79822AC1B657002ACDAA /* CodeScanner in Frameworks */,
 				A569C75326D4CB2400B2237C /* SwedbankPaySDKMerchantBackend in Frameworks */,
 				A569C75126D4CB2400B2237C /* SwedbankPaySDK in Frameworks */,
 			);
@@ -231,6 +237,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04EE79852AC2A8DD002ACDAA /* ccomponents */ = {
+			isa = PBXGroup;
+			children = (
+				04EE79862AC2A938002ACDAA /* IconButton.swift */,
+			);
+			path = ccomponents;
+			sourceTree = "<group>";
+		};
 		6332462C26EF820C00FB705A /* .github */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +428,7 @@
 				C50CF6B6237AB15C003F79DF /* Product.swift */,
 				C50CF6AA237AB10A003F79DF /* PurchaseData.swift */,
 				C50CF6AC237AB119003F79DF /* PurchaseItem.swift */,
+				04EE79832AC1D07E002ACDAA /* ScanUrl.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,6 +491,7 @@
 		D5D6E2A328742B14008E75D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04EE79852AC2A8DD002ACDAA /* ccomponents */,
 				D5D6E2A428742BB7008E75D7 /* LogView.swift */,
 				D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */,
 				D5D6E2DF287F4DF0008E75D7 /* PayerReferenceSettings.swift */,
@@ -531,6 +547,7 @@
 			packageProductDependencies = (
 				A569C75026D4CB2400B2237C /* SwedbankPaySDK */,
 				A569C75226D4CB2400B2237C /* SwedbankPaySDKMerchantBackend */,
+				04EE79812AC1B657002ACDAA /* CodeScanner */,
 			);
 			productName = "Swedbank Pay SDK Example";
 			productReference = C54D554C23701E6B00E3B301 /* Example-app.app */;
@@ -567,6 +584,7 @@
 			mainGroup = C54D554323701E6B00E3B301;
 			packageReferences = (
 				A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */,
+				04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = C54D554D23701E6B00E3B301 /* Products */;
 			projectDirPath = "";
@@ -664,6 +682,7 @@
 				C50CF6B7237AB15C003F79DF /* Product.swift in Sources */,
 				C54D55A723701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift in Sources */,
 				D50E22D8289BB013007D8E83 /* EnvironmentSettingsView.swift in Sources */,
+				04EE79872AC2A938002ACDAA /* IconButton.swift in Sources */,
 				D50E22D6289AF699007D8E83 /* ToggleStyle.swift in Sources */,
 				D5083C3D2897FAEE00F4A307 /* ShoppingBasketView.swift in Sources */,
 				C54D55A623701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift in Sources */,
@@ -681,6 +700,7 @@
 				D5D6E2E6288195F3008E75D7 /* InstrumentModeSelector.swift in Sources */,
 				C54D55A123701F9D00E3B301 /* StoreViewController.swift in Sources */,
 				8907029C2A0A20030027D7A8 /* StorageHelper.swift in Sources */,
+				04EE79842AC1D07E002ACDAA /* ScanUrl.swift in Sources */,
 				890702A02A0A23ED0027D7A8 /* StandaloneUrlView.swift in Sources */,
 				C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */,
 				D50E22D4289ABA97007D8E83 /* ShoppingCartTable.swift in Sources */,
@@ -993,6 +1013,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
@@ -1004,6 +1032,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04EE79812AC1B657002ACDAA /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		A569C75026D4CB2400B2237C /* SwedbankPaySDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */;
