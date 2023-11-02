@@ -5,8 +5,10 @@
 "stand_alone_url_payment_successful" = "Payment completed";
 "stand_alone_url_payment_cancelled" = "Payment cancelled";
 
-"stand_alone_url_payment_view_payment_url" = "View payment URL";
+"stand_alone_url_payment_view_checkout_url" = "View checkout URL";
 "stand_alone_url_payment_base_url" = "Base URL";
 "stand_alone_url_payment_complete_url" = "Complete URL";
 "stand_alone_url_payment_cancel_url" = "Cancel URL";
 "stand_alone_url_payment_checkout_v3" = "Use Checkout V3";
+"stand_alone_url_payment_payment_url" = "Payment URL";
+"stand_alone_url_payment_payment_url_scheme" = "swedbankexample://";
