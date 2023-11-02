@@ -12,27 +12,33 @@ import CodeScanner
 
 struct StandaloneUrlView: View {
     @StateObject private var viewModel = StandaloneUrlViewModel()
+    @FocusState private var isFocused: Bool
     
     @State var latestClickedUrl: ScanUrl = .unknown
-    
+
     var scannerSheet : some View {
         CodeScannerView(
             codeTypes: [.qr],
             completion: { result in
                 if case let .success(code) = result {
                     switch self.latestClickedUrl {
-                        case .payment:
-                        viewModel.viewPaymentUrl = code.string
+                        case .checkout:
+                            viewModel.viewCheckoutUrl = code.string
                             break
                         case .base:
                             viewModel.baseUrl = code.string
+                            saveEnteredUrl(scanUrl: .base)
                             break
                         case .complete:
                             viewModel.completeUrl = code.string
+                            saveEnteredUrl(scanUrl: .complete)
                             break
                         case .cancel:
                             viewModel.cancelUrl = code.string
+                            saveEnteredUrl(scanUrl: .cancel)
                             break
+                        case .payment:
+                            viewModel.paymentUrlAuthorityAndPath = code.string
                         case .unknown:
                             break
                     }
@@ -53,41 +59,88 @@ struct StandaloneUrlView: View {
             
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
-                    TextField("stand_alone_url_payment_view_payment_url", text: $viewModel.viewPaymentUrl)
+                    TextField(
+                        "stand_alone_url_payment_view_checkout_url",
+                        text: $viewModel.viewCheckoutUrl
+                    )
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .lightTextField()
+                        .keyboardType(.URL)
+                        .focused($isFocused)
+                    
                     IconButton(systemName: "qrcode.viewfinder") {
                         viewModel.displayScannerSheet = true
-                        self.latestClickedUrl = .payment
+                        self.isFocused = false
+                        self.latestClickedUrl = .checkout
                     }
                 }
 
                 HStack {
-                    TextField("stand_alone_url_payment_base_url", text: $viewModel.baseUrl)
+                    TextField(
+                        "stand_alone_url_payment_base_url",
+                        text: $viewModel.baseUrl,
+                        onEditingChanged: { focused in
+                            if (!focused) {
+                                saveEnteredUrl(scanUrl: .base)
+                            }
+                        }
+                    )
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .lightTextField()
+                        .keyboardType(.URL)
+                        .focused($isFocused)
+                    
                     IconButton(systemName: "qrcode.viewfinder") {
                         viewModel.displayScannerSheet = true
+                        self.isFocused = false
                         self.latestClickedUrl = .base
                     }
                 }
                 
                 HStack {
-                    TextField("stand_alone_url_payment_complete_url", text: $viewModel.completeUrl)
+                    TextField(
+                        "stand_alone_url_payment_complete_url",
+                        text: $viewModel.completeUrl,
+                        onEditingChanged: { focused in
+                            if (!focused) {
+                                saveEnteredUrl(scanUrl: .complete)
+                            }
+                        }
+                    )
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .lightTextField()
+                        .keyboardType(.URL)
+                        .focused($isFocused)
+                    
                     IconButton(systemName: "qrcode.viewfinder") {
                         viewModel.displayScannerSheet = true
+                        self.isFocused = false
                         self.latestClickedUrl = .complete
                     }
                 }
                 
                 HStack {
-                    TextField("stand_alone_url_payment_cancel_url", text: $viewModel.cancelUrl)
+                    TextField(
+                        "stand_alone_url_payment_cancel_url",
+                        text: $viewModel.cancelUrl,
+                        onEditingChanged: { focused in
+                            if (!focused) {
+                                saveEnteredUrl(scanUrl: .cancel)
+                            }
+                        }
+                    )
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .lightTextField()
+                        .keyboardType(.URL)
+                        .focused($isFocused)
+                    
                     IconButton(systemName: "qrcode.viewfinder") {
                         viewModel.displayScannerSheet = true
+                        self.isFocused = false
                         self.latestClickedUrl = .cancel
                     }
                 }
@@ -95,6 +148,7 @@ struct StandaloneUrlView: View {
                 Toggle("stand_alone_url_payment_checkout_v3", isOn: $viewModel.useCheckoutV3)
                 
                 Button {
+                    isFocused = false
                     viewModel.displaySwedbankPayController = true
                 } label: {
                     Text("general_checkout")
@@ -103,10 +157,29 @@ struct StandaloneUrlView: View {
                         .frame(height: 48)
                         .accessibilityIdentifier("checkoutButton")
                 }
-                .foregroundColor(.white)
-                .background(Color.black)
+                .disabled(!viewModel.isCheckoutEnabled)
+                .foregroundColor(viewModel.isCheckoutEnabled ? .white : .gray)
+                .background(viewModel.isCheckoutEnabled ? .black : .backgroundGray)
                 .cornerRadius(30)
                 .padding(.top, 10)
+                
+                HStack {
+                    Text("stand_alone_url_payment_payment_url_scheme")
+                    TextField(
+                        "stand_alone_url_payment_payment_url",
+                        text: $viewModel.paymentUrlAuthorityAndPath,
+                        onEditingChanged: { focused in
+                            if(!focused) {
+                                saveEnteredUrl(scanUrl: .payment)
+                            }
+                        }
+                    )
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .lightTextField()
+                        .keyboardType(.URL)
+                        .focused($isFocused)
+                }
             }
             .padding()
             .sheet(isPresented: $viewModel.displaySwedbankPayController) {
@@ -117,6 +190,27 @@ struct StandaloneUrlView: View {
             .sheet(isPresented: $viewModel.displayScannerSheet) {
                 self.scannerSheet
             }
+        }
+    }
+    
+    func saveEnteredUrl(scanUrl: ScanUrl) {
+        switch scanUrl {
+            case .checkout:
+                break
+            case .base:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.baseUrl)
+                break
+            case .complete:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.completeUrl)
+                break
+            case .cancel:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.cancelUrl)
+                break
+            case .payment:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.paymentUrlAuthorityAndPath)
+                break
+            case .unknown:
+                break
         }
     }
 }

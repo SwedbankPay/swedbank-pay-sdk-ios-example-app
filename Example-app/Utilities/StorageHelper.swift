@@ -7,6 +7,7 @@ struct StorageHelper {
         case completeUrl
         case cancelUrl
         case useCheckoutV3
+        case paymentUrl
         
         var storageString: String {
             return "Storage\(self.rawValue)"
