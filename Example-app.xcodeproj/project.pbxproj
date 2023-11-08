@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -935,17 +935,17 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MUD77FXNE9;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8ZL2DT9DQM;
 				INFOPLIST_FILE = "Example-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp-prod";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swedbankpay.exampleapp;
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Swedbank Pay SDK Demo App Distribution";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iOS SDK Example App Distribution";
 				SWEDBANKPAY_SDK_CALLBACK_SCHEME = swedbankexample;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -963,17 +963,17 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MUD77FXNE9;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8ZL2DT9DQM;
 				INFOPLIST_FILE = "Example-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.swedbank.swedbank-pay-testapp-prod";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swedbankpay.exampleapp;
 				PRODUCT_NAME = "Example-app";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Swedbank Pay SDK Demo App Distribution";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iOS SDK Example App Distribution";
 				SWEDBANKPAY_SDK_CALLBACK_SCHEME = swedbankexample;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
