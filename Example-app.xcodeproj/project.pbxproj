@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04EE79822AC1B657002ACDAA /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 04EE79812AC1B657002ACDAA /* CodeScanner */; };
+		04EE79842AC1D07E002ACDAA /* ScanUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE79832AC1D07E002ACDAA /* ScanUrl.swift */; };
+		04EE79872AC2A938002ACDAA /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EE79862AC2A938002ACDAA /* IconButton.swift */; };
 		63E65DE526EB562C002D116E /* Example_app_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E65DE426EB562C002D116E /* Example_app_UITests.swift */; };
+		890702972A053FDE0027D7A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890702952A053FDE0027D7A8 /* Localizable.strings */; };
+		8907029A2A0541E60027D7A8 /* String+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890702992A0541E60027D7A8 /* String+Localize.swift */; };
+		8907029C2A0A20030027D7A8 /* StorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8907029B2A0A20020027D7A8 /* StorageHelper.swift */; };
+		890702A02A0A23ED0027D7A8 /* StandaloneUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8907029F2A0A23ED0027D7A8 /* StandaloneUrlView.swift */; };
+		890702A22A0A24820027D7A8 /* PaymentAlternativesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890702A12A0A24820027D7A8 /* PaymentAlternativesViewController.swift */; };
+		890702A42A0A2CC50027D7A8 /* StandaloneUrlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890702A32A0A2CC50027D7A8 /* StandaloneUrlViewModel.swift */; };
+		89919A382A0140C60011ADF0 /* SwedbankPayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89919A372A0140C60011ADF0 /* SwedbankPayConfiguration.swift */; };
 		A548FFB3241BCC76007C7B17 /* EnvironmentSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */; };
 		A569986524113FF100162D69 /* ConsumerSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569986424113FF100162D69 /* ConsumerSettingsCell.swift */; };
 		A56998672417C3B000162D69 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56998662417C3B000162D69 /* SettingsCell.swift */; };
@@ -17,7 +27,6 @@
 		A58DAF0724053A5A004F9AF2 /* ShoppingCartHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58DAF0624053A5A004F9AF2 /* ShoppingCartHeaderCell.swift */; };
 		A5AD795B26664B7800DE62B1 /* StyleSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD795A26664B7800DE62B1 /* StyleSettingsCell.swift */; };
 		A5AD795F2666744700DE62B1 /* StyleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD795E2666744700DE62B1 /* StyleParser.swift */; };
-		A5BE1E6F25791BAB00336A79 /* EnvironmentOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */; };
 		A5BE1E7225791BC400336A79 /* EnvironmentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */; };
 		A5C24B5A257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */; };
 		A5C24B5D257E6A3300D832D9 /* PaymentTokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */; };
@@ -97,6 +106,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04EE79832AC1D07E002ACDAA /* ScanUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanUrl.swift; sourceTree = "<group>"; };
+		04EE79862AC2A938002ACDAA /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		6321C1A9274F8279009FC005 /* deploy_new_version.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = deploy_new_version.yml; sourceTree = "<group>"; };
 		639094BB27550F8F00B8A6CB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		639094BE2755189100B8A6CB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -118,6 +129,14 @@
 		63E65DE226EB562C002D116E /* Example-app-UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-app-UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E65DE426EB562C002D116E /* Example_app_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_app_UITests.swift; sourceTree = "<group>"; };
 		63E65DE626EB562C002D116E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		890702962A053FDE0027D7A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		890702982A053FE50027D7A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		890702992A0541E60027D7A8 /* String+Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localize.swift"; sourceTree = "<group>"; };
+		8907029B2A0A20020027D7A8 /* StorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHelper.swift; sourceTree = "<group>"; };
+		8907029F2A0A23ED0027D7A8 /* StandaloneUrlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneUrlView.swift; sourceTree = "<group>"; };
+		890702A12A0A24820027D7A8 /* PaymentAlternativesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAlternativesViewController.swift; sourceTree = "<group>"; };
+		890702A32A0A2CC50027D7A8 /* StandaloneUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneUrlViewModel.swift; sourceTree = "<group>"; };
+		89919A372A0140C60011ADF0 /* SwedbankPayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwedbankPayConfiguration.swift; sourceTree = "<group>"; };
 		A548FFB2241BCC76007C7B17 /* EnvironmentSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSettingsCell.swift; sourceTree = "<group>"; };
 		A569986424113FF100162D69 /* ConsumerSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerSettingsCell.swift; sourceTree = "<group>"; };
 		A56998662417C3B000162D69 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -209,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE79822AC1B657002ACDAA /* CodeScanner in Frameworks */,
 				A569C75326D4CB2400B2237C /* SwedbankPaySDKMerchantBackend in Frameworks */,
 				A569C75126D4CB2400B2237C /* SwedbankPaySDK in Frameworks */,
 			);
@@ -217,6 +237,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04EE79852AC2A8DD002ACDAA /* ccomponents */ = {
+			isa = PBXGroup;
+			children = (
+				04EE79862AC2A938002ACDAA /* IconButton.swift */,
+			);
+			path = ccomponents;
+			sourceTree = "<group>";
+		};
 		6332462C26EF820C00FB705A /* .github */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +310,15 @@
 			path = "Example-app-UITests";
 			sourceTree = "<group>";
 		};
+		89919A2E29FC0D3F0011ADF0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				89919A372A0140C60011ADF0 /* SwedbankPayConfiguration.swift */,
+				8907029B2A0A20020027D7A8 /* StorageHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		A5AD795D2666743400DE62B1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +361,8 @@
 				A5AA1D6D23967AE4008A62CC /* Example-app.entitlements */,
 				C54D556923701F9D00E3B301 /* Info.plist */,
 				C54D556A23701F9D00E3B301 /* AppDelegate.swift */,
-				C54D557023701F9D00E3B301 /* en.lproj */,
+				C54D557023701F9D00E3B301 /* Base.lproj */,
+				89919A2E29FC0D3F0011ADF0 /* Utilities */,
 				C54D556423701F9D00E3B301 /* Extensions */,
 				C54D557623701F9D00E3B301 /* Models */,
 				C54D558123701F9D00E3B301 /* Resources */,
@@ -350,6 +388,7 @@
 				D50E22C928995E0F007D8E83 /* ColorExtensions.swift */,
 				D50E22CB28996D0F007D8E83 /* TransitionExtensions.swift */,
 				D50E22D5289AF699007D8E83 /* ToggleStyle.swift */,
+				890702992A0541E60027D7A8 /* String+Localize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,19 +401,21 @@
 				C54D556D23701F9D00E3B301 /* PaymentViewModel.swift */,
 				C54D556E23701F9D00E3B301 /* StoreViewModel.swift */,
 				D50E22CD289AAD62007D8E83 /* StoreViewModelObserved.swift */,
+				890702A32A0A2CC50027D7A8 /* StandaloneUrlViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		C54D557023701F9D00E3B301 /* en.lproj */ = {
+		C54D557023701F9D00E3B301 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
 				C54D557123701F9D00E3B301 /* LaunchScreen.xib */,
 				A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */,
 				C54D557323701F9D00E3B301 /* Main.storyboard */,
 				C54D55B92370204000E3B301 /* ProductTableViewCell.xib */,
+				890702952A053FDE0027D7A8 /* Localizable.strings */,
 			);
-			path = en.lproj;
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 		C54D557623701F9D00E3B301 /* Models */ = {
@@ -387,6 +428,7 @@
 				C50CF6B6237AB15C003F79DF /* Product.swift */,
 				C50CF6AA237AB10A003F79DF /* PurchaseData.swift */,
 				C50CF6AC237AB119003F79DF /* PurchaseItem.swift */,
+				04EE79832AC1D07E002ACDAA /* ScanUrl.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +452,7 @@
 				A5BE1E7125791BC400336A79 /* EnvironmentOptionView.swift */,
 				A5C24B59257E5D8B00D832D9 /* PayerOwnedPaymentTokensViewController.swift */,
 				A5C24B5C257E6A3300D832D9 /* PaymentTokenCell.swift */,
+				890702A12A0A24820027D7A8 /* PaymentAlternativesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -448,6 +491,7 @@
 		D5D6E2A328742B14008E75D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04EE79852AC2A8DD002ACDAA /* ccomponents */,
 				D5D6E2A428742BB7008E75D7 /* LogView.swift */,
 				D5D6E2D5287EBD52008E75D7 /* GeneralSettings.swift */,
 				D5D6E2DF287F4DF0008E75D7 /* PayerReferenceSettings.swift */,
@@ -461,6 +505,7 @@
 				D50E22D7289BB013007D8E83 /* EnvironmentSettingsView.swift */,
 				D50E22D9289BEE38007D8E83 /* ConsumerSettingsView.swift */,
 				D554F1AF28AA5E8B007867A4 /* StyleSettings.swift */,
+				8907029F2A0A23ED0027D7A8 /* StandaloneUrlView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,6 +547,7 @@
 			packageProductDependencies = (
 				A569C75026D4CB2400B2237C /* SwedbankPaySDK */,
 				A569C75226D4CB2400B2237C /* SwedbankPaySDKMerchantBackend */,
+				04EE79812AC1B657002ACDAA /* CodeScanner */,
 			);
 			productName = "Swedbank Pay SDK Example";
 			productReference = C54D554C23701E6B00E3B301 /* Example-app.app */;
@@ -538,6 +584,7 @@
 			mainGroup = C54D554323701E6B00E3B301;
 			packageReferences = (
 				A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */,
+				04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = C54D554D23701E6B00E3B301 /* Products */;
 			projectDirPath = "";
@@ -571,7 +618,7 @@
 				C54D55AF23701F9D00E3B301 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				C54D559D23701F9D00E3B301 /* LaunchScreen.xib in Resources */,
 				C54D55B123701F9D00E3B301 /* IBMPlexMono-Regular.ttf in Resources */,
-				A5BE1E6F25791BAB00336A79 /* EnvironmentOptionView.xib in Resources */,
+				890702972A053FDE0027D7A8 /* Localizable.strings in Resources */,
 				C54D55AB23701F9D00E3B301 /* IBMPlexMono-MediumItalic.ttf in Resources */,
 				C54D55B723701F9D00E3B301 /* IBMPlexMono-LightItalic.ttf in Resources */,
 				C54D55A823701F9D00E3B301 /* Images.xcassets in Resources */,
@@ -611,6 +658,7 @@
 				D50E22CE289AAD62007D8E83 /* StoreViewModelObserved.swift in Sources */,
 				D5D6E2DC287EFF44008E75D7 /* ViewExtensions.swift in Sources */,
 				A56998672417C3B000162D69 /* SettingsCell.swift in Sources */,
+				890702A42A0A2CC50027D7A8 /* StandaloneUrlViewModel.swift in Sources */,
 				C50CF6AB237AB10A003F79DF /* PurchaseData.swift in Sources */,
 				C54D559523701F9D00E3B301 /* UIView+Extension.swift in Sources */,
 				D50E22CA28995E0F007D8E83 /* ColorExtensions.swift in Sources */,
@@ -625,6 +673,7 @@
 				D554F1B028AA5E8B007867A4 /* StyleSettings.swift in Sources */,
 				C54D559323701F9D00E3B301 /* UIFont+Extension.swift in Sources */,
 				C50CF6B3237AB149003F79DF /* Country.swift in Sources */,
+				890702A22A0A24820027D7A8 /* PaymentAlternativesViewController.swift in Sources */,
 				D50E22D2289AAE58007D8E83 /* ProductListView.swift in Sources */,
 				C50CF6AF237AB126003F79DF /* PaymentResult.swift in Sources */,
 				D5D6E2E2288191DA008E75D7 /* PaymentTokenSettings.swift in Sources */,
@@ -633,6 +682,7 @@
 				C50CF6B7237AB15C003F79DF /* Product.swift in Sources */,
 				C54D55A723701F9D00E3B301 /* ShoppingCartProductTableViewCell.swift in Sources */,
 				D50E22D8289BB013007D8E83 /* EnvironmentSettingsView.swift in Sources */,
+				04EE79872AC2A938002ACDAA /* IconButton.swift in Sources */,
 				D50E22D6289AF699007D8E83 /* ToggleStyle.swift in Sources */,
 				D5083C3D2897FAEE00F4A307 /* ShoppingBasketView.swift in Sources */,
 				C54D55A623701F9D00E3B301 /* ShoppingCartSummaryFooterView.swift in Sources */,
@@ -644,12 +694,17 @@
 				D5D6E2DE287F4DAA008E75D7 /* ImageExtensions.swift in Sources */,
 				D50E22DA289BEE38007D8E83 /* ConsumerSettingsView.swift in Sources */,
 				D5D6E2DA287EFF23008E75D7 /* TextExtensions.swift in Sources */,
+				8907029A2A0541E60027D7A8 /* String+Localize.swift in Sources */,
 				D5D6E2D6287EBD52008E75D7 /* GeneralSettings.swift in Sources */,
 				C54D55A323701F9D00E3B301 /* ShoppingCartViewController.swift in Sources */,
 				D5D6E2E6288195F3008E75D7 /* InstrumentModeSelector.swift in Sources */,
 				C54D55A123701F9D00E3B301 /* StoreViewController.swift in Sources */,
+				8907029C2A0A20030027D7A8 /* StorageHelper.swift in Sources */,
+				04EE79842AC1D07E002ACDAA /* ScanUrl.swift in Sources */,
+				890702A02A0A23ED0027D7A8 /* StandaloneUrlView.swift in Sources */,
 				C54D559623701F9D00E3B301 /* UINavigationController+Extension.swift in Sources */,
 				D50E22D4289ABA97007D8E83 /* ShoppingCartTable.swift in Sources */,
+				89919A382A0140C60011ADF0 /* SwedbankPayConfiguration.swift in Sources */,
 				C54D55A223701F9D00E3B301 /* ResultViewController.swift in Sources */,
 				D5D6E2A528742BB7008E75D7 /* LogView.swift in Sources */,
 				C50CF6AD237AB119003F79DF /* PurchaseItem.swift in Sources */,
@@ -667,6 +722,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		890702952A053FDE0027D7A8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				890702962A053FDE0027D7A8 /* Base */,
+				890702982A053FE50027D7A8 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		A5BE1E6D25791BAB00336A79 /* EnvironmentOptionView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -873,7 +937,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -901,7 +965,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MUD77FXNE9;
 				INFOPLIST_FILE = "Example-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -949,6 +1013,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
@@ -960,6 +1032,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04EE79812AC1B657002ACDAA /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04EE79802AC1B657002ACDAA /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		A569C75026D4CB2400B2237C /* SwedbankPaySDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A569C74F26D4CB2400B2237C /* XCRemoteSwiftPackageReference "swedbank-pay-sdk-ios" */;
