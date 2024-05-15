@@ -4,6 +4,8 @@ enum ScanUrl: String {
     case complete
     case cancel
     case payment
+    case sessionApi
+    case swish
     case unknown
     
     func toKey() -> StorageHelper.Key? {

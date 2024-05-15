@@ -14,6 +14,7 @@ struct StandaloneUrlView: View {
     @StateObject private var viewModel = StandaloneUrlViewModel()
     @FocusState private var isFocused: Bool
     
+    @State var nativePayment: SwedbankPaySDK.NativePayment?
     @State var latestClickedUrl: ScanUrl = .unknown
 
     var scannerSheet : some View {
@@ -39,6 +40,13 @@ struct StandaloneUrlView: View {
                             break
                         case .payment:
                             viewModel.paymentUrlAuthorityAndPath = code.string
+                            break
+                        case .sessionApi:
+                            viewModel.sessionApiUrl = code.string
+                            break
+                        case .swish:
+                            viewModel.swishNumber = code.string
+                            break
                         case .unknown:
                             break
                     }
@@ -180,6 +188,151 @@ struct StandaloneUrlView: View {
                         .keyboardType(.URL)
                         .focused($isFocused)
                 }
+                
+                HStack {
+                    TextField(
+                        "stand_alone_url_payment_session_url",
+                        text: $viewModel.sessionApiUrl,
+                        onEditingChanged: { focused in
+                            if (!focused) {
+                                saveEnteredUrl(scanUrl: .sessionApi)
+                            }
+                        }
+                    )
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
+                    .lightTextField()
+                    .keyboardType(.URL)
+                    .focused($isFocused)
+                    
+                    IconButton(systemName: "qrcode.viewfinder") {
+                        viewModel.displayScannerSheet = true
+                        self.isFocused = false
+                        self.latestClickedUrl = .sessionApi
+                    }
+                }
+                
+                Button {
+                    isFocused = false
+                    
+                    if let configuration = viewModel.configurePayment() {
+                        nativePayment = SwedbankPaySDK.NativePayment(orderInfo: configuration.orderInfo)
+                        nativePayment?.delegate = viewModel
+                        
+                        nativePayment?.startPaymentSession(with: viewModel.sessionApiUrl)
+                    }
+                } label: {
+                    Text("stand_alone_url_payment_get_session")
+                        .smallFont()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 48)
+                        .accessibilityIdentifier("getSessionButton")
+                }
+                .disabled(viewModel.sessionApiUrl.isEmpty)
+                .foregroundColor(!viewModel.sessionApiUrl.isEmpty ? .white : .gray)
+                .background(!viewModel.sessionApiUrl.isEmpty ? .black : .backgroundGray)
+                .cornerRadius(30)
+                .padding(.top, 10)
+                
+                if let availableInstrument = viewModel.availableInstrument {
+                    ForEach(availableInstrument, id: \.self) { instrument in
+                        switch instrument {
+                        case .swish(let prefills):
+                            HStack {
+                                TextField(
+                                    "stand_alone_url_payment_swish_number",
+                                    text: $viewModel.swishNumber,
+                                    onEditingChanged: { focused in
+                                        if (!focused) {
+                                            saveEnteredUrl(scanUrl: .sessionApi)
+                                        }
+                                    }
+                                )
+                                .disableAutocorrection(true)
+                                .autocapitalization(.none)
+                                .lightTextField()
+                                .keyboardType(.phonePad)
+                                .focused($isFocused)
+                                
+                                IconButton(systemName: "qrcode.viewfinder") {
+                                    viewModel.displayScannerSheet = true
+                                    self.isFocused = false
+                                    self.latestClickedUrl = .swish
+                                }
+                            }
+                            
+                            Button {
+                                isFocused = false
+                                
+                                nativePayment?.makePaymentAttempt(with: .swish(msisdn: viewModel.swishNumber))
+                            } label: {
+                                Text("stand_alone_url_payment_swish")
+                                    .smallFont()
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 48)
+                                    .accessibilityIdentifier("swishButton")
+                            }
+                            .disabled(viewModel.swishNumber.isEmpty)
+                            .foregroundColor(!viewModel.swishNumber.isEmpty ? .white : .gray)
+                            .background(!viewModel.swishNumber.isEmpty ? .black : .backgroundGray)
+                            .cornerRadius(30)
+                            .padding(.top, 10)
+
+                            Button {
+                                isFocused = false
+                                
+                                nativePayment?.makePaymentAttempt(with: .swish(msisdn: nil))
+                            } label: {
+                                Text("stand_alone_url_payment_swish_device")
+                                    .smallFont()
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 48)
+                                    .accessibilityIdentifier("swishButton")
+                            }
+                            .foregroundColor(.white)
+                            .background(.black)
+                            .cornerRadius(30)
+                            .padding(.top, 10)
+                            
+                            if let prefills = prefills {
+                                ForEach(prefills, id: \.self) { prefill in
+                                    Button {
+                                        isFocused = false
+                                        
+                                        nativePayment?.makePaymentAttempt(with: .swish(msisdn: prefill.msisdn))
+                                    } label: {
+                                        Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn ?? "-")")
+                                            .smallFont()
+                                            .frame(maxWidth: .infinity)
+                                            .frame(height: 48)
+                                            .accessibilityIdentifier("swishPrefillButton")
+                                    }
+                                    .foregroundColor(.white)
+                                    .background(.black)
+                                    .cornerRadius(30)
+                                    .padding(.top, 10)
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                Button {
+                    isFocused = false
+                    
+                    nativePayment?.abortPaymentSession()
+                } label: {
+                    Text("stand_alone_url_payment_abort")
+                        .smallFont()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 48)
+                        .accessibilityIdentifier("abortButton")
+                }
+                .disabled(viewModel.sessionApiUrl.isEmpty)
+                .foregroundColor(!viewModel.sessionApiUrl.isEmpty ? .white : .gray)
+                .background(!viewModel.sessionApiUrl.isEmpty ? .black : .backgroundGray)
+                .cornerRadius(30)
+                .padding(.top, 10)
             }
             .padding()
             .sheet(isPresented: $viewModel.displaySwedbankPayController) {
@@ -189,6 +342,11 @@ struct StandaloneUrlView: View {
             }
             .sheet(isPresented: $viewModel.displayScannerSheet) {
                 self.scannerSheet
+            }
+            .alert(viewModel.error?.localizedDescription ?? "",
+                   isPresented: $viewModel.showingAlert) {
+                Button("general_ok".localize, role: .cancel) { }
+                Button("general_retry".localize) { viewModel.retry?() }
             }
         }
     }
@@ -208,6 +366,12 @@ struct StandaloneUrlView: View {
                 break
             case .payment:
                 viewModel.saveUrl(urlType: scanUrl, url: viewModel.paymentUrlAuthorityAndPath)
+                break
+            case .sessionApi:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.sessionApiUrl)
+                break
+            case .swish:
+                viewModel.saveUrl(urlType: scanUrl, url: viewModel.swishNumber)
                 break
             case .unknown:
                 break

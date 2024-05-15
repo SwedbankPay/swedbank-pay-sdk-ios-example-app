@@ -7,6 +7,8 @@ extension StandaloneUrlView {
         @Published var baseUrl: String
         @Published var completeUrl: String
         @Published var cancelUrl: String
+        @Published var sessionApiUrl: String = ""
+        @Published var swishNumber: String = ""
         @Published var useCheckoutV3: Bool
         
         @Published var paymentUrlAuthorityAndPath: String
@@ -15,8 +17,14 @@ extension StandaloneUrlView {
         @Published var displaySwedbankPayController: Bool = false
         @Published var displayScannerSheet: Bool = false
         
+        @Published var showingAlert = false
+        @Published var error: Error?
+        @Published var retry: (()->Void)?
+        
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?
+        
+        @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
         
         init() {
             baseUrl = String(StorageHelper.shared.value(for: .baseUrl) ?? "")
@@ -32,8 +40,15 @@ extension StandaloneUrlView {
         }
         
         func configurePayment() -> SwedbankPayConfiguration? {
-            guard let viewCheckoutUrl = URL(string: viewCheckoutUrl), let completeUrl = URL(string: completeUrl) else {
+            guard let completeUrl = URL(string: completeUrl) else {
                 return nil
+            }
+            
+            var viewPaymentLink: URL
+            if let url = URL(string: viewCheckoutUrl) {
+                viewPaymentLink = url
+            } else {
+                viewPaymentLink = URL(string: "https://")!
             }
             
             StorageHelper.shared.save(value: baseUrl, forKey: .baseUrl)
@@ -47,7 +62,7 @@ extension StandaloneUrlView {
             let configuration = SwedbankPayConfiguration(
                 isV3: useCheckoutV3,
                 webViewBaseURL: URL(string: baseUrl),
-                viewPaymentLink: viewCheckoutUrl,
+                viewPaymentLink: viewPaymentLink,
                 completeUrl: completeUrl,
                 cancelUrl: URL(string: cancelUrl),
                 paymentUrl: URL(string: paymentUrl)
@@ -78,8 +93,29 @@ extension StandaloneUrlView {
             setPaymentResult(success: false, resultText: error.localizedDescription)
         }
         
+        func sessionProblemOccurred(problem: SwedbankPaySDK.ProblemDetails) {
+            setPaymentResult(success: false, resultText: problem.detail ?? "")
+        }
+        
+        func sdkProblemOccurred(problem: SwedbankPaySDK.NativePaymentProblem) {
+            switch problem {
+            case .clientAppLaunchFailed:
+                setPaymentResult(success: false, resultText: "stand_alone_client_app_launch_failed".localize)
+            case .paymentSessionAPIRequestFailed(let error, let retry):
+                self.error = error
+                self.retry = retry
+                self.showingAlert = true
+            case .paymentSessionEndStateReached:
+                setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
+            }
+        }
+        
         func paymentCanceled() {
             setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
+        }
+        
+        func availableInstrumentsFetched(_ availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
+            self.availableInstrument = availableInstruments
         }
     }
 }
