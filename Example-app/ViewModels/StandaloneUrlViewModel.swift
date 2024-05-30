@@ -107,6 +107,8 @@ extension StandaloneUrlView {
                 self.showingAlert = true
             case .paymentSessionEndStateReached:
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
+            case .internalInconsistencyError:
+                setPaymentResult(success: false, resultText: "stand_alone_internal_inconsistency_error".localize)
             }
         }
         
