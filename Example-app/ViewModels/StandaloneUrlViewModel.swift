@@ -2,7 +2,7 @@ import Foundation
 import SwedbankPaySDK
 
 extension StandaloneUrlView {
-    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate {
+    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKNativePaymentDelegate {
         @Published var viewCheckoutUrl: String = ""
         @Published var baseUrl: String
         @Published var completeUrl: String

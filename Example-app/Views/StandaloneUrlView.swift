@@ -215,11 +215,12 @@ struct StandaloneUrlView: View {
                 Button {
                     isFocused = false
                     
-                    if let configuration = viewModel.configurePayment() {
+                    if let configuration = viewModel.configurePayment(),
+                       let sessionURL = URL(string: viewModel.sessionApiUrl) {
                         nativePayment = SwedbankPaySDK.NativePayment(orderInfo: configuration.orderInfo)
                         nativePayment?.delegate = viewModel
                         
-                        nativePayment?.startPaymentSession(with: viewModel.sessionApiUrl)
+                        nativePayment?.startPaymentSession(sessionURL: sessionURL)
                     }
                 } label: {
                     Text("stand_alone_url_payment_get_session")
@@ -264,7 +265,7 @@ struct StandaloneUrlView: View {
                             Button {
                                 isFocused = false
                                 
-                                nativePayment?.makePaymentAttempt(with: .swish(msisdn: viewModel.swishNumber))
+                                nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
                             } label: {
                                 Text("stand_alone_url_payment_swish")
                                     .smallFont()
@@ -281,7 +282,7 @@ struct StandaloneUrlView: View {
                             Button {
                                 isFocused = false
                                 
-                                nativePayment?.makePaymentAttempt(with: .swish(msisdn: nil))
+                                nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: nil))
                             } label: {
                                 Text("stand_alone_url_payment_swish_device")
                                     .smallFont()
@@ -299,9 +300,9 @@ struct StandaloneUrlView: View {
                                     Button {
                                         isFocused = false
                                         
-                                        nativePayment?.makePaymentAttempt(with: .swish(msisdn: prefill.msisdn))
+                                        nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                     } label: {
-                                        Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn ?? "-")")
+                                        Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn)")
                                             .smallFont()
                                             .frame(maxWidth: .infinity)
                                             .frame(height: 48)
@@ -337,7 +338,7 @@ struct StandaloneUrlView: View {
             .padding()
             .sheet(isPresented: $viewModel.displaySwedbankPayController) {
                 if let configuration = viewModel.configurePayment() {
-                    SwedbankPayView(swedbankPayConfiguration: configuration, delegate: viewModel)
+                    SwedbankPayView(swedbankPayConfiguration: configuration, delegate: viewModel, nativePaymentDelegate: viewModel)
                 }
             }
             .sheet(isPresented: $viewModel.displayScannerSheet) {
@@ -384,10 +385,12 @@ struct SwedbankPayView: UIViewControllerRepresentable {
     
     private let swedbankPayConfiguration: SwedbankPayConfiguration
     private let delegate: SwedbankPaySDKDelegate
-    
-    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate) {
+    private let nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate
+
+    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate, nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate) {
         self.swedbankPayConfiguration = swedbankPayConfiguration
         self.delegate = delegate
+        self.nativePaymentDelegate = nativePaymentDelegate
     }
     
     func makeUIViewController(context: Context) -> SwedbankPaySDKController {
