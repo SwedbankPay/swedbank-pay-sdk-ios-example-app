@@ -16,14 +16,17 @@ extension StandaloneUrlView {
         
         @Published var displaySwedbankPayController: Bool = false
         @Published var displayScannerSheet: Bool = false
-        
+        @Published var isLoadingNativePayment: Bool = false
+
         @Published var showingAlert = false
-        @Published var error: Error?
+        @Published var errorTitle: String?
+        @Published var errorMessage: String?
         @Published var retry: (()->Void)?
         
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?
         
+        @Published var nativePayment: SwedbankPaySDK.NativePayment?
         @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
         
         init() {
@@ -83,6 +86,29 @@ extension StandaloneUrlView {
             paymentResultMessage = resultText
             
             displaySwedbankPayController = false
+            isLoadingNativePayment = false
+            
+            viewCheckoutUrl = ""
+            sessionApiUrl = ""
+            swishNumber = ""
+            
+            nativePayment = nil
+            availableInstrument = nil
+        }
+        
+        private func showAlert(error: Error, retry: (()->Void)? = nil) {
+            showAlert(errorTitle: nil,
+                      errorMessage: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
+                      retry: retry)
+        }
+        
+        private func showAlert(errorTitle: String?, errorMessage: String?, retry: (()->Void)? = nil) {
+            self.errorTitle = errorTitle
+            self.errorMessage = errorMessage
+            self.retry = retry
+            self.showingAlert = true
+            
+            isLoadingNativePayment = false
         }
         
         func paymentComplete() {
@@ -94,17 +120,27 @@ extension StandaloneUrlView {
         }
         
         func sessionProblemOccurred(problem: SwedbankPaySDK.ProblemDetails) {
-            setPaymentResult(success: false, resultText: problem.detail ?? "")
+            var errorMessages: [String] = []
+            
+            if let status = problem.status {
+                errorMessages.append(String(status))
+            }
+            
+            if let detail = problem.detail {
+                errorMessages.append(detail)
+            }
+            
+            showAlert(errorTitle: problem.title,
+                      errorMessage: "\(errorMessages.joined(separator: ": "))\n\n\(problem.type)")
         }
         
         func sdkProblemOccurred(problem: SwedbankPaySDK.NativePaymentProblem) {
             switch problem {
             case .clientAppLaunchFailed:
-                setPaymentResult(success: false, resultText: "stand_alone_client_app_launch_failed".localize)
+                showAlert(errorTitle: nil,
+                          errorMessage: "stand_alone_client_app_launch_failed".localize)
             case .paymentSessionAPIRequestFailed(let error, let retry):
-                self.error = error
-                self.retry = retry
-                self.showingAlert = true
+                showAlert(error: error, retry: retry)
             case .paymentSessionEndStateReached:
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
             case .internalInconsistencyError:
@@ -118,6 +154,7 @@ extension StandaloneUrlView {
         
         func availableInstrumentsFetched(_ availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
             self.availableInstrument = availableInstruments
+            isLoadingNativePayment = false
         }
     }
 }
