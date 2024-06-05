@@ -380,6 +380,31 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+                            case .creditCard(prefills: let prefills):
+                                if let prefills = prefills {
+                                    ForEach(prefills, id: \.rank) { prefill in
+                                        Button {
+                                            isFocused = false
+                                            
+                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .creditCard(prefill: prefill))
+                                            viewModel.isLoadingNativePayment = true
+                                        } label: {
+                                            VStack(spacing: 0) {
+                                                Text("stand_alone_url_payment_credit_card_prefill \(prefill.cardBrand)")
+                                                Text("\(prefill.maskedPan) \(prefill.expiryString)")
+                                            }
+                                            .smallFont()
+                                            .frame(maxWidth: .infinity)
+                                            .frame(height: 48)
+                                            .accessibilityIdentifier("creditCardPrefillButton")
+
+                                        }
+                                        .foregroundColor(.white)
+                                        .background(.black)
+                                        .cornerRadius(30)
+                                        .padding(.top, 10)
+                                    }
+                                }
                             }
                         }
                     }
