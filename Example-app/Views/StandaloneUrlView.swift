@@ -154,23 +154,29 @@ struct StandaloneUrlView: View {
                         }
                     }
                     
-                    HStack {
-                        Text("stand_alone_url_payment_payment_url_scheme")
+                    VStack(spacing: 4) {
+                        Text("stand_alone_url_payment_payment_url")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.subheadline)
                         
-                        TextField(
-                            "stand_alone_url_payment_payment_url",
-                            text: $viewModel.paymentUrlAuthorityAndPath,
-                            onEditingChanged: { focused in
-                                if(!focused) {
-                                    saveEnteredUrl(scanUrl: .payment)
+                        HStack {
+                            Text("stand_alone_url_payment_payment_url_scheme")
+                            
+                            TextField(
+                                "stand_alone_url_payment_payment_url",
+                                text: $viewModel.paymentUrlAuthorityAndPath,
+                                onEditingChanged: { focused in
+                                    if(!focused) {
+                                        saveEnteredUrl(scanUrl: .payment)
+                                    }
                                 }
-                            }
-                        )
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .lightTextField()
-                        .keyboardType(.URL)
-                        .focused($isFocused)
+                            )
+                            .disableAutocorrection(true)
+                            .autocapitalization(.none)
+                            .lightTextField()
+                            .keyboardType(.URL)
+                            .focused($isFocused)
+                        }
                     }
                     
                     Divider()
