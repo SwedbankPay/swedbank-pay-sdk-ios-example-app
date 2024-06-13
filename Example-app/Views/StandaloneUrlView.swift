@@ -274,8 +274,8 @@ struct StandaloneUrlView: View {
                             viewModel.nativePayment = SwedbankPaySDK.NativePayment(orderInfo: configuration.orderInfo)
                             viewModel.nativePayment?.delegate = viewModel
                             
-                            viewModel.nativePayment?.startPaymentSession(sessionURL: sessionURL)
                             viewModel.isLoadingNativePayment = true
+                            viewModel.nativePayment?.startPaymentSession(sessionURL: sessionURL)
                             viewModel.paymentResultIcon = nil
                             viewModel.paymentResultMessage = nil
                         }
@@ -327,9 +327,9 @@ struct StandaloneUrlView: View {
                                 
                                 Button {
                                     isFocused = false
-                                    
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
+
                                     viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
                                 } label: {
                                     Text("stand_alone_url_payment_swish")
                                         .smallFont()
@@ -346,8 +346,8 @@ struct StandaloneUrlView: View {
                                 Button {
                                     isFocused = false
                                     
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: nil))
                                     viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: nil))
                                 } label: {
                                     Text("stand_alone_url_payment_swish_device")
                                         .smallFont()
@@ -365,8 +365,8 @@ struct StandaloneUrlView: View {
                                         Button {
                                             isFocused = false
                                             
-                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                             viewModel.isLoadingNativePayment = true
+                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                         } label: {
                                             Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn)")
                                                 .smallFont()
@@ -386,8 +386,8 @@ struct StandaloneUrlView: View {
                                         Button {
                                             isFocused = false
                                             
-                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .creditCard(prefill: prefill))
                                             viewModel.isLoadingNativePayment = true
+                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .creditCard(prefill: prefill))
                                         } label: {
                                             VStack(spacing: 0) {
                                                 Text("stand_alone_url_payment_credit_card_prefill \(prefill.cardBrand)")
@@ -413,8 +413,8 @@ struct StandaloneUrlView: View {
                         Button {
                             isFocused = false
                             
-                            viewModel.nativePayment?.abortPaymentSession()
                             viewModel.isLoadingNativePayment = true
+                            viewModel.nativePayment?.abortPaymentSession()
                         } label: {
                             Text("stand_alone_url_payment_abort")
                                 .smallFont()
@@ -457,6 +457,9 @@ struct StandaloneUrlView: View {
                 .sheet(isPresented: $viewModel.displayScannerSheet) {
                     self.scannerSheet
                 }
+                .sheet(isPresented: $viewModel.presented) {
+                    SomeView(viewController: viewModel.viewController!)
+                }
                 .alert(viewModel.errorTitle ?? "stand_alone_generic_error_title".localize,
                        isPresented: $viewModel.showingAlert,
                        actions: {
@@ -464,8 +467,8 @@ struct StandaloneUrlView: View {
                     
                     if let retry = viewModel.retry {
                         Button("general_retry".localize) {
-                            retry()
                             viewModel.isLoadingNativePayment = true
+                            retry()
                         }
                     }
                 },

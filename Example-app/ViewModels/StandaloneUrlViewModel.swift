@@ -1,5 +1,7 @@
 import Foundation
+import SwiftUI
 import SwedbankPaySDK
+import UIKit
 
 extension StandaloneUrlView {
     class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKNativePaymentDelegate {
@@ -28,7 +30,10 @@ extension StandaloneUrlView {
         
         @Published var nativePayment: SwedbankPaySDK.NativePayment?
         @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
-        
+
+        @Published var presented = false
+        @Published var viewController: UIViewController?
+
         init() {
             baseUrl = String(StorageHelper.shared.value(for: .baseUrl) ?? "")
             completeUrl = String(StorageHelper.shared.value(for: .completeUrl) ?? "")
@@ -156,5 +161,28 @@ extension StandaloneUrlView {
             self.availableInstrument = availableInstruments
             isLoadingNativePayment = false
         }
+
+        func showViewController(viewController: UIViewController) {
+            self.viewController = viewController
+            self.presented = true
+        }
+
+        func finishedWithViewController() {
+            self.presented = false
+            self.viewController = nil
+        }
+    }
+}
+
+struct SomeView: UIViewControllerRepresentable {
+    var viewController: UIViewController
+
+    typealias UIViewControllerType = UIViewController
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        return viewController
+    }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        //update Content
     }
 }
