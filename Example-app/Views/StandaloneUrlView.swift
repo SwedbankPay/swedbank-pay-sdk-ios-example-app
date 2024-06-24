@@ -269,9 +269,8 @@ struct StandaloneUrlView: View {
                     Button {
                         isFocused = false
                         
-                        if let configuration = viewModel.configurePayment(),
-                           let sessionURL = URL(string: viewModel.sessionApiUrl) {
-                            viewModel.nativePayment = SwedbankPaySDK.NativePayment(orderInfo: configuration.orderInfo)
+                        if let sessionURL = URL(string: viewModel.sessionApiUrl) {
+                            viewModel.nativePayment = SwedbankPaySDK.PaymentSession()
                             viewModel.nativePayment?.delegate = viewModel
                             
                             viewModel.isLoadingNativePayment = true
@@ -514,9 +513,9 @@ struct SwedbankPayView: UIViewControllerRepresentable {
     
     private let swedbankPayConfiguration: SwedbankPayConfiguration
     private let delegate: SwedbankPaySDKDelegate
-    private let nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate
+    private let nativePaymentDelegate: SwedbankPaySDKPaymentSessionDelegate
 
-    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate, nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate) {
+    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate, nativePaymentDelegate: SwedbankPaySDKPaymentSessionDelegate) {
         self.swedbankPayConfiguration = swedbankPayConfiguration
         self.delegate = delegate
         self.nativePaymentDelegate = nativePaymentDelegate

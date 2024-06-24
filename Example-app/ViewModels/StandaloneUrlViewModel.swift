@@ -4,7 +4,7 @@ import SwedbankPaySDK
 import UIKit
 
 extension StandaloneUrlView {
-    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKNativePaymentDelegate {
+    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKPaymentSessionDelegate {
         @Published var viewCheckoutUrl: String = ""
         @Published var baseUrl: String
         @Published var completeUrl: String
@@ -28,7 +28,7 @@ extension StandaloneUrlView {
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?
         
-        @Published var nativePayment: SwedbankPaySDK.NativePayment?
+        @Published var nativePayment: SwedbankPaySDK.PaymentSession?
         @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
 
         @Published var presented = false
@@ -139,7 +139,7 @@ extension StandaloneUrlView {
                       errorMessage: "\(errorMessages.joined(separator: ": "))\n\n\(problem.type)")
         }
         
-        func sdkProblemOccurred(problem: SwedbankPaySDK.NativePaymentProblem) {
+        func sdkProblemOccurred(problem: SwedbankPaySDK.PaymentSessionProblem) {
             switch problem {
             case .clientAppLaunchFailed:
                 showAlert(errorTitle: nil,
@@ -150,6 +150,8 @@ extension StandaloneUrlView {
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
             case .internalInconsistencyError:
                 setPaymentResult(success: false, resultText: "stand_alone_internal_inconsistency_error".localize)
+            case .automaticConfigurationFailed:
+                setPaymentResult(success: false, resultText: "stand_alone_automatic_configuration_failed".localize)
             }
         }
         
@@ -157,7 +159,7 @@ extension StandaloneUrlView {
             setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
         }
         
-        func availableInstrumentsFetched(_ availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
+        func paymentSessionFetched(availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
             self.availableInstrument = availableInstruments
             isLoadingNativePayment = false
         }

@@ -205,7 +205,7 @@ extension PaymentViewController: SwedbankPaySDKDelegate {
         performSegue(withIdentifier: "showResult", sender: self)
     }
     
-    func sdkProblemOccurred(problem: SwedbankPaySDK.NativePaymentProblem) {
+    func sdkProblemOccurred(problem: SwedbankPaySDK.PaymentSessionProblem) {
         PaymentViewModel.shared.setResult(.unknown)
         performSegue(withIdentifier: "showResult", sender: self)
     }
@@ -215,7 +215,7 @@ extension PaymentViewController: SwedbankPaySDKDelegate {
         performSegue(withIdentifier: "backToStore", sender: self)
     }
     
-    func availableInstrumentsFetched(_ availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
+    func paymentSessionFetched(availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
 
     }
     
