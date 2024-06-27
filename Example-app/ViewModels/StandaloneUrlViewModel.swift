@@ -28,8 +28,8 @@ extension StandaloneUrlView {
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?
         
-        @Published var nativePayment: SwedbankPaySDK.PaymentSession?
-        @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
+        @Published var nativePayment: SwedbankPaySDK.SwedbankPayPaymentSession?
+        @Published var availableInstruments: [SwedbankPaySDK.AvailableInstrument]?
 
         @Published var presented = false
         @Published var viewController: UIViewController?
@@ -98,7 +98,7 @@ extension StandaloneUrlView {
             swishNumber = ""
             
             nativePayment = nil
-            availableInstrument = nil
+            availableInstruments = nil
         }
         
         private func showAlert(error: Error, retry: (()->Void)? = nil) {
@@ -119,11 +119,19 @@ extension StandaloneUrlView {
         func paymentComplete() {
             setPaymentResult(success: true, resultText: "stand_alone_url_payment_successful".localize)
         }
-        
+
+        func paymentCanceled() {
+            setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
+        }
+
         func paymentFailed(error: Error) {
             setPaymentResult(success: false, resultText: error.localizedDescription)
         }
-        
+
+        func paymentSessionComplete() {
+            setPaymentResult(success: true, resultText: "stand_alone_url_payment_successful".localize)
+        }
+
         func sessionProblemOccurred(problem: SwedbankPaySDK.ProblemDetails) {
             var errorMessages: [String] = []
             
@@ -155,23 +163,39 @@ extension StandaloneUrlView {
             }
         }
         
-        func paymentCanceled() {
+        func paymentSessionCanceled() {
             setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
         }
         
         func paymentSessionFetched(availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
-            self.availableInstrument = availableInstruments
+            self.availableInstruments = availableInstruments
             isLoadingNativePayment = false
         }
 
-        func showViewController(viewController: UIViewController) {
+        func show3DSecureViewController(viewController: UIViewController) {
             self.viewController = viewController
             self.presented = true
         }
 
-        func finishedWithViewController() {
+        func dismiss3DSecureViewController() {
             self.presented = false
             self.viewController = nil
+        }
+
+        func paymentSession3DSecureViewControllerLoadFailed(error: Error, retry: @escaping ()->Void) {
+            let alert = UIAlertController(title: nil,
+                                          message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "general_ok".localize, style: .cancel, handler: { _ in
+                self.presented = false
+                self.viewController = nil
+            }))
+
+            alert.addAction(UIAlertAction(title: "general_retry".localize, style: .default, handler: { _ in
+                retry()
+            }))
+
+            self.viewController?.present(alert, animated: true, completion: nil)
         }
     }
 }
@@ -184,6 +208,7 @@ struct SomeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         return viewController
     }
+    
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         //update Content
     }

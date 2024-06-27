@@ -270,11 +270,11 @@ struct StandaloneUrlView: View {
                         isFocused = false
                         
                         if let sessionURL = URL(string: viewModel.sessionApiUrl) {
-                            viewModel.nativePayment = SwedbankPaySDK.PaymentSession()
+                            viewModel.nativePayment = SwedbankPaySDK.SwedbankPayPaymentSession()
                             viewModel.nativePayment?.delegate = viewModel
                             
                             viewModel.isLoadingNativePayment = true
-                            viewModel.nativePayment?.startPaymentSession(sessionURL: sessionURL)
+                            viewModel.nativePayment?.fetchPaymentSession(sessionURL: sessionURL)
                             viewModel.paymentResultIcon = nil
                             viewModel.paymentResultMessage = nil
                         }
@@ -291,8 +291,8 @@ struct StandaloneUrlView: View {
                     .cornerRadius(30)
                     .padding(.top, 10)
                     
-                    if let availableInstrument = viewModel.availableInstrument {
-                        ForEach(availableInstrument, id: \.self) { instrument in
+                    if let availableInstruments = viewModel.availableInstruments {
+                        ForEach(availableInstruments, id: \.self) { instrument in
                             switch instrument {
                             case .swish(let prefills):
                                 VStack(spacing: 4) {
@@ -328,7 +328,7 @@ struct StandaloneUrlView: View {
                                     isFocused = false
 
                                     viewModel.isLoadingNativePayment = true
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
                                 } label: {
                                     Text("stand_alone_url_payment_swish")
                                         .smallFont()
@@ -346,7 +346,7 @@ struct StandaloneUrlView: View {
                                     isFocused = false
                                     
                                     viewModel.isLoadingNativePayment = true
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: nil))
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: nil))
                                 } label: {
                                     Text("stand_alone_url_payment_swish_device")
                                         .smallFont()
@@ -365,7 +365,7 @@ struct StandaloneUrlView: View {
                                             isFocused = false
                                             
                                             viewModel.isLoadingNativePayment = true
-                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
+                                            viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                         } label: {
                                             Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn)")
                                                 .smallFont()
@@ -386,7 +386,7 @@ struct StandaloneUrlView: View {
                                             isFocused = false
                                             
                                             viewModel.isLoadingNativePayment = true
-                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .creditCard(prefill: prefill))
+                                            viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .creditCard(prefill: prefill))
                                         } label: {
                                             VStack(spacing: 0) {
                                                 Text("stand_alone_url_payment_credit_card_prefill \(prefill.cardBrand)")
@@ -439,8 +439,8 @@ struct StandaloneUrlView: View {
                         reader.scrollTo(0, anchor: .top)
                     }
                 }
-                .onChange(of: viewModel.availableInstrument) { _ in
-                    guard viewModel.availableInstrument != nil else {
+                .onChange(of: viewModel.availableInstruments) { _ in
+                    guard viewModel.availableInstruments != nil else {
                         return
                     }
                     
