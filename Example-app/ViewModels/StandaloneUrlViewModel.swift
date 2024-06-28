@@ -34,8 +34,8 @@ extension StandaloneUrlView {
         @Published var nativePayment: SwedbankPaySDK.SwedbankPayPaymentSession?
         @Published var availableInstruments: [SwedbankPaySDK.AvailableInstrument]?
 
-        @Published var presented = false
-        @Published var viewController: UIViewController?
+        @Published var show3DSecureViewController = false
+        @Published var paymentSession3DSecureViewController: UIViewController?
 
         init() {
             baseUrl = String(StorageHelper.shared.value(for: .baseUrl) ?? "")
@@ -177,13 +177,13 @@ extension StandaloneUrlView {
         }
 
         func show3DSecureViewController(viewController: UIViewController) {
-            self.viewController = viewController
-            self.presented = true
+            self.paymentSession3DSecureViewController = viewController
+            self.show3DSecureViewController = true
         }
 
         func dismiss3DSecureViewController() {
-            self.presented = false
-            self.viewController = nil
+            self.show3DSecureViewController = false
+            self.paymentSession3DSecureViewController = nil
         }
 
         func paymentSession3DSecureViewControllerLoadFailed(error: Error, retry: @escaping ()->Void) {
@@ -191,15 +191,15 @@ extension StandaloneUrlView {
                                           message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "general_ok".localize, style: .cancel, handler: { _ in
-                self.presented = false
-                self.viewController = nil
+                self.show3DSecureViewController = false
+                self.paymentSession3DSecureViewController = nil
             }))
 
             alert.addAction(UIAlertAction(title: "general_retry".localize, style: .default, handler: { _ in
                 retry()
             }))
 
-            self.viewController?.present(alert, animated: true, completion: nil)
+            self.paymentSession3DSecureViewController?.present(alert, animated: true, completion: nil)
         }
     }
 }

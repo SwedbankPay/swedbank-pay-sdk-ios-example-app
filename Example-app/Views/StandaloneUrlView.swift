@@ -480,8 +480,8 @@ struct StandaloneUrlView: View {
                 .sheet(isPresented: $viewModel.displayScannerSheet) {
                     self.scannerSheet
                 }
-                .sheet(isPresented: $viewModel.presented) {
-                    SomeView(viewController: viewModel.viewController!)
+                .sheet(isPresented: $viewModel.show3DSecureViewController) {
+                    SomeView(viewController: viewModel.paymentSession3DSecureViewController!)
                 }
                 .alert(viewModel.errorTitle ?? "stand_alone_generic_error_title".localize,
                        isPresented: $viewModel.showingAlert,
