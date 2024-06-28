@@ -1,8 +1,10 @@
 import Foundation
+import SwiftUI
 import SwedbankPaySDK
+import UIKit
 
 extension StandaloneUrlView {
-    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKNativePaymentDelegate {
+    class StandaloneUrlViewModel: ObservableObject, SwedbankPaySDKDelegate, SwedbankPaySDKPaymentSessionDelegate {
         @Published var viewCheckoutUrl: String = ""
         @Published var baseUrl: String
         @Published var completeUrl: String
@@ -18,6 +20,9 @@ extension StandaloneUrlView {
         @Published var displayScannerSheet: Bool = false
         @Published var isLoadingNativePayment: Bool = false
 
+        @Published var displayPaymentSessionSwedbankPayController: Bool = false
+        @Published var paymentSessionSwedbankPayController: SwedbankPaySDKController?
+        
         @Published var showingAlert = false
         @Published var errorTitle: String?
         @Published var errorMessage: String?
@@ -26,9 +31,12 @@ extension StandaloneUrlView {
         @Published var paymentResultIcon: String?
         @Published var paymentResultMessage: String?
         
-        @Published var nativePayment: SwedbankPaySDK.NativePayment?
-        @Published var availableInstrument: [SwedbankPaySDK.AvailableInstrument]?
-        
+        @Published var nativePayment: SwedbankPaySDK.SwedbankPayPaymentSession?
+        @Published var availableInstruments: [SwedbankPaySDK.AvailableInstrument]?
+
+        @Published var show3DSecureViewController = false
+        @Published var paymentSession3DSecureViewController: UIViewController?
+
         init() {
             baseUrl = String(StorageHelper.shared.value(for: .baseUrl) ?? "")
             completeUrl = String(StorageHelper.shared.value(for: .completeUrl) ?? "")
@@ -86,6 +94,7 @@ extension StandaloneUrlView {
             paymentResultMessage = resultText
             
             displaySwedbankPayController = false
+            displayPaymentSessionSwedbankPayController = false
             isLoadingNativePayment = false
             
             viewCheckoutUrl = ""
@@ -93,7 +102,7 @@ extension StandaloneUrlView {
             swishNumber = ""
             
             nativePayment = nil
-            availableInstrument = nil
+            availableInstruments = nil
         }
         
         private func showAlert(error: Error, retry: (()->Void)? = nil) {
@@ -114,11 +123,19 @@ extension StandaloneUrlView {
         func paymentComplete() {
             setPaymentResult(success: true, resultText: "stand_alone_url_payment_successful".localize)
         }
-        
+
+        func paymentCanceled() {
+            setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
+        }
+
         func paymentFailed(error: Error) {
             setPaymentResult(success: false, resultText: error.localizedDescription)
         }
-        
+
+        func paymentSessionComplete() {
+            setPaymentResult(success: true, resultText: "stand_alone_url_payment_successful".localize)
+        }
+
         func sessionProblemOccurred(problem: SwedbankPaySDK.ProblemDetails) {
             var errorMessages: [String] = []
             
@@ -134,7 +151,7 @@ extension StandaloneUrlView {
                       errorMessage: "\(errorMessages.joined(separator: ": "))\n\n\(problem.type)")
         }
         
-        func sdkProblemOccurred(problem: SwedbankPaySDK.NativePaymentProblem) {
+        func sdkProblemOccurred(problem: SwedbankPaySDK.PaymentSessionProblem) {
             switch problem {
             case .clientAppLaunchFailed:
                 showAlert(errorTitle: nil,
@@ -145,16 +162,58 @@ extension StandaloneUrlView {
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
             case .internalInconsistencyError:
                 setPaymentResult(success: false, resultText: "stand_alone_internal_inconsistency_error".localize)
+            case .automaticConfigurationFailed:
+                setPaymentResult(success: false, resultText: "stand_alone_automatic_configuration_failed".localize)
             }
         }
         
-        func paymentCanceled() {
+        func paymentSessionCanceled() {
             setPaymentResult(success: false, resultText: "stand_alone_url_payment_cancelled".localize)
         }
         
-        func availableInstrumentsFetched(_ availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
-            self.availableInstrument = availableInstruments
+        func paymentSessionFetched(availableInstruments: [SwedbankPaySDK.AvailableInstrument]) {
+            self.availableInstruments = availableInstruments
             isLoadingNativePayment = false
         }
+
+        func show3DSecureViewController(viewController: UIViewController) {
+            self.paymentSession3DSecureViewController = viewController
+            self.show3DSecureViewController = true
+        }
+
+        func dismiss3DSecureViewController() {
+            self.show3DSecureViewController = false
+            self.paymentSession3DSecureViewController = nil
+        }
+
+        func paymentSession3DSecureViewControllerLoadFailed(error: Error, retry: @escaping ()->Void) {
+            let alert = UIAlertController(title: nil,
+                                          message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "general_ok".localize, style: .cancel, handler: { _ in
+                self.show3DSecureViewController = false
+                self.paymentSession3DSecureViewController = nil
+            }))
+
+            alert.addAction(UIAlertAction(title: "general_retry".localize, style: .default, handler: { _ in
+                retry()
+            }))
+
+            self.paymentSession3DSecureViewController?.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+struct SomeView: UIViewControllerRepresentable {
+    var viewController: UIViewController
+
+    typealias UIViewControllerType = UIViewController
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        return viewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        //update Content
     }
 }

@@ -269,13 +269,12 @@ struct StandaloneUrlView: View {
                     Button {
                         isFocused = false
                         
-                        if let configuration = viewModel.configurePayment(),
-                           let sessionURL = URL(string: viewModel.sessionApiUrl) {
-                            viewModel.nativePayment = SwedbankPaySDK.NativePayment(orderInfo: configuration.orderInfo)
+                        if let sessionURL = URL(string: viewModel.sessionApiUrl) {
+                            viewModel.nativePayment = SwedbankPaySDK.SwedbankPayPaymentSession()
                             viewModel.nativePayment?.delegate = viewModel
                             
-                            viewModel.nativePayment?.startPaymentSession(sessionURL: sessionURL)
                             viewModel.isLoadingNativePayment = true
+                            viewModel.nativePayment?.fetchPaymentSession(sessionURL: sessionURL)
                             viewModel.paymentResultIcon = nil
                             viewModel.paymentResultMessage = nil
                         }
@@ -292,8 +291,8 @@ struct StandaloneUrlView: View {
                     .cornerRadius(30)
                     .padding(.top, 10)
                     
-                    if let availableInstrument = viewModel.availableInstrument {
-                        ForEach(availableInstrument, id: \.self) { instrument in
+                    if let availableInstruments = viewModel.availableInstruments {
+                        ForEach(availableInstruments, id: \.self) { instrument in
                             switch instrument {
                             case .swish(let prefills):
                                 VStack(spacing: 4) {
@@ -327,9 +326,9 @@ struct StandaloneUrlView: View {
                                 
                                 Button {
                                     isFocused = false
-                                    
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
+
                                     viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: viewModel.swishNumber))
                                 } label: {
                                     Text("stand_alone_url_payment_swish")
                                         .smallFont()
@@ -346,8 +345,8 @@ struct StandaloneUrlView: View {
                                 Button {
                                     isFocused = false
                                     
-                                    viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: nil))
                                     viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: nil))
                                 } label: {
                                     Text("stand_alone_url_payment_swish_device")
                                         .smallFont()
@@ -365,8 +364,8 @@ struct StandaloneUrlView: View {
                                         Button {
                                             isFocused = false
                                             
-                                            viewModel.nativePayment?.makePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                             viewModel.isLoadingNativePayment = true
+                                            viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .swish(msisdn: prefill.msisdn))
                                         } label: {
                                             Text("stand_alone_url_payment_swish_prefill \(prefill.msisdn)")
                                                 .smallFont()
@@ -380,16 +379,62 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+                            case .creditCard(prefills: let prefills):
+                                if let prefills = prefills {
+                                    ForEach(prefills, id: \.rank) { prefill in
+                                        Button {
+                                            isFocused = false
+                                            
+                                            viewModel.isLoadingNativePayment = true
+                                            viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .creditCard(prefill: prefill))
+                                        } label: {
+                                            VStack(spacing: 0) {
+                                                Text("stand_alone_url_payment_credit_card_prefill \(prefill.cardBrand)")
+                                                Text("\(prefill.maskedPan) \(prefill.expiryString)")
+                                            }
+                                            .smallFont()
+                                            .frame(maxWidth: .infinity)
+                                            .frame(height: 48)
+                                            .accessibilityIdentifier("creditCardPrefillButton")
+
+                                        }
+                                        .foregroundColor(.white)
+                                        .background(.black)
+                                        .cornerRadius(30)
+                                        .padding(.top, 10)
+                                    }
+                                }
+                            case .webBased(identifier: let identifier):
+                                EmptyView()
                             }
                         }
+                        
+                        Button {
+                            isFocused = false
+                            
+                            viewModel.paymentSessionSwedbankPayController = viewModel.nativePayment?.createSwedbankPaySDKController()
+                            viewModel.paymentSessionSwedbankPayController?.delegate = viewModel
+                            viewModel.displayPaymentSessionSwedbankPayController = true
+                        } label: {
+                            Text("Get payment menu")
+                                .smallFont()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .accessibilityIdentifier("webBasedButton")
+                            
+                        }
+                        .foregroundColor(.white)
+                        .background(.black)
+                        .cornerRadius(30)
+                        .padding(.top, 10)
                     }
                     
                     if viewModel.nativePayment != nil {
                         Button {
                             isFocused = false
                             
-                            viewModel.nativePayment?.abortPaymentSession()
                             viewModel.isLoadingNativePayment = true
+                            viewModel.nativePayment?.abortPaymentSession()
                         } label: {
                             Text("stand_alone_url_payment_abort")
                                 .smallFont()
@@ -415,8 +460,8 @@ struct StandaloneUrlView: View {
                         reader.scrollTo(0, anchor: .top)
                     }
                 }
-                .onChange(of: viewModel.availableInstrument) { _ in
-                    guard viewModel.availableInstrument != nil else {
+                .onChange(of: viewModel.availableInstruments) { _ in
+                    guard viewModel.availableInstruments != nil else {
                         return
                     }
                     
@@ -429,8 +474,14 @@ struct StandaloneUrlView: View {
                         SwedbankPayView(swedbankPayConfiguration: configuration, delegate: viewModel, nativePaymentDelegate: viewModel)
                     }
                 }
+                .sheet(isPresented: $viewModel.displayPaymentSessionSwedbankPayController) {
+                    SomeView(viewController: viewModel.paymentSessionSwedbankPayController!)
+                }
                 .sheet(isPresented: $viewModel.displayScannerSheet) {
                     self.scannerSheet
+                }
+                .sheet(isPresented: $viewModel.show3DSecureViewController) {
+                    SomeView(viewController: viewModel.paymentSession3DSecureViewController!)
                 }
                 .alert(viewModel.errorTitle ?? "stand_alone_generic_error_title".localize,
                        isPresented: $viewModel.showingAlert,
@@ -439,8 +490,8 @@ struct StandaloneUrlView: View {
                     
                     if let retry = viewModel.retry {
                         Button("general_retry".localize) {
-                            retry()
                             viewModel.isLoadingNativePayment = true
+                            retry()
                         }
                     }
                 },
@@ -486,9 +537,9 @@ struct SwedbankPayView: UIViewControllerRepresentable {
     
     private let swedbankPayConfiguration: SwedbankPayConfiguration
     private let delegate: SwedbankPaySDKDelegate
-    private let nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate
+    private let nativePaymentDelegate: SwedbankPaySDKPaymentSessionDelegate
 
-    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate, nativePaymentDelegate: SwedbankPaySDKNativePaymentDelegate) {
+    init(swedbankPayConfiguration: SwedbankPayConfiguration, delegate: SwedbankPaySDKDelegate, nativePaymentDelegate: SwedbankPaySDKPaymentSessionDelegate) {
         self.swedbankPayConfiguration = swedbankPayConfiguration
         self.delegate = delegate
         self.nativePaymentDelegate = nativePaymentDelegate
