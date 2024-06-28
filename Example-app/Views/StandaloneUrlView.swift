@@ -404,8 +404,29 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+                            case .webBased(identifier: let identifier):
+                                EmptyView()
                             }
                         }
+                        
+                        Button {
+                            isFocused = false
+                            
+                            viewModel.paymentSessionSwedbankPayController = viewModel.nativePayment?.createSwedbankPaySDKController()
+                            viewModel.paymentSessionSwedbankPayController?.delegate = viewModel
+                            viewModel.displayPaymentSessionSwedbankPayController = true
+                        } label: {
+                            Text("Get payment menu")
+                                .smallFont()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .accessibilityIdentifier("webBasedButton")
+                            
+                        }
+                        .foregroundColor(.white)
+                        .background(.black)
+                        .cornerRadius(30)
+                        .padding(.top, 10)
                     }
                     
                     if viewModel.nativePayment != nil {
@@ -452,6 +473,9 @@ struct StandaloneUrlView: View {
                     if let configuration = viewModel.configurePayment() {
                         SwedbankPayView(swedbankPayConfiguration: configuration, delegate: viewModel, nativePaymentDelegate: viewModel)
                     }
+                }
+                .sheet(isPresented: $viewModel.displayPaymentSessionSwedbankPayController) {
+                    SomeView(viewController: viewModel.paymentSessionSwedbankPayController!)
                 }
                 .sheet(isPresented: $viewModel.displayScannerSheet) {
                     self.scannerSheet

@@ -20,6 +20,9 @@ extension StandaloneUrlView {
         @Published var displayScannerSheet: Bool = false
         @Published var isLoadingNativePayment: Bool = false
 
+        @Published var displayPaymentSessionSwedbankPayController: Bool = false
+        @Published var paymentSessionSwedbankPayController: SwedbankPaySDKController?
+        
         @Published var showingAlert = false
         @Published var errorTitle: String?
         @Published var errorMessage: String?
@@ -91,6 +94,7 @@ extension StandaloneUrlView {
             paymentResultMessage = resultText
             
             displaySwedbankPayController = false
+            displayPaymentSessionSwedbankPayController = false
             isLoadingNativePayment = false
             
             viewCheckoutUrl = ""
