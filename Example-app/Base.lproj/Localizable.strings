@@ -26,3 +26,5 @@
 "stand_alone_url_payment_session_end_state_reached" = "Something went wrong with the payment";
 "stand_alone_internal_inconsistency_error" = "Something was called it the wrong order";
 "stand_alone_generic_error_title" = "Something went wrong";
+"stand_alone_url_seamless_title" = "Seamless View";
+"stand_alone_url_payment_web" = "Get payment menu";

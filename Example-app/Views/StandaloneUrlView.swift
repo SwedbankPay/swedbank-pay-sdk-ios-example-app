@@ -181,7 +181,7 @@ struct StandaloneUrlView: View {
                     
                     Divider()
                     
-                    Text("Seamless View")
+                    Text("stand_alone_url_seamless_title")
                         .font(.headline)
                     
                     VStack(spacing: 4) {
@@ -416,7 +416,7 @@ struct StandaloneUrlView: View {
                             viewModel.paymentSessionSwedbankPayController?.delegate = viewModel
                             viewModel.displayPaymentSessionSwedbankPayController = true
                         } label: {
-                            Text("Get payment menu")
+                            Text("stand_alone_url_payment_web")
                                 .smallFont()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 48)
