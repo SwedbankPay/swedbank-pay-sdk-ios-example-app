@@ -404,6 +404,23 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+                            case .applePay:
+                                Button {
+                                    isFocused = false
+
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay)
+                                } label: {
+                                    Text("stand_alone_url_payment_apple_pay")
+                                        .smallFont()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 48)
+                                        .accessibilityIdentifier("applePayPrefillButton")
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
                             case .webBased(identifier: let identifier):
                                 EmptyView()
                             }
