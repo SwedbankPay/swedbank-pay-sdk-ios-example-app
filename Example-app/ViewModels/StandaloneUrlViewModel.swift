@@ -186,6 +186,13 @@ extension StandaloneUrlView {
             self.paymentSession3DSecureViewController = nil
         }
 
+        func showSwedbankPaySDKController(viewController: SwedbankPaySDKController) {
+            paymentSessionSwedbankPayController = viewController
+            paymentSessionSwedbankPayController?.delegate = self
+            displayPaymentSessionSwedbankPayController = true
+            isLoadingNativePayment = false
+        }
+
         func paymentSession3DSecureViewControllerLoadFailed(error: Error, retry: @escaping ()->Void) {
             let alert = UIAlertController(title: nil,
                                           message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",

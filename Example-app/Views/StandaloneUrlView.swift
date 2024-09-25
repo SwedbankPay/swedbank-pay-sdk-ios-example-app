@@ -404,6 +404,23 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+
+                                Button {
+                                    isFocused = false
+
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: true))
+                                } label: {
+                                    Text("stand_alone_url_payment_new_credit_card")
+                                        .smallFont()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 48)
+                                        .accessibilityIdentifier("newCreditCardButton")
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
                             case .applePay:
                                 Button {
                                     isFocused = false
@@ -415,7 +432,7 @@ struct StandaloneUrlView: View {
                                         .smallFont()
                                         .frame(maxWidth: .infinity)
                                         .frame(height: 48)
-                                        .accessibilityIdentifier("applePayPrefillButton")
+                                        .accessibilityIdentifier("applePayButton")
                                 }
                                 .foregroundColor(.white)
                                 .background(.black)
@@ -429,9 +446,7 @@ struct StandaloneUrlView: View {
                         Button {
                             isFocused = false
                             
-                            viewModel.paymentSessionSwedbankPayController = viewModel.nativePayment?.createSwedbankPaySDKController()
-                            viewModel.paymentSessionSwedbankPayController?.delegate = viewModel
-                            viewModel.displayPaymentSessionSwedbankPayController = true
+                            viewModel.nativePayment?.createSwedbankPaySDKController()
                         } label: {
                             Text("stand_alone_url_payment_web")
                                 .smallFont()
