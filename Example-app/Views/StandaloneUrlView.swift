@@ -409,7 +409,7 @@ struct StandaloneUrlView: View {
                                     isFocused = false
 
                                     viewModel.isLoadingNativePayment = true
-                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay)
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay(merchantIdentifier: "merchant.com.swedbankpay.exampleapp"))
                                 } label: {
                                     Text("stand_alone_url_payment_apple_pay")
                                         .smallFont()
