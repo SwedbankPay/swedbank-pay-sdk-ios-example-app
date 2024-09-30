@@ -164,8 +164,6 @@ extension StandaloneUrlView {
                 setPaymentResult(success: false, resultText: "stand_alone_internal_inconsistency_error".localize)
             case .automaticConfigurationFailed:
                 setPaymentResult(success: false, resultText: "stand_alone_automatic_configuration_failed".localize)
-            case .applePayFailed(error: let error):
-                showAlert(error: error)
             }
         }
         
