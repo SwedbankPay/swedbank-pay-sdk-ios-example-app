@@ -158,6 +158,8 @@ extension StandaloneUrlView {
                           errorMessage: "stand_alone_client_app_launch_failed".localize)
             case .paymentSessionAPIRequestFailed(let error, let retry):
                 showAlert(error: error, retry: retry)
+            case .paymentControllerPaymentFailed(error: let error, retry: let retry):
+                showAlert(error: error, retry: retry)
             case .paymentSessionEndStateReached:
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
             case .internalInconsistencyError:
