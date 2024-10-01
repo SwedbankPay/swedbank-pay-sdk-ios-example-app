@@ -119,7 +119,25 @@ extension StandaloneUrlView {
             
             isLoadingNativePayment = false
         }
-        
+
+        private func showAlertOnPaymentSession3DSecureViewController(error: Error, retry: (()->Void)?) {
+            let alert = UIAlertController(title: nil,
+                                          message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "general_ok".localize, style: .cancel, handler: { _ in
+                self.show3DSecureViewController = false
+                self.paymentSession3DSecureViewController = nil
+            }))
+
+            if let retry = retry {
+                alert.addAction(UIAlertAction(title: "general_retry".localize, style: .default, handler: { _ in
+                    retry()
+                }))
+            }
+
+            self.paymentSession3DSecureViewController?.present(alert, animated: true, completion: nil)
+        }
+
         func paymentComplete() {
             setPaymentResult(success: true, resultText: "stand_alone_url_payment_successful".localize)
         }
@@ -158,6 +176,10 @@ extension StandaloneUrlView {
                           errorMessage: "stand_alone_client_app_launch_failed".localize)
             case .paymentSessionAPIRequestFailed(let error, let retry):
                 showAlert(error: error, retry: retry)
+            case .paymentControllerPaymentFailed(error: let error, retry: let retry):
+                showAlert(error: error, retry: retry)
+            case .paymentSession3DSecureViewControllerLoadFailed(error: let error, retry: let retry):
+                showAlertOnPaymentSession3DSecureViewController(error: error, retry: retry)
             case .paymentSessionEndStateReached:
                 setPaymentResult(success: false, resultText: "stand_alone_url_payment_session_end_state_reached".localize)
             case .internalInconsistencyError:
@@ -186,20 +208,11 @@ extension StandaloneUrlView {
             self.paymentSession3DSecureViewController = nil
         }
 
-        func paymentSession3DSecureViewControllerLoadFailed(error: Error, retry: @escaping ()->Void) {
-            let alert = UIAlertController(title: nil,
-                                          message: "\((error as NSError).code): \(error.localizedDescription)\n\n\((error as NSError).domain)",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "general_ok".localize, style: .cancel, handler: { _ in
-                self.show3DSecureViewController = false
-                self.paymentSession3DSecureViewController = nil
-            }))
-
-            alert.addAction(UIAlertAction(title: "general_retry".localize, style: .default, handler: { _ in
-                retry()
-            }))
-
-            self.paymentSession3DSecureViewController?.present(alert, animated: true, completion: nil)
+        func showSwedbankPaySDKController(viewController: SwedbankPaySDKController) {
+            paymentSessionSwedbankPayController = viewController
+            paymentSessionSwedbankPayController?.delegate = self
+            displayPaymentSessionSwedbankPayController = true
+            isLoadingNativePayment = false
         }
     }
 }

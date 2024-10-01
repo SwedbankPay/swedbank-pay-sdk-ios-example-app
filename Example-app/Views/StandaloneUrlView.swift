@@ -404,6 +404,40 @@ struct StandaloneUrlView: View {
                                         .padding(.top, 10)
                                     }
                                 }
+
+                                Button {
+                                    isFocused = false
+
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: true))
+                                } label: {
+                                    Text("stand_alone_url_payment_new_credit_card")
+                                        .smallFont()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 48)
+                                        .accessibilityIdentifier("newCreditCardButton")
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
+                            case .applePay:
+                                Button {
+                                    isFocused = false
+
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay(merchantIdentifier: "merchant.com.swedbankpay.exampleapp"))
+                                } label: {
+                                    Text("stand_alone_url_payment_apple_pay")
+                                        .smallFont()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 48)
+                                        .accessibilityIdentifier("applePayButton")
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
                             case .webBased(identifier: let identifier):
                                 EmptyView()
                             }
@@ -412,9 +446,7 @@ struct StandaloneUrlView: View {
                         Button {
                             isFocused = false
                             
-                            viewModel.paymentSessionSwedbankPayController = viewModel.nativePayment?.createSwedbankPaySDKController()
-                            viewModel.paymentSessionSwedbankPayController?.delegate = viewModel
-                            viewModel.displayPaymentSessionSwedbankPayController = true
+                            viewModel.nativePayment?.createSwedbankPaySDKController()
                         } label: {
                             Text("stand_alone_url_payment_web")
                                 .smallFont()
