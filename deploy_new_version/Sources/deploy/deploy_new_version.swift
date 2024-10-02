@@ -7,6 +7,7 @@ func deployNewVersion(
     projectDirectory: URL,
     scheme: String,
     bundleId: String,
+    entitlements: String,
     profileData: Data,
     identityData: Data,
     identityPassword: String,
@@ -39,7 +40,7 @@ func deployNewVersion(
             let archiveURL = tempDir.appendingPathComponent("Archive.xcarchive", isDirectory: false)
             
             try archiveUnsigned(projectDirectory: projectDirectory, archiveURL: archiveURL, scheme: scheme, version: nextVersion)
-            try codeSignBundle(projectDirectory: projectDirectory, archiveURL: archiveURL, identityName: identityName, appBuildName: "Example-app")
+            try codeSignBundle(projectDirectory: projectDirectory, archiveURL: archiveURL, identityName: identityName, entitlements: entitlements, appBuildName: "Example-app")
             
             let exportDirectory = tempDir.appendingPathComponent("export", isDirectory: true)
             try exportArchive(projectDirectory: projectDirectory, archiveURL: archiveURL, exportDirectory: exportDirectory, exportOptionsPlistURL: exportOptionsPlistURL)

@@ -6,6 +6,7 @@ do {
         projectDirectory: URL(fileURLWithPath: env("GITHUB_WORKSPACE")),
         scheme: "Example-app",
         bundleId: "com.swedbankpay.exampleapp",
+        entitlements: "Example-app/Example-app.entitlements",
         profileData: envBase64("XCODE_PROVISIONING_PROFILE"),
         identityData: envBase64("XCODE_SIGNING_CERT"),
         identityPassword: env("XCODE_SIGNING_CERT_PASSWORD"),
