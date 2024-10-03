@@ -428,11 +428,34 @@ struct StandaloneUrlView: View {
                                     viewModel.isLoadingNativePayment = true
                                     viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay(merchantIdentifier: "merchant.com.swedbankpay.exampleapp"))
                                 } label: {
-                                    Text("stand_alone_url_payment_apple_pay")
-                                        .smallFont()
-                                        .frame(maxWidth: .infinity)
-                                        .frame(height: 48)
-                                        .accessibilityIdentifier("applePayButton")
+                                    VStack(spacing: 0) {
+                                        Text("stand_alone_url_payment_apple_pay")
+                                        Text("merchant.com.swedbankpay.exampleapp")
+                                    }
+                                    .smallFont()
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 48)
+                                    .accessibilityIdentifier("applePayExampleAppButton")
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
+
+                                Button {
+                                    isFocused = false
+
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .applePay(merchantIdentifier: "merchant.com.swedbankpay.charity"))
+                                } label: {
+                                    VStack(spacing: 0) {
+                                        Text("stand_alone_url_payment_apple_pay")
+                                        Text("merchant.com.swedbankpay.charity")
+                                    }
+                                    .smallFont()
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 48)
+                                    .accessibilityIdentifier("applePayCharityButton")
                                 }
                                 .foregroundColor(.white)
                                 .background(.black)
