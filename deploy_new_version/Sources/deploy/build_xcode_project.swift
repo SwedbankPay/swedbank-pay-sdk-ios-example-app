@@ -47,11 +47,13 @@ func codeSignBundle(
     projectDirectory: URL,
     archiveURL: URL,
     identityName: String,
+    entitlements: String,
     appBuildName: String    //e.g. Example-app
 ) throws {
     let path = archiveURL.appendingPathComponent("/Products/Applications/\(appBuildName).app").path
     try run(name: "codeSignBundle", workingDirectory: projectDirectory, "/usr/bin/codesign", [
         "-s", identityName,
+        "--entitlements", entitlements,
         path
     ])
 }
