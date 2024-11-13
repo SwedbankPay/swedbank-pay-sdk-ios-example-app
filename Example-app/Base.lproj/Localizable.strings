@@ -29,4 +29,6 @@
 "stand_alone_generic_error_title" = "Something went wrong";
 "stand_alone_url_seamless_title" = "Seamless View";
 "stand_alone_url_payment_web" = "Get payment menu";
+"stand_alone_url_payment_web_restricted" = "Get payment menu (restricted 2 first)";
 "stand_alone_url_payment_apple_pay" = "ApplePay";
+"stand_alone_url_payment_web_based" = "Web Based";
