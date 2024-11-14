@@ -461,15 +461,51 @@ struct StandaloneUrlView: View {
                                 .background(.black)
                                 .cornerRadius(30)
                                 .padding(.top, 10)
-                            case .webBased(identifier: let identifier):
-                                EmptyView()
+                            case .webBased(let paymentMethod):
+                                Button {
+                                    isFocused = false
+                                    
+                                    viewModel.isLoadingNativePayment = true
+                                    viewModel.nativePayment?.createSwedbankPaySDKController(mode: .instrumentMode(instrument: instrument))
+                                } label: {
+                                    VStack(spacing: 0) {
+                                        Text("stand_alone_url_payment_web_based")
+                                        Text(paymentMethod)
+                                    }
+                                    .smallFont()
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 48)
+                                    .accessibilityIdentifier("webBasedButton")
+
+                                }
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(30)
+                                .padding(.top, 10)
                             }
                         }
                         
                         Button {
                             isFocused = false
                             
-                            viewModel.nativePayment?.createSwedbankPaySDKController()
+                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: [availableInstruments[0], availableInstruments[1]]))
+                        } label: {
+                            Text("stand_alone_url_payment_web_restricted")
+                                .smallFont()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                                .accessibilityIdentifier("webBasedButton")
+                            
+                        }
+                        .foregroundColor(.white)
+                        .background(.black)
+                        .cornerRadius(30)
+                        .padding(.top, 10)
+                        
+                        Button {
+                            isFocused = false
+                            
+                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: nil))
                         } label: {
                             Text("stand_alone_url_payment_web")
                                 .smallFont()
