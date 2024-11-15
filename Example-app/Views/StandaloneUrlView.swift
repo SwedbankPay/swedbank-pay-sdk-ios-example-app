@@ -488,9 +488,9 @@ struct StandaloneUrlView: View {
                         Button {
                             isFocused = false
                             
-                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: [availableInstruments[0], availableInstruments[1]]))
+                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: nil))
                         } label: {
-                            Text("stand_alone_url_payment_web_restricted")
+                            Text("stand_alone_url_payment_web")
                                 .smallFont()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 48)
@@ -505,9 +505,17 @@ struct StandaloneUrlView: View {
                         Button {
                             isFocused = false
                             
-                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: nil))
+                            let restrictedToInstruments = availableInstruments.filter {
+                                if case .webBased = $0 {
+                                    return true
+                                }
+
+                                return false
+                            }
+                            viewModel.nativePayment?.createSwedbankPaySDKController(mode: .menu(restrictedToInstruments: restrictedToInstruments))
+
                         } label: {
-                            Text("stand_alone_url_payment_web")
+                            Text("stand_alone_url_payment_web_restricted")
                                 .smallFont()
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 48)
