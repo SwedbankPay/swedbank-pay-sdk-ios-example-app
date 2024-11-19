@@ -171,9 +171,6 @@ extension StandaloneUrlView {
         
         func sdkProblemOccurred(problem: SwedbankPaySDK.PaymentSessionProblem) {
             switch problem {
-            case .clientAppLaunchFailed:
-                showAlert(errorTitle: nil,
-                          errorMessage: "stand_alone_client_app_launch_failed".localize)
             case .paymentSessionAPIRequestFailed(let error, let retry):
                 showAlert(error: error, retry: retry)
             case .paymentControllerPaymentFailed(error: let error, retry: let retry):
