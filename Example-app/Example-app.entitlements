@@ -9,5 +9,10 @@
 		<string>applinks:pp-dot-payex-merchant-samples.ey.r.appspot.com</string>
 		<string>applinks:payex-merchant-samples-prod.appspot.com</string>
 	</array>
+	<key>com.apple.developer.in-app-payments</key>
+	<array>
+		<string>merchant.com.swedbankpay.exampleapp</string>
+		<string>merchant.com.swedbankpay.charity</string>
+	</array>
 </dict>
 </plist>

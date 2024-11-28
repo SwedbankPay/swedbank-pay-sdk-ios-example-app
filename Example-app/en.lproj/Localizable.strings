@@ -1,0 +1,33 @@
+//General
+"general_checkout" = "Checkout";
+"general_ok" = "OK";
+"general_retry" = "Retry";
+
+// Stand-alone URL View Controller
+"stand_alone_url_payment_successful" = "Payment completed";
+"stand_alone_url_payment_cancelled" = "Payment cancelled";
+
+"stand_alone_url_payment_view_checkout_url" = "View checkout URL";
+"stand_alone_url_payment_base_url" = "Base URL";
+"stand_alone_url_payment_complete_url" = "Complete URL";
+"stand_alone_url_payment_cancel_url" = "Cancel URL";
+"stand_alone_url_payment_checkout_v3" = "Use CheckoutV3";
+"stand_alone_url_payment_payment_url" = "Payment URL";
+"stand_alone_url_payment_payment_url_scheme" = "swedbankexample://";
+"stand_alone_url_payment_session_url" = "Session URL";
+"stand_alone_url_payment_get_session" = "Get Session";
+"stand_alone_url_payment_swish_number" = "Swish number";
+"stand_alone_url_payment_swish" = "Swish";
+"stand_alone_url_payment_swish_device" = "Swish using this device";
+"stand_alone_url_payment_swish_prefill %@" = "Swish: %@";
+"stand_alone_url_payment_credit_card_prefill %@" = "Credit Card: %@";
+"stand_alone_url_payment_new_credit_card" = "New Credit Card";
+"stand_alone_url_payment_abort" = "Abort";
+"stand_alone_url_payment_session_end_state_reached" = "Something went wrong with the payment";
+"stand_alone_internal_inconsistency_error" = "Something was called it the wrong order";
+"stand_alone_generic_error_title" = "Something went wrong";
+"stand_alone_url_seamless_title" = "Seamless View";
+"stand_alone_url_payment_web" = "Get payment menu";
+"stand_alone_url_payment_web_restricted" = "Get payment menu\nRestricted to non native";
+"stand_alone_url_payment_apple_pay" = "ApplePay";
+"stand_alone_url_payment_web_based" = "Web Based";
