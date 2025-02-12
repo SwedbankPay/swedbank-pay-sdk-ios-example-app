@@ -30,4 +30,6 @@
 "stand_alone_url_payment_web" = "Get payment menu";
 "stand_alone_url_payment_web_restricted" = "Get payment menu\nRestricted to non native";
 "stand_alone_url_payment_apple_pay" = "ApplePay";
+"stand_alone_url_payment_apple_pay_can_make_payments %@" = "Can make payments: %@";
+"stand_alone_url_payment_apple_pay_using_networks_and_capabilities %@" = "...using networks and capabilities: %@";
 "stand_alone_url_payment_web_based" = "Web Based";
