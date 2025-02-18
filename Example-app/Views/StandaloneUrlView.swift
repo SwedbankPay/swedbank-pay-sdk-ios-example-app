@@ -421,7 +421,17 @@ struct StandaloneUrlView: View {
                                 .background(.black)
                                 .cornerRadius(30)
                                 .padding(.top, 10)
-                            case .applePay:
+                            case .applePay(let canMakePayments, let canMakePaymentsUsingNetworksAndCapabilities):
+                                VStack(spacing: 0) {
+                                    Text("stand_alone_url_payment_apple_pay")
+                                    Text("stand_alone_url_payment_apple_pay_can_make_payments \(String(canMakePayments))")
+                                    Text("stand_alone_url_payment_apple_pay_using_networks_and_capabilities \(String(canMakePaymentsUsingNetworksAndCapabilities))")
+                                }
+                                .smallFont()
+                                .frame(maxWidth: .infinity)
+                                .accessibilityIdentifier("applePayPaymentReadinessLabel")
+                                .foregroundColor(.black)
+                                
                                 Button {
                                     isFocused = false
 

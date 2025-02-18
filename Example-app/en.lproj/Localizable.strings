@@ -11,7 +11,7 @@
 "stand_alone_url_payment_base_url" = "Base URL";
 "stand_alone_url_payment_complete_url" = "Complete URL";
 "stand_alone_url_payment_cancel_url" = "Cancel URL";
-"stand_alone_url_payment_checkout_v3" = "Use CheckoutV3";
+"stand_alone_url_payment_checkout_v3" = "Use Checkout V3";
 "stand_alone_url_payment_payment_url" = "Payment URL";
 "stand_alone_url_payment_payment_url_scheme" = "swedbankexample://";
 "stand_alone_url_payment_session_url" = "Session URL";
@@ -30,4 +30,6 @@
 "stand_alone_url_payment_web" = "Get payment menu";
 "stand_alone_url_payment_web_restricted" = "Get payment menu\nRestricted to non native";
 "stand_alone_url_payment_apple_pay" = "ApplePay";
+"stand_alone_url_payment_apple_pay_can_make_payments %@" = "Can make payments: %@";
+"stand_alone_url_payment_apple_pay_using_networks_and_capabilities %@" = "...using networks and capabilities: %@";
 "stand_alone_url_payment_web_based" = "Web Based";
