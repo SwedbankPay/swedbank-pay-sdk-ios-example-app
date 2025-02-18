@@ -1026,7 +1026,7 @@
 			repositoryURL = "https://github.com/SwedbankPay/swedbank-pay-sdk-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "5.0.1-rc.1";
+				minimumVersion = "5.0.1-rc.2";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
