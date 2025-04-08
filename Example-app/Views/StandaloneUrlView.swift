@@ -336,7 +336,7 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("swishButton")
                                 }
-                                .disabled(viewModel.swishNumber.isEmpty)
+                                .disabled(viewModel.swishNumber.isEmpty || viewModel.isLoadingNativePayment)
                                 .foregroundColor(!viewModel.swishNumber.isEmpty ? .white : .gray)
                                 .background(!viewModel.swishNumber.isEmpty ? .black : .backgroundGray)
                                 .cornerRadius(30)
@@ -354,6 +354,7 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("swishButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -373,6 +374,7 @@ struct StandaloneUrlView: View {
                                                 .frame(height: 48)
                                                 .accessibilityIdentifier("swishPrefillButton")
                                         }
+                                        .disabled(viewModel.isLoadingNativePayment)
                                         .foregroundColor(.white)
                                         .background(.black)
                                         .cornerRadius(30)
@@ -398,6 +400,7 @@ struct StandaloneUrlView: View {
                                             .accessibilityIdentifier("creditCardPrefillButton")
 
                                         }
+                                        .disabled(viewModel.isLoadingNativePayment)
                                         .foregroundColor(.white)
                                         .background(.black)
                                         .cornerRadius(30)
@@ -417,6 +420,7 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("newCreditCardButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -447,6 +451,7 @@ struct StandaloneUrlView: View {
                                     .frame(height: 48)
                                     .accessibilityIdentifier("applePayExampleAppButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -467,6 +472,7 @@ struct StandaloneUrlView: View {
                                     .frame(height: 48)
                                     .accessibilityIdentifier("applePayCharityButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -488,6 +494,7 @@ struct StandaloneUrlView: View {
                                     .accessibilityIdentifier("webBasedButton")
 
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -507,6 +514,7 @@ struct StandaloneUrlView: View {
                                 .accessibilityIdentifier("webBasedButton")
                             
                         }
+                        .disabled(viewModel.isLoadingNativePayment)
                         .foregroundColor(.white)
                         .background(.black)
                         .cornerRadius(30)
@@ -532,6 +540,7 @@ struct StandaloneUrlView: View {
                                 .accessibilityIdentifier("webBasedButton")
                             
                         }
+                        .disabled(viewModel.isLoadingNativePayment)
                         .foregroundColor(.white)
                         .background(.black)
                         .cornerRadius(30)

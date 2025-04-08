@@ -111,13 +111,15 @@ extension StandaloneUrlView {
                       retry: retry)
         }
         
-        private func showAlert(errorTitle: String?, errorMessage: String?, retry: (()->Void)? = nil) {
+        private func showAlert(errorTitle: String?, errorMessage: String?, stopLoading: Bool = true, retry: (()->Void)? = nil) {
             self.errorTitle = errorTitle
             self.errorMessage = errorMessage
             self.retry = retry
             self.showingAlert = true
             
-            isLoadingNativePayment = false
+            if stopLoading {
+                isLoadingNativePayment = false
+            }
         }
 
         private func showAlertOnPaymentSession3DSecureViewController(error: Error, retry: (()->Void)?) {
@@ -183,6 +185,8 @@ extension StandaloneUrlView {
                 setPaymentResult(success: false, resultText: "stand_alone_internal_inconsistency_error".localize)
             case .automaticConfigurationFailed:
                 setPaymentResult(success: false, resultText: "stand_alone_automatic_configuration_failed".localize)
+            case .abortPaymentNotAllowed:
+                showAlert(errorTitle: nil, errorMessage: "stand_alone_abort_payment_not_allowed".localize, stopLoading: false)
             }
         }
         
