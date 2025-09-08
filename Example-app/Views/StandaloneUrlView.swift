@@ -412,7 +412,7 @@ struct StandaloneUrlView: View {
                                     isFocused = false
 
                                     viewModel.isLoadingNativePayment = true
-                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: true))
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: false))
                                 } label: {
                                     Text("stand_alone_url_payment_new_credit_card")
                                         .smallFont()
