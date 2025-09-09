@@ -14,7 +14,6 @@ jobs:
         with:
           xcode-version: "16.2"
       - name: Manually download iOS 18.2
-        if: env.simulator_cached == 'false'
         run: |
           xcodebuild -downloadPlatform iOS -buildVersion 18.2 -exportPath ~/SimulatorRuntimes/
           xcodebuild -importPlatform "/Users/runner/SimulatorRuntimes/iphonesimulator_18.2_22C150.dmg"
