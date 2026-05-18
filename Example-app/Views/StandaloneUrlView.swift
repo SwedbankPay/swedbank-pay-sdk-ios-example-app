@@ -336,7 +336,7 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("swishButton")
                                 }
-                                .disabled(viewModel.swishNumber.isEmpty)
+                                .disabled(viewModel.swishNumber.isEmpty || viewModel.isLoadingNativePayment)
                                 .foregroundColor(!viewModel.swishNumber.isEmpty ? .white : .gray)
                                 .background(!viewModel.swishNumber.isEmpty ? .black : .backgroundGray)
                                 .cornerRadius(30)
@@ -354,6 +354,7 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("swishButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -373,6 +374,7 @@ struct StandaloneUrlView: View {
                                                 .frame(height: 48)
                                                 .accessibilityIdentifier("swishPrefillButton")
                                         }
+                                        .disabled(viewModel.isLoadingNativePayment)
                                         .foregroundColor(.white)
                                         .background(.black)
                                         .cornerRadius(30)
@@ -398,6 +400,7 @@ struct StandaloneUrlView: View {
                                             .accessibilityIdentifier("creditCardPrefillButton")
 
                                         }
+                                        .disabled(viewModel.isLoadingNativePayment)
                                         .foregroundColor(.white)
                                         .background(.black)
                                         .cornerRadius(30)
@@ -409,7 +412,7 @@ struct StandaloneUrlView: View {
                                     isFocused = false
 
                                     viewModel.isLoadingNativePayment = true
-                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: true))
+                                    viewModel.nativePayment?.makeNativePaymentAttempt(instrument: .newCreditCard(enabledPaymentDetailsConsentCheckbox: false))
                                 } label: {
                                     Text("stand_alone_url_payment_new_credit_card")
                                         .smallFont()
@@ -417,11 +420,22 @@ struct StandaloneUrlView: View {
                                         .frame(height: 48)
                                         .accessibilityIdentifier("newCreditCardButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
                                 .padding(.top, 10)
-                            case .applePay:
+                            case .applePay(let canMakePayments, let canMakePaymentsUsingNetworksAndCapabilities):
+                                VStack(spacing: 0) {
+                                    Text("stand_alone_url_payment_apple_pay")
+                                    Text("stand_alone_url_payment_apple_pay_can_make_payments \(String(canMakePayments))")
+                                    Text("stand_alone_url_payment_apple_pay_using_networks_and_capabilities \(String(canMakePaymentsUsingNetworksAndCapabilities))")
+                                }
+                                .smallFont()
+                                .frame(maxWidth: .infinity)
+                                .accessibilityIdentifier("applePayPaymentReadinessLabel")
+                                .foregroundColor(.black)
+                                
                                 Button {
                                     isFocused = false
 
@@ -437,6 +451,7 @@ struct StandaloneUrlView: View {
                                     .frame(height: 48)
                                     .accessibilityIdentifier("applePayExampleAppButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -457,6 +472,7 @@ struct StandaloneUrlView: View {
                                     .frame(height: 48)
                                     .accessibilityIdentifier("applePayCharityButton")
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -478,6 +494,7 @@ struct StandaloneUrlView: View {
                                     .accessibilityIdentifier("webBasedButton")
 
                                 }
+                                .disabled(viewModel.isLoadingNativePayment)
                                 .foregroundColor(.white)
                                 .background(.black)
                                 .cornerRadius(30)
@@ -497,6 +514,7 @@ struct StandaloneUrlView: View {
                                 .accessibilityIdentifier("webBasedButton")
                             
                         }
+                        .disabled(viewModel.isLoadingNativePayment)
                         .foregroundColor(.white)
                         .background(.black)
                         .cornerRadius(30)
@@ -522,6 +540,7 @@ struct StandaloneUrlView: View {
                                 .accessibilityIdentifier("webBasedButton")
                             
                         }
+                        .disabled(viewModel.isLoadingNativePayment)
                         .foregroundColor(.white)
                         .background(.black)
                         .cornerRadius(30)
