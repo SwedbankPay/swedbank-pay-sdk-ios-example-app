@@ -20,10 +20,34 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
           xcodebuild -version
 
+      - name: Ensure iOS 18.5 Simulator Runtime
+        run: |
+          if ! xcrun simctl list runtimes | grep -q 'iOS 18.5'; then
+            echo "Installing iOS 18.5 simulator runtime..."
+            xcodebuild -downloadPlatform iOS -buildVersion 18.5
+          fi
+
+          xcrun simctl list runtimes
+
+      - name: Create Simulator
+        id: simulator
+        run: |
+          DEVICE_TYPE="com.apple.CoreSimulator.SimDeviceType.iPhone-16"
+          RUNTIME="com.apple.CoreSimulator.SimRuntime.iOS-18-5"
+
+          UDID=$(xcrun simctl create "CI iPhone 16" "$DEVICE_TYPE" "$RUNTIME")
+
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+
+          xcrun simctl list devices available
+
       - name: Run Tests
         run: |
           xcodebuild \
             -scheme Example-app \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5' \
+            -destination "platform=iOS Simulator,id=${{ steps.simulator.outputs.udid }}" \
             -resultBundlePath TestResults.xcresult \
             test
