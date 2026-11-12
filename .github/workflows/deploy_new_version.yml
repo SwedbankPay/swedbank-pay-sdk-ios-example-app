@@ -15,28 +15,30 @@ jobs:
 
     steps:
       # actions/checkout v4.2.2
+      # Pinned to full commit SHA
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
 
-      # Select Xcode 16.2 without an external action
-      - name: Setup Xcode
+      - name: Setup Xcode 26
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_26.0.1.app/Contents/Developer
+
+          echo "Xcode version:"
           xcodebuild -version
 
-      - name: Install iOS 18.2 Simulator
+          echo "iOS SDK:"
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: Verify iOS SDK
         run: |
-          mkdir -p "$HOME/SimulatorRuntimes"
+          SDK_VERSION=$(xcrun --sdk iphoneos --show-sdk-version)
+          SDK_MAJOR=${SDK_VERSION%%.*}
 
-          if ! xcrun simctl list runtimes | grep -q 'iOS 18.2'; then
-            xcodebuild -downloadPlatform iOS \
-              -buildVersion 18.2 \
-              -exportPath "$HOME/SimulatorRuntimes"
-
-            xcodebuild -importPlatform \
-              "$HOME/SimulatorRuntimes/iphonesimulator_18.2_22C150.dmg"
+          if [ "$SDK_MAJOR" -lt 26 ]; then
+            echo "Error: iOS 26 SDK or later is required"
+            exit 1
           fi
 
       - name: Deploy new version
